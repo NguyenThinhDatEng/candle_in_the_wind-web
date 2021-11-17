@@ -1,0 +1,47 @@
+{
+  "kind": "collectionType",
+  "collectionName": "bills",
+  "info": {
+    "name": "order",
+    "description": ""
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "customerName": {
+      "type": "string"
+    },
+    "customer": {
+      "model": "customer",
+      "via": "bills"
+    },
+    "date": {
+      "type": "date"
+    },
+    "address": {
+      "type": "text"
+    },
+    "status": {
+      "type": "boolean",
+      "default": false,
+      "required": true
+    },
+    "totalPrice": {
+      "type": "float"
+    },
+    "phoneNumber": {
+      "type": "biginteger"
+    },
+    "paymentMethods": {
+      "type": "enumeration",
+      "enum": [
+        "online",
+        "offline"
+      ]
+    }
+  }
+}
