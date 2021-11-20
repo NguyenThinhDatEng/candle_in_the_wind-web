@@ -1,0 +1,28 @@
+{
+  "kind": "collectionType",
+  "collectionName": "carts",
+  "info": {
+    "name": "cart",
+    "description": ""
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "products": {
+      "unique": true,
+      "columnName": "abc",
+      "collection": "product"
+    },
+    "customer": {
+      "model": "customer",
+      "via": "cart"
+    },
+    "totalPrice": {
+      "type": "float"
+    }
+  }
+}
