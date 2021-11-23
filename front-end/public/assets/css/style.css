@@ -1,0 +1,62 @@
+* {
+    margin: 0px;
+}
+
+.bg-form{
+    background-image: url("../images/background_signin.jpg");
+    background-size: cover;
+    background-position: bottom 20% center;
+    height: 100vh;
+}
+
+
+/* -------------Login Form------------------*/
+.login-container {
+    width: 30%;
+    color: white;
+    margin-top: 20vh;
+    border-radius: 30px;
+    background: rgba(41, 37, 37, 0.87);
+
+    -webkit-box-shadow: 0px 1px 22px 5px rgba(0,0,0,0.75);
+	-moz-box-shadow: 0px 1px 22px 5px rgba(0,0,0,0.75);
+	box-shadow: 0px 1px 22px 5px rgba(0,0,0,0.75);
+}
+
+.login-title{
+    text-align: center;
+    font-family: 'Pacifico', cursive;
+    font-size: 70px;
+}
+
+.forgot-password a {
+    /* text-decoration: none; */
+    float: right;
+    margin-right: 0px;
+}
+
+/* ------------------------Sign up form ---------------- */
+.signup-container {
+    width: 40%;
+    color: white;
+    margin-top:10vh;
+    border-radius: 30px;
+    background: rgba(41, 37, 37, 0.87);
+}
+
+/* ----------------------Information-------------------- */
+.card-info{
+    background-color: #E0B87B;
+}
+
+.list-change{
+    
+    list-style: none;
+    line-height: 200%;
+}
+
+.list-change li a {
+    text-decoration: none;
+    margin-left: 10px;
+}
+
