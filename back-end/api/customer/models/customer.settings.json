@@ -39,23 +39,15 @@
       "required": false,
       "pluginOptions": {}
     },
-    "gender": {
-      "type": "boolean"
-    },
     "loyal": {
       "type": "boolean"
     },
-    "bills": {
-      "via": "customer",
-      "collection": "bill"
-    },
-    "posts": {
-      "via": "customer",
-      "collection": "post"
-    },
-    "cart": {
-      "via": "customer",
-      "model": "cart"
+    "Gender": {
+      "type": "enumeration",
+      "enum": [
+        "Male",
+        "Female"
+      ]
     }
   }
 }

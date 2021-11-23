@@ -15,10 +15,6 @@
     "content": {
       "type": "text"
     },
-    "customer": {
-      "model": "customer",
-      "via": "posts"
-    },
     "comments": {
       "via": "post",
       "collection": "comment"
@@ -27,6 +23,21 @@
       "type": "boolean",
       "default": false,
       "required": true
+    },
+    "image": {
+      "collection": "file",
+      "via": "related",
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos"
+      ],
+      "plugin": "upload",
+      "required": false,
+      "pluginOptions": {}
+    },
+    "customer": {
+      "model": "customer"
     }
   }
 }

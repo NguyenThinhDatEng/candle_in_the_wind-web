@@ -1,0 +1,34 @@
+{
+  "kind": "collectionType",
+  "collectionName": "transactions",
+  "info": {
+    "name": "transaction",
+    "description": ""
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "status": {
+      "type": "boolean",
+      "default": false,
+      "required": false
+    },
+    "customer": {
+      "model": "customer"
+    },
+    "amount": {
+      "type": "biginteger"
+    },
+    "payment": {
+      "type": "enumeration",
+      "enum": [
+        "online",
+        "offline"
+      ]
+    }
+  }
+}

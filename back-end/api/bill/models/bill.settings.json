@@ -12,36 +12,19 @@
   },
   "pluginOptions": {},
   "attributes": {
-    "customerName": {
-      "type": "string"
+    "product": {
+      "model": "product"
     },
-    "customer": {
-      "model": "customer",
-      "via": "bills"
+    "quantity": {
+      "type": "integer",
+      "default": 0
     },
-    "date": {
-      "type": "date"
-    },
-    "address": {
-      "type": "text"
+    "amount": {
+      "type": "float"
     },
     "status": {
       "type": "boolean",
-      "default": false,
-      "required": true
-    },
-    "totalPrice": {
-      "type": "float"
-    },
-    "phoneNumber": {
-      "type": "biginteger"
-    },
-    "paymentMethods": {
-      "type": "enumeration",
-      "enum": [
-        "online",
-        "offline"
-      ]
+      "default": false
     }
   }
 }

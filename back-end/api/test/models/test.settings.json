@@ -1,9 +1,8 @@
 {
   "kind": "collectionType",
-  "collectionName": "categories",
+  "collectionName": "tests",
   "info": {
-    "name": "catalog",
-    "description": ""
+    "name": "test"
   },
   "options": {
     "increments": true,
