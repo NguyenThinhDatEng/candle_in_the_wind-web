@@ -45,8 +45,8 @@
       "min": 0,
       "default": 0
     },
-    "category": {
-      "model": "category"
+    "catalog": {
+      "model": "catalog"
     },
     "images": {
       "type": "component",
