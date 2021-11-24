@@ -1,0 +1,20 @@
+{
+  "collectionName": "components_image_related_list_image_relateds",
+  "info": {
+    "name": "listImageRelated",
+    "icon": "adjust"
+  },
+  "options": {},
+  "attributes": {
+    "imageRelated": {
+      "model": "file",
+      "via": "related",
+      "allowedTypes": [
+        "images"
+      ],
+      "plugin": "upload",
+      "required": false,
+      "pluginOptions": {}
+    }
+  }
+}
