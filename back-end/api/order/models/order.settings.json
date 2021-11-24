@@ -2,12 +2,13 @@
   "kind": "collectionType",
   "collectionName": "orders",
   "info": {
-    "name": "order"
+    "name": "order",
+    "description": ""
   },
   "options": {
     "increments": true,
     "timestamps": true,
-    "draftAndPublish": true
+    "draftAndPublish": false
   },
   "pluginOptions": {},
   "attributes": {
