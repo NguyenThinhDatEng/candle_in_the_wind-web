@@ -15,12 +15,11 @@
     "content": {
       "type": "text"
     },
-    "post": {
-      "via": "comments",
-      "model": "post"
-    },
     "customer": {
       "model": "customer"
+    },
+    "post": {
+      "model": "post"
     }
   }
 }
