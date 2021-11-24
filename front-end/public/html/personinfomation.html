@@ -15,21 +15,117 @@
 
 <body>
     <div class="container-fluid bg-light">
-        <div class="card-info" style="width:300px">
-            <div>
-                <img class="card-avatar rounded-circle mb-4" src="../assets/images/avatar.jpg" alt="Card image"
-                    style="width:100%">
-                <h4 class="text-center">Harry</h4>
+        <div class="row justify-content-center">
+            <div class="card-info">
+                <div>
+                    <img class="card-avatar rounded-circle mb-4" src="../assets/images/avatar.jpg" alt="Card image"
+                        style="width:100%">
+                    <h4 class="text-center">Harry</h4>
+                </div>
+                <div class="card-body">
+                    <div class="list-change">
+                        <li><i class="fas fa-user-edit"></i> <a href="#">Change information</a> </li>
+                        <li> <i class="fas fa-lock"></i> <a href="#">Change password</a> </li>
+                        <li><i class="fas fa-file-alt"></i> <a href="#">My orders</a> </li>
+                    </div>
+                </div>
             </div>
-            <div class="card-body">
-                <ul class="list-change">
-                    <li><i class="fas fa-user-edit"></i> <a href="#">Change information</a> </li>
-                    <li> <i class="fas fa-lock"></i> <a href="#">Change password</a> </li>
-                    <li><i class="fas fa-file-alt"></i> <a href="#">My orders</a> </li>
-                </ul>
+
+            <div class="vertical-line"></div>
+
+            <div class="col-md-3 col-sm-6 col-xs-12 change-form">
+                    <form>
+                        <h3 class=" my-5 text-center">Change Password</h3>
+                        <form>
+
+                            <div class="form-group row my-4">
+                                <label for="cur-password" class="col-sm-2 col-form-label">Your current password</label>
+                                <div class="col-sm-10">
+                                    <input type="password" class="form-control" id="cur-password">
+                                </div>
+                            </div>
+                            <div class="form-group row my-4">
+                                <label for="new-password" class="col-sm-2 col-form-label">Your new password</label>
+                                <div class="col-sm-10">
+                                    <input type="password" class="form-control" id="new-password">
+                                </div>
+                            </div>
+                            <div class="form-group row my-4">
+                                <label for="vertify-password" class="col-sm-2 col-form-label">Vertify new
+                                    password</label>
+                                <div class="col-sm-10">
+                                    <input type="password" class="form-control" id="vertify-password">
+                                </div>
+                            </div>
+
+                            <div class="form-group row my-4 text-center">
+                                <div class="col-sm-12">
+                                    <button type="submit" class="btn btn-primary ">Save</button>
+                                </div>
+                            </div>
+                        </form>
+
+                    </form>
+                </div>
+
+            <div class="col-md-3 col-sm-6 col-xs-12 change-form">
+                <h3 class="my-4 text-center"> Personal information</h3>
+                <form>
+                    <div class="form-group row my-4">
+                        <label for="username" class="col-sm-2 col-form-label">Username</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="username">
+                        </div>
+                    </div>
+                    <div class="form-group row my-4">
+                        <label for="email" class="col-sm-2 col-form-label">Email</label>
+                        <div class="col-sm-10">
+                            <input type="email" class="form-control" id="email">
+                        </div>
+                    </div>
+
+                    <fieldset class="form-group row my-4">
+                        <legend class="col-form-label col-sm-2 pt-0">Gender</legend>
+                        <div class="col-sm-10 ">
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="gridRadios" id="male" value="option1"
+                                    checked>
+                                <label class="form-check-label" for="male">
+                                    Male
+                                </label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="gridRadios" id="female"
+                                    value="option2">
+                                <label class="form-check-label" for="female">
+                                    Female
+                                </label>
+                            </div>
+
+                        </div>
+                    </fieldset>
+
+                    <div class="form-group row my-4">
+                        <label for="date-of-birth" class="col-sm-2 col-form-label">Date of Birth</label>
+                        <div class="col-sm-10">
+                            <input type="date" class="form-control text-center" id="date-of-birth">
+                        </div>
+                    </div>
+
+                    <div class="form-group row my-4">
+                        <label for="phone-number" class="col-sm-2 col-form-label">Phone number</label>
+                        <div class="col-sm-10">
+                            <input type="tel" class="form-control" id="phone-number">
+                        </div>
+                    </div>
+
+                    <div class="form-group row my-4 text-center">
+                        <div class="col-sm-12">
+                            <button type="submit" class="btn btn-primary ">Done</button>
+                        </div>
+                    </div>
+                </form>
             </div>
-        </div>
-    </div>
 </body>
 
 </html>
