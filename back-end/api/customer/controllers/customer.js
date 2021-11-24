@@ -14,6 +14,6 @@ module.exports = {
         if(rs){
             return Response.ok(context, { data: rs, msg: `OK`, status: 0 });
         }
-        return Response.badRequest(context, {data: null, msg: `Not Found`, status: 0 })
+        return Response.badRequest(context, {data: null, msg: `Not Found`, status: 0 });
     }
 };

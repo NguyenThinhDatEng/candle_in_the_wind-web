@@ -1,0 +1,32 @@
+{
+  "kind": "collectionType",
+  "collectionName": "orders",
+  "info": {
+    "name": "order"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "product": {
+      "model": "product"
+    },
+    "transaction": {
+      "model": "transaction"
+    },
+    "quantity": {
+      "type": "integer",
+      "default": 0
+    },
+    "amount": {
+      "type": "biginteger",
+      "default": "0"
+    },
+    "status": {
+      "type": "boolean"
+    }
+  }
+}

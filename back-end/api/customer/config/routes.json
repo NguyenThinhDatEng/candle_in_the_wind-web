@@ -1,6 +1,14 @@
 {
   "routes": [
     {
+      "method": "POST",
+      "path": "/customers/login",
+      "handler": "customer.login",
+      "config": {
+        "policies": []
+      }
+    },
+    {
       "method": "GET",
       "path": "/customers",
       "handler": "customer.find",

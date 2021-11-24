@@ -1,12 +1,13 @@
 {
-  "collectionName": "components_image_related_list_image_relateds",
+  "collectionName": "components_image-list_realated-images",
   "info": {
-    "name": "listImageRelated",
-    "icon": "adjust"
+    "name": "related-images",
+    "icon": "clone",
+    "description": ""
   },
   "options": {},
   "attributes": {
-    "imageRelated": {
+    "photo": {
       "model": "file",
       "via": "related",
       "allowedTypes": [

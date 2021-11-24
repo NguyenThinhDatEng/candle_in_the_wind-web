@@ -42,10 +42,17 @@
     "discount": {
       "type": "integer",
       "max": 100,
-      "min": 0
+      "min": 0,
+      "default": 0
     },
     "category": {
       "model": "category"
+    },
+    "images": {
+      "type": "component",
+      "repeatable": true,
+      "component": "image-list.list-image-related",
+      "max": 3
     }
   }
 }
