@@ -2,13 +2,12 @@
     margin: 0px;
 }
 
-.bg-form{
+.bg-form {
     background-image: url("../images/background_signin.jpg");
     background-size: cover;
     background-position: bottom 20% center;
     height: 100vh;
 }
-
 
 /* -------------Login Form------------------*/
 .login-container {
@@ -18,14 +17,14 @@
     border-radius: 30px;
     background: rgba(41, 37, 37, 0.87);
 
-    -webkit-box-shadow: 0px 1px 22px 5px rgba(0,0,0,0.75);
-	-moz-box-shadow: 0px 1px 22px 5px rgba(0,0,0,0.75);
-	box-shadow: 0px 1px 22px 5px rgba(0,0,0,0.75);
+    -webkit-box-shadow: 0px 1px 22px 5px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: 0px 1px 22px 5px rgba(0, 0, 0, 0.75);
+    box-shadow: 0px 1px 22px 5px rgba(0, 0, 0, 0.75);
 }
 
-.login-title{
+.login-title {
     text-align: center;
-    font-family: 'Pacifico', cursive;
+    font-family: "Pacifico", cursive;
     font-size: 70px;
 }
 
@@ -39,24 +38,53 @@
 .signup-container {
     width: 40%;
     color: white;
-    margin-top:10vh;
+    margin-top: 10vh;
     border-radius: 30px;
     background: rgba(41, 37, 37, 0.87);
 }
 
 /* ----------------------Information-------------------- */
-.card-info{
-    background-color: #E0B87B;
+.card-info {
+    background-color: #e0b87b;
+    width: 20%;
+    border-radius: 30px;
 }
 
-.list-change{
-    
+.list-change {
     list-style: none;
     line-height: 200%;
 }
 
-.list-change li a {
+.list-change a {
     text-decoration: none;
     margin-left: 10px;
+    color: black;
+    transition: text-shadow font-weight;
 }
 
+.list-change a:hover,
+.list-change a:active {
+    font-weight: bold;
+    text-shadow: 1px 1px 2px rgb(44, 40, 40);
+}
+
+.vertical-line {
+    position: relative;
+    border-right: 5px solid black;
+    width: 1px;
+    margin-right: 25px;
+}
+
+/* --------------------Change form ------------------------- */
+.change-form {
+    background-color: #e0b87b;
+    width: 50%;
+    border-radius: 30px;
+}
+
+/* ---------------------My Orders----------------------- */
+.order-scrollbar {
+    position: relative;
+    height: 40vh;
+    overflow: auto;
+}
