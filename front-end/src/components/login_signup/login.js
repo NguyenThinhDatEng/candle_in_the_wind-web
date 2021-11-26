@@ -4,7 +4,7 @@ export default class Login extends Component {
     render() {
         return (
             <div>
-                <div className="container-fluid bg-form">
+                <div className="container-fluid bg-login">
                     <div className="row justify-content-center">
                         <div className="col-md-3 col-sm-6 col-xs-12 login-container">
                             <form>
@@ -34,7 +34,7 @@ export default class Login extends Component {
                                 <div className="text-center">
                                     <p className="forgot-password">
                                         {" "}
-                                        <a href="#">Forgot password?</a>{" "}
+                                        <a href="#!">Forgot password?</a>{" "}
                                     </p>
                                     <div className="clearfix" />
                                     <button
