@@ -12,21 +12,16 @@
   },
   "pluginOptions": {},
   "attributes": {
-    "content": {
-      "type": "text"
-    },
     "lockComment": {
       "type": "boolean",
       "default": false,
-      "required": true
+      "required": false
     },
     "image": {
       "collection": "file",
       "via": "related",
       "allowedTypes": [
-        "images",
-        "files",
-        "videos"
+        "images"
       ],
       "plugin": "upload",
       "required": false,
@@ -36,7 +31,15 @@
       "model": "customer"
     },
     "title": {
-      "type": "string"
+      "type": "string",
+      "required": true
+    },
+    "catalogs": {
+      "collection": "catalog"
+    },
+    "content": {
+      "type": "richtext",
+      "required": true
     }
   }
 }
