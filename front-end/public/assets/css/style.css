@@ -2,24 +2,24 @@
     margin: 0px;
 }
 
-.bg-form {
-    background-image: url("../images/background_signin.jpg");
-    background-size: cover;
-    background-position: bottom 20% center;
-    height: 100vh;
-}
-
 /* -------------Login Form------------------*/
 .login-container {
     width: 30%;
     color: white;
     margin-top: 20vh;
-    border-radius: 30px;
+    border-radius: 20px;
     background: rgba(41, 37, 37, 0.87);
 
     -webkit-box-shadow: 0px 1px 22px 5px rgba(0, 0, 0, 0.75);
     -moz-box-shadow: 0px 1px 22px 5px rgba(0, 0, 0, 0.75);
     box-shadow: 0px 1px 22px 5px rgba(0, 0, 0, 0.75);
+}
+
+.bg-login {
+    background-image: url("../images/background_signin.jpg");
+    background-size: cover;
+    background-position: bottom 20% center;
+    height: 100vh;
 }
 
 .login-title {
@@ -39,7 +39,7 @@
     width: 40%;
     color: white;
     margin-top: 10vh;
-    border-radius: 30px;
+    border-radius: 20px;
     background: rgba(41, 37, 37, 0.87);
 }
 
@@ -47,7 +47,7 @@
 .card-info {
     background-color: #e0b87b;
     width: 20%;
-    border-radius: 30px;
+    border-radius: 20px;
 }
 
 .list-change {
@@ -65,7 +65,7 @@
 .list-change a:hover,
 .list-change a:active {
     font-weight: bold;
-    text-shadow: 1px 1px 2px rgb(44, 40, 40);
+    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 }
 
 .vertical-line {
@@ -79,7 +79,7 @@
 .change-form {
     background-color: #e0b87b;
     width: 50%;
-    border-radius: 30px;
+    border-radius: 20px;
 }
 
 /* ---------------------My Orders----------------------- */
@@ -87,4 +87,71 @@
     position: relative;
     height: 40vh;
     overflow: auto;
+}
+
+/* -----------------------Blog------------------- */
+.blog-title {
+    font-size: 150px;
+    letter-spacing: 15px;
+}
+
+.header-blog {
+    background-color: #e0b87b;
+}
+
+.create-post {
+    float: right;
+    margin-right: 6%;
+}
+
+.post-element {
+    margin-left: 5%;
+    margin-top: 5vh;
+    background: #ffffff;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 20px;
+}
+.post-element img {
+    width: 50%;
+}
+
+/* -----------------------Home page----------------- */
+.carousel-item img {
+    width: 100%;
+    height: 70vh;
+}
+
+.line {
+    /* Stroke: Solid; */
+    height: 20 vh;
+    color: rgb(221, 30, 30);
+    background-color: rgb(212, 18, 18);
+}
+
+/*  */
+.section-item {
+    margin-top: 10vh;
+    margin-bottom:20vh;
+}
+
+.item {
+    background-color: #e0b87b;
+    width: 90% !important;
+    border-radius: 20px;
+    margin-left: 20px !important;
+}
+
+.item-img img {
+    width: 100%
+}
+
+
+.slick-prev:before,
+.slick-next:before {
+    font-size: 30px !important;
+    color: red !important;
+}
+
+.slick-dots button:before {
+    font-size: 20px !important;
 }
