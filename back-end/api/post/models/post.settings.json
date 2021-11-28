@@ -45,6 +45,10 @@
       "type": "richtext",
       "required": true,
       "minLength": 20
+    },
+    "comments": {
+      "via": "post",
+      "collection": "comment"
     }
   }
 }

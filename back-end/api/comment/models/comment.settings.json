@@ -13,13 +13,17 @@
   "pluginOptions": {},
   "attributes": {
     "content": {
-      "type": "text"
+      "type": "text",
+      "required": true
     },
     "customer": {
+      "private": true,
       "model": "customer"
     },
     "post": {
-      "model": "post"
+      "private": true,
+      "model": "post",
+      "via": "comments"
     }
   }
 }
