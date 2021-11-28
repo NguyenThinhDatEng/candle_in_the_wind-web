@@ -31,7 +31,8 @@
     text-transform: uppercase;
 }
 .link_webpages li a:hover {
-    color: rgba(224, 184, 123,0.5)
+    color: rgba(224, 184, 123,0.5);
+    text-shadow: 0px 4px 4px rgba(224, 184, 123,0.5);
 }
 
 .link_webpages .active {
