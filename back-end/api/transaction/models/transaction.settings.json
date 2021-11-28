@@ -20,15 +20,33 @@
     "customer": {
       "model": "customer"
     },
-    "amount": {
-      "type": "biginteger"
+    "subtotal": {
+      "type": "float"
     },
     "payment": {
       "type": "enumeration",
       "enum": [
-        "online",
-        "offline"
-      ]
+        "transfer",
+        "cash"
+      ],
+      "default": "transfer"
+    },
+    "address": {
+      "type": "string",
+      "required": true,
+      "maxLength": 500
+    },
+    "note": {
+      "type": "text",
+      "required": false
+    },
+    "ship_fee": {
+      "type": "biginteger",
+      "default": "0",
+      "required": false
+    },
+    "grand_total": {
+      "type": "float"
     }
   }
 }

@@ -1,0 +1,30 @@
+{
+  "kind": "collectionType",
+  "collectionName": "sliders",
+  "info": {
+    "name": "slider",
+    "description": ""
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "description": {
+      "type": "text"
+    },
+    "display_images": {
+      "type": "component",
+      "repeatable": true,
+      "component": "image-list.list-image-related",
+      "max": 10,
+      "required": true
+    }
+  }
+}
