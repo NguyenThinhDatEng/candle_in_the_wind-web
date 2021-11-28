@@ -12,31 +12,39 @@
   },
   "pluginOptions": {},
   "attributes": {
-    "content": {
-      "type": "text"
-    },
     "lockComment": {
       "type": "boolean",
       "default": false,
-      "required": true
+      "required": false
     },
     "image": {
-      "collection": "file",
+      "model": "file",
       "via": "related",
       "allowedTypes": [
-        "images",
-        "files",
-        "videos"
+        "images"
       ],
       "plugin": "upload",
-      "required": false,
+      "required": true,
       "pluginOptions": {}
     },
     "customer": {
+      "private": true,
       "model": "customer"
     },
     "title": {
-      "type": "string"
+      "type": "string",
+      "required": true,
+      "minLength": 10,
+      "maxLength": 200
+    },
+    "catalogs": {
+      "private": true,
+      "collection": "catalog"
+    },
+    "content": {
+      "type": "richtext",
+      "required": true,
+      "minLength": 20
     }
   }
 }
