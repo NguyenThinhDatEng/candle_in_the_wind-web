@@ -18,28 +18,33 @@
       "required": false
     },
     "image": {
-      "collection": "file",
+      "model": "file",
       "via": "related",
       "allowedTypes": [
         "images"
       ],
       "plugin": "upload",
-      "required": false,
+      "required": true,
       "pluginOptions": {}
     },
     "customer": {
+      "private": true,
       "model": "customer"
     },
     "title": {
       "type": "string",
-      "required": true
+      "required": true,
+      "minLength": 10,
+      "maxLength": 200
     },
     "catalogs": {
+      "private": true,
       "collection": "catalog"
     },
     "content": {
       "type": "richtext",
-      "required": true
+      "required": true,
+      "minLength": 20
     }
   }
 }
