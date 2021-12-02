@@ -37,7 +37,6 @@
       "maxLength": 200
     },
     "catalogs": {
-      "private": true,
       "collection": "catalog"
     },
     "content": {

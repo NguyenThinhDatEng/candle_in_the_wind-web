@@ -1,3 +1,7 @@
-# Strapi application
+# Execute program
 
-A quick description of your strapi application
+1. yarn install
+
+2. yarn develop
+
+
