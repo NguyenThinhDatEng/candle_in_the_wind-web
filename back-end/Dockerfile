@@ -1,7 +1,13 @@
 FROM node:14.18.1
+
 RUN npm install yarn
-WORKDIR /usr/src/app
-COPY . ./
+
+WORKDIR /workspace/strapi/app
+
+ADD . /workspace/strapi/app/
+
 RUN yarn install
-EXPOSE 1337
-CMD ["yarn", "develop"]
+
+EXPOSE 2021
+
+CMD [ "yarn", "develop"]

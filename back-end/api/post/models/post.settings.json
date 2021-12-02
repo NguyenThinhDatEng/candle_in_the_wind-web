@@ -28,7 +28,6 @@
       "pluginOptions": {}
     },
     "customer": {
-      "private": true,
       "model": "customer"
     },
     "title": {
