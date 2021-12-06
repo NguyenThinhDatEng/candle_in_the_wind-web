@@ -48,7 +48,7 @@ export default function ChangePassword() {
                         <input type="tel" className="form-control" id="phone-number" />
                     </div>
                 </div>
-                <div className="form-group row my-4 text-center">
+                <div className="form-group row text-center">
                     <div className="col-sm-12">
                         <button type="submit" className="btn btn-primary ">Done</button>
                     </div>

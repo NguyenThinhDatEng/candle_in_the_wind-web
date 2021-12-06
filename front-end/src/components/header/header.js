@@ -1,29 +1,33 @@
 import React from 'react'
+import { Link, NavLink } from 'react-router-dom'
 
 export default function Header() {
     return (
         <header>
+
+            <div className="search">
+                <div className="search-container">
+                    <input type="text" id="search-bar" placeholder="Search product..." />
+                    <a href="#"><img className="search-icon" src="/assets/icons/Search-icon.png" /></a>
+                </div>
+            </div>
             <nav className="navigation">
                 <div className="logo">
-                    <img src="./assets/images/Logo.png" alt="Logo" />
+                    <img src="/assets/images/Logo.png" alt="Logo" />
                 </div>
                 <ul className="link_webpages">
-                    <li><a className="active" href="#!">HOME</a></li>
-                    <li><a href="#!">STORE</a></li>
-                    <li><a href="#!">BLOG</a></li>
-                    <li><a href="#!">ABOUT US</a></li>
+                    <li><Link to="/">HOME</Link></li>
+                    <li><Link to="/store" >STORE</Link></li>
+                    <li><Link to="/blog" >BLOG</Link></li>
+                    <li><Link to="/about-us" >ABOUT US</Link></li>
                 </ul>
                 <div className="icon_nav">
-                    <div className="search">
-                        <div className="search_box">
-                            <input type="search_box" name="search" placeholder="Search product..." />
-                        </div>
-                        <div className="search_button">
-                            <img src="./assets/icons/Search-icon.png" alt=""/>
-                        </div>
-                    </div>
-                    <div className="user"><a href><img src="./assets/icons/User-icon.png" alt=""/></a></div>
-                    <div className="cart"><a href><img src="./assets/icons/ShoppingCart.png" alt=""/></a></div>
+                    <div className="user"><Link to="/profile" ><img src="/assets/icons/User-icon.png" /></Link></div>
+                    <div className="cart"><Link ><img src="/assets/icons/ShoppingCart.png" /></Link></div>
+                </div>
+                <div className='sign'>
+                    <div className='in'><Link to="/login" >Sign in</Link></div>
+                    <div className='up'><Link to="/signup" >Sign up</Link></div>
                 </div>
             </nav>
         </header>

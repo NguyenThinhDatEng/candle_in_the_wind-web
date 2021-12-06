@@ -2,24 +2,45 @@
     margin: 0px;
 }
 
-/* -------------Login Form------------------*/
+html,
+body {
+  height: 100%;
+}
+
+
+.page-title {
+    background-color: #e0b87b;
+    font-size: 150px;
+    letter-spacing: 15px;
+}
+
+/* ---------------------------------
+LOGIN FORM
+------------------------------------*/
+.bg-login {
+    background-image: url("../images/background_signin.jpg");
+    background-size: cover;
+    background-position: bottom 20% center;
+    height: 100vh;
+}
+
 .login-container {
-    width: 30%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.login-form {
+    width: 100%;
+    max-width: 500px;
+    padding: 20px;
+    
     color: white;
-    margin-top: 20vh;
     border-radius: 20px;
     background: rgba(41, 37, 37, 0.87);
 
     -webkit-box-shadow: 0px 1px 22px 5px rgba(0, 0, 0, 0.75);
     -moz-box-shadow: 0px 1px 22px 5px rgba(0, 0, 0, 0.75);
     box-shadow: 0px 1px 22px 5px rgba(0, 0, 0, 0.75);
-}
-
-.bg-login {
-    background-image: url("../images/background_signin.jpg");
-    background-size: cover;
-    background-position: bottom 20% center;
-    height: 100vh;
 }
 
 .login-title {
@@ -29,21 +50,37 @@
 }
 
 .forgot-password a {
-    /* text-decoration: none; */
     float: right;
     margin-right: 0px;
 }
 
-/* ------------------------Sign up form ---------------- */
-.signup-container {
-    width: 40%;
+
+/* --------------------------------------------------------
+SIGN UP FORM
+---------------------------------------------------------- */
+.signup-form {
+    width: 100%;
+    max-width: 700px;
+    padding: 20px;
+    
     color: white;
-    margin-top: 10vh;
     border-radius: 20px;
     background: rgba(41, 37, 37, 0.87);
+
+    -webkit-box-shadow: 0px 1px 22px 5px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: 0px 1px 22px 5px rgba(0, 0, 0, 0.75);
+    box-shadow: 0px 1px 22px 5px rgba(0, 0, 0, 0.75);
 }
 
-/* ----------------------Information-------------------- */
+
+
+/* --------------------------------------------------------
+INFORMATION
+------------------------------------------------------------ */
+.profile {
+    margin: 15vh 2vh;
+}
+
 .card-info {
     background-color: #e0b87b;
     width: 20%;
@@ -75,37 +112,31 @@
     margin-right: 25px;
 }
 
-/* --------------------Change form ------------------------- */
 .change-form {
     background-color: #e0b87b;
     width: 50%;
     border-radius: 20px;
 }
 
-/* ---------------------My Orders----------------------- */
 .order-scrollbar {
     position: relative;
     height: 40vh;
     overflow: auto;
 }
 
-/* -----------------------Blog------------------- */
-.blog-title {
-    font-size: 150px;
-    letter-spacing: 15px;
-}
 
-.header-blog {
-    background-color: #e0b87b;
-}
 
+/* -----------------------------------------------------------
+BLOG
+------------------------------------------------------------- */
 .create-post {
     float: right;
     margin-right: 6%;
 }
 
 .post-element {
-    margin-left: 5%;
+    text-align: center;
+    justify-content: center;
     margin-top: 5vh;
     background: #ffffff;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
@@ -115,24 +146,39 @@
     width: 50%;
 }
 
-/* -----------------------Home page----------------- */
-.carousel-item img {
+.post-element h5 {
+    margin-left: 5% !important;
+}
+
+.post-element p {
+    margin: 0 10%;
+}
+
+.post-element a {
+    text-decoration: none;
+}
+
+.post-content {
+    max-width: 60%;
+}
+
+/* 
+CONTENT POST
+*/
+
+
+/* ------------------------------------------------------------
+HOME PAGE
+-------------------------------------------------------------- */
+.image img {
     width: 100%;
     height: 70vh;
 }
 
-.line {
-    /* Stroke: Solid; */
-    height: 20 vh;
-    color: rgb(221, 30, 30);
-    background-color: rgb(212, 18, 18);
-}
-
-/*  */
 .section-item {
     margin-top: 10vh;
     margin-bottom:20vh;
-}
+} 
 
 .item {
     background-color: #e0b87b;
@@ -142,16 +188,23 @@
 }
 
 .item-img img {
-    width: 100%
+    width: 100%;
+    height: 300px;
 }
 
-
-.slick-prev:before,
+/* .slick-prev:before,
 .slick-next:before {
     font-size: 30px !important;
     color: red !important;
-}
+} */
 
 .slick-dots button:before {
     font-size: 20px !important;
 }
+
+
+/* 
+STORE
+ */
+
+
