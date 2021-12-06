@@ -1,0 +1,156 @@
+* {
+    margin: 0px;
+}
+/*---------------------Header-----------------------*/
+.navigation {
+    display: flex;  
+    flex: 1;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #fff;
+    padding-left: 50px;
+    padding-right: 50px;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+/*Home/Store/Blog/About us*/
+.link_webpages{
+    display: flex;
+    justify-content: space-around;
+    width: 50%;
+    list-style: none;
+    text-decoration: none;
+    font-family:Cambria;
+    font-style: normal;
+    font-size: 20px;
+    
+}
+.link_webpages li a{
+    color: black;
+    text-decoration: none;
+    transition: text-shadow font-weight;
+}
+.link_webpages li a:hover {
+    font-weight: bold;
+    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+/* Icon SEARCH USER CART*/
+.icon_nav {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+}
+.icon_nav .user{
+    margin-left: 10px;
+    margin-right: 10px;
+    padding: 10px
+}
+.icon_nav .cart{
+    padding: 10px;
+}
+/*-----------------signIn/signUp-----------------*/
+.sign {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+}
+.sign .in{
+    margin-left: 10px;
+    margin-right: 10px;
+    padding: 10px
+}
+.sign .up{
+    padding: 10px;
+}
+.sign a {
+    color: black;
+    text-decoration: none;
+    font-size: 20px;
+}
+.sign a:hover {
+    color: rgba(224, 184, 123,0.5);
+    
+}
+/* SEARCH*/
+.search{
+    display: flex;  
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    background-color: #fff;
+    padding: 10px;
+}
+.search-container {
+    width: 500px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+}
+  
+input#search-bar {
+    margin: 0 auto;
+    width: 100%;
+    height: 35px;
+    padding: 0 10px;
+    font-size: 1rem;
+    border: 1px solid #000;
+    border-radius: 30px;
+    outline: none;
+}
+  input#search-bar:focus {
+    border: 1px solid rgba(224, 184, 123,0.5);
+    transition: 0.35s ease;
+    color: #000;
+}
+input#search-bar:focus::-webkit-input-placeholder {
+    transition: opacity 0.45s ease;
+    opacity: 0;
+}
+input#search-bar:focus::-moz-placeholder {
+    transition: opacity 0.45s ease;
+    opacity: 0;
+}
+input#search-bar:focus:-ms-placeholder {
+    transition: opacity 0.45s ease;
+    opacity: 0;
+}
+  
+.search-icon {
+    position: relative;
+    float: right;
+    width: 32px;
+    height: 32px;
+    top: 0px;
+    right: 40px;
+}
+    
+/* Menu dropdown*/
+
+/*---------------------------Footer--------------------*/
+.footerContainer {
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: #1A1717;
+    color: #fff;
+    font-weight: lighter;
+    text-align: center;
+    padding: 50px;
+}
+.footerContainer .openingTime {
+    display: inline-block;
+    text-align: center;
+    vertical-align: middle;
+}
+.footerContainer .whiteLogo {
+    display: inline-block;
+    padding-left: 150px;
+    padding-right: 150px;
+    vertical-align: middle;
+}
+.footerContainer .support {
+    display: inline-block;
+    text-align: center;
+    vertical-align: middle;
+}
