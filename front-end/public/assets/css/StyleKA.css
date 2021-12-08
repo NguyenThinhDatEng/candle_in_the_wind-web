@@ -28,14 +28,9 @@
 .link_webpages li a{
     color: black;
     text-decoration: none;
-    text-transform: uppercase;
+    transition: text-shadow font-weight;
 }
 .link_webpages li a:hover {
-    color: rgba(224, 184, 123,0.5);
-    text-shadow: 0px 4px 4px rgba(224, 184, 123,0.5);
-}
-
-.link_webpages .active {
     font-weight: bold;
     text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 }
@@ -134,13 +129,14 @@ input#search-bar:focus:-ms-placeholder {
 
 /*---------------------------Footer--------------------*/
 .footerContainer {
+    left: 0;
     bottom: 0;
+    width: 100%;
     background-color: #1A1717;
     color: #fff;
     font-weight: lighter;
     text-align: center;
     padding: 50px;
-
 }
 .footerContainer .openingTime {
     display: inline-block;

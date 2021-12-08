@@ -1,58 +1,30 @@
-import React, { Component } from "react";
+import React from 'react'
+import { Link } from 'react-router-dom'
 
-export default class Login extends Component {
-    render() {
-        return (
-            <div>
-                <div className="container-fluid bg-login">
-                    <div className="row justify-content-center">
-                        <div className="col-md-3 col-sm-6 col-xs-12 login-container">
-                            <form>
-                                <h1 className="login-title mb-4">Sign in</h1>
-                                <div className="form-group">
-                                    <label htmlFor="email">Email address</label>
-                                    <input
-                                        type="email"
-                                        className="form-control mb-4"
-                                        id="email"
-                                        placeholder="Enter email"
-                                    />
-                                    {/* <p class="emailError"></p> */}
-                                </div>
-                                <div className="form-group">
-                                    <label htmlFor="password" className="label">
-                                        Password
-                                    </label>
-                                    <input
-                                        type="password"
-                                        className="form-control mb-4"
-                                        id="password"
-                                        placeholder="Password"
-                                    />
-                                    {/* <p class="passwordError"></p> */}
-                                </div>
-                                <div className="text-center">
-                                    <p className="forgot-password">
-                                        {" "}
-                                        <a href="#!">Forgot password?</a>{" "}
-                                    </p>
-                                    <div className="clearfix" />
-                                    <button
-                                        type="submit"
-                                        className="btn btn-success my-3"
-                                    >
-                                        Sign in
-                                    </button>
-                                    <p>
-                                        Don't have an account?{" "}
-                                        <a href="/signup">Sign up</a>{" "}
-                                    </p>
-                                </div>
-                            </form>
+export default function Login() {
+    return (
+        <div>
+            <div className="container-fluid bg-login login-container">
+                <main className="login-form">
+                    <form>
+                        <h1 className="login-title mb-4 ">Sign in</h1>
+                        <div className="form-group">
+                            <label htmlFor="email">Email address</label>
+                            <input type="email" className="form-control mb-4" id="email" placeholder="Enter email" />
                         </div>
-                    </div>
-                </div>
+                        <div className="form-group">
+                            <label htmlFor="password" className="label">Password</label>
+                            <input type="password" className="form-control mb-4" id="password" placeholder="Password" />
+                        </div>
+                        <div className="text-center">
+                            <p className="forgot-password"> <a href="#">Forgot password?</a> </p>
+                            <div className="clearfix" />
+                            <button type="submit" className="btn btn-success my-3">Sign in</button>
+                            <p>Don't have an account? <Link to="/signup">Sign up</Link> </p>
+                        </div>
+                    </form>
+                </main>
             </div>
-        );
-    }
+        </div>
+    )
 }

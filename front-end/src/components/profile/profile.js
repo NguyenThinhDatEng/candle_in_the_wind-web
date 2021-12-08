@@ -1,8 +1,10 @@
 import React, { Component } from 'react'
-import CardInfo from "./cardInfo"
-import ChangeInfo from './changeInfo'
-import ChangePassword from './changePassword'
-import MyOrder from './myOrder'
+import CardInfo from "./card.info"
+import ChangeInfo from './change.info'
+import ChangePassword from './change.password'
+import MyOrder from './my.order'
+import Header from "../header/header"
+import Footer from '../footer/footer'
 
 export default class Profile extends Component {
     constructor(props) {
@@ -33,8 +35,8 @@ export default class Profile extends Component {
     displayCheck() {
         if (this.state.trangThai === 0) {
             return this.renderChangeInfo();
-        } 
-        else if (this.state.trangThai === 1){
+        }
+        else if (this.state.trangThai === 1) {
             return this.renderChangePassword();
         }
         else {
@@ -57,7 +59,8 @@ export default class Profile extends Component {
     render() {
         return (
             <div>
-                <div className="container-fluid bg-light">
+                <Header />
+                <div className="profile">
                     <div className="row justify-content-center">
                         <CardInfo
                             changeInfo={() => this.changeInfo()}
@@ -70,6 +73,8 @@ export default class Profile extends Component {
 
                     </div>
                 </div>
+
+                <Footer />
             </div>
 
         )

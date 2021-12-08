@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default function CardInfo({changeInfo, changePass, showOrder}) {
+export default function CardInfo(props) {
 
     return (
         <div className="col-md-3 col-sm-6 col-xs-12 card-info">
@@ -10,9 +10,9 @@ export default function CardInfo({changeInfo, changePass, showOrder}) {
             </div>
             <div className="card-body">
                 <div className="row list-change">
-                    <li><i className="fas fa-user-edit" /> <a href="#" onClick={() => changeInfo()}> Change information </a> </li>
-                    <li><i className="fas fa-lock"> </i> <a href="#" onClick={() => changePass()}> Change password </a> </li>
-                    <li><i className="fas fa-file-alt" /> <a href="#" onClick={() => showOrder()}> My orders </a> </li>
+                    <li><i className="fas fa-user-edit" /> <a href="#!" onClick={() => props.changeInfo()}> Change information </a> </li>
+                    <li><i className="fas fa-lock"> </i> <a href="#!" onClick={() => props.changePass()}> Change password </a> </li>
+                    <li><i className="fas fa-file-alt" /> <a href="#!" onClick={() => props.showOrder()}> My orders </a> </li>
                 </div>
             </div>
         </div>

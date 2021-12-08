@@ -5,21 +5,21 @@ export default function Advertise() {
     var settings = {
         infinite: true,
         autoplay: true,
-        autoplaySpeed: 3000,
+        autoplaySpeed: 5000,
         dots: true,
-        speed: 300,
+        speed: 2000,
     };
     return (
         <div className="container">
             <Slider {...settings}>
                 <div class="image">
-                    <img src="../assets/images/announcement.png" alt="" />
+                    <img src="./assets/images/announcement.png" alt="" />
                 </div>
                 <div class="image">
-                    <img src="../assets/images/announcement.png" alt="" />
+                    <img src="./assets/images/announcement.png" alt="" />
                 </div>
                 <div class="image">
-                    <img src="../assets/images/announcement.png" alt="" />
+                    <img src="./assets/images/announcement.png" alt="" />
                 </div>
             </Slider>
         </div>

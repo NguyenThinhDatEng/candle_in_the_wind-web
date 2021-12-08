@@ -1,13 +1,22 @@
 import React from 'react'
 import Slider from "react-slick";
+import axios from 'axios'
+import { useState, useEffect } from 'react';
 
 export default function Product() {
-    var settings = {
-        infinite: true,
-        autoplay: true,
-        autoplaySpeed: 3000,
+    const [data, setData] = useState([]);
+
+    useEffect(async () => {
+        const result = await axios(
+            'https://admin-workspace.azurewebsites.net/products/' ,
+        );
+        setData(result.data);
+    });
+
+    const settings = {
+        infinite: false,
         dots: true,
-        speed: 300,
+        speed: 1000,
         slidesToShow: 4,
         slidesToScroll: 4,
         responsive: [
@@ -40,206 +49,102 @@ export default function Product() {
     return (
         <div className="container">
             <div className="section-item">
-                <h2> Multiple items </h2>
+                <h2> Candle </h2>
                 <Slider {...settings}>
-
-                    <div className="item text-center">
-                        <div className="item-img">
-                            <img alt="" src="../assets/images/avatar.jpg" />
-                        </div>
-                        <div>
-                            <p className="mt-3">Item name</p>
-                            <p className="text-danger">000.000 VNĐ</p>
-                            <button className="btn btn-dark mb-3">Add to cart</button>
-                        </div>
-                    </div>
-
-                    <div className="item text-center">
-                        <div className="item-img">
-                            <img alt="" src="../assets/images/avatar.jpg" />
-                        </div>
-                        <div>
-                            <p className="mt-3">Item name</p>
-                            <p className="text-danger">000.000 VNĐ</p>
-                            <button className="btn btn-dark mb-3">Add to cart</button>
-                        </div>
-                    </div>
-                    <div className="item text-center">
-                        <div className="item-img">
-                            <img alt="" src="../assets/images/avatar.jpg" />
-                        </div>
-                        <div>
-                            <p className="mt-3">Item name</p>
-                            <p className="text-danger">000.000 VNĐ</p>
-                            <button className="btn btn-dark mb-3">Add to cart</button>
-                        </div>
-                    </div>
-                    <div className="item text-center">
-                        <div className="item-img">
-                            <img alt="" src="../assets/images/avatar.jpg" />
-                        </div>
-                        <div>
-                            <p className="mt-3">Item name</p>
-                            <p className="text-danger">000.000 VNĐ</p>
-                            <button className="btn btn-dark mb-3">Add to cart</button>
-                        </div>
-                    </div>
-                    <div className="item text-center">
-                        <div className="item-img">
-                            <img alt="" src="../assets/images/avatar.jpg" />
-                        </div>
-                        <div>
-                            <p className="mt-3">Item name</p>
-                            <p className="text-danger">000.000 VNĐ</p>
-                            <button className="btn btn-dark mb-3">Add to cart</button>
-                        </div>
-                    </div>
-                    <div className="item text-center">
-                        <div className="item-img">
-                            <img alt="" src="../assets/images/avatar.jpg" />
-                        </div>
-                        <div>
-                            <p className="mt-3">Item name</p>
-                            <p className="text-danger">000.000 VNĐ</p>
-                            <button className="btn btn-dark mb-3">Add to cart</button>
-                        </div>
-                    </div>
+                    {
+                        data.map(value => {
+                            console.log(value)
+                            if (value.catalog.name == "candle") {
+                                return (
+                                    <div className="item text-center">
+                                        <div className="item-img">
+                                            <img alt="" src={"https://admin-workspace.azurewebsites.net" + value.image[0].url} />
+                                        </div>
+                                        <div>
+                                            <p className="mt-3"> {value.name} </p>
+                                            <p className="text-danger"> {value.price}  VNĐ</p>
+                                            <button className="btn btn-dark mb-3">Add to cart</button>
+                                        </div>
+                                    </div>
+                                )
+                            }
+                        })
+                    }
                 </Slider>
             </div>
 
             <div className="section-item">
-                <h2> Multiple items </h2>
+                <h2> Scented wax </h2>
                 <Slider {...settings}>
-
-                    <div className="item text-center">
-                        <div className="item-img">
-                            <img alt="" src="../assets/images/avatar.jpg" />
-                        </div>
-                        <div>
-                            <p className="mt-3">Item name</p>
-                            <p className="text-danger">000.000 VNĐ</p>
-                            <button className="btn btn-dark mb-3">Add to cart</button>
-                        </div>
-                    </div>
-
-                    <div className="item text-center">
-                        <div className="item-img">
-                            <img alt="" src="../assets/images/avatar.jpg" />
-                        </div>
-                        <div>
-                            <p className="mt-3">Item name</p>
-                            <p className="text-danger">000.000 VNĐ</p>
-                            <button className="btn btn-dark mb-3">Add to cart</button>
-                        </div>
-                    </div>
-                    <div className="item text-center">
-                        <div className="item-img">
-                            <img alt="" src="../assets/images/avatar.jpg" />
-                        </div>
-                        <div>
-                            <p className="mt-3">Item name</p>
-                            <p className="text-danger">000.000 VNĐ</p>
-                            <button className="btn btn-dark mb-3">Add to cart</button>
-                        </div>
-                    </div>
-                    <div className="item text-center">
-                        <div className="item-img">
-                            <img alt="" src="../assets/images/avatar.jpg" />
-                        </div>
-                        <div>
-                            <p className="mt-3">Item name</p>
-                            <p className="text-danger">000.000 VNĐ</p>
-                            <button className="btn btn-dark mb-3">Add to cart</button>
-                        </div>
-                    </div>
-                    <div className="item text-center">
-                        <div className="item-img">
-                            <img alt="" src="../assets/images/avatar.jpg" />
-                        </div>
-                        <div>
-                            <p className="mt-3">Item name</p>
-                            <p className="text-danger">000.000 VNĐ</p>
-                            <button className="btn btn-dark mb-3">Add to cart</button>
-                        </div>
-                    </div>
-                    <div className="item text-center">
-                        <div className="item-img">
-                            <img alt="" src="../assets/images/avatar.jpg" />
-                        </div>
-                        <div>
-                            <p className="mt-3">Item name</p>
-                            <p className="text-danger">000.000 VNĐ</p>
-                            <button className="btn btn-dark mb-3">Add to cart</button>
-                        </div>
-                    </div>
+                    {
+                        data.map(value => {
+                            console.log(value)
+                            if (value.catalog.name == "scented wax") {
+                                return (
+                                    <div className="item text-center">
+                                        <div className="item-img">
+                                            <img alt="" src={"https://admin-workspace.azurewebsites.net" + value.image[0].url} />
+                                        </div>
+                                        <div>
+                                            <p className="mt-3"> {value.name} </p>
+                                            <p className="text-danger"> {value.price}  VNĐ</p>
+                                            <button className="btn btn-dark mb-3">Add to cart</button>
+                                        </div>
+                                    </div>
+                                )
+                            }
+                        })
+                    }
                 </Slider>
             </div>
 
             <div className="section-item">
-                <h2> Multiple items </h2>
+                <h2> Essential oil </h2>
                 <Slider {...settings}>
+                    {
+                        data.map(value => {
+                            console.log(value)
+                            if (value.catalog.name == "essential oil") {
+                                return (
+                                    <div className="item text-center">
+                                        <div className="item-img">
+                                            <img alt="" src={"https://admin-workspace.azurewebsites.net" + value.image[0].url} />
+                                        </div>
+                                        <div>
+                                            <p className="mt-3"> {value.name} </p>
+                                            <p className="text-danger"> {value.price}  VNĐ</p>
+                                            <button className="btn btn-dark mb-3">Add to cart</button>
+                                        </div>
+                                    </div>
+                                )
+                            }
+                        })
+                    }
+                </Slider>
+            </div>
 
-                    <div className="item text-center">
-                        <div className="item-img">
-                            <img alt="" src="../assets/images/avatar.jpg" />
-                        </div>
-                        <div>
-                            <p className="mt-3">Item name</p>
-                            <p className="text-danger">000.000 VNĐ</p>
-                            <button className="btn btn-dark mb-3">Add to cart</button>
-                        </div>
-                    </div>
-
-                    <div className="item text-center">
-                        <div className="item-img">
-                            <img alt="" src="../assets/images/avatar.jpg" />
-                        </div>
-                        <div>
-                            <p className="mt-3">Item name</p>
-                            <p className="text-danger">000.000 VNĐ</p>
-                            <button className="btn btn-dark mb-3">Add to cart</button>
-                        </div>
-                    </div>
-                    <div className="item text-center">
-                        <div className="item-img">
-                            <img alt="" src="../assets/images/avatar.jpg" />
-                        </div>
-                        <div>
-                            <p className="mt-3">Item name</p>
-                            <p className="text-danger">000.000 VNĐ</p>
-                            <button className="btn btn-dark mb-3">Add to cart</button>
-                        </div>
-                    </div>
-                    <div className="item text-center">
-                        <div className="item-img">
-                            <img alt="" src="../assets/images/avatar.jpg" />
-                        </div>
-                        <div>
-                            <p className="mt-3">Item name</p>
-                            <p className="text-danger">000.000 VNĐ</p>
-                            <button className="btn btn-dark mb-3">Add to cart</button>
-                        </div>
-                    </div>
-                    <div className="item text-center">
-                        <div className="item-img">
-                            <img alt="" src="../assets/images/avatar.jpg" />
-                        </div>
-                        <div>
-                            <p className="mt-3">Item name</p>
-                            <p className="text-danger">000.000 VNĐ</p>
-                            <button className="btn btn-dark mb-3">Add to cart</button>
-                        </div>
-                    </div>
-                    <div className="item text-center">
-                        <div className="item-img">
-                            <img alt="" src="../assets/images/avatar.jpg" />
-                        </div>
-                        <div>
-                            <p className="mt-3">Item name</p>
-                            <p className="text-danger">000.000 VNĐ</p>
-                            <button className="btn btn-dark mb-3">Add to cart</button>
-                        </div>
-                    </div>
+            <div className="section-item">
+                <h2> Decorations </h2>
+                <Slider {...settings}>
+                    {
+                        data.map(value => {
+                            console.log(value)
+                            if (value.catalog.name == "decoration") {
+                                return (
+                                    <div className="item text-center">
+                                        <div className="item-img">
+                                            <img alt="" src={"https://admin-workspace.azurewebsites.net" + value.image[0].url} />
+                                        </div>
+                                        <div>
+                                            <p className="mt-3"> {value.name} </p>
+                                            <p className="text-danger"> {value.price}  VNĐ</p>
+                                            <button className="btn btn-dark mb-3">Add to cart</button>
+                                        </div>
+                                    </div>
+                                )
+                            }
+                        })
+                    }
                 </Slider>
             </div>
 
