@@ -16,13 +16,15 @@
       "type": "string"
     },
     "email": {
-      "type": "email"
+      "type": "email",
+      "required": true
     },
     "phoneNumber": {
       "type": "biginteger"
     },
     "password": {
-      "type": "password"
+      "type": "password",
+      "required": true
     },
     "dateOfBirth": {
       "type": "date"
@@ -40,7 +42,7 @@
     "loyal": {
       "type": "boolean"
     },
-    "Gender": {
+    "gender": {
       "type": "enumeration",
       "enum": [
         "Male",
