@@ -1,4 +1,4 @@
-'use strict';
+"use strict";
 
 const Response = require(`../../../utils/response`);
 
@@ -8,12 +8,38 @@ const Response = require(`../../../utils/response`);
  */
 
 module.exports = {
-    async login(context){
-        const { email , pw } = context.request.body;
-        const rs = await strapi.query(`customer`).findOne({ email, pw});
-        if(rs){
-            return Response.ok(context, { data: rs, msg: `OK`, status: 0 });
-        }
-        return Response.badRequest(context, {data: null, msg: `Not Found`, status: 0 });
+  signup: async (ctx) => {
+    const { email, password } = ctx.request.body;
+    const emailCheck = await strapi.query(`customer`).findOne({email})
+    if (emailCheck)
+        return Response.notAcceptable(ctx, {
+            msg: `This email already exists`,
+        })
+    let person = {
+        "email" : email,
+        "password" : password
     }
+    const rs = await strapi.query(`customer`).create(person);
+    if (rs) {
+      return Response.created(ctx, { data: rs, msg: `OK`, status: 0 });
+    }
+    return Response.badRequest(ctx, {
+      data: null,
+      msg: `Not Found`,
+      status: 0,
+    });
+  },
+
+  login: async (ctx) => {
+    const { email, password } = ctx.request.body;
+    const rs = await strapi.query(`customer`).findOne({ email, password });
+    if (rs) {
+      return Response.ok(ctx, { data: rs, msg: `OK`, status: 0 });
+    }
+    return Response.badRequest(ctx, {
+      data: null,
+      msg: `Not Found`,
+      status: 0,
+    });
+  },
 };

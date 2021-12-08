@@ -5,7 +5,7 @@
       "path": "/catalogs",
       "handler": "catalog.find",
       "config": {
-        "policies": []
+        "policies": ["is-authenticated"]
       }
     },
     {

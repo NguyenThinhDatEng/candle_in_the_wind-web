@@ -2,6 +2,14 @@
   "routes": [
     {
       "method": "POST",
+      "path": "/customers/signup",
+      "handler": "customer.signup",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "POST",
       "path": "/customers/login",
       "handler": "customer.login",
       "config": {
