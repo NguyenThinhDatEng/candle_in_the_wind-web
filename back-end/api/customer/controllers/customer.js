@@ -9,25 +9,16 @@ const Response = require(`../../../utils/response`);
 
 module.exports = {
   signup: async (ctx) => {
-    const { email, password } = ctx.request.body;
+    const { username, email, password, gender, dateOfBirth, phoneNumber } = ctx.request.body;
     const emailCheck = await strapi.query(`customer`).findOne({email})
     if (emailCheck)
         return Response.notAcceptable(ctx, {
-            msg: `This email already exists`,
+            msg: `${email} already exists`,
         })
-    let person = {
-        "email" : email,
-        "password" : password
-    }
-    const rs = await strapi.query(`customer`).create(person);
+    const rs = await strapi.query(`customer`).create({username, email, password, gender, dateOfBirth, phoneNumber});
     if (rs) {
-      return Response.created(ctx, { data: rs, msg: `OK`, status: 0 });
+      return Response.created(ctx, { data: rs, msg: `Successful`, status: 0 });
     }
-    return Response.badRequest(ctx, {
-      data: null,
-      msg: `Not Found`,
-      status: 0,
-    });
   },
 
   login: async (ctx) => {
