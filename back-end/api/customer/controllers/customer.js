@@ -11,7 +11,7 @@ module.exports = {
       strapi.services.email.send(process.env.user, email, 'Password Reset', 'Your code is: 123abc')
       return Response.ok(ctx, {
         status : 200,
-        msg: `${email} is existed, allow change of password`
+        msg: `FOUND`
       })
     }
     else {

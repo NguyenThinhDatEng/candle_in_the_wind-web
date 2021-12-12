@@ -3,7 +3,7 @@
   "collectionName": "customers",
   "info": {
     "name": "Customer",
-    "description": ""
+    "description": "This represents the customer Model"
   },
   "options": {
     "increments": true,
