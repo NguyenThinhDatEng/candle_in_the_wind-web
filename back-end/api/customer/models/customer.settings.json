@@ -8,7 +8,8 @@
   "options": {
     "increments": true,
     "timestamps": true,
-    "draftAndPublish": false
+    "draftAndPublish": false,
+    "privateAttributes" : ["__v" , "createdAt", "updatedAt", "id", "avatar", "Gender"]
   },
   "pluginOptions": {},
   "attributes": {
@@ -20,7 +21,8 @@
       "required": true
     },
     "phoneNumber": {
-      "type": "biginteger"
+      "type": "string",
+      "maxLength": 20
     },
     "password": {
       "type": "password",
