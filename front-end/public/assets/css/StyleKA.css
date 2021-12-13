@@ -319,3 +319,93 @@ input#search-bar:focus:-ms-placeholder {
 .backToCart:hover{
     font-weight: bold;
 }
+/*---------------------------------------Payment-----------------------------*/
+.paymentContainer{
+    margin: 50px 0;
+    overflow: auto;
+}
+.column1{
+    font-family: 'Reem Kufi';
+    float:left;
+    margin-left: 250px;
+    padding-right: 80px;
+    border-right: 1px solid #000;
+}
+.column2{
+    float: right;
+    margin-right: 250px;
+}
+.linePayment{
+    border: 1px solid #000;
+    border-radius: 10px;
+    margin: 10px 0;
+}
+.itemCol2Payment{
+    display: flex;
+    justify-content: center;
+    justify-items: center;
+    font-family: 'Reem Kufi';
+}
+.paymentMethod_text{
+    margin-bottom: 30px;
+}
+.paymentDelivery_text{
+    font-family: 'Reem Kufi';
+}
+span{
+    margin-left: 20px;
+}
+input[type='radio']:after {
+    width: 15px;
+    height: 15px;
+    border-radius: 15px;
+    top: -2px;
+    left: -1px;
+    position: relative;
+    background-color: #fff;
+    content: '';
+    display: inline-block;
+    visibility: visible;
+    border: 1px solid #000;
+}
+
+input[type='radio']:checked:after {
+    width: 15px;
+    height: 15px;
+    border-radius: 15px;
+    top: -2px;
+    left: -1px;
+    position: relative;
+    background-color: #EB4335;
+    content: '';
+    display: inline-block;
+    visibility: visible;
+    border: 1px solid #000;
+}
+.completePayment{
+    text-decoration: none;
+    color: #fff;
+}
+.completePayment:hover{
+    font-weight: bold;
+}
+.btn_complete{
+    color: #fff !important;
+    transition: font-weight;
+    background: #EB4335;
+    padding: 5px 70px;
+    border-radius: 20px;
+    font-family: 'Reem Kufi';
+    font-size: 20px;
+    margin-top: 50px;
+}
+.btn_back{
+    color: #fff !important;
+    transition: font-weight;
+    background: #000;
+    padding: 5px 90px;
+    border-radius: 20px;
+    font-family: 'Reem Kufi';
+    font-size: 20px;
+    margin-top: 10px;
+}
