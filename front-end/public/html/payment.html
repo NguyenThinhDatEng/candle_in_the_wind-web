@@ -49,22 +49,84 @@
         <div class="payment_info_text">
             <h3 class="yourcart">Payment</h3>
         </div>
-        <div>
-            <div>
-
+        <div class='paymentContainer'>
+            <div class="column1">
+                <h3 class="">Order ID: 000000</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th style="width:20%"></th>
+                            <th style="width:70%"></th>
+                            <th style="width:10%"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td data-th="Product">
+                                <div class="row">
+                                    <div class="col-md-3 text-left">
+                                        <img src="..\assets\images\product.jpg" alt="" class="img-fluid d-none d-md-block rounded mb-2 shadow " style='width: 50px;height: 60px;'>
+                                    </div>
+                                </div>
+                            </td>
+                            <td data-th="Product">
+                                    <div class="col-md-9 text-left mt-sm-2">
+                                        <h4>Product Name</h4>
+                                    </div>
+                                </div>
+                            </td>
+                            <td data-th="Quantity">x1</td>   
+                        </tr>
+                    </tbody>
+                </table>
+                <div class='linePayment'></div>
+                <table>
+                    <thead>
+                        <tr>
+                            <th style="width:70%"></th>
+                            <th style="width:30%"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td data-th="totalPayment">Total price of products</td> 
+                            <td data-th="totalProducts">000000 VND</td>   
+                        </tr>
+                        <tr>
+                            <td data-th="shippingFee">Shipping fee</td> 
+                            <td data-th="shipping">000000 VND</td>   
+                        </tr>
+                    </tbody>
+                </table>
+                <div class='linePayment'></div>
+                <table>
+                    <thead>
+                        <tr>
+                            <th style="width:70%"></th>
+                            <th style="width:30%"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td data-th="totalAll">Total</td> 
+                            <td data-th="totalProductsShip">000000 VND</td>   
+                        </tr>
+                    </tbody>
+                </table>
             </div>
-            <div>
-                <div>
-                    <h3 class="">Payment method</h3>
+
+            <div class='column2'>
+                <div class='itemCol2Payment'>
+                    <h3 class="paymentMethod_text">Payment method</h3>
                 </div>
-                <div>
-                    <input class="" type="radio">
-                    <h3 class="">Payment on delivery</h3>
-                </div>
-                <div>
-                    <input class="" type="radio">
-                    <h3 class="">Payment on delivery</h3>
-                </div>
+                <form>
+                    <div class='paymentDelivery_text'>
+                        <input name="paymentMethod" type="radio" value="onDelivery"/><span></span>Payment on delivery
+                    </div>
+                    <div class='paymentDelivery_text'>
+                        <input name="paymentMethod" type="radio" value="viaBank"/><span></span>Payment via bank
+                    </div>
+                </form>
                 <div>
                     <div class="btn_complete">
                         <a href="" class="completePayment">Complete</a>
@@ -76,6 +138,7 @@
             </div>
         </div>
     </div>    
+    <div class="clear"></div>
 <!---------------------------------FOOTER-------------------------------------->
     <div class='footerContainer'>
         <div class='openingTime'>
