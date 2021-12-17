@@ -12,7 +12,7 @@ export default function Post(props) {
 
     useEffect(async () => {
         const result = await axios(
-            'https://admin-workspace.azurewebsites.net/posts/' ,
+            'https://admin-workspace.azurewebsites.net/posts/' 
         );
         setData(result.data);
     });

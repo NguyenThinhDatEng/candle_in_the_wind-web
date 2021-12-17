@@ -28,7 +28,7 @@ function App() {
                 <Route exact path="/signup" component={Signup} />
                 <Route exact path="/profile" component={Profile} />
 
-                <Route exact path="/product/:id" component={Item} />
+                <Route exact path="/products/:id" component={Item} />
             </Switch>
         </Router>
     );
