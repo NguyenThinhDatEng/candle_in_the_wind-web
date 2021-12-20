@@ -20,13 +20,13 @@ const Item = (props) => {
 
     useEffect(async () => {
         const result = await axios(
-            'https://admin-workspace.azurewebsites.net/products/' + props.match.params.id
+            'https://working-admin.azurewebsites.net/products/' + props.match.params.id
         );
         setData(result.data);
     });
 
     console.log(data?.image?.[0]?.url)
-    // const url = `https://admin-workspace.azurewebsites.net/products/${data.image[0].url}`
+    // const url = `https://working-admin.azurewebsites.net/products/${data.image[0].url}`
     const image = data?.image
     // console.log(image['0'].url)
     
@@ -37,7 +37,7 @@ const Item = (props) => {
             <div className="itemscreen">
                 <div className="itemscreen__left">
                     <div className="left__image">
-                        <img src={`https://admin-workspace.azurewebsites.net${data?.image?.[0]?.url}`} alt="product name" />
+                        <img src={`https://working-admin.azurewebsites.net${data?.image?.[0]?.url}`} alt="product name" />
                         
                     </div>
                         {/* <div className="left__img__bonus">
@@ -118,7 +118,7 @@ const Item = (props) => {
 
                     <div className="item text-center">
                         <div className="item-img">
-                            <img alt="" src={`https://admin-workspace.azurewebsites.net${image?.[0]?.url}`} />
+                            <img alt="" src={`https://working-admin.azurewebsites.net${image?.[0]?.url}`} />
                         </div>
                         <div>
                             <p className="mt-3"> Item 1 </p>
