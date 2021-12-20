@@ -12,6 +12,8 @@
     padding-left: 50px;
     padding-right: 50px;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    margin-bottom: 50px;
+
 }
 /*Home/Store/Blog/About us*/
 .link_webpages{
@@ -20,7 +22,7 @@
     width: 50%;
     list-style: none;
     text-decoration: none;
-    font-family:Cambria;
+    font-family:'Reem Kufi';
     font-style: normal;
     font-size: 20px;
     
@@ -53,6 +55,7 @@
     display: flex;
     flex-direction: row;
     justify-content: flex-end;
+    font-family:'Reem Kufi';
 }
 .sign .in{
     margin-left: 10px;
@@ -129,28 +132,280 @@ input#search-bar:focus:-ms-placeholder {
 
 /*---------------------------Footer--------------------*/
 .footerContainer {
+    display: flex;
+    flex-direction: row;
+    justify-items: center;
+    justify-content:space-around;
     left: 0;
     bottom: 0;
-    width: 100%;
     background-color: #1A1717;
     color: #fff;
-    font-weight: lighter;
     text-align: center;
     padding: 50px;
+    font-family:'Reem Kufi';
+    font-weight: 100;
+    margin-top: 200px;
 }
 .footerContainer .openingTime {
     display: inline-block;
     text-align: center;
-    vertical-align: middle;
+    padding-left: 50px;
+    vertical-align: middle !important;
+    padding-top: 70px;
 }
 .footerContainer .whiteLogo {
     display: inline-block;
-    padding-left: 150px;
-    padding-right: 150px;
+    padding-left: 90px;
+    padding-right: 0px;
     vertical-align: middle;
 }
 .footerContainer .support {
     display: inline-block;
     text-align: center;
     vertical-align: middle;
+    padding-top: 50px;
+}
+/*------------------------Cart-------------------------------*/
+.yourcart{
+    display: flex;
+    justify-content: center;
+    font-family: 'Reem Kufi' ;
+    font-style: normal ;
+    font-weight: bold;
+    font-size: 36px ;
+    line-height: 75px ;
+    color:#000;
+
+}
+.quantityOfProduct{
+    color: #000;
+    font-weight: bold;
+    padding: 0 10px 0 10px;
+}
+.numOfProduct{
+    display: flex;
+    justify-content: center;
+    font-family: 'Quicksand', sans-serif;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 20px;
+    line-height: 37px;
+    color:#000;
+    padding: 5px;
+    border: 1pt solid #000;
+    border-radius: 20px;
+    margin-bottom: 50px;
+    margin-left: 470px;
+    margin-right: 470px;
+
+}
+.text-info font-weight-bold{
+    color:#000 !important;
+}
+.button_remove{
+    display: flex;
+    text-decoration: none;
+    color: #fff !important;
+
+}
+.button_remove a{
+    text-decoration: none;
+    color: #fff !important;
+    transition: font-weight;
+    background: #000000;
+    padding: 5px 20px 5px 20px;
+    border-radius: 20px;
+    font-family: 'Reem Kufi';
+    
+}
+.button_remove a:hover{
+    font-weight: bold;
+}
+.btn_confirm{
+    display: flex;
+    justify-content: center;
+    justify-items: center;
+}
+.btn_confirm a{
+    text-decoration: none;
+}
+.confirm{
+    color: #fff !important;
+    transition: font-weight;
+    background: #EB4335;
+    padding: 5px 200px 5px 200px;
+    border-radius: 20px;
+    font-family: 'Reem Kufi';
+    font-size: 20px;
+}
+.confirm:hover{
+    font-weight: bold;
+}
+.price_product{
+    color:#EB4335;
+}
+.line{
+    border: 1px solid rgba(0, 0, 0, 0.15);
+    margin: 0px 0px 50px 0px;
+}
+.total{
+    display: flex;
+    flex-direction: row;
+    justify-content:end;
+    font-size: 20px;
+    font-family: 'Reem Kufi';
+    font-weight: bold;
+    color:#000;
+    margin-bottom: 100px;
+}
+.total_text{
+    padding: 10px;
+}
+.total_price{
+    margin: 0px 0px 0px 150px;
+    color: #EB4335;
+    padding: 10px;
+    border-radius: 20px;
+    border: 1pt solid #000;
+}
+/*------------------------------Payment information-----------------------------------*/
+.payment_info_text{
+    margin: 100px 0 0 0;
+}
+.fillPaymentInfoContainer{
+    margin: 70px 0 0 0;
+}
+.fillPaymentInfo{
+    display: flex;
+    justify-content: center;
+    justify-items: center;
+    margin: 20px;
+}
+.info{
+    font-family: 'Reem Kufi';
+    width: 200px;
+}
+.infoInput{
+    border-radius: 20px;
+    width: 400px;
+    border: 1px solid #000;
+    padding: 10px 20px;
+    outline: none;
+}
+.btn_backToCart{
+    color: #fff !important;
+    transition: font-weight;
+    background: #EB4335;
+    padding: 5px 50px 5px 50px;
+    border-radius: 20px;
+    font-family: 'Reem Kufi';
+    font-size: 20px;
+    margin: 80px;
+}
+.btn_confirm_paymentInfo{
+    color: #fff !important;
+    transition: font-weight;
+    background: #EB4335;
+    padding: 5px 70px 5px 70px;
+    border-radius: 20px;
+    font-family: 'Reem Kufi';
+    font-size: 20px;
+    margin: 80px;
+}
+.backToCart{
+    text-decoration: none;
+    color:#fff;
+}
+.backToCart:hover{
+    font-weight: bold;
+}
+/*---------------------------------------Payment-----------------------------*/
+.paymentContainer{
+    margin: 50px 0;
+    overflow: auto;
+}
+.column1{
+    font-family: 'Reem Kufi';
+    float:left;
+    margin-left: 250px;
+    padding-right: 80px;
+    border-right: 1px solid #000;
+}
+.column2{
+    float: right;
+    margin-right: 250px;
+}
+.linePayment{
+    border: 1px solid #000;
+    border-radius: 10px;
+    margin: 10px 0;
+}
+.itemCol2Payment{
+    display: flex;
+    justify-content: center;
+    justify-items: center;
+    font-family: 'Reem Kufi';
+}
+.paymentMethod_text{
+    margin-bottom: 30px;
+}
+.paymentDelivery_text{
+    font-family: 'Reem Kufi';
+}
+span{
+    margin-left: 20px;
+}
+input[type='radio']:after {
+    width: 15px;
+    height: 15px;
+    border-radius: 15px;
+    top: -2px;
+    left: -1px;
+    position: relative;
+    background-color: #fff;
+    content: '';
+    display: inline-block;
+    visibility: visible;
+    border: 1px solid #000;
+}
+
+input[type='radio']:checked:after {
+    width: 15px;
+    height: 15px;
+    border-radius: 15px;
+    top: -2px;
+    left: -1px;
+    position: relative;
+    background-color: #EB4335;
+    content: '';
+    display: inline-block;
+    visibility: visible;
+    border: 1px solid #000;
+}
+.completePayment{
+    text-decoration: none;
+    color: #fff;
+}
+.completePayment:hover{
+    font-weight: bold;
+}
+.btn_complete{
+    color: #fff !important;
+    transition: font-weight;
+    background: #EB4335;
+    padding: 5px 70px;
+    border-radius: 20px;
+    font-family: 'Reem Kufi';
+    font-size: 20px;
+    margin-top: 50px;
+}
+.btn_back{
+    color: #fff !important;
+    transition: font-weight;
+    background: #000;
+    padding: 5px 90px;
+    border-radius: 20px;
+    font-family: 'Reem Kufi';
+    font-size: 20px;
+    margin-top: 10px;
 }

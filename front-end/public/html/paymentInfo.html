@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href='https://fonts.googleapis.com/css?family=Reem Kufi' rel='stylesheet'>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  
+    <link href="../assets/css/StyleKA.css" rel="stylesheet">
+    <title>Payment information</title>
+    <link rel="icon" type="image/x-icon" href="../assets/images/iconWeb.ico">
+</head>
+<body>
+    <!-------------------------HEADER - NAVIGATION BAR--------------------------------->
+    <div class='search'>
+        <div class="search-container">
+            <input type="search" id="search-bar" placeholder="Search product...">
+            <a href="#"><img class="search-icon" src="../assets/icons/Search-icon.png"></a>
+        </div>
+    </div>
+    <nav class = 'navigation'>
+        <div class = 'logo'>
+            <img src = '../assets/images/Logo.png' alt = 'Logo'>
+        </div>
+        
+        <ul class = 'link_webpages'>
+            <li><a class = 'active' href = 'Home.html'>HOME</a></li>
+            <li><a href>STORE</a></li>
+            <li><a href=''>BLOG</a></li>
+            <li><a href=''>ABOUT US</a></li>
+        </ul>
+
+        <div class = 'icon_nav'>
+            <div class = 'user'><a href><img src = "../assets/icons/User-icon.png"></a></div>
+            <div class = 'cart'><a href=cart.html><img src = "../assets/icons/ShoppingCart.png"></a></div>
+        </div>
+        <!--
+        <div class = 'sign'>
+            <div class='in'><a href>Sign in</a></div>
+            <div class='up'><a href>Sign up</a></div>
+        </div>
+        -->
+    </nav>
+    
+<!----------------------------------------------------------------------------->
+    <div>
+        <div class="payment_info_text">
+            <h3 class="yourcart">Payment Information</h3>
+        </div>
+        <div class="fillPaymentInfoContainer">
+            <div class="fillPaymentInfo">
+                <h3 class="info">Recipient's name</h4>
+                <input class="infoInput" type="text" required>
+            </div>
+            <div class="fillPaymentInfo">
+                <h3 class="info">Phone number</h4>
+                <input class="infoInput" type="tel" required>
+            </div>
+            <div class="fillPaymentInfo">
+                <h3 class="info">Province</h4>
+                <input class="infoInput" list='provinceList' required>
+                <datalist id="provinceList">
+                    <option value="Hà Nội"></option>
+                    <option value="Khác"></option>
+                </datalist>
+            </div>
+            <div class="fillPaymentInfo">
+                <h3 class="info">Address</h4>
+                <input class="infoInput" type="text">
+            </div>
+            <div class="fillPaymentInfo">
+                <div class="btn_backToCart">
+                    <a href="" class="backToCart">Back to cart</a>
+                </div>
+                <div class="btn_confirm_paymentInfo">
+                    <a href="" class="backToCart">Confirm</a>
+                </div>
+            </div>
+        </div>
+    </div>
+<!---------------------------------FOOTER-------------------------------------->
+    <div class='footerContainer'>
+        <div class='openingTime'>
+            <h3>Opening time</h3>
+            <h5>Morning: 8:00 a.m to 11:30 a.m</h5>
+            <h5>Affternoon: 1:30 p.m to 7:00 p.m</h5>
+        </div>
+        <div class='whiteLogo'>
+            <img src = "../assets/images/Logo_White.png">
+        </div>
+        <div class='support'>
+            <h3>Support</h3>
+            <h5>Phone number: 0987654321</h5>
+            <h5>Address: Số 46 ngõ 61 Định Công, Hoàng Mai, Hà Nội</h5>
+            <h5>Facebook: https:www.facebook.com/CandleInTheWind/</h5>
+        </div>
+    </div>
+</body>
+</html>

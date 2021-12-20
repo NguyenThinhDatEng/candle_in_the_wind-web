@@ -2,6 +2,22 @@
   "routes": [
     {
       "method": "POST",
+      "path": "/customers/resetPassWord",
+      "handler": "customer.resetPassWord",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/customers/signup",
+      "handler": "customer.signup",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "POST",
       "path": "/customers/login",
       "handler": "customer.login",
       "config": {
@@ -13,7 +29,7 @@
       "path": "/customers",
       "handler": "customer.find",
       "config": {
-        "policies": []
+        "policies": ["global::public"]
       }
     },
     {

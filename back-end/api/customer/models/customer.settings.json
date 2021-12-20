@@ -3,12 +3,13 @@
   "collectionName": "customers",
   "info": {
     "name": "Customer",
-    "description": ""
+    "description": "This represents the customer Model"
   },
   "options": {
     "increments": true,
     "timestamps": true,
-    "draftAndPublish": false
+    "draftAndPublish": false,
+    "privateAttributes" : ["__v" , "createdAt", "updatedAt", "id", "avatar", "Gender"]
   },
   "pluginOptions": {},
   "attributes": {
@@ -16,13 +17,16 @@
       "type": "string"
     },
     "email": {
-      "type": "email"
+      "type": "email",
+      "required": true
     },
     "phoneNumber": {
-      "type": "biginteger"
+      "type": "string",
+      "maxLength": 20
     },
     "password": {
-      "type": "password"
+      "type": "password",
+      "required": true
     },
     "dateOfBirth": {
       "type": "date"
@@ -31,9 +35,7 @@
       "collection": "file",
       "via": "related",
       "allowedTypes": [
-        "images",
-        "files",
-        "videos"
+        "images"
       ],
       "plugin": "upload",
       "required": false,
@@ -42,7 +44,7 @@
     "loyal": {
       "type": "boolean"
     },
-    "Gender": {
+    "gender": {
       "type": "enumeration",
       "enum": [
         "Male",
