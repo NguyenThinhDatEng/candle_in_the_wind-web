@@ -8,8 +8,7 @@
   "options": {
     "increments": true,
     "timestamps": true,
-    "draftAndPublish": false,
-    "privateAttributes" : ["__v" , "createdAt", "updatedAt", "id"]
+    "privateAttributes" : ["__v" , "createdAt", "id"]
   },
   "pluginOptions": {},
   "attributes": {
@@ -18,13 +17,13 @@
       "required": true
     },
     "customer": {
-      "private": true,
-      "model": "customer"
+      "model": "customer",
+      "autoPopulate": false
     },
     "post": {
-      "private": true,
       "model": "post",
-      "via": "comments"
+      "via": "comments",
+      "autoPopulate": false
     }
   }
 }
