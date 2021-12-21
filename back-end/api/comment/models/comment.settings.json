@@ -8,22 +8,19 @@
   "options": {
     "increments": true,
     "timestamps": true,
-    "privateAttributes" : ["__v" , "createdAt", "id"]
+    "populateCreatorFields": true,
+    "privateAttributes" : ["__v", "id", "created_by"]
   },
   "pluginOptions": {},
   "attributes": {
     "content": {
       "type": "text",
-      "required": true
-    },
-    "customer": {
-      "model": "customer",
-      "autoPopulate": false
+      "required": true,
+      "max": 200
     },
     "post": {
       "model": "post",
-      "via": "comments",
-      "autoPopulate": false
+      "via": "comments"
     }
   }
 }
