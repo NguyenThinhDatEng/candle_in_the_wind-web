@@ -17,7 +17,7 @@ export default function Blog() {
         setData(result.data);
     });
 
-    console.log(process.env.BASE_URL)
+    console.log(data)
 
     return (
 
@@ -35,12 +35,13 @@ export default function Blog() {
 
                 <div className="clearfix" />
                 <div className="row row-cols-1 row-cols-lg-2">
-                    {
+                    {   
+
                         data.map((value, key) => {
                             return (
-                                <ContentBlog id={value.id}
+                                <ContentBlog id={value?._id}
                                     authorname={value?.customer?.username}
-                                    title={value.title}
+                                    title={value?.title}
                                     image={value?.image?.url}
                                     content={value.content.substring(0, 200) + "..."}
                                 />
