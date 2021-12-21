@@ -7,7 +7,6 @@
   },
   "options": {
     "increments": true,
-    "timestamps": true,
     "draftAndPublish": true,
     "privateAttributes": [
       "__v",
@@ -20,7 +19,9 @@
   "pluginOptions": {},
   "attributes": {
     "name": {
-      "type": "string"
+      "type": "string",
+      "required": true,
+      "unique": true
     },
     "products": {
       "via": "catalog",
