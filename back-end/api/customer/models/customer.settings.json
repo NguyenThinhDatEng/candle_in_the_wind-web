@@ -7,22 +7,28 @@
   },
   "options": {
     "increments": true,
-    "timestamps": true,
-    "draftAndPublish": false,
-    "privateAttributes" : ["__v" , "createdAt", "updatedAt", "id", "avatar", "Gender"]
+    "privateAttributes": [
+      "__v",
+      "createdAt",
+      "updatedAt",
+      "id"
+    ],
+    "draftAndPublish": false
   },
   "pluginOptions": {},
   "attributes": {
     "username": {
-      "type": "string"
+      "type": "string",
+      "required": true
     },
     "email": {
       "type": "email",
-      "required": true
+      "required": true,
+      "unique": true
     },
     "phoneNumber": {
       "type": "string",
-      "maxLength": 20
+      "maxLength": 11
     },
     "password": {
       "type": "password",
@@ -32,7 +38,7 @@
       "type": "date"
     },
     "avatar": {
-      "collection": "file",
+      "model": "file",
       "via": "related",
       "allowedTypes": [
         "images"
@@ -42,7 +48,8 @@
       "pluginOptions": {}
     },
     "loyal": {
-      "type": "boolean"
+      "type": "boolean",
+      "default": false
     },
     "gender": {
       "type": "enumeration",
