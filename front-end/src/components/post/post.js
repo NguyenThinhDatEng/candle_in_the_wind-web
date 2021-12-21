@@ -18,8 +18,7 @@ export default function Post(props) {
         setData(result.data);
     });
 
-    console.log(props.match);
-    const id = props.match.params.id
+    console.log(data);
     return (
         <div>
             <Header />
