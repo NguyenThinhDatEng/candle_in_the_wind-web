@@ -27,6 +27,16 @@
       "via": "catalog",
       "collection": "product",
       "autoPopulate": false
+    },
+    "banner": {
+      "model": "file",
+      "via": "related",
+      "allowedTypes": [
+        "images"
+      ],
+      "plugin": "upload",
+      "required": true,
+      "pluginOptions": {}
     }
   }
 }
