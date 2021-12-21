@@ -7,6 +7,8 @@ import StoreEssentialOil from './store.essential-oil';
 import StoreDecoration from './store.decoration';
 import axios from 'axios';
 import { useEffect, useState } from 'react';
+require('dotenv').config();
+
 
 
 export default function Store(props) {
@@ -15,7 +17,7 @@ export default function Store(props) {
 
     useEffect(async () => {
         const result = await axios(
-            'https://admin-workspace.azurewebsites.net/products/' ,
+            process.env.REACT_APP_DB_URL+'/products/' ,
         );
         setData(result.data);
     });

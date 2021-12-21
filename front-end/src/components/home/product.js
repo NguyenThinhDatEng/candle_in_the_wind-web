@@ -2,14 +2,14 @@ import React from 'react'
 import Slider from "react-slick";
 import axios from 'axios'
 import { useState, useEffect } from 'react';
-import {Link} from 'react-router-dom'
+require("dotenv").config();
 
 export default function Product() {
     const [data, setData] = useState([]);
 
     useEffect(async () => {
         const result = await axios(
-            'https://working-admin.azurewebsites.net/products/' ,
+            process.env.REACT_APP_DB_URL + '/products/' ,
         );
         setData(result.data);
     });
@@ -58,17 +58,11 @@ export default function Product() {
                             if (value.catalog.name == "candle") {
                                 return (
                                     <div className="item text-center">
-                                        <Link to={`/products/${value._id}`}>
-                                            <div className="item-img">
-                                                <img alt="" src={"https://working-admin.azurewebsites.net" + value.image[0].url} />
-                                            </div>
-
-                                        </Link>
+                                        <div className="item-img">
+                                            <img alt="" src={process.env.REACT_APP_DB_URL + value?.image[0]?.url} />
+                                        </div>
                                         <div>
-                                        <Link to={`/products/${value._id}`}>
                                             <p className="mt-3"> {value.name} </p>
-                                        
-                                        </Link>
                                             <p className="text-danger"> {value.price}  VNĐ</p>
                                             <button className="btn btn-dark mb-3">Add to cart</button>
                                         </div>
@@ -89,17 +83,11 @@ export default function Product() {
                             if (value.catalog.name == "scented wax") {
                                 return (
                                     <div className="item text-center">
-                                        <Link to={`/products/${value._id}`}>
-                                            <div className="item-img">
-                                                <img alt="" src={"https://working-admin.azurewebsites.net" + value?.image[0]?.url} />
-                                            </div>
-
-                                        </Link>
+                                        <div className="item-img">
+                                            <img alt="" src={process.env.REACT_APP_DB_URL + value?.image[0]?.url} />
+                                        </div>
                                         <div>
-                                            <Link to={`/products/${value._id}`}>
-                                                <p className="mt-3"> {value.name} </p>
-                                                                
-                                            </Link>                     
+                                            <p className="mt-3"> {value.name} </p>
                                             <p className="text-danger"> {value.price}  VNĐ</p>
                                             <button className="btn btn-dark mb-3">Add to cart</button>
                                         </div>
@@ -120,18 +108,12 @@ export default function Product() {
                             if (value.catalog.name == "essential oil") {
                                 return (
                                     <div className="item text-center">
-                                        <Link to={`/products/${value._id}`}>
-                                            <div className="item-img">
-                                                <img alt="" src={"https://working-admin.azurewebsites.net" + value?.image[0]?.url} />
-                                            </div>
-
-                                        </Link>
+                                        <div className="item-img">
+                                            <img alt="" src={process.env.REACT_APP_DB_URL + value?.image[0]?.url} />
+                                        </div>
                                         <div>
-                                            <Link to={`/products/${value._id}`}>
-                                                <p className="mt-3"> {value.name} </p>
-                                            </Link>
+                                            <p className="mt-3"> {value.name} </p>
                                             <p className="text-danger"> {value.price}  VNĐ</p>
-
                                             <button className="btn btn-dark mb-3">Add to cart</button>
                                         </div>
                                     </div>
@@ -151,17 +133,11 @@ export default function Product() {
                             if (value.catalog.name == "decoration") {
                                 return (
                                     <div className="item text-center">
-                                        <Link to={`/products/${value._id}`}>
-                                            <div className="item-img">
-                                                <img alt="" src={"https://working-admin.azurewebsites.net" + value?.image[0]?.url} />
-                                            </div>
-
-                                        </Link>
+                                        <div className="item-img">
+                                            <img alt="" src={process.env.REACT_APP_DB_URL + value?.image[0]?.url} />
+                                        </div>
                                         <div>
-                                        <Link to={`/products/${value._id}`}>
-
                                             <p className="mt-3"> {value.name} </p>
-                                        </Link>
                                             <p className="text-danger"> {value.price}  VNĐ</p>
                                             <button className="btn btn-dark mb-3">Add to cart</button>
                                         </div>
