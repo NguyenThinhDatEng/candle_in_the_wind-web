@@ -25,7 +25,8 @@
     },
     "products": {
       "via": "catalog",
-      "collection": "product"
+      "collection": "product",
+      "autoPopulate": false
     }
   }
 }
