@@ -9,7 +9,15 @@
     "increments": true,
     "timestamps": true,
     "draftAndPublish": true,
-    "privateAttributes" : ["__v" , "createdAt", "updatedAt", "id", "image", "category", "images"]
+    "privateAttributes": [
+      "__v",
+      "createdAt",
+      "updatedAt",
+      "id",
+      "image",
+      "category",
+      "images"
+    ]
   },
   "pluginOptions": {},
   "attributes": {
@@ -22,8 +30,8 @@
     "price": {
       "type": "float"
     },
-    "image": {
-      "collection": "file",
+    "avatar": {
+      "model": "file",
       "via": "related",
       "allowedTypes": [
         "images"
@@ -47,13 +55,18 @@
       "default": 0
     },
     "catalog": {
-      "model": "catalog"
+      "model": "catalog",
+      "via": "products"
     },
-    "images": {
-      "type": "component",
-      "repeatable": true,
-      "component": "image-list.list-image-related",
-      "max": 3
+    "related_images": {
+      "collection": "file",
+      "via": "related",
+      "allowedTypes": [
+        "images"
+      ],
+      "plugin": "upload",
+      "required": false,
+      "pluginOptions": {}
     }
   }
 }
