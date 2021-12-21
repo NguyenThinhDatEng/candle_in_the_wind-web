@@ -1,0 +1,31 @@
+{
+  "kind": "collectionType",
+  "collectionName": "catalogs",
+  "info": {
+    "name": "catalog",
+    "description": ""
+  },
+  "options": {
+    "increments": true,
+    "draftAndPublish": true,
+    "privateAttributes": [
+      "__v",
+      "createdAt",
+      "updatedAt",
+      "id",
+      "published_at"
+    ]
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string",
+      "required": true,
+      "unique": true
+    },
+    "products": {
+      "via": "catalog",
+      "collection": "product"
+    }
+  }
+}
