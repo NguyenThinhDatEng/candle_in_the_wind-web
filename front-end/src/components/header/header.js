@@ -23,7 +23,7 @@ export default function Header() {
                 </ul>
                 <div className="icon_nav">
                     <div className="user"><Link to="/profile" ><img src="/assets/icons/User-icon.png" /></Link></div>
-                    <div className="cart"><Link ><img src="/assets/icons/ShoppingCart.png" /></Link></div>
+                    <div className="cart"><Link to="/cart" ><img src="/assets/icons/ShoppingCart.png" /></Link></div>
                 </div>
                 <div className='sign'>
                     <div className='in'><Link to="/login" >Sign in</Link></div>

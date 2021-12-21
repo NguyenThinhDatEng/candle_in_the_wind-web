@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link, NavLink } from 'react-router-dom'
 require('dotenv').config();
 
 export default function StoreScentedWax(props) {
@@ -11,14 +12,21 @@ export default function StoreScentedWax(props) {
                 return (
                     <div className="col">
                         <div className="item text-center">
-                            <div className="item-img">
-                                <img alt="" src={process.env.REACT_APP_DB_URL + value?.image[0]?.url} />
-                            </div>
+                            <Link to={`/products/${value._id}`}>
+                                <div className="item-img">
+                                    <img alt="" src={process.env.REACT_APP_DB_URL + value?.image[0]?.url} />
+                                </div>
+                            </Link>
+
+
                             <div>
-                                <p className="mt-3"> {value.name} </p>
+                                <Link to={`/products/${value._id}`}>
+                                    <p className="mt-3"> {value.name} </p>
+                                </Link>
                                 <p className="text-danger"> {value.price}  VNĐ</p>
                                 <button className="btn btn-dark mb-3">Add to cart</button>
                             </div>
+
                         </div>
                     </div>
                 )
