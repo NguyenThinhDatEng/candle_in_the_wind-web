@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href='https://fonts.googleapis.com/css?family=Reem Kufi' rel='stylesheet'>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300&display=swap" rel="stylesheet">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+    <link href="../assets/css/StyleKA.css" rel="stylesheet">
+    <title>Cart</title>
+    <link rel="icon" type="image/x-icon" href="../assets/images/iconWeb.ico">
+</head>
+<body>
+    <!-------------------------HEADER - NAVIGATION BAR--------------------------------->
+    <div class='search'>
+        <div class="search-container">
+            <input type="text" id="search-bar" placeholder="Search product...">
+            <a href="#"><img class="search-icon" src="../assets/icons/Search-icon.png"></a>
+        </div>
+    </div>
+    <nav class = 'navigation'>
+        <div class = 'logo'>
+            <img src = '../assets/images/Logo.png' alt = 'Logo'>
+        </div>
+        
+        <ul class = 'link_webpages'>
+            <li><a class = 'active' href = 'Home.html'>HOME</a></li>
+            <li><a href>STORE</a></li>
+            <li><a href=''>BLOG</a></li>
+            <li><a href=''>ABOUT US</a></li>
+        </ul>
+
+        <div class = 'icon_nav'>
+            <div class = 'user'><a href><img src = "../assets/icons/User-icon.png"></a></div>
+            <div class = 'cart'><a href=cart.html><img src = "../assets/icons/ShoppingCart.png"></a></div>
+        </div>
+        <!--
+        <div class = 'sign'>
+            <div class='in'><a href>Sign in</a></div>
+            <div class='up'><a href>Sign up</a></div>
+        </div>
+        -->
+    </nav>
+    
+<!----------------------------------------------------------------------------->
+
+    <section class="pt-5 pb-5">
+        <div class="container">
+        <div class="row w-100">
+            <div class="col-lg-12 col-md-12 col-12">
+                <h3 class="yourcart">Your Shopping Cart</h3>
+                <p class="numOfProduct">
+                    <i class="quantityOfProduct">1</i> products</p>
+                <table id="shoppingCart" class="table table-condensed table-responsive">
+                    <thead>
+                        <tr>
+                            <th style="width:50%"></th>
+                            <th style="width:10%">Quantity</th>
+                            <th style="width:20%">Price</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td data-th="Product">
+                                <div class="row">
+                                    <div class="col-md-3 text-left">
+                                        <img src="..\assets\images\product.jpg" alt="" class="img-fluid d-none d-md-block rounded mb-2 shadow ">
+                                    </div>
+                                    <div class="col-md-9 text-left mt-sm-2">
+                                        <h4>Product Name</h4>
+                                        <div class="button_remove">
+                                            <a href="" class="btn_remove">Remove</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td data-th="Quantity">
+                                <input type="number" class="form-control form-control-lg text-center" value="1">
+                            </td>   
+                            <td data-th="Price" class = 'price_product'>000,000 VND</td>
+                        </tr>
+                    
+                    </tbody>
+                </table>
+                <div class='line'></div>
+                <div class="total">
+                    <h4 class='total_text'>Total:</h4>
+                    <h4 class="total_price">000,000 VND</h4>
+                </div>
+            </div>
+        </div>
+    
+        <div class="btn_confirm">
+            <a href="" class="confirm">Confirm</a>
+        </div>
+        
+    </div>
+    </section>
+    <!---------------------------------FOOTER-------------------------------------->
+    <div class='footerContainer'>
+        <div class='openingTime'>
+            <h3>Opening time</h3>
+            <h5>Morning: 8:00 a.m to 11:30 a.m</h5>
+            <h5>Affternoon: 1:30 p.m to 7:00 p.m</h5>
+        </div>
+        <div class='whiteLogo'>
+            <img src = "../assets/images/Logo_White.png">
+        </div>
+        <div class='support'>
+            <h3>Support</h3>
+            <h5>Phone number: 0987654321</h5>
+            <h5>Address: Số 46 ngõ 61 Định Công, Hoàng Mai, Hà Nội</h5>
+            <h5>Facebook: https:www.facebook.com/CandleInTheWind/</h5>
+        </div>
+    </div>
+</body>
+</html>

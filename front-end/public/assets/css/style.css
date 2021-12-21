@@ -1,0 +1,210 @@
+* {
+    margin: 0px;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+
+.page-title {
+    background-color: #e0b87b;
+    font-size: 150px;
+    letter-spacing: 15px;
+}
+
+/* ---------------------------------
+LOGIN FORM
+------------------------------------*/
+.bg-login {
+    background-image: url("../images/background_signin.jpg");
+    background-size: cover;
+    background-position: bottom 20% center;
+    height: 100vh;
+}
+
+.login-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.login-form {
+    width: 100%;
+    max-width: 500px;
+    padding: 20px;
+    
+    color: white;
+    border-radius: 20px;
+    background: rgba(41, 37, 37, 0.87);
+
+    -webkit-box-shadow: 0px 1px 22px 5px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: 0px 1px 22px 5px rgba(0, 0, 0, 0.75);
+    box-shadow: 0px 1px 22px 5px rgba(0, 0, 0, 0.75);
+}
+
+.login-title {
+    text-align: center;
+    font-family: "Pacifico", cursive;
+    font-size: 70px;
+}
+
+.forgot-password a {
+    float: right;
+    margin-right: 0px;
+}
+
+
+/* --------------------------------------------------------
+SIGN UP FORM
+---------------------------------------------------------- */
+.signup-form {
+    width: 100%;
+    max-width: 700px;
+    padding: 20px;
+    
+    color: white;
+    border-radius: 20px;
+    background: rgba(41, 37, 37, 0.87);
+
+    -webkit-box-shadow: 0px 1px 22px 5px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: 0px 1px 22px 5px rgba(0, 0, 0, 0.75);
+    box-shadow: 0px 1px 22px 5px rgba(0, 0, 0, 0.75);
+}
+
+
+
+/* --------------------------------------------------------
+INFORMATION
+------------------------------------------------------------ */
+.profile {
+    margin: 15vh 2vh;
+}
+
+.card-info {
+    background-color: #e0b87b;
+    width: 20%;
+    border-radius: 20px;
+}
+
+.list-change {
+    list-style: none;
+    line-height: 200%;
+}
+
+.list-change a {
+    text-decoration: none;
+    margin-left: 10px;
+    color: black;
+    transition: text-shadow font-weight;
+}
+
+.list-change a:hover,
+.list-change a:active {
+    font-weight: bold;
+    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.vertical-line {
+    position: relative;
+    border-right: 5px solid black;
+    width: 1px;
+    margin-right: 25px;
+}
+
+.change-form {
+    background-color: #e0b87b;
+    width: 50%;
+    border-radius: 20px;
+}
+
+.order-scrollbar {
+    position: relative;
+    height: 40vh;
+    overflow: auto;
+}
+
+
+
+/* -----------------------------------------------------------
+BLOG
+------------------------------------------------------------- */
+.create-post {
+    float: right;
+    margin-right: 6%;
+}
+
+.post-element {
+    text-align: center;
+    justify-content: center;
+    margin-top: 5vh;
+    background: #ffffff;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 20px;
+}
+.post-element img {
+    width: 50%;
+}
+
+.post-element h5 {
+    margin-left: 5% !important;
+}
+
+.post-element p {
+    margin: 0 10%;
+}
+
+.post-element a {
+    text-decoration: none;
+}
+
+.post-content {
+    max-width: 60%;
+}
+
+/* 
+CONTENT POST
+*/
+
+
+/* ------------------------------------------------------------
+HOME PAGE
+-------------------------------------------------------------- */
+.image img {
+    width: 100%;
+    height: 70vh;
+}
+
+.section-item {
+    margin-top: 10vh;
+    margin-bottom:20vh;
+} 
+
+.item {
+    background-color: #e0b87b;
+    width: 90% !important;
+    border-radius: 20px;
+    margin-left: 20px !important;
+}
+
+.item-img img {
+    width: 100%;
+    height: 300px;
+}
+
+/* .slick-prev:before,
+.slick-next:before {
+    font-size: 30px !important;
+    color: red !important;
+} */
+
+.slick-dots button:before {
+    font-size: 20px !important;
+}
+
+
+/* 
+STORE
+ */
+
+
