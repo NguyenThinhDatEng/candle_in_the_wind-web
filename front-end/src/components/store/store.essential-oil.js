@@ -8,13 +8,13 @@ export default function StoreEssentialOil(props) {
     return (
         data.map(value => {
             console.log(value)
-            if (value.catalog.name == "essential oil") {
+            if (value?.catalog?.name == "essential oil") {
                 return (
                     <div className="col">
                         <div className="item text-center">
                             <Link to={`/products/${value._id}`}>
                                 <div className="item-img">
-                                    <img alt="" src={process.env.REACT_APP_DB_URL + value?.image[0]?.url} />
+                                    <img alt="" src={process.env.REACT_APP_DB_URL + value?.related_images[0]?.url} />
                                 </div>
                             </Link>
 
