@@ -1,14 +1,8 @@
 import axios from 'axios';
 
-const id = "619bae0a51bc1b390cf3d537"
-const { data } = await axios.get(
-    `https://admin-workspace.azurewebsites.net/products/${id}`
+const id = "6198a1bf1f77dd39e0429988"
+const {data}  = await axios.get(
+    'https://admin-workspace.azurewebsites.net/posts/' 
 );
-var obj = {
-    display: data.display,
-    name: data.name,
-    id: data.id,
-    imageUrl: `https://admin-workspace.azurewebsites.net${data.image[0].url}`
-}
 
 console.log(data);

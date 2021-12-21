@@ -9,7 +9,6 @@ import Blog from "../components/blog/blog";
 import CreatePost from "../components/post/create.post";
 import AboutUs from "../components/about -us/aboutus";
 import Post from "../components/post/post";
-import Item from "../components/product/item";
 
 
 
@@ -27,8 +26,6 @@ function App() {
                 <Route exact path="/login" component={Login} />
                 <Route exact path="/signup" component={Signup} />
                 <Route exact path="/profile" component={Profile} />
-
-                <Route exact path="/products/:id" component={Item} />
             </Switch>
         </Router>
     );

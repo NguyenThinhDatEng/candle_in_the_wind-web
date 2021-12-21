@@ -1,4 +1,5 @@
 import React from 'react'
+require('dotenv').config();
 
 export default function StoreCandle(props) {
     const data = props.data
@@ -11,7 +12,7 @@ export default function StoreCandle(props) {
                     <div className="col">
                         <div className="item text-center">
                             <div className="item-img">
-                                <img alt="" src={"https://admin-workspace.azurewebsites.net" + value.image[0].url} />
+                                <img alt="" src={process.env.REACT_APP_DB_URL + value?.image[0]?.url} />
                             </div>
                             <div>
                                 <p className="mt-3"> {value.name} </p>

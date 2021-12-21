@@ -1,11 +1,12 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+require("dotenv").config();
 
 export default function ContentBlog(props) {
     return (
         <div className="col">
             <div className="post-element mx-5">
-                <img className="mt-3" src={"https://admin-workspace.azurewebsites.net/" + props.image} alt="photo" />
+                <img className="mt-3" src={process.env.REACT_APP_DB_URL + props.image} alt="photo" />
                 <h5 className="text-start mt-3"><i className="fas fa-user-circle" /> {props.authorname} </h5>
                 <h4 className> {props.title} </h4>
                 <p > {props.content} </p>

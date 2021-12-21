@@ -5,13 +5,14 @@ import Footer from '../footer/footer'
 import ContentBlog from './content.blog';
 import axios from 'axios';
 import { useEffect, useState } from 'react';
+require("dotenv").config();
 
 export default function Blog() {
     const [data, setData] = useState([]);
 
     useEffect(async () => {
         const result = await axios(
-            'https://admin-workspace.azurewebsites.net/posts/' ,
+            process.env.REACT_APP_DB_URL + '/posts/' ,
         );
         setData(result.data);
     });

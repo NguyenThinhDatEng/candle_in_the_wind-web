@@ -132,10 +132,13 @@ input#search-bar:focus:-ms-placeholder {
 
 /*---------------------------Footer--------------------*/
 .footerContainer {
+<<<<<<< HEAD
+=======
     display: flex;
     flex-direction: row;
     justify-items: center;
     justify-content:space-around;
+>>>>>>> 53f631d79d95c2306439be895143eaf7c945c4fe
     left: 0;
     bottom: 0;
     background-color: #1A1717;

@@ -1,5 +1,5 @@
 import React from 'react'
-
+require('dotenv').config();
 
 export default function ContentPost(props) {
     return (
@@ -12,7 +12,7 @@ export default function ContentPost(props) {
                 <p className="post-content mx-auto">
                     {props.content}
                 </p>
-                <img className="mb-5" src={"https://admin-workspace.azurewebsites.net/" + props.image} alt="" style={{ width: '50%' }} />
+                <img className="mb-5" src={process.env.REACT_APP_DB_URL + props.image} alt="" style={{ width: '50%' }} />
             </div>
         </div>
     )

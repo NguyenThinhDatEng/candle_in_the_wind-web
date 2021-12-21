@@ -9,7 +9,7 @@ export default function Footer() {
                 <h5>Affternoon: 1:30 p.m to 7:00 p.m</h5>
             </div>
             <div className="whiteLogo">
-                <img src="../assets/images/Logo_White.png" />
+                <img src="/assets/images/Logo_White.png" />
             </div>
             <div className="support">
                 <h3>Support</h3>
