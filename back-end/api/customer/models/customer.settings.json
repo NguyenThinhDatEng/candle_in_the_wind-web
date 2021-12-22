@@ -57,6 +57,10 @@
         "Male",
         "Female"
       ]
+    },
+    "orders": {
+      "via": "customer",
+      "collection": "order"
     }
   }
 }

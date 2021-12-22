@@ -9,7 +9,13 @@
     "increments": true,
     "timestamps": true,
     "draftAndPublish": true,
-    "privateAttributes" : ["__v" , "createdAt", "updatedAt", "id", "image"]
+    "privateAttributes": [
+      "__v",
+      "createdAt",
+      "updatedAt",
+      "id",
+      "image"
+    ]
   },
   "pluginOptions": {},
   "attributes": {
@@ -18,7 +24,7 @@
       "default": false,
       "required": false
     },
-    "image": {
+    "avatar": {
       "model": "file",
       "via": "related",
       "allowedTypes": [
@@ -27,9 +33,6 @@
       "plugin": "upload",
       "required": true,
       "pluginOptions": {}
-    },
-    "customer": {
-      "model": "customer"
     },
     "title": {
       "type": "string",

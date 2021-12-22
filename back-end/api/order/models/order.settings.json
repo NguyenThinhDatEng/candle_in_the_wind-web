@@ -9,26 +9,67 @@
     "increments": true,
     "timestamps": true,
     "draftAndPublish": false,
-    "privateAttributes" : ["__v" , "createdAt", "updatedAt", "id"]
+    "privateAttributes": [
+      "__v",
+      "createdAt",
+      "updatedAt",
+      "id"
+    ]
   },
   "pluginOptions": {},
   "attributes": {
-    "product": {
-      "model": "product"
+    "fullname": {
+      "type": "string",
+      "required": true,
+      "maxLength": 100
     },
-    "transaction": {
-      "model": "transaction"
+    "email": {
+      "type": "string",
+      "maxLength": 150,
+      "required": true
     },
-    "quantity": {
-      "type": "integer",
-      "default": 0
+    "phoneNumber": {
+      "type": "string",
+      "maxLength": 11,
+      "required": true
     },
-    "amount": {
-      "type": "biginteger",
-      "default": "0"
+    "address": {
+      "type": "text",
+      "maxLength": 1000,
+      "required": true
+    },
+    "subtotal": {
+      "type": "float"
+    },
+    "grand_total": {
+      "type": "float"
+    },
+    "note": {
+      "type": "text"
     },
     "status": {
-      "type": "boolean"
+      "type": "boolean",
+      "default": false,
+      "required": false
+    },
+    "customer": {
+      "model": "customer",
+      "via": "orders"
+    },
+    "items": {
+      "via": "order",
+      "collection": "item"
+    },
+    "payment": {
+      "type": "enumeration",
+      "enum": [
+        "Bank_transfer",
+        "Delivery"
+      ]
+    },
+    "province": {
+      "model": "province",
+      "via": "orders"
     }
   }
 }

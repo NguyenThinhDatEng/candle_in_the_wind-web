@@ -1,0 +1,30 @@
+{
+  "kind": "collectionType",
+  "collectionName": "items",
+  "info": {
+    "name": "item",
+    "description": ""
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "product_price": {
+      "type": "float"
+    },
+    "quantity": {
+      "type": "integer"
+    },
+    "order": {
+      "via": "items",
+      "model": "order"
+    },
+    "product": {
+      "model": "product",
+      "via": "items"
+    }
+  }
+}

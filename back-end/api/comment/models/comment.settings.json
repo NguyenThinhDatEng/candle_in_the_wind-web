@@ -9,7 +9,11 @@
     "increments": true,
     "timestamps": true,
     "populateCreatorFields": true,
-    "privateAttributes" : ["__v", "id", "created_by"]
+    "privateAttributes": [
+      "__v",
+      "id",
+      "created_by"
+    ]
   },
   "pluginOptions": {},
   "attributes": {
@@ -19,8 +23,8 @@
       "max": 200
     },
     "post": {
-      "model": "post",
-      "via": "comments"
+      "via": "comments",
+      "model": "post"
     }
   }
 }

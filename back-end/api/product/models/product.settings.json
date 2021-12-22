@@ -55,8 +55,8 @@
       "default": 0
     },
     "catalog": {
-      "model": "catalog",
-      "via": "products"
+      "via": "products",
+      "model": "catalog"
     },
     "related_images": {
       "collection": "file",
@@ -67,6 +67,10 @@
       "plugin": "upload",
       "required": false,
       "pluginOptions": {}
+    },
+    "items": {
+      "via": "product",
+      "collection": "item"
     }
   }
 }
