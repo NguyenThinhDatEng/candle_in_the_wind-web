@@ -23,8 +23,8 @@
       "model": "order"
     },
     "product": {
-      "model": "product",
-      "via": "items"
+      "collection": "product",
+      "model": "product"
     }
   }
 }
