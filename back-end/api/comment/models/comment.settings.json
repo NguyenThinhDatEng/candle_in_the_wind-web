@@ -20,7 +20,7 @@
     "content": {
       "type": "text",
       "required": true,
-      "max": 200
+      "maxLength": 200
     }
   }
 }

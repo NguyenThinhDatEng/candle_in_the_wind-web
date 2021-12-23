@@ -9,6 +9,7 @@
     "increments": true,
     "timestamps": true,
     "draftAndPublish": true,
+    "populateCreatorFields": true,
     "privateAttributes": [
       "__v",
       "createdAt",
@@ -19,11 +20,25 @@
   },
   "pluginOptions": {},
   "attributes": {
+    "title": {
+      "type": "string",
+      "required": true,
+      "unique": true,
+      "minLength": 10,
+      "maxLength": 200
+    },
+
+    "content": {
+      "type": "richtext",
+      "required": true,
+      "minLength": 20
+    },
+
     "lockComment": {
       "type": "boolean",
-      "default": false,
-      "required": false
+      "default": false
     },
+
     "avatar": {
       "model": "file",
       "via": "related",
@@ -34,22 +49,12 @@
       "required": true,
       "pluginOptions": {}
     },
-    "title": {
-      "type": "string",
-      "required": true,
-      "minLength": 10,
-      "maxLength": 200
-    },
+    
     "catalogs": {
       "collection": "catalog"
     },
-    "content": {
-      "type": "richtext",
-      "required": true,
-      "minLength": 20
-    },
+    
     "comments": {
-      "via": "post",
       "collection": "comment"
     }
   }

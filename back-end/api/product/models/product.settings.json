@@ -47,7 +47,7 @@
     "quantityStock": {
       "type": "integer",
       "default": 0,
-      "min": 0
+      "minLength": 0
     },
     "display": {
       "type": "boolean",
@@ -56,8 +56,8 @@
     },
     "discount": {
       "type": "integer",
-      "max": 100,
-      "min": 0,
+      "maxLength": 100,
+      "minLength": 0,
       "default": 0
     },
     "catalog": {

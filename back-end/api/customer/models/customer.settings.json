@@ -21,13 +21,13 @@
       "type": "string",
       "required": true,
       "unique": true,
-      "max": 50
+      "maxLength": 50
     },
     "email": {
       "type": "email",
       "required": true,
       "unique": true,
-      "max": 100
+      "maxLength": 100
     },
     "phoneNumber": {
       "type": "string",
