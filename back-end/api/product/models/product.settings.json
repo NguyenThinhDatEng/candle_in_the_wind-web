@@ -22,13 +22,17 @@
   "pluginOptions": {},
   "attributes": {
     "name": {
-      "type": "string"
+      "type": "string",
+      "required": true,
+      "unique": true
     },
     "description": {
-      "type": "text"
+      "type": "text",
+      "required": true
     },
     "price": {
-      "type": "float"
+      "type": "float",
+      "required": true
     },
     "avatar": {
       "model": "file",
@@ -41,7 +45,9 @@
       "pluginOptions": {}
     },
     "quantityStock": {
-      "type": "integer"
+      "type": "integer",
+      "default": 0,
+      "min": 0
     },
     "display": {
       "type": "boolean",
@@ -67,10 +73,6 @@
       "plugin": "upload",
       "required": false,
       "pluginOptions": {}
-    },
-    "items": {
-      "via": "product",
-      "collection": "item"
     }
   }
 }
