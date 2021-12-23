@@ -7,24 +7,27 @@
   },
   "options": {
     "increments": true,
+    "configurable": false,
     "privateAttributes": [
       "__v",
       "createdAt",
       "updatedAt",
       "id"
-    ],
-    "draftAndPublish": false
+    ]
   },
   "pluginOptions": {},
   "attributes": {
     "username": {
       "type": "string",
-      "required": true
+      "required": true,
+      "unique": true,
+      "max": 50
     },
     "email": {
       "type": "email",
       "required": true,
-      "unique": true
+      "unique": true,
+      "max": 100
     },
     "phoneNumber": {
       "type": "string",
@@ -44,7 +47,6 @@
         "images"
       ],
       "plugin": "upload",
-      "required": false,
       "pluginOptions": {}
     },
     "loyal": {
