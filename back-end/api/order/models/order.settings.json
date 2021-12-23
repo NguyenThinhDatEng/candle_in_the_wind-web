@@ -8,7 +8,6 @@
   "options": {
     "increments": true,
     "timestamps": true,
-    "draftAndPublish": false,
     "privateAttributes": [
       "__v",
       "createdAt",
@@ -30,12 +29,12 @@
     },
     "phoneNumber": {
       "type": "string",
-      "maxLength": 11,
+      "maxLength": 11,  
       "required": true
     },
     "address": {
       "type": "text",
-      "maxLength": 1000,
+      "maxLength": 500,
       "required": true
     },
     "subtotal": {
@@ -49,27 +48,32 @@
     },
     "status": {
       "type": "boolean",
-      "default": false,
-      "required": false
+      "default": false
     },
     "customer": {
       "model": "customer",
       "via": "orders"
     },
     "items": {
-      "via": "order",
-      "collection": "item"
+      "collection": "item",
+      "via": "order"
     },
     "payment": {
       "type": "enumeration",
       "enum": [
         "Bank_transfer",
         "Delivery"
-      ]
+      ],
+      "required": true
     },
     "province": {
       "model": "province",
       "via": "orders"
+    },
+    "shipping_fee": {
+      "type": "float",
+      "default": 0,
+      "required": false
     }
   }
 }
