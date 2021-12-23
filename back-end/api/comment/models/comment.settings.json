@@ -12,7 +12,7 @@
     "privateAttributes": [
       "__v",
       "id",
-      "created_by"
+      "updated_by"
     ]
   },
   "pluginOptions": {},
@@ -21,10 +21,6 @@
       "type": "text",
       "required": true,
       "max": 200
-    },
-    "post": {
-      "via": "comments",
-      "model": "post"
     }
   }
 }
