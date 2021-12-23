@@ -6,9 +6,7 @@
     "description": ""
   },
   "options": {
-    "increments": true,
-    "timestamps": true,
-    "draftAndPublish": false
+    "increments": true
   },
   "pluginOptions": {},
   "attributes": {
@@ -16,15 +14,17 @@
       "type": "float"
     },
     "quantity": {
-      "type": "integer"
-    },
-    "order": {
-      "via": "items",
-      "model": "order"
+      "type": "integer",
+      "default": 1,
+      "min": 1
     },
     "product": {
       "collection": "product",
       "model": "product"
+    },
+    "order": {
+      "via": "items",
+      "model": "order"
     }
   }
 }
