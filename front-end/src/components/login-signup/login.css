@@ -1,0 +1,11 @@
+.customize-input-password {
+  position: relative;
+}
+
+i.fas {
+  position: absolute;
+  top: 13px;
+  right: 8px;
+  cursor: pointer;
+  color: black;
+}
