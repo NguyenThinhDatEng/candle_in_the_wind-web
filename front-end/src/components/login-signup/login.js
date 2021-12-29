@@ -2,6 +2,8 @@ import React from "react";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import "./login.css";
+import { handleSignInAPI } from "../../services/customerService";
+const baseUrl = "https://localhost:2021";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -10,6 +12,19 @@ const Login = () => {
 
   const handleShowHidePassword = () => {
     setIsShowPassword(!isShowPassword);
+    console.log(email);
+  };
+
+  const handleSignIn = async () => {
+    try {
+      // console.log(`email: ${email}\npassword: ${password}`);
+      console.error(
+        "------------------------------------------------------------------"
+      );
+      const { data } = await handleSignInAPI(email, password);
+    } catch (error) {
+      console.log(error);
+    }
   };
   return (
     <div>
@@ -35,7 +50,7 @@ const Login = () => {
               <label htmlFor="password" className="label">
                 Password
               </label>
-              <div class="customize-input-password">
+              <div className="customize-input-password">
                 <input
                   type={isShowPassword ? "text" : "password"}
                   className="form-control mb-4"
@@ -49,7 +64,9 @@ const Login = () => {
                 />
                 <span onClick={handleShowHidePassword}>
                   <i
-                    class={isShowPassword ? "fas fa-eye" : "fas fa-eye-slash"}
+                    className={
+                      isShowPassword ? "fas fa-eye" : "fas fa-eye-slash"
+                    }
                   ></i>
                 </span>
               </div>
@@ -60,7 +77,11 @@ const Login = () => {
                 <a href="#">Forgot password?</a>{" "}
               </p>
               <div className="clearfix" />
-              <button type="submit" className="btn btn-success my-3">
+              <button
+                type="submit"
+                className="btn btn-success my-3"
+                onClick={handleSignIn}
+              >
                 Sign in
               </button>
               <p>
