@@ -18,12 +18,29 @@ const handleSignInAPI = async (email, password) => {
   };
 
   return await axios(config);
-  // .then((response) => {
-  //   console.log(JSON.stringify(response.data));
-  // })
-  // .catch((error) => {
-  //   console.log(error);
-  // });
 };
 
-export { handleSignInAPI };
+const handleSignUpAPI = async (newData) => {
+  let data = JSON.stringify({
+    username: newData.username,
+    email: newData.email,
+    password: newData.password,
+    gender: newData.gender,
+    dateOfBirth: newData.dateOfBirth,
+    phoneNumber: newData.phoneNumber,
+  });
+
+  let config = {
+    method: "post",
+    url: baseUrl + "/customers/signup",
+    headers: {
+      "Content-Type": "application/json",
+      Accept: "application/json",
+    },
+    data: data,
+  };
+
+  return await axios(config);
+};
+
+export { handleSignInAPI, handleSignUpAPI };
