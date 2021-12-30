@@ -2,6 +2,48 @@
 require("dotenv").config();
 const Response = require(`../../../utils/response`);
 
+const logIn = async (ctx) => {
+  const { email, password } = ctx.request.body;
+  console.log(`email: ${email}, password: ${password}`);
+  const user = await strapi
+    .query(`customer`)
+    .findOne({ email, password }, ["customer.email"]);
+  if (user) {
+    return Response.ok(ctx, { data: user.email, msg: `OK`, status: 1 });
+  }
+  return Response.ok(ctx, {
+    data: null,
+    msg: `User account or password incorrect`,
+    status: 0,
+  });
+};
+
+const signUp = async (ctx) => {
+  const { username, email, password, gender, dateOfBirth, phoneNumber } =
+    ctx.request.body;
+  const emailCheck = await strapi.query(`customer`).findOne({ email });
+  if (emailCheck)
+    return Response.notAcceptable(ctx, {
+      msg: `${email} already exists`,
+      status: 0,
+    });
+  const rs = await strapi
+    .query(`customer`)
+    .create({ username, email, password, gender, dateOfBirth, phoneNumber });
+  if (rs) {
+    return Response.created(ctx, {
+      data: rs,
+      msg: `OK`,
+      status: 1,
+    });
+  }
+  return Response.internalServerError(ctx, {
+    data: null,
+    msg: `Server Error`,
+    status: 0,
+  });
+};
+
 module.exports = {
   resetPassWord: async (ctx) => {
     const { email } = ctx.request.body;
@@ -25,40 +67,7 @@ module.exports = {
     }
   },
 
-  signup: async (ctx) => {
-    const { username, email, password, gender, dateOfBirth, phoneNumber } =
-      ctx.request.body;
-    const emailCheck = await strapi.query(`customer`).findOne({ email });
-    if (emailCheck)
-      return Response.notAcceptable(ctx, {
-        msg: `${email} already exists`,
-        status: 406,
-      });
-    const rs = await strapi
-      .query(`customer`)
-      .create({ username, email, password, gender, dateOfBirth, phoneNumber });
-    if (rs) {
-      return Response.created(ctx, {
-        data: rs,
-        msg: `Successful`,
-        status: 201,
-      });
-    }
-  },
+  signup: signUp,
 
-  login: async (ctx) => {
-    const { email, password } = ctx.request.body;
-    console.log(`email: ${email}, password: ${password}`);
-    const user = await strapi
-      .query(`customer`)
-      .findOne({ email, password }, ["customer.email"]);
-    if (user) {
-      return Response.ok(ctx, { data: user.email, msg: `OK`, status: 1 });
-    }
-    return Response.ok(ctx, {
-      data: null,
-      msg: `User account or password incorrect`,
-      status: 0,
-    });
-  },
+  login: logIn,
 };
