@@ -1,36 +1,44 @@
-import React from "react";
-import { useState } from "react";
+import React, { useState } from "react";
+import { use } from "react";
 import { Link } from "react-router-dom";
 import "./login.css";
 import { handleSignInAPI } from "../../services/customerService";
-const baseUrl = "https://localhost:2021";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [isShowPassword, setIsShowPassword] = useState(false);
+  const [errMessage, setErrMessage] = useState("");
 
   const handleShowHidePassword = () => {
     setIsShowPassword(!isShowPassword);
-    console.log(email);
   };
 
-  const handleSignIn = async () => {
-    try {
-      // console.log(`email: ${email}\npassword: ${password}`);
-      console.error(
-        "------------------------------------------------------------------"
-      );
-      const { data } = await handleSignInAPI(email, password);
-    } catch (error) {
-      console.log(error);
+  const handleSignIn = async (e) => {
+    e.preventDefault();
+    if (!email || !password) {
+      setErrMessage("Missing inputs parameter!");
+    } else {
+      try {
+        console.log(`email: ${email}\npassword: ${password}`);
+        await handleSignInAPI(email, password)
+          .then((response) => {
+            console.log(JSON.stringify(response.data));
+            setErrMessage(response.data.msg);
+          })
+          .catch((error) => {
+            console.log(error);
+          });
+      } catch (error) {
+        console.log(error.response);
+      }
     }
   };
   return (
     <div>
       <div className="container-fluid bg-login login-container">
         <main className="login-form">
-          <form>
+          <form onSubmit={handleSignIn}>
             <h1 className="login-title mb-4 ">Sign in</h1>
             <div className="form-group">
               <label htmlFor="email">Email address</label>
@@ -42,7 +50,7 @@ const Login = () => {
                 value={email}
                 onChange={(e) => {
                   setEmail(e.target.value);
-                  //   console.log(email);
+                  setErrMessage("");
                 }}
               />
             </div>
@@ -54,12 +62,12 @@ const Login = () => {
                 <input
                   type={isShowPassword ? "text" : "password"}
                   className="form-control mb-4"
-                  id="password"
+                  name="password"
                   placeholder="Password"
                   value={password}
                   onChange={(e) => {
                     setPassword(e.target.value);
-                    //   console.log(password);
+                    setErrMessage("");
                   }}
                 />
                 <span onClick={handleShowHidePassword}>
@@ -71,17 +79,15 @@ const Login = () => {
                 </span>
               </div>
             </div>
+
             <div className="text-center">
               <p className="forgot-password">
                 {" "}
                 <a href="#">Forgot password?</a>{" "}
               </p>
               <div className="clearfix" />
-              <button
-                type="submit"
-                className="btn btn-success my-3"
-                onClick={handleSignIn}
-              >
+              <div style={{ color: "red" }}>{errMessage}</div>
+              <button type="submit" className="btn btn-success my-3">
                 Sign in
               </button>
               <p>

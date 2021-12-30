@@ -17,14 +17,13 @@ const handleSignInAPI = async (email, password) => {
     data: data,
   };
 
-  return axios(config)
-    .then(function (response) {
-      console.log(JSON.stringify(response.data));
-      alert("STOP");
-    })
-    .catch(function (error) {
-      console.log(error);
-    });
+  return await axios(config);
+  // .then((response) => {
+  //   console.log(JSON.stringify(response.data));
+  // })
+  // .catch((error) => {
+  //   console.log(error);
+  // });
 };
 
 export { handleSignInAPI };
