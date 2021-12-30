@@ -1,14 +1,21 @@
 import React, { useState } from "react";
-import { use } from "react";
-import { Link } from "react-router-dom";
-import "./login.css";
+import { useEffect } from "react";
+import { Link, useHistory } from "react-router-dom";
 import { handleSignInAPI } from "../../services/customerService";
+import "./login.css";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [isShowPassword, setIsShowPassword] = useState(false);
   const [errMessage, setErrMessage] = useState("");
+
+  const history = useHistory();
+  useEffect(() => {
+    if (localStorage.getItem("user-info")) {
+      history.push("/");
+    }
+  });
 
   const handleShowHidePassword = () => {
     setIsShowPassword(!isShowPassword);
@@ -25,6 +32,9 @@ const Login = () => {
           .then((response) => {
             console.log(JSON.stringify(response.data));
             setErrMessage(response.data.msg);
+            if (response.data.data) {
+              localStorage.setItem("user-info", response.data.data);
+            }
           })
           .catch((error) => {
             console.log(error);
