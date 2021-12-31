@@ -21,18 +21,24 @@ const logIn = async (ctx) => {
 const signUp = async (ctx) => {
   const { username, email, password, gender, dateOfBirth, phoneNumber } =
     ctx.request.body;
+  console.log(ctx.request.body);
   const emailCheck = await strapi.query(`customer`).findOne({ email });
   if (emailCheck)
     return Response.notAcceptable(ctx, {
-      msg: `${email} already exists`,
+      msg: `${email} already exists. Please try a different email`,
       status: 0,
     });
-  const rs = await strapi
+  const user = await strapi
     .query(`customer`)
     .create({ username, email, password, gender, dateOfBirth, phoneNumber });
-  if (rs) {
+  if (user) {
+    let data = {
+      username: user.username,
+      email: user.email,
+      id: user.id,
+    };
     return Response.created(ctx, {
-      data: rs,
+      data: data,
       msg: `OK`,
       status: 1,
     });
