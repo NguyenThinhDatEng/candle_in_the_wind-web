@@ -1,6 +1,7 @@
 import { strictEqual } from "assert";
 import React, { useState } from "react";
 import { useEffect } from "react";
+import { useHistory } from "react-router-dom";
 import { handleSignUpAPI } from "../../services/customerService";
 import "./signup.css";
 
@@ -16,6 +17,13 @@ const SignUp = () => {
     errMessage: "",
     isShowPassword: false,
     isShowConfirm: false,
+  });
+
+  const history = useHistory();
+  useEffect(() => {
+    if (localStorage.getItem("user-info")) {
+      history.push("/");
+    }
   });
 
   const handleUsername = (e) => {
@@ -76,18 +84,46 @@ const SignUp = () => {
       setState((previousState) => {
         return { ...previousState, errMessage: "Missing required parameter!" };
       });
-    } else {
-      if (state.password !== state.confirm)
+    } else if (state.password.length < 6)
+      setState((previousState) => {
+        return {
+          ...previousState,
+          errMessage:
+            "Your password must be at least 6 characters. Please try a different password",
+        };
+      });
+    else if (state.password !== state.confirm)
+      setState((previousState) => {
+        return {
+          ...previousState,
+          errMessage:
+            "Your confirmation password does not match. Please try again",
+        };
+      });
+    else if (state.phoneNumber.length < 10 || state.phoneNumber.length > 11)
+      setState((previousState) => {
+        return {
+          ...previousState,
+          errMessage: "Invalid phone number",
+        };
+      });
+    else {
+      try {
+        console.log(state);
+        await handleSignUpAPI(state).then((response) => {
+          console.log(JSON.stringify(response.data));
+          if (response.data.data) {
+            localStorage.setItem("user-info", response.data.data);
+            history.push("/");
+          }
+        });
+      } catch (error) {
         setState((previousState) => {
           return {
             ...previousState,
-            errMessage:
-              "Your confirmation password does not match. Please try again",
+            errMessage: error.response.data.msg,
           };
         });
-      else {
-        console.log(state);
-        await handleSignUpAPI(state);
       }
     }
   };

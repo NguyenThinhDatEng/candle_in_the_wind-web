@@ -21,11 +21,12 @@ const handleSignInAPI = async (email, password) => {
 };
 
 const handleSignUpAPI = async (newData) => {
+  let gender = newData.gender ? "Male" : "Female";
   let data = JSON.stringify({
     username: newData.username,
     email: newData.email,
     password: newData.password,
-    gender: newData.gender,
+    gender: gender,
     dateOfBirth: newData.dateOfBirth,
     phoneNumber: newData.phoneNumber,
   });
