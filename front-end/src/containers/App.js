@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import Login from "../components/login-signup/login";
 import Signup from "../components/login-signup/signup";
@@ -16,6 +16,7 @@ import Item from "../components/product/item";
 
 
 function App() {
+    const [cart, setCart] = useState([])
     return (
         <Router>
             <Switch>
@@ -29,7 +30,9 @@ function App() {
                 <Route exact path="/login" component={Login} />
                 <Route exact path="/signup" component={Signup} />
                 <Route exact path="/profile" component={Profile} />
-                <Route exact path="/cart" component={Cart} />
+                <Route exact path="/cart">
+                    <Cart />
+                </Route>
                 <Route exact path="/paymentinformation" component={PaymentInformation} />
                 <Route exact path="/payment" component={Payment} />
                 <Route exact path="/products/:id" component={Item} />
