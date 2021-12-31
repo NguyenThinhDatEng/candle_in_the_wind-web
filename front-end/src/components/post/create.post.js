@@ -1,9 +1,18 @@
 import React from 'react'
 import Header from "../header/header"
 import Footer from '../footer/footer'
-export default function CreatePost() {
-    
+import { useEffect } from "react";
+import { Link, useHistory } from "react-router-dom";
+import { handleSignInAPI } from "../../services/customerService";
 
+export default function CreatePost() {
+    const history = useHistory();
+	useEffect(() => {
+		if (localStorage.getItem("user-info")) {
+			history.push("/");
+		}
+	});
+    console.log(history)
 
     return (
         <div>
@@ -13,7 +22,7 @@ export default function CreatePost() {
                 <p className="text-center py-4">BLOG</p>
             </div>
             <div className="container bg-secondary">
-                <div className="row justify-content-center"e>
+                <div className="row justify-content-center">
                     <div className="col-md-8 col-md-offset-2">
                         <h1 className="text-center my-4">Create a new post</h1>
                         <form>
@@ -40,6 +49,5 @@ export default function CreatePost() {
             </div>
             <Footer/>
         </div>
-
     )
 }
