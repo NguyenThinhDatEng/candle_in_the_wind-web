@@ -16,7 +16,8 @@ export default function StoreEssentialOil(props) {
                 <img
                   alt=""
                   src={
-                    process.env.REACT_APP_DB_URL + value?.related_images[0]?.url
+                    process.env.REACT_APP_SERVER_URL +
+                    value?.related_images[0]?.url
                   }
                 />
               </div>

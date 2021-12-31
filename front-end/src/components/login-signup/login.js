@@ -37,7 +37,7 @@ const Login = () => {
             }
           })
           .catch((error) => {
-            console.log(error);
+            console.log("login.js", error);
           });
       } catch (error) {
         console.log(error.response);

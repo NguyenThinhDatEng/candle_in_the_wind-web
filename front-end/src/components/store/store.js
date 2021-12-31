@@ -14,7 +14,7 @@ export default function Store(props) {
   const [data, setData] = useState([]);
 
   useEffect(async () => {
-    const result = await axios(process.env.REACT_APP_DB_URL + "/products/");
+    const result = await axios(process.env.REACT_APP_SERVER_URL + "/products/");
     setData(result.data);
   });
 

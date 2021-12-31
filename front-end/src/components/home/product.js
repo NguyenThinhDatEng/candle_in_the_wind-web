@@ -9,7 +9,7 @@ export default function Product() {
   const [data, setData] = useState([]);
 
   useEffect(async () => {
-    const result = await axios(process.env.REACT_APP_DB_URL + "/products/");
+    const result = await axios(process.env.REACT_APP_SERVER_URL + "/products/");
     setData(result.data);
   });
 
@@ -61,7 +61,7 @@ export default function Product() {
                       <img
                         alt=""
                         src={
-                          process.env.REACT_APP_DB_URL +
+                          process.env.REACT_APP_SERVER_URL +
                           value?.related_images[0]?.url
                         }
                       />
@@ -94,7 +94,7 @@ export default function Product() {
                       <img
                         alt=""
                         src={
-                          process.env.REACT_APP_DB_URL +
+                          process.env.REACT_APP_SERVER_URL +
                           value?.related_images[0]?.url
                         }
                       />
@@ -127,7 +127,7 @@ export default function Product() {
                       <img
                         alt=""
                         src={
-                          process.env.REACT_APP_DB_URL +
+                          process.env.REACT_APP_SERVER_URL +
                           value?.related_images[0]?.url
                         }
                       />
@@ -160,7 +160,7 @@ export default function Product() {
                       <img
                         alt=""
                         src={
-                          process.env.REACT_APP_DB_URL +
+                          process.env.REACT_APP_SERVER_URL +
                           value?.related_images[0]?.url
                         }
                       />

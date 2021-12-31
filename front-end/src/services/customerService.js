@@ -1,5 +1,5 @@
 import axios from "axios";
-const baseUrl = "http://localhost:2021";
+const baseUrl = process.env.REACT_APP_SERVER_URL;
 
 const handleSignInAPI = async (email, password) => {
   let data = JSON.stringify({

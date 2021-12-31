@@ -18,7 +18,7 @@ const Item = (props) => {
 
   useEffect(async () => {
     const result = await axios(
-      process.env.REACT_APP_DB_URL + props.match.params.id
+      process.env.REACT_APP_SERVER_URL + props.match.params.id
     );
     setData(result.data);
   });
@@ -35,7 +35,7 @@ const Item = (props) => {
         <div className="itemscreen__left">
           <div className="left__image">
             <img
-              src={process.env.REACT_APP_DB_URL + data?.image?.[0]?.url}
+              src={process.env.REACT_APP_SERVER_URL + data?.image?.[0]?.url}
               alt="product name"
             />
           </div>
@@ -115,7 +115,10 @@ const Item = (props) => {
         <div className="related__items">
           <div className="item text-center">
             <div className="item-img">
-              <img alt="" src={process.env.REACT_APP_DB_URL + data?.[0]?.url} />
+              <img
+                alt=""
+                src={process.env.REACT_APP_SERVER_URL + data?.[0]?.url}
+              />
             </div>
             <div>
               <p className="mt-3"> Item 1 </p>

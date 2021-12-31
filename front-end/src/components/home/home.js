@@ -7,7 +7,7 @@ import { useEffect } from "react";
 require("dotenv").config();
 
 export default function Home() {
-  // console.log(process.env.REACT_APP_DB_URL)
+  // console.log(process.env.REACT_APP_SERVER_URL)
   useEffect(() => {
     if (localStorage.getItem("user-info")) {
       localStorage.removeItem("user-info");
