@@ -8,11 +8,11 @@ require("dotenv").config();
 
 export default function Home() {
   // console.log(process.env.REACT_APP_SERVER_URL)
-  useEffect(() => {
-    if (localStorage.getItem("user-info")) {
-      localStorage.removeItem("user-info");
-    }
-  });
+  // useEffect(() => {
+  //   if (localStorage.getItem("user-info")) {
+  //     localStorage.removeItem("user-info");
+  //   }
+  // });
   return (
     <div>
       <Header />

@@ -33,7 +33,10 @@ const Login = () => {
             console.log(JSON.stringify(response.data));
             setErrMessage(response.data.msg);
             if (response.data.data) {
-              localStorage.setItem("user-info", response.data.data);
+              localStorage.setItem(
+                "user-info",
+                JSON.stringify(response.data.data)
+              );
             }
           })
           .catch((error) => {

@@ -7,9 +7,14 @@ const logIn = async (ctx) => {
   console.log(`email: ${email}, password: ${password}`);
   const user = await strapi
     .query(`customer`)
-    .findOne({ email, password }, ["customer.email"]);
+    .findOne({ email, password }, ["customer.email", "customer.id"]);
   if (user) {
-    return Response.ok(ctx, { data: user.email, msg: `OK`, status: 1 });
+    let data = {
+      username: user.username,
+      email: user.email,
+      id: user.id,
+    };
+    return Response.ok(ctx, { data: data, msg: `OK`, status: 1 });
   }
   return Response.ok(ctx, {
     data: null,

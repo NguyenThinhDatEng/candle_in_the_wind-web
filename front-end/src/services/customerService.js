@@ -40,7 +40,7 @@ const handleSignUpAPI = async (newData) => {
     },
     data: data,
   };
-
+  console.log(baseUrl);
   return await axios(config);
 };
 
