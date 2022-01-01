@@ -5,17 +5,17 @@ import { Link, NavLink } from 'react-router-dom'
 import { CartContext } from '../../context/Context'
 
 export default function Cart() {
-    const {cart, removeItemFromCart, addPrice, price} = useContext(CartContext)
+    const {cart, removeItemFromCart, addPrice, changeQuantity} = useContext(CartContext)
     const [total, setTotal] = useState()
     const [totalPrice, setTotalPrice] = useState()
     useEffect(() => {
         setTotal(cart.reduce((acc, curr) => acc+ Number(curr?.quantity) , 0))
         setTotalPrice(cart.reduce((acc, curr) => acc+ Number(curr?.quantity*curr?.data?.price), 0))
-        
-        
+
     }, [cart])
-    console.log(cart)
+    // console.log(cart)
     console.log(totalPrice)
+
     // addPrice(totalPrice)
     return (
         <div>
@@ -52,18 +52,19 @@ export default function Cart() {
                                                                     className="btn_remove" 
                                                                     type="button" 
                                                                     onClick={()=>{
-                                                                        removeItemFromCart(prod?.data?.id)
+                                                                        removeItemFromCart(prod?.data?._id)
+                                                                        // console.log(prod?.data?._id)
                                                                         
                                                                     }} 
                                                                     >
-                                                                        Remove All
+                                                                        Remove
                                                                     </button>
                                                                 </div>
                                                             </div>
                                                         </div>
                                                     </td>
                                                     <td data-th="Quantity">
-                                                        <input type="number" min='1' className="form-control form-control-lg text-center" defaultValue={prod?.quantity} />
+                                                        <input type="number" min='1' className="form-control form-control-lg text-center" defaultValue={prod?.quantity} onChange={(e) => changeQuantity(prod, e.target.value)} />
                                                     </td>
                                                     <td data-th="Price" className="price_product">{prod?.data?.price} VND</td>
                                                 </tr>

@@ -17,7 +17,7 @@ const Item = (props) => {
 
   const [data, setData] = useState([]);
 
-  const {cart, addItemToCart} = useContext(CartContext)
+  const {cart, addItemToCart, updateItemFromCart} = useContext(CartContext)
   console.log(cart)
 
   useEffect(async () => {
@@ -27,10 +27,8 @@ const Item = (props) => {
     setData(result.data);
   }, []);
 
-  // console.log(data);
-  // const url = `https://working-admin.azurewebsites.net/products/${data.image[0].url}`
-  const image = data?.image;
-  // console.log(image['0'].url)
+
+
 
   return (
     <div>
@@ -84,7 +82,14 @@ const Item = (props) => {
               className="cart-btn" 
               type="button" 
               onClick={()=>{
-                addItemToCart({data, quantity})
+                if (cart.find((product) => product?.data?._id === data?._id)){
+                  updateItemFromCart(data, quantity)
+                  console.log("Update")
+                }
+                else {
+                  addItemToCart({data, quantity})
+                  console.log("Add")
+                }
                 
               }} 
               >
@@ -123,7 +128,7 @@ const Item = (props) => {
       </div>
       <div className="related__screen">
         <h2>Related Products</h2>
-        <div className="related__items">
+        {/* <div className="related__items">
           <div className="item text-center">
             <div className="item-img">
               <img
@@ -162,7 +167,7 @@ const Item = (props) => {
               <button className="btn btn-dark mb-3">Add to cart</button>
             </div>
           </div>
-        </div>
+        </div> */}
       </div>
       <Footer />
     </div>

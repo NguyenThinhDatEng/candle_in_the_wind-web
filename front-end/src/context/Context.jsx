@@ -7,10 +7,10 @@ const initialState = {
     cart: localStorage.getItem('cart') ? JSON.parse(localStorage.getItem('cart')) : [],
     price: localStorage.getItem('price') ? JSON.parse(localStorage.getItem('price')) : 0,
     
-    name: "",
-    phoneNumber: "",
-    province: "", 
-    address:""
+    name: localStorage.getItem('name') ? JSON.parse(localStorage.getItem('name')) : "",
+    phoneNumber: localStorage.getItem('phoneNumber') ? JSON.parse(localStorage.getItem('phoneNumber')) : "",
+    province: localStorage.getItem('province') ? JSON.parse(localStorage.getItem('province')) : "", 
+    address: localStorage.getItem('province') ? JSON.parse(localStorage.getItem('province')) : ""
     
 }
 // setCart(cart) => this.cart = cart
@@ -30,6 +30,14 @@ const Context = (props) => {
     const addItemToCart = (data) => {
         dispatch({type: "ADD_ITEM_TO_CART", payload: (data)})
     }
+    
+    const updateItemFromCart = (data, quantity) => {
+        const newData = {
+            data: data,
+            quantity: Number(quantity)
+        }
+        dispatch({type: "UPDATE_ITEM_FROM_CART", payload: (newData)})
+    }
 
     const removeItemFromCart = (id) => {
         dispatch({type: "REMOVE_ITEM_FROM_CART", payload: id})
@@ -37,6 +45,32 @@ const Context = (props) => {
 
     const addPrice = (price) => {
         dispatch({type: "ADD_PRICE", payload: Number(price)})
+    }
+
+    const changeQuantity = (data, quantity) => {
+        const newData = {
+            data: data?.data,
+            quantity: Number(quantity)
+        }
+        dispatch({type:"CHANGE_QUANTITY", payload: newData})
+        // console.log(data, quantity)
+    }
+
+    const changeInfoName = (name) => {
+        dispatch({type: "ADD_INFO_NAME", payload: (name)})
+        console.log(name)
+    }
+    const changeInfoPhoneNumber = (name) => {
+        dispatch({type: "ADD_INFO_PHONE_NUMBER", payload: (name)})
+        console.log(name)
+    }
+    const changeInfoProvince = (name) => {
+        dispatch({type: "ADD_INFO_PROVINCE", payload: (name)})
+        console.log(name)
+    }
+    const changeInfoAddress = (name) => {
+        dispatch({type: "ADD_INFO_ADDRESS", payload: (name)})
+        console.log(name)
     }
 
     
@@ -49,9 +83,14 @@ const Context = (props) => {
                 cart: state.cart,
                 price: state.price,
                 addItemToCart,
+                updateItemFromCart,
                 removeItemFromCart,
-                addPrice
-                
+                addPrice,
+                changeQuantity,
+                changeInfoName,
+                changeInfoPhoneNumber,
+                changeInfoProvince,
+                changeInfoAddress,
             }}
         >
             {props.children}
