@@ -1,6 +1,27 @@
 "use strict";
 require("dotenv").config();
 const Response = require(`../../../utils/response`);
+const Customer = require("../services/customer");
+
+const FindOneByEmail = async (ctx) => {
+  const { email } = ctx.request.body;
+  try {
+    const user = await Customer.findOneEmail(email);
+    if (user) {
+      return Response.ok(ctx, { data: user.id, msg: "OK", status: 200 });
+    }
+    return Response.badRequest(ctx, {
+      status: 400,
+      msg: `${email} does not exist`,
+    });
+  } catch (error) {
+    console.log(error);
+    return Response.internalServerError(ctx, {
+      status: 500,
+      msg: "Error in Server",
+    });
+  }
+};
 
 const logIn = async (ctx) => {
   const { email, password } = ctx.request.body;
@@ -81,4 +102,6 @@ module.exports = {
   signup: signUp,
 
   login: logIn,
+
+  findOneByEmail: FindOneByEmail,
 };

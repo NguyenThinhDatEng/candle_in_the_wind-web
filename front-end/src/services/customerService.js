@@ -44,4 +44,18 @@ const handleSignUpAPI = async (newData) => {
   return await axios(config);
 };
 
-export { handleSignInAPI, handleSignUpAPI };
+const handleCheckEmail = async (email) => {
+  let config = {
+    method: "post",
+    url: baseUrl + "/customers",
+    headers: {
+      "Content-Type": "application/json",
+      Accept: "application/json",
+    },
+    data: { email },
+  };
+
+  return await axios(config);
+};
+
+export { handleSignInAPI, handleSignUpAPI, handleCheckEmail };
