@@ -84,11 +84,11 @@ const Item = (props) => {
               onClick={()=>{
                 if (cart.find((product) => product?.data?._id === data?._id)){
                   updateItemFromCart(data, quantity)
-                  console.log("Update")
+                  // console.log("Update")
                 }
                 else {
                   addItemToCart({data, quantity})
-                  console.log("Add")
+                  // console.log("Add")
                 }
                 
               }} 

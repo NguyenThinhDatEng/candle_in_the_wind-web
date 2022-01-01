@@ -43,7 +43,7 @@ export default function Cart() {
                                                     <td data-th="Product">
                                                         <div className="row">
                                                             <div className="col-md-3 text-left">
-                                                                <img src="..\assets\images\product.jpg" alt="" className="img-fluid d-none d-md-block rounded mb-2 shadow " />
+                                                                <img src={process.env.REACT_APP_SERVER_URL + prod?.data?.avatar?.url} alt="" className="img-fluid d-none d-md-block rounded mb-2 shadow " />
                                                             </div>
                                                             <div className="col-md-9 text-left mt-sm-2">
                                                                 <h4>{prod?.data?.name}</h4>
@@ -72,6 +72,7 @@ export default function Cart() {
                                         ) : (
                                             <div>
                                                 Your cart is empty.
+                                                <Link to='/' style={{color: 'black'}}>Go Shopping</Link>
                                             </div>
                                         )
                                     }

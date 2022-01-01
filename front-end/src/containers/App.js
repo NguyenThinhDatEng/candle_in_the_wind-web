@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import React from "react";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Login from "../components/login-signup/login";
 import Signup from "../components/login-signup/signup";
 import Profile from "../components/profile/profile";
@@ -16,7 +16,6 @@ import Item from "../components/product/item";
 
 
 function App() {
-    const [cart, setCart] = useState([])
     return (
         <Router>
             <Switch>

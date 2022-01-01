@@ -1,7 +1,7 @@
 import React, { useContext } from 'react'
 import Header from "../header/header"
 import Footer from '../footer/footer'
-import { Link, NavLink } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import { CartContext } from '../../context/Context'
 
 export default function Payment() {
@@ -34,7 +34,7 @@ export default function Payment() {
                                             <td data-th="Product">
                                                 <div className="row">
                                                     <div className="col-md-3 text-left">
-                                                        <img src="..\assets\images\product.jpg" alt="" className="img-fluid d-none d-md-block rounded mb-2 shadow " style={{ width: '50px', height: '60px' }} />
+                                                        <img src={process.env.REACT_APP_SERVER_URL + prod?.data?.avatar?.url} alt={prod?.data?.name} className="img-fluid d-none d-md-block rounded mb-2 shadow " style={{ width: '50px', height: '60px' }} />
                                                     </div>
                                                 </div>
                                             </td>
