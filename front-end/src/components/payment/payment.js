@@ -3,9 +3,9 @@ import Header from "../header/header"
 import Footer from '../footer/footer'
 import { Link } from 'react-router-dom'
 import { CartContext } from '../../context/Context'
+import './payment.css'
 
 export default function Payment() {
-    const [method, setMethod] = useState('')
     const {cart, price, province, addPaymentMethod} = useContext(CartContext)
 
     const [ship, setShip] = useState()
@@ -14,15 +14,7 @@ export default function Payment() {
 
     }, [province])
 
-    // var checkbox = document.getElementsById("method");
-    // for (var i = 0; i < checkbox.length; i++){
-    //     if (checkbox[i].checked === true){
-    //         addPaymentMethod(checkbox[i].value)
-    //     }
-    // }
-    const handleOnClick = () => {
-        addPaymentMethod(method)
-    }
+    
     return (
         <div>
             <Header />
@@ -33,7 +25,7 @@ export default function Payment() {
                     </div>
                     <div className="paymentContainer">
                         <div className="column1">
-                            <h3 >Order ID: 000000</h3>
+                            <h5 >Order ID: 000000</h5>
                             <table>
                                 <thead>
                                     <tr>
@@ -100,19 +92,28 @@ export default function Payment() {
                         </div>
                         <div className="column2">
                             <div className="itemCol2Payment">
-                                <h3 className="paymentMethod_text">Payment method</h3>
+                                <h5 className="paymentMethod_text">Payment method</h5>
                             </div>
                             <form>
                                 <div className="paymentDelivery_text">
-                                    <input name="paymentMethod" type="radio" defaultValue="onDelivery" onChange={(e) => {setMethod(e.target.value)}}/><span />Payment on delivery
+                                    <input name="paymentMethod" type="radio" defaultValue="onDelivery" onChange={(e) => {addPaymentMethod(e.target.value)}}/><span />Payment on delivery
                                 </div>
                                 <div className="paymentDelivery_text">
-                                    <input name="paymentMethod" type="radio" defaultValue="viaBank" onChange={(e) => {setMethod(e.target.value)}} /><span />Payment via bank
+                                    <input name="paymentMethod" type="radio" defaultValue="viaBank" onChange={(e) => {addPaymentMethod(e.target.value)}} /><span />Payment via bank
+                                    <div class='bankInfo'>
+                                        
+                                        <h6>_______Vietinbank_______</h6>
+                                        <h7>Account number: 1010012380</h7>
+                                        <h7>Acount holder: CANDLE IN THE WIND</h7>
+                                        <h7>Content: "Order ID + User's name"</h7>
+                                     
+                                        
+                                    </div>
                                 </div>
                             </form>
                             <div>
                                 <div className="btn_complete">
-                                    <Link to="/" className="completePayment" onClick={() => handleOnClick()} >Complete</Link>
+                                    <Link to="/" className="completePayment" onClick={() => localStorage.clear()} >Complete</Link>
                                 </div>
                                 <div className="btn_back">
                                     <Link to="/paymentinformation" className="completePayment">Back</Link>
