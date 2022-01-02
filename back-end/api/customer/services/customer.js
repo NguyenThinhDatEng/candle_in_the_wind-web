@@ -1,8 +1,7 @@
-'use strict';
+"use strict";
 
-/**
- * Read the documentation (https://strapi.io/documentation/developer-docs/latest/development/backend-customization.html#core-services)
- * to customize this service
- */
+const findOneEmail = async function (email) {
+  return await strapi.query(`customer`).findOne({ email });
+};
 
-module.exports = {};
+module.exports = { findOneEmail };

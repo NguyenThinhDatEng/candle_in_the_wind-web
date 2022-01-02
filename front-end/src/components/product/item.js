@@ -1,10 +1,11 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import Footer from "../footer/footer";
 import Header from "../header/header";
 import imgdemo from "./avatar.jpg";
 import imgdemo1 from "./Balsam_and_Cedar_5ba57b31cc.png";
 import "./item.css";
 import axios from "axios";
+import { CartContext } from "../../context/Context";
 require("dotenv").config();
 
 const Item = (props) => {
@@ -16,17 +17,18 @@ const Item = (props) => {
 
   const [data, setData] = useState([]);
 
+  const {cart, addItemToCart, updateItemFromCart} = useContext(CartContext)
+  console.log(cart)
+
   useEffect(async () => {
     const result = await axios(
-      process.env.REACT_APP_SERVER_URL + props.match.params.id
+      process.env.REACT_APP_SERVER_URL + "/products/" +  props.match.params.id
     );
     setData(result.data);
-  });
+  }, []);
 
-  console.log(data?.image?.[0]?.url);
-  // const url = `https://working-admin.azurewebsites.net/products/${data.image[0].url}`
-  const image = data?.image;
-  // console.log(image['0'].url)
+
+
 
   return (
     <div>
@@ -35,7 +37,7 @@ const Item = (props) => {
         <div className="itemscreen__left">
           <div className="left__image">
             <img
-              src={process.env.REACT_APP_SERVER_URL + data?.image?.[0]?.url}
+              src={process.env.REACT_APP_SERVER_URL + data?.avatar?.url}
               alt="product name"
             />
           </div>
@@ -76,7 +78,21 @@ const Item = (props) => {
               </div>
             </div>
             <p>
-              <button className="cart-btn" type="button" onClick={() => {}}>
+              <button 
+              className="cart-btn" 
+              type="button" 
+              onClick={()=>{
+                if (cart.find((product) => product?.data?._id === data?._id)){
+                  updateItemFromCart(data, quantity)
+                  // console.log("Update")
+                }
+                else {
+                  addItemToCart({data, quantity})
+                  // console.log("Add")
+                }
+                
+              }} 
+              >
                 Add to cart
               </button>
             </p>
@@ -112,7 +128,7 @@ const Item = (props) => {
       </div>
       <div className="related__screen">
         <h2>Related Products</h2>
-        <div className="related__items">
+        {/* <div className="related__items">
           <div className="item text-center">
             <div className="item-img">
               <img
@@ -133,7 +149,12 @@ const Item = (props) => {
             <div>
               <p className="mt-3"> Item 1 </p>
               <p className="text-danger"> 000 VNĐ</p>
-              <button className="btn btn-dark mb-3">Add to cart</button>
+              <button 
+              className="btn btn-dark mb-3" 
+              >
+                Add to cart
+                
+              </button>
             </div>
           </div>
           <div className="item text-center">
@@ -146,7 +167,7 @@ const Item = (props) => {
               <button className="btn btn-dark mb-3">Add to cart</button>
             </div>
           </div>
-        </div>
+        </div> */}
       </div>
       <Footer />
     </div>
