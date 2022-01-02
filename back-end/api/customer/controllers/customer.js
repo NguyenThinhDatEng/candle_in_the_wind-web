@@ -103,5 +103,5 @@ module.exports = {
 
   login: logIn,
 
-  findOneByEmail: FindOneByEmail,
+  findonebyemail: FindOneByEmail,
 };

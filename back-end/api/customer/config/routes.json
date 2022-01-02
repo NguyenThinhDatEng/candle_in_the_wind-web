@@ -3,7 +3,7 @@
     {
       "method": "POST",
       "path": "/customers",
-      "handler": "customer.findOneByEmail",
+      "handler": "customer.findonebyemail",
       "config": {
         "policies": []
       }
