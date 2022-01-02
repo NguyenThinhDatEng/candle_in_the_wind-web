@@ -1,14 +1,28 @@
-import React, { useContext } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import Header from "../header/header"
 import Footer from '../footer/footer'
 import { Link } from 'react-router-dom'
 import { CartContext } from '../../context/Context'
 
 export default function Payment() {
-    const {cart, price} = useContext(CartContext)
+    const [method, setMethod] = useState('')
+    const {cart, price, province, addPaymentMethod} = useContext(CartContext)
 
-    const shippingFee = 10000
+    const [ship, setShip] = useState()
+    useEffect(() => {
+        setShip((localStorage.getItem('province') === "\"Hà Nội\"")? 0 : 30000)
 
+    }, [province])
+
+    // var checkbox = document.getElementsById("method");
+    // for (var i = 0; i < checkbox.length; i++){
+    //     if (checkbox[i].checked === true){
+    //         addPaymentMethod(checkbox[i].value)
+    //     }
+    // }
+    const handleOnClick = () => {
+        addPaymentMethod(method)
+    }
     return (
         <div>
             <Header />
@@ -64,7 +78,7 @@ export default function Payment() {
                                     </tr>
                                     <tr>
                                         <td data-th="shippingFee">Shipping fee</td>
-                                        <td data-th="shipping">{shippingFee} VND</td>
+                                        <td data-th="shipping">{ship} VND</td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -79,7 +93,7 @@ export default function Payment() {
                                 <tbody>
                                     <tr>
                                         <td data-th="totalAll">Total</td>
-                                        <td data-th="totalProductsShip">{Number(price)+Number(shippingFee)} VND</td>
+                                        <td data-th="totalProductsShip">{Number(price)+Number(ship)} VND</td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -90,15 +104,15 @@ export default function Payment() {
                             </div>
                             <form>
                                 <div className="paymentDelivery_text">
-                                    <input name="paymentMethod" type="radio" defaultValue="onDelivery" /><span />Payment on delivery
+                                    <input name="paymentMethod" type="radio" defaultValue="onDelivery" onChange={(e) => {setMethod(e.target.value)}}/><span />Payment on delivery
                                 </div>
                                 <div className="paymentDelivery_text">
-                                    <input name="paymentMethod" type="radio" defaultValue="viaBank" /><span />Payment via bank
+                                    <input name="paymentMethod" type="radio" defaultValue="viaBank" onChange={(e) => {setMethod(e.target.value)}} /><span />Payment via bank
                                 </div>
                             </form>
                             <div>
                                 <div className="btn_complete">
-                                    <Link to="/" className="completePayment" onClick={()=> localStorage.clear()} >Complete</Link>
+                                    <Link to="/" className="completePayment" onClick={() => handleOnClick()} >Complete</Link>
                                 </div>
                                 <div className="btn_back">
                                     <Link to="/paymentinformation" className="completePayment">Back</Link>

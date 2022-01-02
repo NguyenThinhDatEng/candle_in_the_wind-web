@@ -61,6 +61,12 @@ export default (state, action) => {
                 address: (action.payload)
             }
             // console.log(action.payload)
+        case "ADD_PAYMENT_METHOD":
+            return {
+                ...state,
+                paymentMethod: (action.payload)
+                    
+            }
 
         default: 
             return state
