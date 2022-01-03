@@ -181,10 +181,10 @@ const Login = () => {
                       <button
                         type="button"
                         className="btn btn-outline-light"
-                        data-bs-dismiss={dismissPopup ? "modal" : ""}
+                        data-bs-dismiss=""
                         onClick={handleOnClickReset}
                       >
-                        Reset
+                        {dismissPopup ? "Submit" : "Reset"}
                       </button>
                     </div>
                   </div>
