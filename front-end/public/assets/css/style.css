@@ -144,6 +144,7 @@ BLOG
 }
 .post-element img {
     width: 50%;
+    height: 200px;
 }
 
 .post-element h5 {

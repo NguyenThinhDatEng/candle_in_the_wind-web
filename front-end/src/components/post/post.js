@@ -16,7 +16,7 @@ export default function Post(props) {
 		setData(result.data);
 	});
 
-	console.log(data);
+	// console.log(data);
 	return (
 		<div>
 			<Header />
@@ -25,12 +25,13 @@ export default function Post(props) {
 			</div>
 			{
 				<ContentPost
-					id={data.id}
+					id={data._id}
 					title={data.title}
-					publish_at={data.published_at}
+					publish_at={data?.published_at?.substring(0, 10)}
 					authorname={data?.created_by?.firstname + " " + data?.created_by?.lastname}
 					content={data.content}
 					image={data?.avatar?.url}
+					lockComment = {data?.lockComment}
 				/>
 			}
 			<Footer />

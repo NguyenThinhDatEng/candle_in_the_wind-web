@@ -18,12 +18,6 @@ export default function CreatePost() {
     const [content, setContent] = useState("")
     const [image, setImage] = useState(null)
 
-    // var customer_id
-    // useEffect(() => {
-    // 	if (localStorage.getItem("user-info")) {
-    // 		customer_id = localStorage.getItem("user-info")
-    // 	}
-    // });
 
     console.log(image)
 

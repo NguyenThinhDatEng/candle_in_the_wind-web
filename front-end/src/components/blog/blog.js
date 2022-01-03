@@ -15,7 +15,7 @@ export default function Blog() {
 		setData(result.data);
 	});
 
-	console.log(data);
+	// console.log(data);
 
 	return (
 		<div>
@@ -48,6 +48,7 @@ export default function Blog() {
 								title={value?.title}
 								image={value?.avatar?.url}
 								content={value.content.substring(0, 200) + "..."}
+								
 							/>
 						);
 					})}
