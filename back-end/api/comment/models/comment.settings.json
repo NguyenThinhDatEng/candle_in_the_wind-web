@@ -13,7 +13,8 @@
       "__v",
       "id",
       "updated_by"
-    ]
+    ],
+    "draftAndPublish": false
   },
   "pluginOptions": {},
   "attributes": {
@@ -21,6 +22,10 @@
       "type": "text",
       "required": true,
       "maxLength": 200
+    },
+    "customer": {
+      "model": "customer",
+      "via": "comments"
     }
   }
 }

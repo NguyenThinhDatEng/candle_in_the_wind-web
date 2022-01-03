@@ -9,14 +9,17 @@ require("dotenv").config();
 export default function Post(props) {
 	const [data, setData] = useState([]);
 
-	useEffect(async () => {
-		const result = await axios(
-			process.env.REACT_APP_SERVER_URL + "/posts/" + props.match.params.id
-		);
-		setData(result.data);
+	useEffect(() => {
+		async function fetchData() {
+            const result = await axios(
+                process.env.REACT_APP_SERVER_URL + "/posts/" + props.match.params.id
+            );
+            setData(result.data);
+        }
+        fetchData();
 	});
 
-	console.log(data);
+	// console.log(data);
 	return (
 		<div>
 			<Header />
@@ -25,9 +28,9 @@ export default function Post(props) {
 			</div>
 			{
 				<ContentPost
-					id={data.id}
+					id={data._id}
 					title={data.title}
-					publish_at={data.published_at}
+					publish_at={data?.published_at?.substring(0, 10)}
 					authorname={data?.created_by?.firstname + " " + data?.created_by?.lastname}
 					content={data.content}
 					image={data?.avatar?.url}
