@@ -1,8 +1,22 @@
-'use strict';
+"use strict";
 
-/**
- * Read the documentation (https://strapi.io/documentation/developer-docs/latest/development/backend-customization.html#core-services)
- * to customize this service
- */
+const findOneEmail = async function (email) {
+  return await strapi.query(`customer`).findOne({ email });
+};
 
-module.exports = {};
+const updateOTP = async function (email, OTP) {
+  return await strapi.query(`customer`).update({ email }, { OTP });
+};
+
+const generateOTP = () => {
+  // Declare a digits variable
+  // which stores all digits
+  var digits = "0123456789";
+  let OTP = "";
+  for (let i = 0; i < 6; i++) {
+    OTP += digits[Math.floor(Math.random() * 10)];
+  }
+  return OTP;
+};
+
+module.exports = { findOneEmail, generateOTP, updateOTP };

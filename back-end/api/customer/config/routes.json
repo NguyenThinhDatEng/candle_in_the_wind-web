@@ -2,6 +2,14 @@
   "routes": [
     {
       "method": "POST",
+      "path": "/customers",
+      "handler": "customer.findonebyemail",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "POST",
       "path": "/customers/resetPassWord",
       "handler": "customer.resetPassWord",
       "config": {
