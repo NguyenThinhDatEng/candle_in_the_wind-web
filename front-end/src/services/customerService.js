@@ -58,4 +58,18 @@ const handleCheckEmail = async (email) => {
   return await axios(config);
 };
 
-export { handleSignInAPI, handleSignUpAPI, handleCheckEmail };
+const handleCheckOTP = async (email, OTP) => {
+  let config = {
+    method: "post",
+    url: baseUrl + "/customers/resetPassword",
+    headers: {
+      "Content-Type": "application/json",
+      Accept: "application/json",
+    },
+    data: { email, OTP },
+  };
+
+  return await axios(config);
+};
+
+export { handleSignInAPI, handleSignUpAPI, handleCheckEmail, handleCheckOTP };

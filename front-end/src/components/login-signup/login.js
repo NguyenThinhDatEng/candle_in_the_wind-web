@@ -4,6 +4,7 @@ import { Link, useHistory } from "react-router-dom";
 import {
   handleSignInAPI,
   handleCheckEmail,
+  handleCheckOTP,
 } from "../../services/customerService";
 import "./login.css";
 
@@ -15,6 +16,7 @@ const Login = () => {
   const [emailReset, setEmailReset] = useState("");
   const [dismissPopup, setDismissPopUp] = useState(false);
   const [errPopUp, setErrPopUp] = useState("");
+  const [otp, setOTP] = useState("");
 
   const history = useHistory();
   useEffect(() => {
@@ -35,11 +37,16 @@ const Login = () => {
     else {
       try {
         setErrPopUp("checking...");
-        await handleCheckEmail(emailReset).then((response) => {
-          setDismissPopUp(true);
-          setErrPopUp("");
-          setEmailReset("");
-        });
+        if (dismissPopup) {
+          await handleCheckOTP(emailReset, otp);
+        } else {
+          await handleCheckEmail(emailReset).then((response) => {
+            setDismissPopUp(true);
+            setErrPopUp("");
+            // setEmailReset("");
+            setOTP("123");
+          });
+        }
       } catch (error) {
         console.log("login.js", error);
         setErrPopUp(error.response.data.msg);
@@ -162,13 +169,15 @@ const Login = () => {
                       <input
                         type="email"
                         name="email"
-                        value={emailReset}
+                        value={dismissPopup ? otp : emailReset}
                         placeholder={
                           dismissPopup ? "Enter code" : "your email address"
                         }
                         className="form-control mb-2"
                         onChange={(e) => {
-                          setEmailReset(e.target.value);
+                          dismissPopup
+                            ? setOTP(otp)
+                            : setEmailReset(e.target.value);
                           setErrPopUp("");
                         }}
                       />

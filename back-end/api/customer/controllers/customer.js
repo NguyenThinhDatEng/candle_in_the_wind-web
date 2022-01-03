@@ -81,7 +81,7 @@ const signUp = async (ctx) => {
 };
 
 const resetPassWord = async (ctx) => {
-  const { email } = ctx.request.body;
+  const { email, otp } = ctx.request.body;
   try {
     const user = await strapi.services.customer.findOneEmail(email);
     if (user) {
