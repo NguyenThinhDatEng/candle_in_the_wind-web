@@ -2,6 +2,14 @@
   "routes": [
     {
       "method": "POST",
+      "path": "/customers",
+      "handler": "customer.findonebyemail",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "POST",
       "path": "/customers/resetPassWord",
       "handler": "customer.resetPassWord",
       "config": {
@@ -68,6 +76,14 @@
       "method": "DELETE",
       "path": "/customers/:id",
       "handler": "customer.delete",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/customers/changePassword",
+      "handler": "customer.changePassword",
       "config": {
         "policies": []
       }
