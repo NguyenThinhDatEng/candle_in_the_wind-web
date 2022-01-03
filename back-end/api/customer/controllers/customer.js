@@ -116,12 +116,42 @@ const resetPassWord = async (ctx) => {
   }
 };
 
+const changePassword = async (ctx) => {
+  const { email, password, newPassword } = ctx.request.body;
+  let user = null;
+  try {
+    user = await strapi.services.customer.checkLogin(email, password);
+  } catch (error) {
+    return Response.internalServerError(ctx, {
+      msg: "Server Error",
+      status: 500,
+    });
+  }
+  if (!user) {
+    return Response.notFound(ctx, {
+      msg: "Your password is wrong",
+      status: 400,
+    });
+  }
+  try {
+    await strapi.services.customer.updatePassword(email, newPassword);
+  } catch (error) {
+    return Response.internalServerError(ctx, {
+      msg: "Server Error",
+      status: 500,
+    });
+  }
+  return Response.ok(ctx, {
+    msg: "Updated password successfully!",
+    data: newPassword,
+    status: 200,
+  });
+};
+
 module.exports = {
+  changePassword: changePassword,
   resetPassWord: resetPassWord,
-
   signup: signUp,
-
   login: logIn,
-
   findonebyemail: FindOneByEmail,
 };

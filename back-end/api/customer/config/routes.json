@@ -79,6 +79,14 @@
       "config": {
         "policies": []
       }
+    },
+    {
+      "method": "POST",
+      "path": "/customers/changePassword",
+      "handler": "customer.changePassword",
+      "config": {
+        "policies": []
+      }
     }
   ]
 }
