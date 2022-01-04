@@ -19,7 +19,7 @@ function App() {
     return (
         <Router>
             <Switch>
-                <Route exact path="/" component={Home} /> 
+                <Route exact path="/" component={Home} />
                 <Route exact path="/store" component={Store} />
                 <Route exact path="/blog" component={Blog} />
                 <Route exact path="/post/:title.:id" component={Post} />

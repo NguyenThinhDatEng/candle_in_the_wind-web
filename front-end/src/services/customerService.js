@@ -84,4 +84,35 @@ const handleChangePasswordAPI = async (email, password, newPassword) => {
 
   return await axios(config);
 };
-export { handleSignInAPI, handleSignUpAPI, handleCheckEmail, handleCheckOTP, handleChangePasswordAPI };
+const handleChangeInfoAPI = async (newData) => {
+  const isAuth = () => {
+
+    if (localStorage.getItem("user-info")) {
+      return JSON.parse(localStorage.getItem("user-info"));
+    } else {
+      return false;
+    }
+  }
+  const id = isAuth() ? isAuth().id : '';
+  let gender = newData.gender ? "Male" : "Female";
+  let data = JSON.stringify({
+    username: newData.username,
+    email: newData.email,
+    gender: gender,
+    dateOfBirth: newData.dateOfBirth,
+    phoneNumber: newData.phoneNumber,
+  });
+
+  let config = {
+    method: "put",
+    url: baseUrl + "/customers/" + id,
+    headers: {
+      "Content-Type": "application/json",
+      Accept: "application/json",
+    },
+    data: data,
+  };
+
+  return await axios(config);
+};
+export { handleSignInAPI, handleSignUpAPI, handleCheckEmail, handleCheckOTP, handleChangePasswordAPI, handleChangeInfoAPI };
