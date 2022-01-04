@@ -13,7 +13,8 @@
       "createdAt",
       "updatedAt",
       "id"
-    ]
+    ],
+    "draftAndPublish": false
   },
   "pluginOptions": {},
   "attributes": {
@@ -47,6 +48,7 @@
         "images"
       ],
       "plugin": "upload",
+      "required": false,
       "pluginOptions": {}
     },
     "loyal": {
@@ -63,6 +65,9 @@
     "orders": {
       "via": "customer",
       "collection": "order"
+    },
+    "OTP": {
+      "type": "string"
     }
   }
 }

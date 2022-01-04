@@ -3,6 +3,7 @@ import Header from "../header/header"
 import Footer from '../footer/footer'
 import { Link } from 'react-router-dom'
 import { CartContext } from '../../context/Context'
+import './payment.css'
 
 export default function PaymentInformation() {
     const [Name, setName] = useState('')
@@ -29,18 +30,18 @@ export default function PaymentInformation() {
                 </div>
                 <div className="fillPaymentInfoContainer">
                     <div className="fillPaymentInfo">
-                        <h3 className="info">Recipient's name</h3>
+                        <h5 className="info">Recipient's name</h5>
                         <input className="infoInput" type="text" required onChange={(e) => {
                             setName(e.target.value)
                             console.log(Name)
                         }}/>
                     </div>
                     <div className="fillPaymentInfo">
-                        <h3 className="info">Phone number</h3>
+                        <h5 className="info">Phone number</h5>
                         <input className="infoInput" type="tel" required onChange={(e) => {setPhoneNumber(e.target.value)}}/>
                     </div>
                     <div className="fillPaymentInfo">
-                        <h3 className="info">Province</h3>
+                        <h5 className="info">Province</h5>
                         <input className="infoInput" list="provinceList" required onChange={(e) => {setProvince(e.target.value)}}/>
                         <datalist id="provinceList">
                             <option value="Hà Nội" />
@@ -48,7 +49,7 @@ export default function PaymentInformation() {
                         </datalist>
                     </div>
                     <div className="fillPaymentInfo">
-                        <h3 className="info">Address</h3>
+                        <h5 className="info">Address</h5>
                         <input className="infoInput" type="text" required onChange={(e) => {setAddress(e.target.value)}}/>
                     </div>
                     <div className="fillPaymentInfo">

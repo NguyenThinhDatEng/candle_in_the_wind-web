@@ -44,4 +44,44 @@ const handleSignUpAPI = async (newData) => {
   return await axios(config);
 };
 
-export { handleSignInAPI, handleSignUpAPI };
+const handleCheckEmail = async (email) => {
+  let config = {
+    method: "post",
+    url: baseUrl + "/customers",
+    headers: {
+      "Content-Type": "application/json",
+      Accept: "application/json",
+    },
+    data: { email },
+  };
+
+  return await axios(config);
+};
+
+const handleCheckOTP = async (email, OTP) => {
+  let config = {
+    method: "post",
+    url: baseUrl + "/customers/resetPassword",
+    headers: {
+      "Content-Type": "application/json",
+      Accept: "application/json",
+    },
+    data: { email, OTP },
+  };
+
+  return await axios(config);
+};
+const handleChangePasswordAPI = async (email, password, newPassword) => {
+  let config = {
+    method: "post",
+    url: baseUrl + "/customers/changePassword",
+    headers: {
+      "Content-Type": "application/json",
+      Accept: "application/json",
+    },
+    data: { email, password, newPassword },
+  };
+
+  return await axios(config);
+};
+export { handleSignInAPI, handleSignUpAPI, handleCheckEmail, handleCheckOTP, handleChangePasswordAPI };

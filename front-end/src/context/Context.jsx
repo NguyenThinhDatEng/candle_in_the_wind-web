@@ -10,8 +10,8 @@ const initialState = {
     name: localStorage.getItem('name') ? JSON.parse(localStorage.getItem('name')) : "",
     phoneNumber: localStorage.getItem('phoneNumber') ? JSON.parse(localStorage.getItem('phoneNumber')) : "",
     province: localStorage.getItem('province') ? JSON.parse(localStorage.getItem('province')) : "", 
-    address: localStorage.getItem('province') ? JSON.parse(localStorage.getItem('province')) : ""
-    
+    address: localStorage.getItem('province') ? JSON.parse(localStorage.getItem('province')) : "",
+    paymentMethod: localStorage.getItem('paymentMethod') ? JSON.parse(localStorage.getItem('paymentMethod')) : ""
 }
 // setCart(cart) => this.cart = cart
 
@@ -25,6 +25,7 @@ const Context = (props) => {
         localStorage.setItem('phoneNumber', JSON.stringify(state.phoneNumber))
         localStorage.setItem('province', JSON.stringify(state.province))
         localStorage.setItem('address', JSON.stringify(state.address))
+        localStorage.setItem('paymentMethod', JSON.stringify(state.paymentMethod))
     }, [state])
 
     const addItemToCart = (data) => {
@@ -73,6 +74,9 @@ const Context = (props) => {
         console.log(name)
     }
 
+    const addPaymentMethod = (method) => {
+        dispatch({type: "ADD_PAYMENT_METHOD", payload: (method)})
+    }
     
 
     // dispatch({type, payload})
@@ -91,6 +95,7 @@ const Context = (props) => {
                 changeInfoPhoneNumber,
                 changeInfoProvince,
                 changeInfoAddress,
+                addPaymentMethod,
             }}
         >
             {props.children}
