@@ -36,7 +36,7 @@ export default function Header() {
                     </div>
                     <div className="cart">
                         <Link to="/cart" ><img src="/assets/icons/ShoppingCart.png" /></Link>
-                        <span class='badge badge-warning' id='lblCartCount'>{total}</span>
+                        <span className='badge badge-warning' id='lblCartCount'>{total}</span>
                     </div>
                 </div>
                 {/* <div className='sign'>

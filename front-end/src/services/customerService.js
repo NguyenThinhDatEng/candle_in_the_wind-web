@@ -71,5 +71,17 @@ const handleCheckOTP = async (email, OTP) => {
 
   return await axios(config);
 };
+const handleChangePasswordAPI = async (email, password, newPassword) => {
+  let config = {
+    method: "post",
+    url: baseUrl + "/customers/changePassword",
+    headers: {
+      "Content-Type": "application/json",
+      Accept: "application/json",
+    },
+    data: { email, password, newPassword },
+  };
 
-export { handleSignInAPI, handleSignUpAPI, handleCheckEmail, handleCheckOTP };
+  return await axios(config);
+};
+export { handleSignInAPI, handleSignUpAPI, handleCheckEmail, handleCheckOTP, handleChangePasswordAPI };
