@@ -1,25 +1,27 @@
 import React, { useState } from "react";
 import "./forgot_password.css";
-import { Link, useHistory } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { handleCheckEmail } from "../../services/customerService";
 
-const ForgotPassword = () => {
-  const [email, setEmail] = useState("");
+const VerifyOTP = () => {
+  const [OTP, setOTP] = useState("");
   const [errMessage, setErrMessage] = useState("");
 
-  const history = useHistory();
   const handleSubmit = async (e) => {
     e.preventDefault();
-    try {
-      setErrMessage("checking...");
-      await handleCheckEmail(email).then((response) => {
-        setErrMessage(response.data.msg);
-      });
-      history.push("/verifyOTP");
-    } catch (error) {
-      console.log("login.js", error);
-      setErrMessage(error.response.data.msg);
+    if (OTP.length != 6) {
+      setErrMessage("OTP code consists of 6 characters");
+      return;
     }
+    //   try {
+    //     setErrMessage("checking...");
+    //     await handleCheckEmail(email).then((response) => {
+    //       setErrMessage(response.data.msg);
+    //     });
+    //   } catch (error) {
+    //     console.log("login.js", error);
+    //     setErrMessage(error.response.data.msg);
+    //   }
   };
 
   return (
@@ -28,35 +30,10 @@ const ForgotPassword = () => {
         <div class="row justify-content-center">
           <div class="col-lg-8 col-md-10">
             <div class="forgot">
-              <h2>Forgot password?</h2>
-
+              <h2>Verify OTP code</h2>
               <ol class="list-unstyled" style={{ "text-align": "left" }}>
                 <li>
-                  <span
-                    class="text-primary text-medium"
-                    style={{ fontSize: 20 }}
-                  >
-                    1.{" "}
-                  </span>
-                  <b>Enter your email address below</b>
-                </li>
-                <li>
-                  <span
-                    class="text-primary text-medium"
-                    style={{ fontSize: 20 }}
-                  >
-                    2.{" "}
-                  </span>
-                  <b>Our system will send you an OTP code</b>
-                </li>
-                <li>
-                  <span
-                    class="text-primary text-medium"
-                    style={{ fontSize: 20 }}
-                  >
-                    3.{" "}
-                  </span>
-                  <b>Enter OTP code to reset your password</b>
+                  <b>We've sent a password reset otp to your email</b>
                 </li>
               </ol>
             </div>
@@ -77,11 +54,10 @@ const ForgotPassword = () => {
                   {/* input */}
                   <input
                     class="form-control"
-                    type="email"
-                    id="email-for-pass"
-                    placeholder="Enter your email address"
+                    type="text"
+                    placeholder="Enter OTP code"
                     onChange={(e) => {
-                      setEmail(e.target.value);
+                      setOTP(e.target.value);
                       setErrMessage("");
                     }}
                   />
@@ -90,7 +66,7 @@ const ForgotPassword = () => {
               <div class="card-footer">
                 {" "}
                 <button class="btn btn-primary" type="submit">
-                  Reset password
+                  Submit
                 </button>{" "}
                 <button class="btn btn-secondary" type="submit">
                   <Link
@@ -109,4 +85,4 @@ const ForgotPassword = () => {
   );
 };
 
-export default ForgotPassword;
+export default VerifyOTP;
