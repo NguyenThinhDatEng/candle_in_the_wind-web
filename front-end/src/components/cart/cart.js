@@ -39,7 +39,7 @@ export default function Cart() {
                                     {
                                         cart.length > 0 ? (
                                             cart.map((prod) => (
-                                                <tr>
+                                                <tr key={prod?.data?._id}>
                                                     <td data-th="Product">
                                                         <div className="row">
                                                             <div className="col-md-3 text-left">
