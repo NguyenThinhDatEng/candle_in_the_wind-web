@@ -7,6 +7,7 @@ import ChangeInfo from "./change.info";
 import { useEffect, useState } from "react";
 import Header from "../header/header";
 import Footer from "../footer/footer";
+import axios from "axios";
 
 export default function Profile(props) {
   const [status, setStatus] = useState(0);
@@ -22,6 +23,24 @@ export default function Profile(props) {
       return <MyOrder />;
     }
   };
+  const isAuth = () => {
+
+    if (localStorage.getItem("user-info")) {
+      return JSON.parse(localStorage.getItem("user-info"));
+    } else {
+      return false;
+    }
+  }
+  const id = isAuth() ? isAuth().id : '';
+
+  const [data, setData] = useState([]);
+
+  useEffect(async () => {
+    const result = await axios(
+      process.env.REACT_APP_SERVER_URL + "/customers/" + id
+    );
+    setData(result.data);
+  });
 
   return (
     <div>
@@ -32,7 +51,7 @@ export default function Profile(props) {
             <div>
               <img
                 className="card-avatar rounded-circle mb-4"
-                src="./assets/images/avatar.jpg"
+                src={data?.avatar?.url ? process.env.REACT_APP_SERVER_URL + data?.avatar?.url : "https://bootdey.com/img/Content/avatar/avatar1.png"}
                 alt="Card_image"
                 style={{ width: "100%" }}
               />
