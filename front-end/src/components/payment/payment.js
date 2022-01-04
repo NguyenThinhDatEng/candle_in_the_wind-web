@@ -40,13 +40,14 @@ export default function Payment() {
                                             <td data-th="Product">
                                                 <div className="row">
                                                     <div className="col-md-3 text-left">
-                                                        <img src={process.env.REACT_APP_SERVER_URL + prod?.data?.avatar?.url} alt={prod?.data?.name} className="img-fluid d-none d-md-block rounded mb-2 shadow " style={{ width: '50px', height: '60px' }} />
+                                                        <img src={process.env.REACT_APP_SERVER_URL + prod?.data?.avatar?.url} alt={prod?.data?.name} style={{ width: '36px', height: '45px', 'border-radius': '2px', 'border':'0.1px solid #000','margin-right':'30px','margin-bottom':'5px',}} />
+                
                                                     </div>
                                                 </div>
                                             </td>
                                             <td data-th="Product">
                                                 <div className="col-md-9 text-left mt-sm-2">
-                                                    <h4>{prod?.data?.name}</h4>
+                                                    <h7>{prod?.data?.name}</h7>
                                                 </div>
                                             </td>
                                             <td data-th="Quantity">x{prod?.quantity}</td>
@@ -60,17 +61,17 @@ export default function Payment() {
                                 <thead>
                                     <tr>
                                         <th style={{ width: '70%' }} />
-                                        <th style={{ width: '30%' }} />
+                                        <th style={{ width: '18%' }} />
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <tr>
                                         <td data-th="totalPayment">Total price of products</td>
-                                        <td data-th="totalProducts">{price} VND</td>
+                                        <td data-th="totalProducts">${price}</td>
                                     </tr>
                                     <tr>
                                         <td data-th="shippingFee">Shipping fee</td>
-                                        <td data-th="shipping">{ship} VND</td>
+                                        <td data-th="shipping">${ship}</td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -79,13 +80,13 @@ export default function Payment() {
                                 <thead>
                                     <tr>
                                         <th style={{ width: '70%' }} />
-                                        <th style={{ width: '30%' }} />
+                                        <th style={{ width: '16%' }} />
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <tr>
                                         <td data-th="totalAll">Total</td>
-                                        <td data-th="totalProductsShip">{Number(price)+Number(ship)} VND</td>
+                                        <td data-th="totalProductsShip">${Number(price)+Number(ship)}</td>
                                     </tr>
                                 </tbody>
                             </table>
