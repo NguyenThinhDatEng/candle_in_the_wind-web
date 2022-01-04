@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react'
 import Header from "../header/header"
 import Footer from '../footer/footer'
-import { Link, NavLink } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import { CartContext } from '../../context/Context'
 
 export default function Cart() {
