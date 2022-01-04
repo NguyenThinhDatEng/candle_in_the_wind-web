@@ -1,8 +1,9 @@
 import React, { Component } from "react";
 import CardInfo from "./card.info";
-import ChangeInfo from "./change.info";
+import Infor from "./infor";
 import ChangePassword from "./change.password";
 import MyOrder from "./my.order";
+import ChangeInfo from "./change.info";
 import { useEffect, useState } from "react";
 import Header from "../header/header";
 import Footer from "../footer/footer";
@@ -12,9 +13,11 @@ export default function Profile(props) {
 
   const displayCheck = () => {
     if (status === 0) {
-      return <ChangeInfo />;
+      return <Infor />;
     } else if (status === 1) {
-      return <ChangePassword />;
+      return <ChangeInfo />;
+    } else if (status == 2) {
+      return <ChangePassword />
     } else {
       return <MyOrder />;
     }
@@ -39,21 +42,21 @@ export default function Profile(props) {
               <div className="row list-change">
                 <li>
                   <i className="fas fa-user-edit" />{" "}
-                  <a href="#!" onClick={() => setStatus(0)}>
+                  <a href="#!" onClick={() => setStatus(1)}>
                     {" "}
                     Change information{" "}
                   </a>{" "}
                 </li>
                 <li>
                   <i className="fas fa-lock"> </i>{" "}
-                  <a href="#!" onClick={() => setStatus(1)}>
+                  <a href="#" onClick={() => setStatus(2)}>
                     {" "}
                     Change password{" "}
                   </a>{" "}
                 </li>
                 <li>
                   <i className="fas fa-file-alt" />{" "}
-                  <a href="#!" onClick={() => setStatus(2)}>
+                  <a href="#!" onClick={() => setStatus(3)}>
                     {" "}
                     My orders{" "}
                   </a>{" "}
