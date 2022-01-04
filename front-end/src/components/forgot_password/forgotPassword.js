@@ -1,24 +1,25 @@
 import React, { useState } from "react";
 import "./forgot_password.css";
+import { Link } from "react-router-dom";
+import { handleCheckEmail } from "../../services/customerService";
 
 const ForgotPassword = () => {
   const [email, setEmail] = useState("");
   const [errMessage, setErrMessage] = useState("");
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!checkInput()) {
-      return;
+    try {
+      setErrMessage("checking...");
+      await handleCheckEmail(email).then((response) => {
+        setErrMessage(response.data.msg);
+      });
+    } catch (error) {
+      console.log("login.js", error);
+      setErrMessage(error.response.data.msg);
     }
   };
 
-  const checkInput = () => {
-    if (email.indexOf("@") === -1 || email.indexOf("@") === email.length - 1) {
-      setErrMessage("Email Invalid");
-      return false;
-    }
-    return true;
-  };
   return (
     <div className="banner">
       <div class="container padding-bottom-3x mb-2 mt-5">
@@ -29,45 +30,73 @@ const ForgotPassword = () => {
 
               <ol class="list-unstyled" style={{ "text-align": "left" }}>
                 <li>
-                  <span class="text-primary text-medium">1. </span>Enter your
-                  email address below.
+                  <span
+                    class="text-primary text-medium"
+                    style={{ fontSize: 20 }}
+                  >
+                    1.{" "}
+                  </span>
+                  <b>Enter your email address below</b>
                 </li>
                 <li>
-                  <span class="text-primary text-medium">2. </span>Our system
-                  will send you a temporary link
+                  <span
+                    class="text-primary text-medium"
+                    style={{ fontSize: 20 }}
+                  >
+                    2.{" "}
+                  </span>
+                  <b>Our system will send you an OTP code</b>
                 </li>
                 <li>
-                  <span class="text-primary text-medium">3. </span>Use the link
-                  to reset your password
+                  <span
+                    class="text-primary text-medium"
+                    style={{ fontSize: 20 }}
+                  >
+                    3.{" "}
+                  </span>
+                  <b>Enter OTP code to reset your password</b>
                 </li>
               </ol>
             </div>
-            <form class="card mt-4">
+            {/* --------------------------------- form ---------------------------------------- */}
+            <form class="card mt-2 col-8" onSubmit={handleSubmit}>
               <div class="card-body">
                 <div class="form-group">
-                  {" "}
-                  <label for="email-for-pass">
-                    Enter your email address
-                  </label>{" "}
+                  {/* errMessage */}
+                  <div
+                    style={{
+                      color: "red",
+                      "margin-bottom": "5px",
+                      "text-align": "center",
+                    }}
+                  >
+                    <b>{errMessage}</b>
+                  </div>
+                  {/* input */}
                   <input
                     class="form-control"
-                    type="text"
+                    type="email"
                     id="email-for-pass"
-                    required=""
+                    placeholder="Enter your email address"
+                    onChange={(e) => {
+                      setEmail(e.target.value);
+                      setErrMessage("");
+                    }}
                   />
-                  <small class="form-text text-muted">
-                    Enter the email address. Then we'll email a link to this
-                    address.
-                  </small>{" "}
                 </div>
               </div>
               <div class="card-footer">
                 {" "}
-                <button class="btn btn-success" type="submit">
-                  Get New Password
+                <button class="btn btn-primary" type="submit">
+                  Reset password
                 </button>{" "}
-                <button class="btn btn-danger" type="submit">
-                  Back to Login
+                <button class="btn btn-secondary" type="submit">
+                  <Link
+                    to="/login"
+                    style={{ "text-decoration": "none", color: "white" }}
+                  >
+                    Back to Login
+                  </Link>
                 </button>{" "}
               </div>
             </form>
