@@ -1,7 +1,7 @@
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useContext,  useState } from 'react'
 import Header from "../header/header"
 import Footer from '../footer/footer'
-import { Link, NavLink } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import { CartContext } from '../../context/Context'
 import './payment.css'
 
@@ -11,7 +11,7 @@ export default function PaymentInformation() {
     const [province, setProvince] = useState('')
     const [address, setAddress] = useState('')
 
-    const {name, changeInfoName, changeInfoPhoneNumber, changeInfoProvince, changeInfoAddress} = useContext(CartContext)
+    const {changeInfoName, changeInfoPhoneNumber, changeInfoProvince, changeInfoAddress} = useContext(CartContext)
 
 
     const handleOnClick = () => {
