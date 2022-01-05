@@ -8,6 +8,7 @@ const UpdatePassword = () => {
   const [confirmPassword, setConfirmPassword] = useState("");
   const [errMessage, setErrMessage] = useState("");
   const [isShowPassword, setIsShowPassword] = useState(false);
+  const [isShowConfirm, setIsShowConfirm] = useState(false);
 
   const checkInput = () => {
     if (password.length < 6 || confirmPassword.length < 6) {
@@ -23,6 +24,10 @@ const UpdatePassword = () => {
 
   const handleShowHidePassword = () => {
     setIsShowPassword(!isShowPassword);
+  };
+
+  const handleShowHideConfirm = () => {
+    setIsShowConfirm(!isShowConfirm);
   };
 
   const handleSubmit = async (e) => {
@@ -57,7 +62,7 @@ const UpdatePassword = () => {
             {/* --------------------------------- form ---------------------------------------- */}
             <form class="card mt-2 col-8" onSubmit={handleSubmit}>
               <div class="card-body">
-                <div class="form-group customize-input-password">
+                <div class="form-group">
                   {/* errMessage */}
                   <div
                     style={{
@@ -68,63 +73,46 @@ const UpdatePassword = () => {
                   >
                     <b>{errMessage}</b>
                   </div>
-                  {/* input */}
-                  <input
-                    class="form-control"
-                    type="text"
-                    placeholder="Enter new password"
-                    onChange={(e) => {
-                      setPassword(e.target.value);
-                      setErrMessage("");
-                    }}
-                  />
-                  {/* eye */}
-                  <span onClick={handleShowHidePassword}>
-                    <i
-                      className={
-                        isShowPassword ? "fas fa-eye" : "fas fa-eye-slash"
-                      }
-                    ></i>
-                  </span>
-                  {/* <input
-                    class="form-control"
-                    type="text"
-                    placeholder="Confirm the new password"
-                    onChange={(e) => {
-                      setConfirmPassword(e.target.value);
-                      setErrMessage("");
-                    }}
-                  /> */}
-                </div>
-                <div class="form-group customize-input-password">
-                  {/* errMessage */}
-                  <div
-                    style={{
-                      color: "red",
-                      "margin-bottom": "5px",
-                      "text-align": "center",
-                    }}
-                  >
-                    <b>{errMessage}</b>
+                  <div className="customize-input-password">
+                    {/* input password*/}
+                    <input
+                      class="form-control"
+                      type={isShowPassword ? "text" : "password"}
+                      placeholder="Enter new password"
+                      onChange={(e) => {
+                        setPassword(e.target.value);
+                        setErrMessage("");
+                      }}
+                    />
+                    {/* eye */}
+                    <span onClick={handleShowHidePassword}>
+                      <i
+                        className={
+                          isShowPassword ? "fas fa-eye" : "fas fa-eye-slash"
+                        }
+                      ></i>
+                    </span>
                   </div>
-                  {/* input */}
-                  <input
-                    class="form-control"
-                    type="text"
-                    placeholder="Confirm the new password"
-                    onChange={(e) => {
-                      setConfirmPassword(e.target.value);
-                      setErrMessage("");
-                    }}
-                  />
-                  {/* eye */}
-                  <span onClick={handleShowHidePassword}>
-                    <i
-                      className={
-                        isShowPassword ? "fas fa-eye" : "fas fa-eye-slash"
-                      }
-                    ></i>
-                  </span>
+                  <div className="customize-input-password">
+                    {/*input confirm password*/}
+                    <input
+                      class="form-control"
+                      type={isShowConfirm ? "text" : "password"}
+                      placeholder="Confirm the new password"
+                      onChange={(e) => {
+                        setConfirmPassword(e.target.value);
+                        setErrMessage("");
+                      }}
+                    />
+                    {/* eye */}
+                    <span onClick={handleShowHideConfirm}>
+                      <i
+                        className={
+                          isShowConfirm ? "fas fa-eye" : "fas fa-eye-slash"
+                        }
+                      ></i>
+                    </span>
+                  </div>
                 </div>
               </div>
               <div class="card-footer">

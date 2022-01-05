@@ -1,11 +1,13 @@
 import React, { useState } from "react";
 import "./forgot_password.css";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { handleVerifyOTP } from "../../services/customerService";
 
 const VerifyOTP = () => {
   const [OTP, setOTP] = useState("");
   const [errMessage, setErrMessage] = useState("");
+
+  const history = useHistory();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -18,10 +20,11 @@ const VerifyOTP = () => {
       setErrMessage("checking...");
       await handleVerifyOTP(email, OTP).then((response) => {
         setErrMessage(response.data.msg);
+        history.push("./updatePassword");
       });
     } catch (error) {
       console.log("login.js", error);
-      setErrMessage(error.response.data.msg);
+      setErrMessage("Server Error");
     }
   };
 

@@ -2,6 +2,14 @@
   "routes": [
     {
       "method": "POST",
+      "path": "/customers/changePassword",
+      "handler": "customer.changePassword",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "POST",
       "path": "/customers/verifyOTP",
       "handler": "customer.verifyOTP",
       "config": {
@@ -37,7 +45,7 @@
       "path": "/customers",
       "handler": "customer.find",
       "config": {
-        "policies": ["global::public"]
+        "policies": []
       }
     },
     {
@@ -76,14 +84,6 @@
       "method": "DELETE",
       "path": "/customers/:id",
       "handler": "customer.delete",
-      "config": {
-        "policies": []
-      }
-    },
-    {
-      "method": "POST",
-      "path": "/customers/changePassword",
-      "handler": "customer.changePassword",
       "config": {
         "policies": []
       }
