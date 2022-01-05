@@ -12,13 +12,13 @@ export default function Advertise() {
     return (
         <div className="container">
             <Slider {...settings}>
-                <div class="image">
+                <div className="image">
                     <img src="./assets/images/announcement.png" alt="" />
                 </div>
-                <div class="image">
+                <div className="image">
                     <img src="./assets/images/announcement.png" alt="" />
                 </div>
-                <div class="image">
+                <div className="image">
                     <img src="./assets/images/announcement.png" alt="" />
                 </div>
             </Slider>
