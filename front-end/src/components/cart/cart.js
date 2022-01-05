@@ -49,7 +49,7 @@ export default function Cart() {
                                                                 <h4>{prod?.data?.name}</h4>
                                                                 <div className="button_remove">
                                                                     <button 
-                                                                    style={{'background-color':'black','color':'white','border-radius':'20px','padding':'5px 15px','border':'1px solid black',}}
+                                                                    style={{backgroundColor:'black','color':'white',borderRadius:'20px','padding':'5px 15px','border':'1px solid black',}}
                                                                     className="btn_remove" 
                                                                     type="button" 
                                                                     onClick={()=>{

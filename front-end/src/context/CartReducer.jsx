@@ -68,6 +68,12 @@ export default (state, action) => {
                     
             }
 
+        case "RELOAD":
+            return {
+                ...state,
+                cart: []
+            }
+
         default: 
             return state
     }

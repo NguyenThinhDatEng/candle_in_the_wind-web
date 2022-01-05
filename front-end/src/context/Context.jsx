@@ -1,4 +1,4 @@
-import React, { createContext, useReducer, useEffect } from 'react';
+import React, { createContext, useReducer, useEffect, useState } from 'react';
 import CartReducer from "./CartReducer"
 
 export const CartContext = createContext()
@@ -17,6 +17,8 @@ const initialState = {
 
 const Context = (props) => {
     const [state, dispatch] = useReducer(CartReducer,initialState)
+
+    const [loadTotal, setLoadTotal] = useState(true)
     
     useEffect(() => {
         localStorage.setItem('cart', JSON.stringify(state.cart))
@@ -26,7 +28,13 @@ const Context = (props) => {
         localStorage.setItem('province', JSON.stringify(state.province))
         localStorage.setItem('address', JSON.stringify(state.address))
         localStorage.setItem('paymentMethod', JSON.stringify(state.paymentMethod))
+
     }, [state])
+
+    useEffect(() => {
+        dispatch({type: "RELOAD", payload: null})
+    }, [loadTotal])
+
 
     const addItemToCart = (data) => {
         dispatch({type: "ADD_ITEM_TO_CART", payload: (data)})
@@ -96,6 +104,7 @@ const Context = (props) => {
                 changeInfoProvince,
                 changeInfoAddress,
                 addPaymentMethod,
+                setLoadTotal
             }}
         >
             {props.children}

@@ -6,13 +6,25 @@ import { CartContext } from '../../context/Context'
 import './payment.css'
 
 export default function Payment() {
-    const {cart, price, province, addPaymentMethod} = useContext(CartContext)
+    const {cart, price, province, addPaymentMethod, setLoadTotal} = useContext(CartContext)
 
     const [ship, setShip] = useState()
     useEffect(() => {
         setShip((localStorage.getItem('province') === "\"Hà Nội\"")? 0 : 30000)
 
     }, [province])
+
+    const handleComplete = () => {
+        localStorage.setItem('cart', JSON.stringify([]))
+        localStorage.setItem('price', JSON.stringify((0)))
+        localStorage.setItem('name', JSON.stringify(""))
+        localStorage.setItem('phoneNumber', JSON.stringify(""))
+        localStorage.setItem('province', JSON.stringify(""))
+        localStorage.setItem('address', JSON.stringify(""))
+        localStorage.setItem('paymentMethod', JSON.stringify(""))
+        setLoadTotal((pre) => !pre)
+        // window.location.reload(false);
+    }
 
     
     return (
@@ -114,7 +126,7 @@ export default function Payment() {
                             </form>
                             <div>
                                 <div className="btn_complete">
-                                    <Link to="/" className="completePayment" onClick={() => localStorage.clear()} >Complete</Link>
+                                    <Link to="/" className="completePayment" onClick={() => handleComplete()} >Complete</Link>
                                 </div>
                                 <div className="btn_back">
                                     <Link to="/paymentinformation" className="completePayment">Back</Link>
