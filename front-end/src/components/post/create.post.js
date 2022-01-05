@@ -16,7 +16,7 @@ export default function CreatePost() {
     })
     const [formErrors, setFormErrors] = useState("");
 
-    const customer_id = JSON.parse(localStorage.getItem("user-info")).id
+    const customer_id = JSON.parse(localStorage.getItem("user-info"))?.id
 
     const updateTitle = (e) => {
         setState(previousState => {
