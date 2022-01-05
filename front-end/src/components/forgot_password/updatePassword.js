@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "./forgot_password.css";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { handleUpdatePasswordAPI } from "../../services/customerService";
 
 const UpdatePassword = () => {
@@ -10,8 +10,11 @@ const UpdatePassword = () => {
   const [isShowPassword, setIsShowPassword] = useState(false);
   const [isShowConfirm, setIsShowConfirm] = useState(false);
 
+  const history = useHistory();
+  const data = JSON.parse(localStorage.getItem("user-email-id"));
+
   const checkInput = () => {
-    if (password.length < 6 || confirmPassword.length < 6) {
+    if (password.length < 6) {
       setErrMessage("Your password must be at least 6 characters");
       return false;
     }
@@ -33,11 +36,13 @@ const UpdatePassword = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!checkInput()) return;
-    let id = JSON.parse(localStorage.getItem("user-email")).id;
+    let id = data.id;
     try {
-      setErrMessage("checking...");
+      setErrMessage("loading...");
       await handleUpdatePasswordAPI(id, password).then((response) => {
         setErrMessage(response.data.msg);
+        history.push("/login");
+        localStorage.removeItem("user-email-id");
       });
     } catch (error) {
       console.log("login.js", error);
@@ -62,6 +67,9 @@ const UpdatePassword = () => {
             {/* --------------------------------- form ---------------------------------------- */}
             <form class="card mt-2 col-8" onSubmit={handleSubmit}>
               <div class="card-body">
+                <p style={{ textAlign: "center" }}>
+                  <b>{data.email}</b>
+                </p>
                 <div class="form-group">
                   {/* errMessage */}
                   <div
@@ -73,7 +81,7 @@ const UpdatePassword = () => {
                   >
                     <b>{errMessage}</b>
                   </div>
-                  <div className="customize-input-password">
+                  <div className="customize-input-newPassword">
                     {/* input password*/}
                     <input
                       class="form-control"
@@ -88,12 +96,14 @@ const UpdatePassword = () => {
                     <span onClick={handleShowHidePassword}>
                       <i
                         className={
-                          isShowPassword ? "fas fa-eye" : "fas fa-eye-slash"
+                          isShowPassword
+                            ? "fas fa-eye newPassword_eye"
+                            : "fas fa-eye-slash newPassword_eye"
                         }
                       ></i>
                     </span>
                   </div>
-                  <div className="customize-input-password">
+                  <div className="customize-input-newPassword">
                     {/*input confirm password*/}
                     <input
                       class="form-control"
@@ -108,7 +118,9 @@ const UpdatePassword = () => {
                     <span onClick={handleShowHideConfirm}>
                       <i
                         className={
-                          isShowConfirm ? "fas fa-eye" : "fas fa-eye-slash"
+                          isShowConfirm
+                            ? "fas fa-eye newPassword_eye"
+                            : "fas fa-eye-slash newPassword_eye"
                         }
                       ></i>
                     </span>

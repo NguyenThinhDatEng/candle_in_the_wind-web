@@ -23,8 +23,10 @@ const VerifyOTP = () => {
         history.push("./updatePassword");
       });
     } catch (error) {
-      console.log("login.js", error);
-      setErrMessage("Server Error");
+      let res = error.response.data;
+      console.log("login.js", res);
+      if (res.status) setErrMessage(res.msg);
+      else setErrMessage("Server Error");
     }
   };
 

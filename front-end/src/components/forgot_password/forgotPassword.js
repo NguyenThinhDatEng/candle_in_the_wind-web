@@ -84,7 +84,7 @@ const ForgotPassword = () => {
                   </div>
                   {/* input */}
                   <input
-                    class="form-control"
+                    class="form-control emailResetInput"
                     type="email"
                     id="email-for-pass"
                     placeholder="Enter your email address"

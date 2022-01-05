@@ -24,6 +24,32 @@ input[type="radio"]:after {
   visibility: visible;
 }
 
+.Male-radio[type="radio"]:after {
+  width: 18px;
+  height: 18px;
+  border-radius: 15px;
+  top: -2.5px;
+  left: -2.5px;
+  position: relative;
+  background-color: rgb(0 0 0 / 0%);
+  content: "";
+  display: inline-block;
+  visibility: visible;
+}
+
+.Male-radio:checked:after {
+  width: 18px;
+  height: 18px;
+  border-radius: 15px;
+  top: -2.5px;
+  left: -2.5px;
+  position: relative;
+  background-color: rgb(0 0 0 / 0%);
+  content: "";
+  display: inline-block;
+  visibility: visible;
+}
+
 .signup-form {
   width: 100%;
   max-width: 600px;

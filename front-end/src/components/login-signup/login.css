@@ -11,52 +11,14 @@ i.fas {
   color: black;
 }
 
-.forgot-password a {
+.customize-input-passwordforgot-password a {
   float: right;
   margin-right: 2px;
+  margin-top: -23px;
 }
 
-.modal-title {
-  margin-bottom: 0;
-  line-height: 1.5;
-  color: black;
-}
-
-.modal-body {
-  position: relative;
-  flex: 1 1 auto;
-  padding: 1rem;
-  color: black;
-}
-
-.btn-outline-light {
-  background-color: #0d6efd;
-  color: white;
-}
-
-.btn-outline-light:hover {
-  background-color: #0d6efd;
-  color: white;
-}
-
-.errPopUp {
-  position: absolute;
-  color: red;
-  left: 18px;
-}
-
-.resetTitle {
-  padding-bottom: 10px;
-}
-
-.my-modal-footer {
-  display: flex;
-  flex-wrap: wrap;
-  flex-shrink: 0;
-  align-items: center;
-  justify-content: flex-end;
-  border-top: 1px solid #dee2e6;
-  border-bottom-right-radius: calc(0.3rem - 1px);
-  border-bottom-left-radius: calc(0.3rem - 1px);
-  padding: 5px;
+.forgot-password a {
+  float: right;
+  margin-right: 0px;
+  /* margin-top: -20px; */
 }
