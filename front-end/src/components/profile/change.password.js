@@ -3,7 +3,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { handleChangePasswordAPI } from "../../services/customerService";
 
-export default function ChangeInfo() {
+export default function ChangePassword() {
     const [state, setState] = useState({
         curPassword: "",
         newPassword: "",
@@ -108,8 +108,8 @@ export default function ChangeInfo() {
             <form onSubmit={handleChangePassword}>
                 <h3 className=" my-5 text-center">Change Password</h3>
                 <div className="form-group row my-4">
-                    <label htmlFor="cur-password" className="col-sm-2 col-form-label">Your current password</label>
-                    <div className="col-sm-10">
+                    <label htmlFor="cur-password" className="col-sm-3 col-form-label">Your current password</label>
+                    <div className="col-sm-9">
                         <div className="customize-input-password">
                             <input type={state.isShowPassword ? "text" : "password"} className="form-control" id="cur-password" value={state.curPassword}
 
@@ -126,8 +126,8 @@ export default function ChangeInfo() {
                     </div>
                 </div>
                 <div className="form-group row my-4">
-                    <label htmlFor="new-password" className="col-sm-2 col-form-label">Your new password</label>
-                    <div className="col-sm-10">
+                    <label htmlFor="new-password" className="col-sm-3 col-form-label">Your new password</label>
+                    <div className="col-sm-9">
                         <div className="customize-input-password">
                             <input type={state.isShowConfirm ? "text" : "password"} className="form-control" id="new-password"
 
@@ -144,9 +144,9 @@ export default function ChangeInfo() {
                     </div>
                 </div>
                 <div className="form-group row my-4">
-                    <label htmlFor="vertify-password" className="col-sm-2 col-form-label">Vertify new
+                    <label htmlFor="vertify-password" className="col-sm-3 col-form-label">Vertify new
                         password</label>
-                    <div className="col-sm-10">
+                    <div className="col-sm-9">
                         <div className="customize-input-password">
                             <input type={state.isShowConfirm ? "text" : "password"} className="form-control" id="vertify-password"
 

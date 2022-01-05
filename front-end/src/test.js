@@ -1,4 +1,3 @@
 require("dotenv").config();
 
-// abcfdf
-console.log("abc");
+console.log("18/10");
