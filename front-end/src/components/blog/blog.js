@@ -11,13 +11,15 @@ require("dotenv").config();
 export default function Blog() {
 	const [posts, setPost] = useState([]);
 	const [currentPage, setCurrentPage] = useState(1);
-	const [postsPerPage] = useState(4);
+	const [postsPerPage] = useState(6);
 
 
 	useEffect(async () => {
 		const result = await axios(process.env.REACT_APP_SERVER_URL + "/posts/");
 		setPost(result.data);
 	});
+
+	const customer_id = JSON.parse(localStorage.getItem("user-info"))?.id
 
 	// Get current posts
 	const indexOfLastPost = currentPage * postsPerPage;
@@ -37,13 +39,13 @@ export default function Blog() {
 			</div>
 
 			<div className="container bg-secondary">
-				<Link
-					to="/create-post"
-					type="button"
-					className="btn btn-dark fs-4 mt-5 create-post"
-				>
-					Create a new post
-				</Link>
+				{
+					customer_id ? (<Link to="/create-post" type="button" className="btn btn-dark fs-4 mt-5 create-post">
+									Create a new post
+									</Link>
+					) : null
+				}
+
 
 				<div className="clearfix" />
 				<div className="row row-cols-1 row-cols-lg-2">
