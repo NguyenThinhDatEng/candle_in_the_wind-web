@@ -44,10 +44,10 @@ const handleSignUpAPI = async (newData) => {
   return await axios(config);
 };
 
-const handleCheckEmail = async (email) => {
+const handleResetPassword = async (email) => {
   let config = {
     method: "post",
-    url: baseUrl + "/customers",
+    url: baseUrl + "/customers/resetPassword",
     headers: {
       "Content-Type": "application/json",
       Accept: "application/json",
@@ -58,10 +58,10 @@ const handleCheckEmail = async (email) => {
   return await axios(config);
 };
 
-const handleCheckOTP = async (email, OTP) => {
+const handleVerifyOTP = async (email, OTP) => {
   let config = {
     method: "post",
-    url: baseUrl + "/customers/resetPassword",
+    url: baseUrl + "/customers/verifyOTP",
     headers: {
       "Content-Type": "application/json",
       Accept: "application/json",
@@ -71,6 +71,7 @@ const handleCheckOTP = async (email, OTP) => {
 
   return await axios(config);
 };
+
 const handleChangePasswordAPI = async (email, password, newPassword) => {
   let config = {
     method: "post",
@@ -84,16 +85,16 @@ const handleChangePasswordAPI = async (email, password, newPassword) => {
 
   return await axios(config);
 };
+
 const handleChangeInfoAPI = async (newData) => {
   const isAuth = () => {
-
     if (localStorage.getItem("user-info")) {
       return JSON.parse(localStorage.getItem("user-info"));
     } else {
       return false;
     }
-  }
-  const id = isAuth() ? isAuth().id : '';
+  };
+  const id = isAuth() ? isAuth().id : "";
   let gender = newData.gender ? "Male" : "Female";
   let data = JSON.stringify({
     username: newData.username,
@@ -115,4 +116,26 @@ const handleChangeInfoAPI = async (newData) => {
 
   return await axios(config);
 };
-export { handleSignInAPI, handleSignUpAPI, handleCheckEmail, handleCheckOTP, handleChangePasswordAPI, handleChangeInfoAPI };
+
+const handleUpdatePasswordAPI = async (id, password) => {
+  let config = {
+    method: "put",
+    url: baseUrl + "/customers/" + id,
+    headers: {
+      "Content-Type": "application/json",
+      Accept: "application/json",
+    },
+    data: { password },
+  };
+  return await axios(config);
+};
+
+export {
+  handleSignInAPI,
+  handleSignUpAPI,
+  handleResetPassword,
+  handleVerifyOTP,
+  handleChangePasswordAPI,
+  handleChangeInfoAPI,
+  handleUpdatePasswordAPI,
+};

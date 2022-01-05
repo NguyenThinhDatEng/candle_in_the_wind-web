@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./forgot_password.css";
 import { Link, useHistory } from "react-router-dom";
-import { handleCheckEmail } from "../../services/customerService";
+import { handleResetPassword } from "../../services/customerService";
 
 const ForgotPassword = () => {
   const [email, setEmail] = useState("");
@@ -10,10 +10,18 @@ const ForgotPassword = () => {
   const history = useHistory();
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (!email) {
+      setErrMessage("Missing inputs parameter!");
+      return;
+    }
     try {
       setErrMessage("checking...");
-      await handleCheckEmail(email).then((response) => {
+      await handleResetPassword(email).then((response) => {
         setErrMessage(response.data.msg);
+        localStorage.setItem(
+          "user-email-id",
+          JSON.stringify(response.data.data)
+        );
       });
       history.push("/verifyOTP");
     } catch (error) {

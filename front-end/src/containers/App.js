@@ -15,6 +15,7 @@ import Payment from "../components/payment/payment";
 import Item from "../components/product/item";
 import ForgotPassword from "../components/forgot_password/forgotPassword";
 import VerifyOTP from "../components/forgot_password/verifyOTP";
+import UpdatePassword from "../components/forgot_password/updatePassword";
 
 function App() {
   return (
@@ -31,6 +32,7 @@ function App() {
         <Route exact path="/signup" component={Signup} />
         <Route exact path="/forgotPassword" component={ForgotPassword} />
         <Route exact path="/verifyOTP" component={VerifyOTP} />
+        <Route exact path="/updatePassword" component={UpdatePassword} />
         <Route exact path="/profile" component={Profile} />
         <Route exact path="/cart" component={Cart} />
         <Route
