@@ -100,7 +100,7 @@ const SignUp = () => {
             "Your confirmation password does not match. Please try again",
         };
       });
-    else if (state.phoneNumber.length < 10 || state.phoneNumber.length > 11)
+    else if (state.phoneNumber != "" && state.phoneNumber.length != 10)
       setState((previousState) => {
         return {
           ...previousState,
@@ -109,11 +109,19 @@ const SignUp = () => {
       });
     else {
       try {
-        console.log(state);
+        setState((previousState) => {
+          return {
+            ...previousState,
+            errMessage: "Checking...",
+          };
+        });
         await handleSignUpAPI(state).then((response) => {
           console.log(JSON.stringify(response.data));
           if (response.data.data) {
-            localStorage.setItem("user-info", response.data.data);
+            localStorage.setItem(
+              "user-info",
+              JSON.stringify(response.data.data)
+            );
             history.push("/");
           }
         });
