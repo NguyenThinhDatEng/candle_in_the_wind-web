@@ -98,11 +98,10 @@ const handleCommentAPI = async (newData) => {
 
 const handleCreatePost = async (newData) => {
 	let data = JSON.stringify({
-		"lockComment": false,
 		"title": newData.title,
 		"content": newData.content,
 		"avatar": {
-			"url": newData.image
+			"_id": newData.image_id
 		},
 		"customer": {
 			"_id": newData.customer_id

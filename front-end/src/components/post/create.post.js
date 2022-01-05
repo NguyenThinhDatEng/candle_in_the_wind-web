@@ -67,14 +67,14 @@ export default function CreatePost() {
             let data = {
                 title: state.title,
                 content: state.content,
-                image : res?.data[0]?.url,
+                image_id : res?.data[0]?._id,
                 customer_id: customer_id
             }
 
-            // console.log(data)
-            // await handleCreatePost(data).then((response) => {
-            //     console.log(response);
-            // })
+            console.log(data)
+            await handleCreatePost(data).then((response) => {
+                console.log(response);
+            })
         }
 
     }
@@ -104,7 +104,7 @@ export default function CreatePost() {
                             </div>
                             <div className="form-group my-5 text-center">
                                 <p className='text-danger justify-content-center' > {formErrors} </p>
-                                <Link to="#!" type="submit" className="btn btn-dark" onClick={() => handleCreate()} >
+                                <Link to="/blog" type="submit" className="btn btn-dark" onClick={() => handleCreate()} >
                                     Create post
                                 </Link>
                             </div>
