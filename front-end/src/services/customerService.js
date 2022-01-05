@@ -2,46 +2,46 @@ import axios from "axios";
 const baseUrl = process.env.REACT_APP_SERVER_URL;
 
 const handleSignInAPI = async (email, password) => {
-  let data = JSON.stringify({
-    email,
-    password,
-  });
+	let data = JSON.stringify({
+		email,
+		password,
+	});
 
-  let config = {
-    method: "post",
-    url: baseUrl + "/customers/login",
-    headers: {
-      "Content-Type": "application/json",
-      Accept: "application/json",
-    },
-    data: data,
-  };
+	let config = {
+		method: "post",
+		url: baseUrl + "/customers/login",
+		headers: {
+			"Content-Type": "application/json",
+			Accept: "application/json",
+		},
+		data: data,
+	};
 
-  return await axios(config);
+	return await axios(config);
 };
 
 const handleSignUpAPI = async (newData) => {
-  let gender = newData.gender ? "Male" : "Female";
-  let data = JSON.stringify({
-    username: newData.username,
-    email: newData.email,
-    password: newData.password,
-    gender: gender,
-    dateOfBirth: newData.dateOfBirth,
-    phoneNumber: newData.phoneNumber,
-  });
+	let gender = newData.gender ? "Male" : "Female";
+	let data = JSON.stringify({
+		username: newData.username,
+		email: newData.email,
+		password: newData.password,
+		gender: gender,
+		dateOfBirth: newData.dateOfBirth,
+		phoneNumber: newData.phoneNumber,
+	});
 
-  let config = {
-    method: "post",
-    url: baseUrl + "/customers/signup",
-    headers: {
-      "Content-Type": "application/json",
-      Accept: "application/json",
-    },
-    data: data,
-  };
-  console.log(baseUrl);
-  return await axios(config);
+	let config = {
+		method: "post",
+		url: baseUrl + "/customers/signup",
+		headers: {
+			"Content-Type": "application/json",
+			Accept: "application/json",
+		},
+		data: data,
+	};
+	console.log(baseUrl);
+	return await axios(config);
 };
 
 const handleResetPassword = async (email) => {
@@ -55,8 +55,9 @@ const handleResetPassword = async (email) => {
     data: { email },
   };
 
-  return await axios(config);
+	return await axios(config);
 };
+
 
 const handleVerifyOTP = async (email, OTP) => {
   let config = {
@@ -69,7 +70,56 @@ const handleVerifyOTP = async (email, OTP) => {
     data: { email, OTP },
   };
 
-  return await axios(config);
+	return await axios(config);
+};
+
+const handleCommentAPI = async (newData) => {
+	let data = JSON.stringify({
+		"content": newData.content,
+		"customer": {
+			"_id": newData.customer_id
+		},
+		"post": {
+			"_id": newData.post_id
+		}
+	});
+
+	let config = {
+		method: "post",
+		url: baseUrl + "/comments",
+		headers: {
+			"Content-Type": "application/json",
+			Accept: "application/json",
+		},
+		data: data,
+	};
+	console.log(data);
+	return await axios(config);
+};
+
+const handleCreatePost = async (newData) => {
+	let data = JSON.stringify({
+		"title": newData.title,
+		"content": newData.content,
+		"avatar": {
+			"_id": newData.image_id
+		},
+		"customer": {
+			"_id": newData.customer_id
+		}
+	});
+
+	let config = {
+		method: "post",
+		url: baseUrl + "/posts",
+		headers: {
+			"Content-Type": "application/json",
+			Accept: "application/json",
+		},
+		data: data,
+	};
+	// console.log(data);
+	return await axios(config);
 };
 
 const handleChangePasswordAPI = async (email, password, newPassword) => {
@@ -135,6 +185,8 @@ export {
   handleSignUpAPI,
   handleResetPassword,
   handleVerifyOTP,
+  handleCommentAPI,
+  handleCreatePost,
   handleChangePasswordAPI,
   handleChangeInfoAPI,
   handleUpdatePasswordAPI,

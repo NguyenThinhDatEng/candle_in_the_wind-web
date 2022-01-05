@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useEffect } from "react";
 import { Link, useHistory } from "react-router-dom";
+
 import { handleSignInAPI } from "../../services/customerService";
 import "./login.css";
 
@@ -10,16 +11,17 @@ const Login = () => {
   const [isShowPassword, setIsShowPassword] = useState(false);
   const [errMessage, setErrMessage] = useState("");
 
-  const history = useHistory();
-  useEffect(() => {
-    if (localStorage.getItem("user-info")) {
-      history.push("/");
-    }
-  });
 
-  const handleShowHidePassword = () => {
-    setIsShowPassword(!isShowPassword);
-  };
+	const history = useHistory();
+	useEffect(() => {
+		if (localStorage.getItem("user-info")) {
+			history.push("/");
+		}
+	});
+
+	const handleShowHidePassword = () => {
+		setIsShowPassword(!isShowPassword);
+	};
 
   const handleSignIn = async (e) => {
     e.preventDefault();
