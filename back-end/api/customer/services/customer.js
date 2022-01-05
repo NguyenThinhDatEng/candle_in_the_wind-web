@@ -19,4 +19,20 @@ const generateOTP = () => {
   return OTP;
 };
 
-module.exports = { findOneEmail, generateOTP, updateOTP };
+const updatePassword = async function (email, newPassword) {
+  return await strapi
+    .query(`customer`)
+    .update({ email }, { password: newPassword });
+};
+
+const checkLogin = async function (email, password) {
+  return await strapi.query("customer").findOne({ email, password });
+};
+
+module.exports = {
+  findOneEmail,
+  generateOTP,
+  updateOTP,
+  updatePassword,
+  checkLogin,
+};

@@ -24,7 +24,8 @@
     "name": {
       "type": "string",
       "required": true,
-      "unique": true
+      "unique": true,
+      "maxLength": 100
     },
     "description": {
       "type": "text",
@@ -37,9 +38,7 @@
     "avatar": {
       "model": "file",
       "via": "related",
-      "allowedTypes": [
-        "images"
-      ],
+      "allowedTypes": ["images"],
       "plugin": "upload",
       "required": true,
       "pluginOptions": {}
@@ -67,9 +66,7 @@
     "related_images": {
       "collection": "file",
       "via": "related",
-      "allowedTypes": [
-        "images"
-      ],
+      "allowedTypes": ["images"],
       "plugin": "upload",
       "required": false,
       "pluginOptions": {}

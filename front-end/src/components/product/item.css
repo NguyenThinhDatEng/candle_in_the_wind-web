@@ -23,17 +23,17 @@
     height: 500px;
     background-size: cover;
     width: 100%;
-    justify-content: center;
-    align-items: center;
+    /* justify-content: center;
+    align-items: center; */
+    /* transform: translateX(50%); */
 }
 
 .left__image img {
     display: block;
-    margin-top: 5rem;
+    /* margin-top: 5rem; */
     padding: 2rem;
     max-height: 500px;
     object-fit: cover;
-    transform: translateX(50%);
     align-items: center;
     justify-content: center;
 }
@@ -63,6 +63,9 @@
 .itemscreen__right {
     padding: 3rem;
     margin-right: 5rem;
+    /* width: 100%; */
+    align-items: center;
+    justify-content: center;
 }
 
 .right__info {

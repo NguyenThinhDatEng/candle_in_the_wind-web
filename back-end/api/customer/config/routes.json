@@ -2,8 +2,8 @@
   "routes": [
     {
       "method": "POST",
-      "path": "/customers",
-      "handler": "customer.findonebyemail",
+      "path": "/customers/verifyOTP",
+      "handler": "customer.verifyOTP",
       "config": {
         "policies": []
       }
@@ -76,6 +76,14 @@
       "method": "DELETE",
       "path": "/customers/:id",
       "handler": "customer.delete",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/customers/changePassword",
+      "handler": "customer.changePassword",
       "config": {
         "policies": []
       }
