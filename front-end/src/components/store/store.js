@@ -7,7 +7,6 @@ import StoreEssentialOil from "./store.essential-oil";
 import StoreDecoration from "./store.decoration";
 import axios from "axios";
 import { useEffect, useState } from "react";
-<<<<<<< HEAD
 import { CartContext } from "../../context/Context";
 import '../home/product.css';
 require("dotenv").config();
@@ -16,15 +15,6 @@ export default function Store(props) {
   const [status, setStatus] = useState(0);
   const [data, setData] = useState([]);
   const {searchFilter} = useContext(CartContext)
-=======
-import ReactLoading from "react-loading";
-require("dotenv").config();
-
-export default function Store(props) {
-	const [status, setStatus] = useState(0);
-	const [data, setData] = useState([]);
-	const [loading, setLoading] = useState(true);
->>>>>>> f8347fc9806631801e53b03567f2fa7011b99a2b
 
 	useEffect(async () => {
 		const result = await axios(process.env.REACT_APP_SERVER_URL + "/products/");
@@ -32,7 +22,6 @@ export default function Store(props) {
 		setLoading(false)
 	});
 
-<<<<<<< HEAD
   const displayCheck = () => {
     if (status === 0) {
       return <StoreCandle data={data.filter((val)=>{
@@ -68,19 +57,6 @@ export default function Store(props) {
       })} />;
     }
   };
-=======
-	const displayCheck = () => {
-		if (status === 0) {
-			return <StoreCandle data={data} />;
-		} else if (status === 1) {
-			return <StoreScentedWax data={data} />;
-		} else if (status === 2) {
-			return <StoreEssentialOil data={data} />;
-		} else {
-			return <StoreDecoration data={data} />;
-		}
-	};
->>>>>>> f8347fc9806631801e53b03567f2fa7011b99a2b
 
 	return (
 		<div>
