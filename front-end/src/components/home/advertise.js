@@ -1,5 +1,6 @@
 import React from 'react'
 import Slider from "react-slick";
+import './product.css';
 
 export default function Advertise() {
     var settings = {

@@ -8,6 +8,7 @@ import StoreDecoration from "./store.decoration";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { CartContext } from "../../context/Context";
+import '../home/product.css';
 require("dotenv").config();
 
 export default function Store(props) {

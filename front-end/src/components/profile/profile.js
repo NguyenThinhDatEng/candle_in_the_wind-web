@@ -60,21 +60,21 @@ export default function Profile(props) {
             <div className="card-body">
               <div className="row list-change">
                 <li>
-                  <i className="fas fa-user-edit" />{" "}
+                  {/* <i className="fas fa-user-edit" />{" "} */}
                   <a href="#!" onClick={() => setStatus(1)}>
                     {" "}
                     Change information{" "}
                   </a>{" "}
                 </li>
                 <li>
-                  <i className="fas fa-lock"> </i>{" "}
+                  {/* <i className="fas fa-lock"> </i>{" "} */}
                   <a href="#" onClick={() => setStatus(2)}>
                     {" "}
                     Change password{" "}
                   </a>{" "}
                 </li>
                 <li>
-                  <i className="fas fa-file-alt" />{" "}
+                  {/* <i className="fas fa-file-alt" />{" "} */}
                   <a href="#!" onClick={() => setStatus(3)}>
                     {" "}
                     My orders{" "}

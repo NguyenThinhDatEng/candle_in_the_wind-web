@@ -1,0 +1,15 @@
+.productName{
+    text-decoration: none;
+    color: #000;
+}
+.productName:hover{
+    color: #000;
+    font-weight: bold;
+}
+.text-danger {
+    font-weight: bold;
+}
+/* .image{
+    margin-top: 150px;
+    
+} */

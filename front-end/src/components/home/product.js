@@ -3,7 +3,9 @@ import Slider from "react-slick";
 import axios from "axios";
 import { useState, useEffect } from "react";
 import { Link, NavLink } from "react-router-dom";
+import './product.css';
 import { CartContext } from "../../context/Context";
+
 require("dotenv").config();
 
 export default function Product() {
@@ -77,10 +79,10 @@ export default function Product() {
 										</div>
 									</Link>
 									<div>
-										<Link to={`/products/${value._id}`}>
+										<Link to={`/products/${value._id}`}className='productName'>
 											<p className="mt-3"> {value.name} </p>
 										</Link>
-										<p className="text-danger"> {value.price} VNĐ</p>
+										<p className="text-danger"> ${value.price}</p>
 										<button 
 										className="btn btn-dark mb-3"
 										onClick={()=>{
@@ -131,10 +133,10 @@ export default function Product() {
 										</div>
 									</Link>
 									<div>
-										<Link to={`/products/${value._id}`}>
+										<Link to={`/products/${value._id}`} className='productName'>
 											<p className="mt-3"> {value.name} </p>
 										</Link>
-										<p className="text-danger"> {value.price} VNĐ</p>
+										<p className="text-danger"> ${value.price}</p>
 										<button 
 										className="btn btn-dark mb-3"
 										onClick={()=>{
@@ -183,10 +185,10 @@ export default function Product() {
 										</div>
 									</Link>
 									<div>
-										<Link to={`/products/${value._id}`}>
+										<Link to={`/products/${value._id}`}className='productName'>
 											<p className="mt-3"> {value.name} </p>
 										</Link>
-										<p className="text-danger"> {value.price} VNĐ</p>
+										<p className="text-danger"> ${value.price}</p>
 										<button 
 										className="btn btn-dark mb-3"
 										onClick={()=>{
@@ -235,10 +237,10 @@ export default function Product() {
 										</div>
 									</Link>
 									<div>
-										<Link to={`/products/${value._id}`}>
+										<Link to={`/products/${value._id}` }className='productName'>
 											<p className="mt-3"> {value.name} </p>
 										</Link>
-										<p className="text-danger"> {value.price} VNĐ</p>
+										<p className="text-danger"> ${value.price}</p>
 										<button 
 										className="btn btn-dark mb-3"
 										onClick={()=>{

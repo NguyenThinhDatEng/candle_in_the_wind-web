@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import { Link, NavLink } from "react-router-dom";
 import { CartContext } from "../../context/Context";
+
 require("dotenv").config();
 
 export default function StoreCandle(props) {
@@ -25,10 +26,10 @@ export default function StoreCandle(props) {
             </Link>
 
             <div>
-              <Link to={`/products/${value._id}`}>
+              <Link to={`/products/${value._id}`} className='productName'>
                 <p className="mt-3"> {value.name} </p>
               </Link>
-              <p className="text-danger"> {value.price} VNĐ</p>
+              <p className="text-danger"> ${value.price}</p>
               <button 
               className="btn btn-dark mb-3"
               onClick={()=>{
