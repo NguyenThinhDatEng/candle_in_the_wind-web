@@ -6,7 +6,7 @@ import { CartContext } from '../../context/Context'
 import './payment.css'
 
 export default function Payment() {
-    const {cart, price, province, addPaymentMethod, setLoadTotal} = useContext(CartContext)
+    const {cart, price, province, addPaymentMethod, setLoadTotal, loadTotal} = useContext(CartContext)
 
     const [ship, setShip] = useState()
     useEffect(() => {
@@ -15,7 +15,8 @@ export default function Payment() {
     }, [province])
 
     const handleComplete = () => {
-        setLoadTotal((pre) => !pre)
+        setLoadTotal(true)
+        console.log(loadTotal)
         // window.location.reload(false);
     }
 
@@ -45,7 +46,7 @@ export default function Payment() {
                                             <td data-th="Product">
                                                 <div className="row">
                                                     <div className="col-md-3 text-left">
-                                                        <img src={process.env.REACT_APP_SERVER_URL + prod?.data?.avatar?.url} alt={prod?.data?.name} style={{ width: '36px', height: '45px', 'border-radius': '2px', 'border':'0.1px solid #000','margin-right':'30px','margin-bottom':'5px',}} />
+                                                        <img src={process.env.REACT_APP_SERVER_URL + prod?.data?.avatar?.url} alt={prod?.data?.name} style={{ width: '36px', height: '45px', bodyRadius: '2px', 'border':'0.1px solid #000',marginRight: '30px',marginBottom:'5px',}} />
                 
                                                     </div>
                                                 </div>
@@ -106,7 +107,7 @@ export default function Payment() {
                                 </div>
                                 <div className="paymentDelivery_text">
                                     <input name="paymentMethod" type="radio" defaultValue="viaBank" onChange={(e) => {addPaymentMethod(e.target.value)}} /><span />Payment via bank
-                                    <div class='bankInfo'>
+                                    <div className='bankInfo'>
                                         
                                         <h6>_______Vietinbank_______</h6>
                                         <h7>Account number: 1010012380</h7>

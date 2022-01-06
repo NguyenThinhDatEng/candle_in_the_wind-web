@@ -28,7 +28,7 @@ export default function Header() {
               type="text"
               id="search-bar"
               placeholder="Search product..."
-              onChange={(e) => setSearchTerm(e.target.value)}
+              onChange={(e) => console.log(e.target.value)}
             />
             <a href="#">
               <img

@@ -18,7 +18,7 @@ const initialState = {
 const Context = (props) => {
     const [state, dispatch] = useReducer(CartReducer,initialState)
 
-    const [loadTotal, setLoadTotal] = useState(true)
+    const [loadTotal, setLoadTotal] = useState(false)
     const [searchFilter, setSearchFilter] = useState("")
     
     useEffect(() => {
@@ -33,7 +33,12 @@ const Context = (props) => {
     }, [state])
 
     useEffect(() => {
-        dispatch({type: "RELOAD", payload: null})
+        console.log(loadTotal)
+        if(loadTotal === true){
+            dispatch({type: "RELOAD"})
+            setLoadTotal(false)
+        }
+
     }, [loadTotal])
 
 
@@ -96,6 +101,7 @@ const Context = (props) => {
                 cart: state.cart,
                 price: state.price,
                 searchFilter,
+                loadTotal,
                 addItemToCart,
                 updateItemFromCart,
                 removeItemFromCart,
