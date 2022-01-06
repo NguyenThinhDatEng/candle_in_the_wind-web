@@ -61,6 +61,25 @@ export default (state, action) => {
                 address: (action.payload)
             }
             // console.log(action.payload)
+        case "ADD_PAYMENT_METHOD":
+            return {
+                ...state,
+                paymentMethod: (action.payload)
+                    
+            }
+
+        case "RELOAD":
+            return {
+                ...state,
+                cart: [],
+                price: 0,
+                
+                name: "",
+                phoneNumber: "",
+                province: "", 
+                address: "",
+                paymentMethod: ""
+            }
 
         default: 
             return state

@@ -67,6 +67,9 @@ const Item = (props) => {
                     min="1"
                     max={data.quantityStock}
                     className="quantity-selector quantity-input"
+                    onChange={(e) =>{
+                      setQuantity(Number(e.target.value));
+                    }}
                   />
                   <span
                     className="btnqty qtyplus icon icon-plus"

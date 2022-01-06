@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react'
 import Header from "../header/header"
 import Footer from '../footer/footer'
-import { Link, NavLink } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import { CartContext } from '../../context/Context'
 
 export default function Cart() {
@@ -31,15 +31,15 @@ export default function Cart() {
                                 <thead>
                                     <tr>
                                         <th style={{ width: '50%' }} />
-                                        <th style={{ width: '10%' }} >Quantity</th>
-                                        <th style={{ width: '20%' }}>Price</th>
+                                        <th style={{ width: '15%' }} >Quantity</th>
+                                        <th style={{ width: '5%' }}>Price</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     {
                                         cart.length > 0 ? (
                                             cart.map((prod) => (
-                                                <tr>
+                                                <tr key={prod?.data?._id}>
                                                     <td data-th="Product">
                                                         <div className="row">
                                                             <div className="col-md-3 text-left">
@@ -49,6 +49,7 @@ export default function Cart() {
                                                                 <h4>{prod?.data?.name}</h4>
                                                                 <div className="button_remove">
                                                                     <button 
+                                                                    style={{backgroundColor:'black','color':'white',borderRadius:'20px','padding':'5px 15px','border':'1px solid black',}}
                                                                     className="btn_remove" 
                                                                     type="button" 
                                                                     onClick={()=>{
@@ -64,9 +65,9 @@ export default function Cart() {
                                                         </div>
                                                     </td>
                                                     <td data-th="Quantity">
-                                                        <input type="number" min='1' className="form-control form-control-lg text-center" defaultValue={prod?.quantity} onChange={(e) => changeQuantity(prod, e.target.value)} />
+                                                        <input type="number" min='1' className="form-control form-control-lg text-center" style= {{width: '80px',}}defaultValue={prod?.quantity} onChange={(e) => changeQuantity(prod, e.target.value)} />
                                                     </td>
-                                                    <td data-th="Price" className="price_product">{prod?.data?.price} VND</td>
+                                                    <td data-th="Price" className="price_product">${prod?.data?.price}</td>
                                                 </tr>
                                             ))
                                         ) : (
@@ -81,12 +82,12 @@ export default function Cart() {
                             <div className="line" />
                             <div className="total">
                                 <h4 className="total_text">Total:</h4>
-                                <h4 className="total_price">{totalPrice} VND</h4>
+                                <h4 className="total_price">${totalPrice}</h4>
                             </div>
                         </div>
                     </div>
-                    <div className="btn_confirm">
-                        <Link to="/paymentinformation" className="confirm" onClick={()=>addPrice(totalPrice)} >
+                    <div className="btn_confirm" >
+                        <Link to="/paymentinformation" className="confirm" onClick={()=>addPrice(totalPrice)}>
 
                                 Confirm
                                 

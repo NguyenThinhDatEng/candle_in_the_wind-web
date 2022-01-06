@@ -1,5 +1,6 @@
 import React from 'react'
 import Slider from "react-slick";
+import './product.css';
 
 export default function Advertise() {
     var settings = {
@@ -12,13 +13,13 @@ export default function Advertise() {
     return (
         <div className="container">
             <Slider {...settings}>
-                <div class="image">
+                <div className="image">
                     <img src="./assets/images/announcement.png" alt="" />
                 </div>
-                <div class="image">
+                <div className="image">
                     <img src="./assets/images/announcement.png" alt="" />
                 </div>
-                <div class="image">
+                <div className="image">
                     <img src="./assets/images/announcement.png" alt="" />
                 </div>
             </Slider>

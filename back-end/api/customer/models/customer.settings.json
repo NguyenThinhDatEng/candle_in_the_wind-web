@@ -8,12 +8,8 @@
   "options": {
     "increments": true,
     "configurable": false,
-    "privateAttributes": [
-      "__v",
-      "createdAt",
-      "updatedAt",
-      "id"
-    ]
+    "privateAttributes": ["__v", "createdAt", "updatedAt", "_id"],
+    "draftAndPublish": false
   },
   "pluginOptions": {},
   "attributes": {
@@ -43,10 +39,9 @@
     "avatar": {
       "model": "file",
       "via": "related",
-      "allowedTypes": [
-        "images"
-      ],
+      "allowedTypes": ["images"],
       "plugin": "upload",
+      "required": false,
       "pluginOptions": {}
     },
     "loyal": {
@@ -55,14 +50,22 @@
     },
     "gender": {
       "type": "enumeration",
-      "enum": [
-        "Male",
-        "Female"
-      ]
+      "enum": ["Male", "Female"]
     },
     "orders": {
       "via": "customer",
       "collection": "order"
+    },
+    "OTP": {
+      "type": "string"
+    },
+    "posts": {
+      "via": "customer",
+      "collection": "post"
+    },
+    "comments": {
+      "collection": "comment",
+      "via": "customer"
     }
   }
 }

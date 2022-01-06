@@ -1,4 +1,4 @@
-import React, { createContext, useReducer, useEffect } from 'react';
+import React, { createContext, useReducer, useEffect, useState } from 'react';
 import CartReducer from "./CartReducer"
 
 export const CartContext = createContext()
@@ -10,13 +10,16 @@ const initialState = {
     name: localStorage.getItem('name') ? JSON.parse(localStorage.getItem('name')) : "",
     phoneNumber: localStorage.getItem('phoneNumber') ? JSON.parse(localStorage.getItem('phoneNumber')) : "",
     province: localStorage.getItem('province') ? JSON.parse(localStorage.getItem('province')) : "", 
-    address: localStorage.getItem('province') ? JSON.parse(localStorage.getItem('province')) : ""
-    
+    address: localStorage.getItem('province') ? JSON.parse(localStorage.getItem('province')) : "",
+    paymentMethod: localStorage.getItem('paymentMethod') ? JSON.parse(localStorage.getItem('paymentMethod')) : ""
 }
 // setCart(cart) => this.cart = cart
 
 const Context = (props) => {
     const [state, dispatch] = useReducer(CartReducer,initialState)
+
+    const [loadTotal, setLoadTotal] = useState(false)
+    const [searchFilter, setSearchFilter] = useState("")
     
     useEffect(() => {
         localStorage.setItem('cart', JSON.stringify(state.cart))
@@ -25,7 +28,19 @@ const Context = (props) => {
         localStorage.setItem('phoneNumber', JSON.stringify(state.phoneNumber))
         localStorage.setItem('province', JSON.stringify(state.province))
         localStorage.setItem('address', JSON.stringify(state.address))
+        localStorage.setItem('paymentMethod', JSON.stringify(state.paymentMethod))
+
     }, [state])
+
+    useEffect(() => {
+        console.log(loadTotal)
+        if(loadTotal === true){
+            dispatch({type: "RELOAD"})
+            setLoadTotal(false)
+        }
+
+    }, [loadTotal])
+
 
     const addItemToCart = (data) => {
         dispatch({type: "ADD_ITEM_TO_CART", payload: (data)})
@@ -73,6 +88,9 @@ const Context = (props) => {
         console.log(name)
     }
 
+    const addPaymentMethod = (method) => {
+        dispatch({type: "ADD_PAYMENT_METHOD", payload: (method)})
+    }
     
 
     // dispatch({type, payload})
@@ -82,6 +100,8 @@ const Context = (props) => {
             value={{
                 cart: state.cart,
                 price: state.price,
+                searchFilter,
+                loadTotal,
                 addItemToCart,
                 updateItemFromCart,
                 removeItemFromCart,
@@ -91,6 +111,9 @@ const Context = (props) => {
                 changeInfoPhoneNumber,
                 changeInfoProvince,
                 changeInfoAddress,
+                addPaymentMethod,
+                setLoadTotal,
+                setSearchFilter
             }}
         >
             {props.children}

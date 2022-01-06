@@ -1,14 +1,26 @@
-import React, { useContext } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import Header from "../header/header"
 import Footer from '../footer/footer'
 import { Link } from 'react-router-dom'
 import { CartContext } from '../../context/Context'
+import './payment.css'
 
 export default function Payment() {
-    const {cart, price} = useContext(CartContext)
+    const {cart, price, province, addPaymentMethod, setLoadTotal, loadTotal} = useContext(CartContext)
 
-    const shippingFee = 10000
+    const [ship, setShip] = useState()
+    useEffect(() => {
+        setShip((localStorage.getItem('province') === "\"Hà Nội\"")? 0 : 30000)
 
+    }, [province])
+
+    const handleComplete = () => {
+        setLoadTotal(true)
+        console.log(loadTotal)
+        // window.location.reload(false);
+    }
+
+    
     return (
         <div>
             <Header />
@@ -19,7 +31,7 @@ export default function Payment() {
                     </div>
                     <div className="paymentContainer">
                         <div className="column1">
-                            <h3 >Order ID: 000000</h3>
+                            <h5 >Order ID: 000000</h5>
                             <table>
                                 <thead>
                                     <tr>
@@ -34,13 +46,14 @@ export default function Payment() {
                                             <td data-th="Product">
                                                 <div className="row">
                                                     <div className="col-md-3 text-left">
-                                                        <img src={process.env.REACT_APP_SERVER_URL + prod?.data?.avatar?.url} alt={prod?.data?.name} className="img-fluid d-none d-md-block rounded mb-2 shadow " style={{ width: '50px', height: '60px' }} />
+                                                        <img src={process.env.REACT_APP_SERVER_URL + prod?.data?.avatar?.url} alt={prod?.data?.name} style={{ width: '36px', height: '45px', bodyRadius: '2px', 'border':'0.1px solid #000',marginRight: '30px',marginBottom:'5px',}} />
+                
                                                     </div>
                                                 </div>
                                             </td>
                                             <td data-th="Product">
                                                 <div className="col-md-9 text-left mt-sm-2">
-                                                    <h4>{prod?.data?.name}</h4>
+                                                    <h7>{prod?.data?.name}</h7>
                                                 </div>
                                             </td>
                                             <td data-th="Quantity">x{prod?.quantity}</td>
@@ -54,17 +67,17 @@ export default function Payment() {
                                 <thead>
                                     <tr>
                                         <th style={{ width: '70%' }} />
-                                        <th style={{ width: '30%' }} />
+                                        <th style={{ width: '18%' }} />
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <tr>
                                         <td data-th="totalPayment">Total price of products</td>
-                                        <td data-th="totalProducts">{price} VND</td>
+                                        <td data-th="totalProducts">${price}</td>
                                     </tr>
                                     <tr>
                                         <td data-th="shippingFee">Shipping fee</td>
-                                        <td data-th="shipping">{shippingFee} VND</td>
+                                        <td data-th="shipping">${ship}</td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -73,32 +86,41 @@ export default function Payment() {
                                 <thead>
                                     <tr>
                                         <th style={{ width: '70%' }} />
-                                        <th style={{ width: '30%' }} />
+                                        <th style={{ width: '16%' }} />
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <tr>
                                         <td data-th="totalAll">Total</td>
-                                        <td data-th="totalProductsShip">{Number(price)+Number(shippingFee)} VND</td>
+                                        <td data-th="totalProductsShip">${Number(price)+Number(ship)}</td>
                                     </tr>
                                 </tbody>
                             </table>
                         </div>
                         <div className="column2">
                             <div className="itemCol2Payment">
-                                <h3 className="paymentMethod_text">Payment method</h3>
+                                <h5 className="paymentMethod_text">Payment method</h5>
                             </div>
                             <form>
                                 <div className="paymentDelivery_text">
-                                    <input name="paymentMethod" type="radio" defaultValue="onDelivery" /><span />Payment on delivery
+                                    <input name="paymentMethod" type="radio" defaultValue="onDelivery" onChange={(e) => {addPaymentMethod(e.target.value)}}/><span />Payment on delivery
                                 </div>
                                 <div className="paymentDelivery_text">
-                                    <input name="paymentMethod" type="radio" defaultValue="viaBank" /><span />Payment via bank
+                                    <input name="paymentMethod" type="radio" defaultValue="viaBank" onChange={(e) => {addPaymentMethod(e.target.value)}} /><span />Payment via bank
+                                    <div className='bankInfo'>
+                                        
+                                        <h6>_______Vietinbank_______</h6>
+                                        <h7>Account number: 1010012380</h7>
+                                        <h7>Acount holder: CANDLE IN THE WIND</h7>
+                                        <h7>Content: "Order ID + User's name"</h7>
+                                     
+                                        
+                                    </div>
                                 </div>
                             </form>
                             <div>
                                 <div className="btn_complete">
-                                    <Link to="/" className="completePayment" onClick={()=> localStorage.clear()} >Complete</Link>
+                                    <Link to="/" className="completePayment" onClick={() => handleComplete()} >Complete</Link>
                                 </div>
                                 <div className="btn_back">
                                     <Link to="/paymentinformation" className="completePayment">Back</Link>

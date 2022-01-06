@@ -2,8 +2,16 @@
   "routes": [
     {
       "method": "POST",
-      "path": "/customers",
-      "handler": "customer.findonebyemail",
+      "path": "/customers/changePassword",
+      "handler": "customer.changePassword",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/customers/verifyOTP",
+      "handler": "customer.verifyOTP",
       "config": {
         "policies": []
       }
@@ -37,7 +45,7 @@
       "path": "/customers",
       "handler": "customer.find",
       "config": {
-        "policies": ["global::public"]
+        "policies": []
       }
     },
     {
