@@ -68,7 +68,7 @@ const UpdatePassword = () => {
             <form class="card mt-2 col-8" onSubmit={handleSubmit}>
               <div class="card-body">
                 <p style={{ textAlign: "center" }}>
-                  <b>{data.email}</b>
+                  <b>{data?.email}</b>
                 </p>
                 <div class="form-group">
                   {/* errMessage */}
