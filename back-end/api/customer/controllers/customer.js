@@ -23,6 +23,7 @@ const login = async (ctx) => {
       gender: user.gender,
       dateOfBirth: user.dateOfBirth,
       phoneNumber: user.phoneNumber,
+      loyal: user.loyal,
     };
     return Response.ok(ctx, { data: data, msg: `OK`, status: 1 });
   }
@@ -72,6 +73,7 @@ const signup = async (ctx) => {
       gender: user.gender,
       dateOfBirth: user.dateOfBirth,
       phoneNumber: user.phoneNumber,
+      loyal: user.loyal,
     };
     return Response.created(ctx, {
       data: data,
