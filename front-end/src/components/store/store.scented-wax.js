@@ -10,7 +10,7 @@ export default function StoreScentedWax(props) {
     // console.log(value);
     if (value?.catalog?.name === "scented wax") {
       return (
-        <div className="col">
+        <div className="col" style={{marginBottom: '30px'}}>
           <div className="item text-center">
             <Link to={`/products/${value._id}`}>
               <div className="item-img">
@@ -26,7 +26,15 @@ export default function StoreScentedWax(props) {
 
             <div>
               <Link to={`/products/${value._id}`}className='productName'>
-                <p className="mt-3"> {value.name} </p>
+              <p className="mt-3" style={{height:'40px'}}> 
+													{
+														(value.name.length > 50) ?(
+															<>{value.name.substring(0,50)+"..."}</>
+														):(
+															<>{value.name}</>
+														)																								
+													} 
+												</p>	
               </Link>
               <p className="text-danger"> ${value.price}</p>
               <button 

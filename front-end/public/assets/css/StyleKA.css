@@ -307,8 +307,7 @@ input#search-bar:focus:-ms-placeholder {
     margin: 0px 0px 0px 150px;
     color: #EB4335;
     padding: 10px;
-    border-radius: 20px;
-    border: 1pt solid #000;
+    
 }
 /*------------------------------Payment information-----------------------------------*/
 .payment_info_text{
