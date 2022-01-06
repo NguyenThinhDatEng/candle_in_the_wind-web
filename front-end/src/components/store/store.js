@@ -100,7 +100,7 @@ export default function Store(props) {
 				</div>
 			</div>
 
-			<div className="container">
+			<div className="container" >
 				{loading ?
 					<>
 						<div className="d-flex justify-content-center">
