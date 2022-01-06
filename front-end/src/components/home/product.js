@@ -8,7 +8,7 @@ require("dotenv").config();
 
 export default function Product() {
 	const [data, setData] = useState([]);
-	const {cart, addItemToCart, updateItemFromCart} = useContext(CartContext)
+	const {cart, addItemToCart, updateItemFromCart, searchFilter} = useContext(CartContext)
 
 	useEffect(async () => {
 		
@@ -54,7 +54,13 @@ export default function Product() {
 			<div className="section-item">
 				<h2> Candle </h2>
 				<Slider {...settings}>
-					{data.map((value) => {
+					{data.filter((val)=>{
+						if(searchFilter === ""){
+							return val
+						} else if(val?.name.toLowerCase().includes(searchFilter.toLowerCase())){
+							return val
+						}
+					}).map((value) => {
 						// console.log(value);
 						if (value?.catalog?.name === "candle") {
 							return (
@@ -102,7 +108,13 @@ export default function Product() {
 			<div className="section-item">
 				<h2> Scented wax </h2>
 				<Slider {...settings}>
-					{data.map((value) => {
+					{data.filter((val)=>{
+						if(searchFilter === ""){
+							return val
+						} else if(val?.name.toLowerCase().includes(searchFilter.toLowerCase())){
+							return val
+						}
+					}).map((value) => {
 						// console.log(value);
 						if (value?.catalog?.name === "scented wax") {
 							return (
@@ -148,7 +160,13 @@ export default function Product() {
 			<div className="section-item">
 				<h2> Essential oil </h2>
 				<Slider {...settings}>
-					{data.map((value) => {
+					{data.filter((val)=>{
+						if(searchFilter === ""){
+							return val
+						} else if(val?.name.toLowerCase().includes(searchFilter.toLowerCase())){
+							return val
+						}
+					}).map((value) => {
 						// console.log(value);
 						if (value?.catalog?.name === "essential oil") {
 							return (
@@ -194,7 +212,13 @@ export default function Product() {
 			<div className="section-item">
 				<h2> Decorations </h2>
 				<Slider {...settings}>
-					{data.map((value) => {
+					{data.filter((val)=>{
+						if(searchFilter === ""){
+							return val
+						} else if(val?.name.toLowerCase().includes(searchFilter.toLowerCase())){
+							return val
+						}
+					}).map((value) => {
 						// console.log(value);
 						if (value?.catalog?.name === "decoration") {
 							return (

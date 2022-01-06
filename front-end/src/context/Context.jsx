@@ -19,6 +19,7 @@ const Context = (props) => {
     const [state, dispatch] = useReducer(CartReducer,initialState)
 
     const [loadTotal, setLoadTotal] = useState(true)
+    const [searchFilter, setSearchFilter] = useState("")
     
     useEffect(() => {
         localStorage.setItem('cart', JSON.stringify(state.cart))
@@ -94,6 +95,7 @@ const Context = (props) => {
             value={{
                 cart: state.cart,
                 price: state.price,
+                searchFilter,
                 addItemToCart,
                 updateItemFromCart,
                 removeItemFromCart,
@@ -104,7 +106,8 @@ const Context = (props) => {
                 changeInfoProvince,
                 changeInfoAddress,
                 addPaymentMethod,
-                setLoadTotal
+                setLoadTotal,
+                setSearchFilter
             }}
         >
             {props.children}

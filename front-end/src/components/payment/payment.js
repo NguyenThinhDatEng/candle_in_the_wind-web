@@ -15,13 +15,6 @@ export default function Payment() {
     }, [province])
 
     const handleComplete = () => {
-        localStorage.setItem('cart', JSON.stringify([]))
-        localStorage.setItem('price', JSON.stringify((0)))
-        localStorage.setItem('name', JSON.stringify(""))
-        localStorage.setItem('phoneNumber', JSON.stringify(""))
-        localStorage.setItem('province', JSON.stringify(""))
-        localStorage.setItem('address', JSON.stringify(""))
-        localStorage.setItem('paymentMethod', JSON.stringify(""))
         setLoadTotal((pre) => !pre)
         // window.location.reload(false);
     }

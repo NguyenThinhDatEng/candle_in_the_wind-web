@@ -4,11 +4,21 @@ import "./header.css";
 import { CartContext } from "../../context/Context";
 
 export default function Header() {
-  const { cart } = useContext(CartContext);
+  const { cart, setSearchFilter, searchFilter } = useContext(CartContext);
   const [total, setTotal] = useState();
+  const [searchTerm, setSearchTerm] = useState("")
   useEffect(() => {
     setTotal(cart.reduce((acc, curr) => acc + Number(curr?.quantity), 0));
   }, [cart]);
+  useEffect(() => {
+    const clearFilterSearch = setTimeout(()=>{
+      setSearchFilter(searchTerm)
+      console.log(searchFilter)
+    }, 500)
+    return () => {
+      clearTimeout(clearFilterSearch)
+    }
+  }, [searchTerm])
   if (localStorage.getItem("user-info")) {
     return (
       <header>
@@ -18,6 +28,7 @@ export default function Header() {
               type="text"
               id="search-bar"
               placeholder="Search product..."
+              onChange={(e) => setSearchTerm(e.target.value)}
             />
             <a href="#">
               <img
@@ -111,7 +122,7 @@ export default function Header() {
               <Link to="/cart">
                 <img src="/assets/icons/ShoppingCart.png" />
               </Link>
-              <span class="badge badge-warning" id="lblCartCount">
+              <span className="badge badge-warning" id="lblCartCount">
                 {total}
               </span>
             </div>

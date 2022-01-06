@@ -71,7 +71,14 @@ export default (state, action) => {
         case "RELOAD":
             return {
                 ...state,
-                cart: []
+                cart: [],
+                price: 0,
+                
+                name: "",
+                phoneNumber: "",
+                province: "", 
+                address: "",
+                paymentMethod: ""
             }
 
         default: 

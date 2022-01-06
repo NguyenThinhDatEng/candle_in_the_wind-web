@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, useContext } from "react";
 import Header from "../header/header";
 import Footer from "../footer/footer";
 import StoreCandle from "./store.candle";
@@ -7,11 +7,13 @@ import StoreEssentialOil from "./store.essential-oil";
 import StoreDecoration from "./store.decoration";
 import axios from "axios";
 import { useEffect, useState } from "react";
+import { CartContext } from "../../context/Context";
 require("dotenv").config();
 
 export default function Store(props) {
   const [status, setStatus] = useState(0);
   const [data, setData] = useState([]);
+  const {searchFilter} = useContext(CartContext)
 
   useEffect(async () => {
     const result = await axios(process.env.REACT_APP_SERVER_URL + "/products/");
@@ -20,13 +22,37 @@ export default function Store(props) {
 
   const displayCheck = () => {
     if (status === 0) {
-      return <StoreCandle data={data} />;
+      return <StoreCandle data={data.filter((val)=>{
+        if(searchFilter === ""){
+          return val
+        } else if(val?.name.toLowerCase().includes(searchFilter.toLowerCase())){
+          return val
+        }
+      })} />;
     } else if (status === 1) {
-      return <StoreScentedWax data={data} />;
+      return <StoreScentedWax data={data.filter((val)=>{
+        if(searchFilter === ""){
+          return val
+        } else if(val?.name.toLowerCase().includes(searchFilter.toLowerCase())){
+          return val
+        }
+      })} />;
     } else if (status === 2) {
-      return <StoreEssentialOil data={data} />;
+      return <StoreEssentialOil data={data.filter((val)=>{
+        if(searchFilter === ""){
+          return val
+        } else if(val?.name.toLowerCase().includes(searchFilter.toLowerCase())){
+          return val
+        }
+      })} />;
     } else {
-      return <StoreDecoration data={data} />;
+      return <StoreDecoration data={data.filter((val)=>{
+        if(searchFilter === ""){
+          return val
+        } else if(val?.name.toLowerCase().includes(searchFilter.toLowerCase())){
+          return val
+        }
+      })} />;
     }
   };
 
