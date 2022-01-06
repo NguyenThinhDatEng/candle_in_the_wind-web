@@ -5,7 +5,7 @@ import { useState, useEffect } from "react";
 import { Link, NavLink } from "react-router-dom";
 import './product.css';
 import { CartContext } from "../../context/Context";
-
+import ReactLoading from "react-loading";
 require("dotenv").config();
 
 export default function Product() {
@@ -14,7 +14,7 @@ export default function Product() {
 
 	useEffect(async () => {
 		const result = await axios(process.env.REACT_APP_SERVER_URL + "/products/");
-		setLoading(false)
+		// setLoading(false)
 		setData(result.data);
 	});
 

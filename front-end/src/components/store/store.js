@@ -9,12 +9,14 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { CartContext } from "../../context/Context";
 import '../home/product.css';
+import ReactLoading from "react-loading";
 require("dotenv").config();
 
 export default function Store(props) {
   const [status, setStatus] = useState(0);
   const [data, setData] = useState([]);
   const {searchFilter} = useContext(CartContext)
+  const [loading, setLoading] = useState(true);
 
 	useEffect(async () => {
 		const result = await axios(process.env.REACT_APP_SERVER_URL + "/products/");
