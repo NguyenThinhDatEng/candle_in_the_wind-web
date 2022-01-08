@@ -1,62 +1,31 @@
 import React from "react";
 import Footer from "../footer/footer";
 import Header from "../header/header";
-import Comment from "./comment"
+
+import Comments from "../comments/Comments";
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { handleCommentAPI } from "../../services/customerService";
+import { createCommentAPI } from "../../services/commentService"
+import { getUserInfo } from "../../services/customerService"
 require("dotenv").config();
 
 export default function Post(props) {
-	const [post, setPost] = useState([]);
-	const [comment, setComment] = useState([]);
-	const [customer, setCustomer] = useState([]);
-	const [comment_input, setCommentInput] = useState("");
-	const [formErrors, setFormErrors] = useState("");
+  const [post, setPost] = useState([]);
+  const [comment, setComment] = useState([]);
+  const [customer, setCustomer] = useState([]);
+  const [comment_input, setCommentInput] = useState("");
+  const [formErrors, setFormErrors] = useState("");
 
-	const customer_id = JSON.parse(localStorage.getItem("user-info"))?.id
+  const customer_id = JSON.parse(localStorage.getItem("user-info"))?.id;
 
-	useEffect(async () => {
-		const result = await axios(
-			process.env.REACT_APP_SERVER_URL + "/posts/" + props.match.params.id
-		);
-		setPost(result.data);
-		setComment(result.data?.comments)
-
-		const result2 = await axios(
-			process.env.REACT_APP_SERVER_URL + "/customers/" + customer_id
-		);
-		setCustomer(result2.data)
+  useEffect(async () => {
+    const result = await axios(
+      process.env.REACT_APP_SERVER_URL + "/posts/" + props.match.params.id
+    );
+    setPost(result.data);
+    setComment(result.data?.comments);
+		setCustomer(await getUserInfo(customer_id))
 	});
-	
-	const handleComment = async () => {
-		console.log(comment_input)
-		if (comment_input === "") {
-			setFormErrors("Comment cannot be empty")
-			console.log(formErrors)
-		}
-		else {
-			try {
-				
-				let dataComment = {
-					content: comment_input,
-					customer_id: customer_id,
-					post_id: props.match.params.id
-				}
-
-				// console.log(dataComent)
-				await handleCommentAPI(dataComment).then((response) => {
-					console.log(response);
-				})
-
-				setFormErrors(null)
-				setCommentInput("")
-
-			} catch (error) {
-				console.log(error)
-			}
-		}
-	}
 
 	return (
 		<div>
@@ -69,7 +38,7 @@ export default function Post(props) {
 				<div className="post-title ">
 					<h1> {post?.title} </h1>
 					<p>
-						Post on {post?.published_at?.substring(0, 10)}_{post?.customer?.username}
+						Post on {new Date(post?.published_at).toLocaleDateString()}_{post?.customer?.username}
 					</p>
 				</div>
 				<p className="post-content mx-auto">{post?.content}</p>
@@ -83,13 +52,15 @@ export default function Post(props) {
 			<div class="d-flex justify-content-center row">
 				<div class="col-md-8">
 					<div class="d-flex flex-column comment-section">
-						{
+						{/* {
 							post.lockComment === false ? (comment.map((value) => {
 								return (
 									<Comment
-										id={value?.customer}
+										comment_id = {value?._id}
+										customer_id={value?.customer}
 										content={value?.content}
 										createdAt={value?.createdAt?.substring(0, 10)}
+										handleDelete={() => handleDelete(value?._id)}
 									/>
 								)
 							})
@@ -110,8 +81,16 @@ export default function Post(props) {
 									</div>
 								</div>
 							) : null
+						} */}
+						{
+							post.lockComment === false ?
+								<Comments
+									commentData={comment}
+									currentUserId={customer_id}
+									postId = {post?._id}
+								/>
+								: null
 						}
-
 					</div>
 				</div>
 			</div>

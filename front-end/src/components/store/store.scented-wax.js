@@ -18,7 +18,7 @@ export default function StoreScentedWax(props) {
                   alt=""
                   src={
                     process.env.REACT_APP_SERVER_URL +
-                    value?.related_images[0]?.url
+                    value?.avatar?.url
                   }
                 />
               </div>
