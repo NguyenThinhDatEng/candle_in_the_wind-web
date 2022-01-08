@@ -1,12 +1,21 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 import "./header.css";
 import { CartContext } from "../../context/Context";
+import axios from "axios";
 
 export default function Header() {
-  const { cart, setSearchFilter, searchFilter } = useContext(CartContext);
+  const { cart, setSearchFilter, searchFilter, data, setData } = useContext(CartContext);
   const [total, setTotal] = useState();
   const [searchTerm, setSearchTerm] = useState("")
+  const [filteredData, setFilteredData] = useState([]);
+
+  useEffect(async () => {
+		const result = await axios(process.env.REACT_APP_SERVER_URL + "/products/");
+		// setLoading(false)
+		setData(result.data);
+	});
+
   useEffect(() => {
     setTotal(cart.reduce((acc, curr) => acc + Number(curr?.quantity), 0));
   }, [cart]);
@@ -19,26 +28,113 @@ export default function Header() {
       clearTimeout(clearFilterSearch)
     }
   }, [searchTerm])
+
+  const handleFilter = (e) => {
+    setIsMenuOpen(true)
+    const searchWord = e.target.value
+    setSearchTerm(searchWord)
+    console.log(searchTerm)
+    const newFilter = data.filter((value) => {
+      return value?.name?.toLowerCase().includes(searchWord.toLowerCase());
+    });
+
+    if (searchWord === "") {
+      setFilteredData([]);
+    } else {
+      setFilteredData(newFilter);
+    }
+  }
+
+  /* 
+  Filtered results disapear when clicked outside the div 
+  */
+
+  const ref = useRef()
+
+  const [isMenuOpen, setIsMenuOpen] = useState(false)
+
+  useEffect(() => {
+    const checkIfClickedOutside = e => {
+      // If the menu is open and the clicked target is not within the menu,
+      // then close the menu
+      if (isMenuOpen && ref.current && !ref.current.contains(e.target)) {
+        setIsMenuOpen(false)
+      }
+    }
+
+    document.addEventListener("mousedown", checkIfClickedOutside)
+
+    return () => {
+      // Cleanup the event listener
+      document.removeEventListener("mousedown", checkIfClickedOutside)
+    }
+  }, [isMenuOpen])
+
+
   if (localStorage.getItem("user-info")) {
     return (
       <header>
         <div className = 'search_nav'>
+
+
           <div className="search">
             <div className="search-container">
               <input
                 type="text"
                 id="search-bar"
                 placeholder="Search product..."
-                onChange={(e) => setSearchTerm(e.target.value)}
+                value={searchTerm}
+                onChange={(e) => {
+                  
+                  handleFilter(e)
+                }}
               />
-              <a href="#">
+              
                 <img
                   className="search-icon"
                   src="/assets/icons/Search-icon.png"
                 />
-              </a>
+              
             </div>
           </div>
+
+
+          <div className="result" ref={ref}>
+
+            {(isMenuOpen && filteredData.length !== 0) && (
+              <div className="dataResult">
+                {filteredData.slice(0, 15).map((value, key) => {
+                  // console.log(value)
+                  return (
+                    <Link className="dataItem" to={`/products/${value._id}`} target="_blank" key={value._id}>
+                      <img
+                      src={process.env.REACT_APP_SERVER_URL +
+                        value?.related_images[0]?.url}
+                      className="dataItemImg"
+                      alt={value.name}
+                      />
+                      <div className="dataItemDetail">
+                          <span style={{color: 'black'}}>
+                          {
+														(value.name.length > 50) ?(
+															<>{value.name.substring(0,50)+"..."}</>
+														):(
+															<>{value.name}</>
+														)																								
+													} 
+                          </span>
+                          <span>$ {value.price}</span>
+                      </div>
+                      
+                    </Link>
+                  );
+                })}
+              </div>
+            )}
+          </div>
+
+
+
           <nav className="navigation">
             <div className="logo">
               <img src="/assets/images/Logo.png" alt="Logo" />
