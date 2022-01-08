@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import App from "./containers/App";
 import Context from './context/Context';
 import reportWebVitals from './reportWebVitals';
-
+// import 'semantic-ui-css/semantic.min.css'
 
 ReactDOM.render(
   <React.StrictMode>

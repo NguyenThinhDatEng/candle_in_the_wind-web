@@ -20,6 +20,7 @@ const Context = (props) => {
 
     const [loadTotal, setLoadTotal] = useState(false)
     const [searchFilter, setSearchFilter] = useState("")
+    const [data, setData] = useState([])
     
     useEffect(() => {
         localStorage.setItem('cart', JSON.stringify(state.cart))
@@ -102,6 +103,7 @@ const Context = (props) => {
                 price: state.price,
                 searchFilter,
                 loadTotal,
+                data,
                 addItemToCart,
                 updateItemFromCart,
                 removeItemFromCart,
@@ -113,7 +115,8 @@ const Context = (props) => {
                 changeInfoAddress,
                 addPaymentMethod,
                 setLoadTotal,
-                setSearchFilter
+                setSearchFilter,
+                setData
             }}
         >
             {props.children}

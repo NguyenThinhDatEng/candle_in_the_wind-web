@@ -11,7 +11,7 @@ export default function StoreCandle(props) {
     // console.log(value);
     if (value?.catalog?.name === "candle") {
       return (
-        <div className="col" style={{marginBottom: '30px'}}>
+        <div className="col" style={{marginBottom: '30px'}} key={value?._id}>
           <div className="item text-center">
             <Link to={`/products/${value._id}`}>
               <div className="item-img">

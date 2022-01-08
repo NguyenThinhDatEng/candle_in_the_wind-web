@@ -9,14 +9,14 @@ import ReactLoading from "react-loading";
 require("dotenv").config();
 
 export default function Product() {
-	const [data, setData] = useState([]);
-	const {cart, addItemToCart, updateItemFromCart, searchFilter} = useContext(CartContext)
+	// const [data, setData] = useState([]);
+	const {cart, addItemToCart, updateItemFromCart, searchFilter, data, setData} = useContext(CartContext)
 
-	useEffect(async () => {
-		const result = await axios(process.env.REACT_APP_SERVER_URL + "/products/");
-		// setLoading(false)
-		setData(result.data);
-	});
+	// useEffect(async () => {
+	// 	const result = await axios(process.env.REACT_APP_SERVER_URL + "/products/");
+	// 	// setLoading(false)
+	// 	setData(result.data);
+	// });
 
 	const settings = {
 		infinite: true,
@@ -57,13 +57,7 @@ export default function Product() {
 			<div className="section-item">
 				<h2> Candle </h2>
 				<Slider {...settings}>
-					{data.filter((val)=>{
-						if(searchFilter === ""){
-							return val
-						} else if(val?.name.toLowerCase().includes(searchFilter.toLowerCase())){
-							return val
-						}
-					}).map((value) => {
+					{data.map((value) => {
 						// console.log(value);
 						if (value?.catalog?.name === "candle") {
 							return (
@@ -119,13 +113,7 @@ export default function Product() {
 			<div className="section-item">
 				<h2> Scented wax </h2>
 				<Slider {...settings}>
-					{data.filter((val)=>{
-						if(searchFilter === ""){
-							return val
-						} else if(val?.name.toLowerCase().includes(searchFilter.toLowerCase())){
-							return val
-						}
-					}).map((value) => {
+					{data.map((value) => {
 						// console.log(value);
 						if (value?.catalog?.name === "scented wax") {
 							return (
@@ -179,13 +167,7 @@ export default function Product() {
 			<div className="section-item">
 				<h2> Essential oil </h2>
 				<Slider {...settings}>
-					{data.filter((val)=>{
-						if(searchFilter === ""){
-							return val
-						} else if(val?.name.toLowerCase().includes(searchFilter.toLowerCase())){
-							return val
-						}
-					}).map((value) => {
+					{data.map((value) => {
 						// console.log(value);
 						if (value?.catalog?.name === "essential oil") {
 							return (
@@ -239,13 +221,7 @@ export default function Product() {
 			<div className="section-item">
 				<h2> Decorations </h2>
 				<Slider {...settings}>
-					{data.filter((val)=>{
-						if(searchFilter === ""){
-							return val
-						} else if(val?.name.toLowerCase().includes(searchFilter.toLowerCase())){
-							return val
-						}
-					}).map((value) => {
+					{data.map((value) => {
 						// console.log(value);
 						if (value?.catalog?.name === "decoration") {
 							return (
