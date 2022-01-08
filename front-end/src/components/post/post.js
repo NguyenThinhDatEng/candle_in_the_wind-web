@@ -1,7 +1,7 @@
 import React from "react";
 import Footer from "../footer/footer";
 import Header from "../header/header";
-import Comment from "./comment"
+
 import Comments from "../comments/Comments";
 import axios from "axios";
 import { useEffect, useState } from "react";
@@ -10,64 +10,22 @@ import { getUserInfo } from "../../services/customerService"
 require("dotenv").config();
 
 export default function Post(props) {
-	const [post, setPost] = useState([]);
-	const [comment, setComment] = useState([]);
-	const [customer, setCustomer] = useState([]);
-	const [comment_input, setCommentInput] = useState("");
-	const [formErrors, setFormErrors] = useState("");
+  const [post, setPost] = useState([]);
+  const [comment, setComment] = useState([]);
+  const [customer, setCustomer] = useState([]);
+  const [comment_input, setCommentInput] = useState("");
+  const [formErrors, setFormErrors] = useState("");
 
-	const customer_id = JSON.parse(localStorage.getItem("user-info"))?.id
+  const customer_id = JSON.parse(localStorage.getItem("user-info"))?.id;
 
-	useEffect(async () => {
-		const result = await axios(
-			process.env.REACT_APP_SERVER_URL + "/posts/" + props.match.params.id
-		);
-		setPost(result.data);
-		setComment(result.data?.comments)
-
+  useEffect(async () => {
+    const result = await axios(
+      process.env.REACT_APP_SERVER_URL + "/posts/" + props.match.params.id
+    );
+    setPost(result.data);
+    setComment(result.data?.comments);
 		setCustomer(await getUserInfo(customer_id))
 	});
-
-	// console.log(post)
-
-
-	const handleComment = async () => {
-		console.log(comment_input)
-		if (comment_input === "") {
-			setFormErrors("Comment cannot be empty")
-			console.log(formErrors)
-		}
-		else {
-			try {
-				let dataComment = {
-					content: comment_input,
-					customer_id: customer_id,
-					post_id: props.match.params.id
-				}
-				await createCommentAPI(dataComment).then((response) => {
-					console.log(response);
-				})
-
-				setFormErrors(null)
-				setCommentInput("")
-
-			} catch (error) {
-				console.log(error)
-			}
-		}
-	}
-
-	const handleUpdate = async (comment_id) => {
-
-
-	}
-
-	const handleDelete = async (comment_id) => {
-		await axios.delete(process.env.REACT_APP_SERVER_URL + "/comments/" + comment_id)
-			.then((response) => {
-				console.log(response)
-			})
-	}
 
 	return (
 		<div>
