@@ -2,9 +2,11 @@ import React from "react";
 import Footer from "../footer/footer";
 import Header from "../header/header";
 import Comment from "./comment"
+import Comments from "../comments/Comments";
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { handleCommentAPI } from "../../services/customerService";
+import { createCommentAPI } from "../../services/commentService"
+import { getUserInfo } from "../../services/customerService"
 require("dotenv").config();
 
 export default function Post(props) {
@@ -23,12 +25,12 @@ export default function Post(props) {
 		setPost(result.data);
 		setComment(result.data?.comments)
 
-		const result2 = await axios(
-			process.env.REACT_APP_SERVER_URL + "/customers/" + customer_id
-		);
-		setCustomer(result2.data)
+		setCustomer(await getUserInfo(customer_id))
 	});
-	
+
+	// console.log(post)
+
+
 	const handleComment = async () => {
 		console.log(comment_input)
 		if (comment_input === "") {
@@ -37,15 +39,12 @@ export default function Post(props) {
 		}
 		else {
 			try {
-				
 				let dataComment = {
 					content: comment_input,
 					customer_id: customer_id,
 					post_id: props.match.params.id
 				}
-
-				// console.log(dataComent)
-				await handleCommentAPI(dataComment).then((response) => {
+				await createCommentAPI(dataComment).then((response) => {
 					console.log(response);
 				})
 
@@ -56,6 +55,18 @@ export default function Post(props) {
 				console.log(error)
 			}
 		}
+	}
+
+	const handleUpdate = async (comment_id) => {
+
+
+	}
+
+	const handleDelete = async (comment_id) => {
+		await axios.delete(process.env.REACT_APP_SERVER_URL + "/comments/" + comment_id)
+			.then((response) => {
+				console.log(response)
+			})
 	}
 
 	return (
@@ -69,7 +80,7 @@ export default function Post(props) {
 				<div className="post-title ">
 					<h1> {post?.title} </h1>
 					<p>
-						Post on {post?.published_at?.substring(0, 10)}_{post?.customer?.username}
+						Post on {new Date(post?.published_at).toLocaleDateString()}_{post?.customer?.username}
 					</p>
 				</div>
 				<p className="post-content mx-auto">{post?.content}</p>
@@ -83,13 +94,15 @@ export default function Post(props) {
 			<div class="d-flex justify-content-center row">
 				<div class="col-md-8">
 					<div class="d-flex flex-column comment-section">
-						{
+						{/* {
 							post.lockComment === false ? (comment.map((value) => {
 								return (
 									<Comment
-										id={value?.customer}
+										comment_id = {value?._id}
+										customer_id={value?.customer}
 										content={value?.content}
 										createdAt={value?.createdAt?.substring(0, 10)}
+										handleDelete={() => handleDelete(value?._id)}
 									/>
 								)
 							})
@@ -110,8 +123,16 @@ export default function Post(props) {
 									</div>
 								</div>
 							) : null
+						} */}
+						{
+							post.lockComment === false ?
+								<Comments
+									commentData={comment}
+									currentUserId={customer_id}
+									postId = {post?._id}
+								/>
+								: null
 						}
-
 					</div>
 				</div>
 			</div>
