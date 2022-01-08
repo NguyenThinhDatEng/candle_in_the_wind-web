@@ -19,7 +19,7 @@ export default function StoreDecoration(props) {
                   alt=""
                   src={
                     process.env.REACT_APP_SERVER_URL +
-                    value?.related_images[0]?.url
+                    value?.avatar?.url
                   }
                 />
               </div>

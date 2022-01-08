@@ -1,0 +1,65 @@
+.date {
+  font-size: 11px;
+}
+
+.fs-12 {
+  font-size: 12px;
+}
+
+.shadow-none {
+  box-shadow: none;
+}
+
+.name {
+  color: #007bff;
+}
+
+.textarea {
+  resize: none;
+}
+
+.comments {
+  margin-top: 20px;
+}
+
+.comments-container {
+  margin-top: 40px;
+}
+
+.comment-form-textarea {
+  width: 100%;
+  height: 80px;
+  margin-bottom: 8px;
+  margin-top: 8px;
+  border: 1px solid rgb(107, 114, 12);
+}
+
+.comment {
+  display: flex;
+  margin-bottom: 28px;
+}
+
+.comment-content {
+  display: flex;
+}
+
+.comment-text {
+  font-size: 18px;
+}
+
+.comment-actions {
+  display: flex;
+  font-size: 12px;
+  color: rgb(51, 51, 51);
+  cursor: pointer;
+  margin-top: 8px;
+}
+
+.comment-action {
+  margin-right: 8px;
+}
+
+.comment-action:hover {
+  text-decoration: underline;
+}
+

@@ -10,11 +10,12 @@ require("dotenv").config();
 
 export default function Product() {
 	const [data, setData] = useState([]);
-	const {cart, addItemToCart, updateItemFromCart, searchFilter} = useContext(CartContext)
+	const { cart, addItemToCart, updateItemFromCart, searchFilter } = useContext(CartContext)
+	const [loading, setLoading] = useState(true)
 
 	useEffect(async () => {
 		const result = await axios(process.env.REACT_APP_SERVER_URL + "/products/");
-		// setLoading(false)
+		setLoading(false)
 		setData(result.data);
 	});
 
@@ -56,244 +57,310 @@ export default function Product() {
 		<div className="container">
 			<div className="section-item">
 				<h2> Candle </h2>
-				<Slider {...settings}>
-					{data.filter((val)=>{
-						if(searchFilter === ""){
-							return val
-						} else if(val?.name.toLowerCase().includes(searchFilter.toLowerCase())){
-							return val
-						}
-					}).map((value) => {
-						// console.log(value);
-						if (value?.catalog?.name === "candle") {
-							return (
-								<div className="item text-center" key={value?._id}>
-									<Link to={`/products/${value._id}`}>
-										<div className="item-img">
-											<img
-												alt=""
-												src={
-													process.env.REACT_APP_SERVER_URL +
-													value?.related_images[0]?.url
-												}
-											/>
-										</div>
-									</Link>
-									<div>
-										<Link to={`/products/${value._id}`}className='productName'>									
-												<p className="mt-3" style={{height:'40px'}}> 
-													{
-														(value.name.length > 50) ?(
-															<>{value.name.substring(0,50)+"..."}</>
-														):(
-															<>{value.name}</>
-														)																								
-													} 
-												</p>		
-										</Link>
-										<p className="text-danger"> ${value.price}</p>
-										<button 
-										className="btn btn-dark mb-3"
-										onClick={()=>{
-											if (cart.find((prod) => prod?.data?._id === value?._id)){
-											  updateItemFromCart(value, 1)
-											  console.log(value?._id)
-											console.log("Update")
-											}
-											else {
-											  addItemToCart({data:value, quantity:1})
-											  console.log(value)
-											  console.log("Add")
-											}
-											
-										  }} 
-										>Add to cart</button>
-									</div>
-								</div>
-							);
-						}
-					})}
-				</Slider>
+				{
+					loading ?
+						<>
+							<div className="d-flex justify-content-center">
+								<ReactLoading
+									type="spinningBubbles"
+									color="black"
+									height={200}
+									width={100}
+								/>
+							</div>
+						</>
+						:
+						<>
+							<Slider {...settings}>
+								{data.filter((val) => {
+									if (searchFilter === "") {
+										return val
+									} else if (val?.name.toLowerCase().includes(searchFilter.toLowerCase())) {
+										return val
+									}
+								}).map((value) => {
+									// console.log(value);
+									if (value?.catalog?.name === "candle") {
+										return (
+											<div className="item text-center" key={value?._id}>
+												<Link to={`/products/${value._id}`}>
+													<div className="item-img">
+														<img
+															alt=""
+															src={
+																process.env.REACT_APP_SERVER_URL +
+																value?.avatar?.url
+															}
+														/>
+													</div>
+												</Link>
+												<div>
+													<Link to={`/products/${value._id}`} className='productName'>
+														<p className="mt-3" style={{ height: '40px' }}>
+															{
+																(value.name.length > 50) ? (
+																	<>{value.name.substring(0, 50) + "..."}</>
+																) : (
+																	<>{value.name}</>
+																)
+															}
+														</p>
+													</Link>
+													<p className="text-danger"> ${value.price}</p>
+													<button
+														className="btn btn-dark mb-3"
+														onClick={() => {
+															if (cart.find((prod) => prod?.data?._id === value?._id)) {
+																updateItemFromCart(value, 1)
+																console.log(value?._id)
+																console.log("Update")
+															}
+															else {
+																addItemToCart({ data: value, quantity: 1 })
+																console.log(value)
+																console.log("Add")
+															}
+
+														}}
+													>Add to cart</button>
+												</div>
+											</div>
+										);
+									}
+								})}
+							</Slider>
+						</>
+				}
 			</div>
 
 			<div className="section-item">
 				<h2> Scented wax </h2>
-				<Slider {...settings}>
-					{data.filter((val)=>{
-						if(searchFilter === ""){
-							return val
-						} else if(val?.name.toLowerCase().includes(searchFilter.toLowerCase())){
-							return val
-						}
-					}).map((value) => {
-						// console.log(value);
-						if (value?.catalog?.name === "scented wax") {
-							return (
-								<div className="item text-center" key={value?._id}>
-									<Link to={`/products/${value._id}`}>
-										<div className="item-img">
-											<img
-												alt=""
-												src={
-													process.env.REACT_APP_SERVER_URL +
-													value?.related_images[0]?.url
-												}
-											/>
-										</div>
-									</Link>
-									<div>
-										<Link to={`/products/${value._id}`} className='productName'>
-											<p className="mt-3" style={{height:'40px'}}> 
-													{
-														(value.name.length > 50) ?(
-															<>{value.name.substring(0,50)+"..."}</>
-														):(
-															<>{value.name}</>
-														)																								
-													} 
-												</p>	
-										</Link>
-										<p className="text-danger"> ${value.price}</p>
-										<button 
-										className="btn btn-dark mb-3"
-										onClick={()=>{
-											if (cart.find((prod) => prod?.data?._id === value?._id)){
-											  updateItemFromCart(value, 1)
-											  console.log(value?._id)
-											}
-											else {
-											  addItemToCart({data:value, quantity:1})
-											  console.log(value?._id)
-											}
-											
-										  }}
-										>Add to cart</button>
-									</div>
-								</div>
-							);
-						}
-					})}
-				</Slider>
+				{
+					loading ?
+						<>
+							<div className="d-flex justify-content-center">
+								<ReactLoading
+									type="spinningBubbles"
+									color="black"
+									height={200}
+									width={100}
+								/>
+							</div>
+						</>
+						:
+						<>
+							<Slider {...settings}>
+								{data.filter((val) => {
+									if (searchFilter === "") {
+										return val
+									} else if (val?.name.toLowerCase().includes(searchFilter.toLowerCase())) {
+										return val
+									}
+								}).map((value) => {
+									// console.log(value);
+									if (value?.catalog?.name === "scented wax") {
+										return (
+											<div className="item text-center" key={value?._id}>
+												<Link to={`/products/${value._id}`}>
+													<div className="item-img">
+														<img
+															alt=""
+															src={
+																process.env.REACT_APP_SERVER_URL +
+																value?.avatar?.url
+															}
+														/>
+													</div>
+												</Link>
+												<div>
+													<Link to={`/products/${value._id}`} className='productName'>
+														<p className="mt-3" style={{ height: '40px' }}>
+															{
+																(value.name.length > 50) ? (
+																	<>{value.name.substring(0, 50) + "..."}</>
+																) : (
+																	<>{value.name}</>
+																)
+															}
+														</p>
+													</Link>
+													<p className="text-danger"> ${value.price}</p>
+													<button
+														className="btn btn-dark mb-3"
+														onClick={() => {
+															if (cart.find((prod) => prod?.data?._id === value?._id)) {
+																updateItemFromCart(value, 1)
+																console.log(value?._id)
+															}
+															else {
+																addItemToCart({ data: value, quantity: 1 })
+																console.log(value?._id)
+															}
+
+														}}
+													>Add to cart</button>
+												</div>
+											</div>
+										);
+									}
+								})}
+							</Slider>
+						</>
+				}
+
 			</div>
 
 			<div className="section-item">
 				<h2> Essential oil </h2>
-				<Slider {...settings}>
-					{data.filter((val)=>{
-						if(searchFilter === ""){
-							return val
-						} else if(val?.name.toLowerCase().includes(searchFilter.toLowerCase())){
-							return val
-						}
-					}).map((value) => {
-						// console.log(value);
-						if (value?.catalog?.name === "essential oil") {
-							return (
-								<div className="item text-center" key={value?._id}>
-									<Link to={`/products/${value._id}`}>
-										<div className="item-img">
-											<img
-												alt=""
-												src={
-													process.env.REACT_APP_SERVER_URL +
-													value?.related_images[0]?.url
-												}
-											/>
-										</div>
-									</Link>
-									<div>
-										<Link to={`/products/${value._id}`}className='productName'>
-										<p className="mt-3" style={{height:'40px'}}> 
-													{
-														(value.name.length > 50) ?(
-															<>{value.name.substring(0,50)+"..."}</>
-														):(
-															<>{value.name}</>
-														)																								
-													} 
-												</p>	
-										</Link>
-										<p className="text-danger"> ${value.price}</p>
-										<button 
-										className="btn btn-dark mb-3"
-										onClick={()=>{
-											if (cart.find((prod) => prod?.data?._id === value?._id)){
-											  updateItemFromCart(value, 1)
-											  console.log(value?._id)
-											}
-											else {
-											  addItemToCart({data:value, quantity:1})
-											  console.log(value?._id)
-											}
-											
-										  }}
-										>Add to cart</button>
-									</div>
-								</div>
-							);
-						}
-					})}
-				</Slider>
+				{
+					loading ?
+						<>
+							<div className="d-flex justify-content-center">
+								<ReactLoading
+									type="spinningBubbles"
+									color="black"
+									height={200}
+									width={100}
+								/>
+							</div>
+						</>
+						:
+						<>
+							<Slider {...settings}>
+								{data.filter((val) => {
+									if (searchFilter === "") {
+										return val
+									} else if (val?.name.toLowerCase().includes(searchFilter.toLowerCase())) {
+										return val
+									}
+								}).map((value) => {
+									// console.log(value);
+									if (value?.catalog?.name === "essential oil") {
+										return (
+											<div className="item text-center" key={value?._id}>
+												<Link to={`/products/${value._id}`}>
+													<div className="item-img">
+														<img
+															alt=""
+															src={
+																process.env.REACT_APP_SERVER_URL +
+																value?.avatar?.url
+															}
+														/>
+													</div>
+												</Link>
+												<div>
+													<Link to={`/products/${value._id}`} className='productName'>
+														<p className="mt-3" style={{ height: '40px' }}>
+															{
+																(value.name.length > 50) ? (
+																	<>{value.name.substring(0, 50) + "..."}</>
+																) : (
+																	<>{value.name}</>
+																)
+															}
+														</p>
+													</Link>
+													<p className="text-danger"> ${value.price}</p>
+													<button
+														className="btn btn-dark mb-3"
+														onClick={() => {
+															if (cart.find((prod) => prod?.data?._id === value?._id)) {
+																updateItemFromCart(value, 1)
+																console.log(value?._id)
+															}
+															else {
+																addItemToCart({ data: value, quantity: 1 })
+																console.log(value?._id)
+															}
+
+														}}
+													>Add to cart</button>
+												</div>
+											</div>
+										);
+									}
+								})}
+							</Slider>
+						</>
+				}
+
 			</div>
 
 			<div className="section-item">
 				<h2> Decorations </h2>
-				<Slider {...settings}>
-					{data.filter((val)=>{
-						if(searchFilter === ""){
-							return val
-						} else if(val?.name.toLowerCase().includes(searchFilter.toLowerCase())){
-							return val
-						}
-					}).map((value) => {
-						// console.log(value);
-						if (value?.catalog?.name === "decoration") {
-							return (
-								<div className="item text-center" key={value?._id}>
-									<Link to={`/products/${value._id}`}>
-										<div className="item-img">
-											<img
-												alt=""
-												src={
-													process.env.REACT_APP_SERVER_URL +
-													value?.related_images[0]?.url
-												}
-											/>
-										</div>
-									</Link>
-									<div>
-										<Link to={`/products/${value._id}` }className='productName'>
-										<p className="mt-3" style={{height:'40px'}}> 
-													{
-														(value.name.length > 50) ?(
-															<>{value.name.substring(0,50)+"..."}</>
-														):(
-															<>{value.name}</>
-														)																								
-													} 
-												</p>	
-										</Link>
-										<p className="text-danger"> ${value.price}</p>
-										<button 
-										className="btn btn-dark mb-3"
-										onClick={()=>{
-											if (cart.find((prod) => prod?.data?._id === value?._id)){
-											  updateItemFromCart(value, 1)
-											  console.log(value?._id)
-											}
-											else {
-											  addItemToCart({data:value, quantity:1})
-											  console.log(value?._id)
-											}
-											
-										  }}
-										>Add to cart</button>
-									</div>
-								</div>
-							);
-						}
-					})}
-				</Slider>
+				{
+					loading ?
+						<>
+							<div className="d-flex justify-content-center">
+								<ReactLoading
+									type="spinningBubbles"
+									color="black"
+									height={200}
+									width={100}
+								/>
+							</div>
+						</>
+						:
+						<>
+							<Slider {...settings}>
+								{data.filter((val) => {
+									if (searchFilter === "") {
+										return val
+									} else if (val?.name.toLowerCase().includes(searchFilter.toLowerCase())) {
+										return val
+									}
+								}).map((value) => {
+									// console.log(value);
+									if (value?.catalog?.name === "decoration") {
+										return (
+											<div className="item text-center" key={value?._id}>
+												<Link to={`/products/${value._id}`}>
+													<div className="item-img">
+														<img
+															alt=""
+															src={
+																process.env.REACT_APP_SERVER_URL +
+																value?.avatar?.url
+															}
+														/>
+													</div>
+												</Link>
+												<div>
+													<Link to={`/products/${value._id}`} className='productName'>
+														<p className="mt-3" style={{ height: '40px' }}>
+															{
+																(value.name.length > 50) ? (
+																	<>{value.name.substring(0, 50) + "..."}</>
+																) : (
+																	<>{value.name}</>
+																)
+															}
+														</p>
+													</Link>
+													<p className="text-danger"> ${value.price}</p>
+													<button
+														className="btn btn-dark mb-3"
+														onClick={() => {
+															if (cart.find((prod) => prod?.data?._id === value?._id)) {
+																updateItemFromCart(value, 1)
+																console.log(value?._id)
+															}
+															else {
+																addItemToCart({ data: value, quantity: 1 })
+																console.log(value?._id)
+															}
+
+														}}
+													>Add to cart</button>
+												</div>
+											</div>
+										);
+									}
+								})}
+							</Slider>
+						</>
+				}
 			</div>
 		</div>
 	);

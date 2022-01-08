@@ -13,52 +13,53 @@ import ReactLoading from "react-loading";
 require("dotenv").config();
 
 export default function Store(props) {
-  const [status, setStatus] = useState(0);
-  const [data, setData] = useState([]);
-  const {searchFilter} = useContext(CartContext)
-  const [loading, setLoading] = useState(true);
+	const [status, setStatus] = useState(0);
+	const [data, setData] = useState([]);
+	const { searchFilter } = useContext(CartContext)
+	const [loading, setLoading] = useState(true);
 
 	useEffect(async () => {
 		const result = await axios(process.env.REACT_APP_SERVER_URL + "/products/");
 		setData(result.data);
 		setLoading(false)
 	});
+	console.log(data)
 
-  const displayCheck = () => {
-    if (status === 0) {
-      return <StoreCandle data={data.filter((val)=>{
-        if(searchFilter === ""){
-          return val
-        } else if(val?.name.toLowerCase().includes(searchFilter.toLowerCase())){
-          return val
-        }
-      })} />;
-    } else if (status === 1) {
-      return <StoreScentedWax data={data.filter((val)=>{
-        if(searchFilter === ""){
-          return val
-        } else if(val?.name.toLowerCase().includes(searchFilter.toLowerCase())){
-          return val
-        }
-      })} />;
-    } else if (status === 2) {
-      return <StoreEssentialOil data={data.filter((val)=>{
-        if(searchFilter === ""){
-          return val
-        } else if(val?.name.toLowerCase().includes(searchFilter.toLowerCase())){
-          return val
-        }
-      })} />;
-    } else {
-      return <StoreDecoration data={data.filter((val)=>{
-        if(searchFilter === ""){
-          return val
-        } else if(val?.name.toLowerCase().includes(searchFilter.toLowerCase())){
-          return val
-        }
-      })} />;
-    }
-  };
+	const displayCheck = () => {
+		if (status === 0) {
+			return <StoreCandle data={data.filter((val) => {
+				if (searchFilter === "") {
+					return val
+				} else if (val?.name.toLowerCase().includes(searchFilter.toLowerCase())) {
+					return val
+				}
+			})} />;
+		} else if (status === 1) {
+			return <StoreScentedWax data={data.filter((val) => {
+				if (searchFilter === "") {
+					return val
+				} else if (val?.name.toLowerCase().includes(searchFilter.toLowerCase())) {
+					return val
+				}
+			})} />;
+		} else if (status === 2) {
+			return <StoreEssentialOil data={data.filter((val) => {
+				if (searchFilter === "") {
+					return val
+				} else if (val?.name.toLowerCase().includes(searchFilter.toLowerCase())) {
+					return val
+				}
+			})} />;
+		} else {
+			return <StoreDecoration data={data.filter((val) => {
+				if (searchFilter === "") {
+					return val
+				} else if (val?.name.toLowerCase().includes(searchFilter.toLowerCase())) {
+					return val
+				}
+			})} />;
+		}
+	};
 
 	return (
 		<div>
@@ -117,7 +118,7 @@ export default function Store(props) {
 						<div className="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-3 mb-5">
 							{displayCheck()}
 						</div>
-						
+
 					</>
 				}
 
