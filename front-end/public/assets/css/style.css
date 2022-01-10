@@ -50,7 +50,7 @@ LOGIN FORM
 }
 
 .forgot-password a {
-    float: right;
+    float: right !important;
     margin-right: 0px;
 }
 
