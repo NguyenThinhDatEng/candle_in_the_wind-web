@@ -95,43 +95,44 @@ export default function Header() {
                   src="/assets/icons/Search-icon.png"
                 />
               
-            </div>
-          </div>
+              <div className="result" ref={ref}>
 
-
-          <div className="result" ref={ref}>
-
-            {(isMenuOpen && filteredData.length !== 0) && (
-              <div className="dataResult">
-                {filteredData.slice(0, 15).map((value, key) => {
-                  // console.log(value)
-                  return (
-                    <Link className="dataItem" to={`/products/${value._id}`} target="_blank" key={value._id}>
-                      <img
-                      src={process.env.REACT_APP_SERVER_URL +
-                        value?.related_images[0]?.url}
-                      className="dataItemImg"
-                      alt={value.name}
-                      />
-                      <div className="dataItemDetail">
-                          <span style={{color: 'black'}}>
-                          {
-														(value.name.length > 50) ?(
-															<>{value.name.substring(0,50)+"..."}</>
-														):(
-															<>{value.name}</>
-														)																								
-													} 
-                          </span>
-                          <span>$ {value.price}</span>
-                      </div>
-                      
-                    </Link>
-                  );
-                })}
+                {(isMenuOpen && filteredData.length !== 0) && (
+                  <div className="dataResult">
+                    {filteredData.slice(0, 15).map((value, key) => {
+                      // console.log(value)
+                      return (
+                        <Link className="dataItem" to={`/products/${value._id}`} target="_blank" key={value._id}>
+                          <img
+                          src={process.env.REACT_APP_SERVER_URL +
+                            value?.related_images[0]?.url}
+                          className="dataItemImg"
+                          alt={value.name}
+                          />
+                          <div className="dataItemDetail">
+                              <span style={{color: 'black'}}>
+                              {
+                                (value.name.length > 50) ?(
+                                  <>{value.name.substring(0,50)+"..."}</>
+                                ):(
+                                  <>{value.name}</>
+                                )																								
+                              } 
+                              </span>
+                              <span>$ {value.price}</span>
+                          </div>
+                          
+                        </Link>
+                      );
+                    })}
+                  </div>
+                )}
               </div>
-            )}
+            </div>
+
           </div>
+
+
 
 
 

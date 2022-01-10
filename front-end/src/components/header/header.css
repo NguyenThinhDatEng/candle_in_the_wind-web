@@ -144,10 +144,14 @@ input#search-bar:focus:-ms-placeholder {
 }
 
 .result {
+    position: absolute;
     align-items: center;
     display: flex;
     flex-direction: row;
     justify-content: center;
+    z-index: 3;
+    margin-top: 240px;
+    /* width: 400px; */
     /* opacity: 0; */
     /* height: 0; */
 }
