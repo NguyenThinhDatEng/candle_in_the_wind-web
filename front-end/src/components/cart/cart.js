@@ -10,8 +10,8 @@ export default function Cart() {
     const [totalPrice, setTotalPrice] = useState()
     useEffect(() => {
         setTotal(cart.reduce((acc, curr) => acc+ Number(curr?.quantity) , 0))
-        setTotalPrice(cart.reduce((acc, curr) => acc+ Number(curr?.quantity*curr?.data?.price), 0))
-
+        setTotalPrice(cart.reduce((acc, curr) => acc+ Number(curr?.quantity*(curr?.data?.price * (100 - Number(curr?.data?.discount))/100)), 0))
+// Number(data?.price) * (100 - Number(data?.discount)) / 100 
     }, [cart])
     // console.log(cart)
     console.log(totalPrice)
@@ -69,7 +69,7 @@ export default function Cart() {
                                                     <td data-th="Quantity">
                                                         <input type="number" min='1' className="form-control form-control-lg text-center" style= {{width: '80px',}}defaultValue={prod?.quantity} onChange={(e) => changeQuantity(prod, e.target.value)} />
                                                     </td>
-                                                    <td data-th="Price" className="price_product">${prod?.data?.price}</td>
+                                                    <td data-th="Price" className="price_product">${Number(prod?.data?.price) * (100 - Number(prod?.data?.discount)) / 100 }</td>
                                                 </tr>
                                             ))
                                         ) : (

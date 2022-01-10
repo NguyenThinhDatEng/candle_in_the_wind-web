@@ -77,7 +77,27 @@ export default function Product() {
 									if (value?.catalog?.name === "candle") {
 										return (
 											<div className="item text-center" key={value?._id}>
+												{
+													value?.discount !== 0 ? (
+														
+														<span className="discount-tag" 
+														style={{
+															position: "absolute", 
+															background:"black",
+															padding: "5px",
+															borderRadius: "5px",
+															color: "#ff7d7d",
+															right: "10px",
+															top: "10px",
+															textTransform: "capitalize",
+															}}>
+															{value?.discount}% Off
+														</span>
+													) : null
+												}
+												
 												<Link to={`/products/${value._id}`}>
+												
 													<div className="item-img">
 														<img
 															alt=""
@@ -149,6 +169,24 @@ export default function Product() {
 									if (value?.catalog?.name === "scented wax") {
 										return (
 											<div className="item text-center" key={value?._id}>
+												{
+													value?.discount !== 0 ? (
+														
+														<span className="discount-tag" 
+														style={{
+															position: "absolute", 
+															background:"black",
+															padding: "5px",
+															borderRadius: "5px",
+															color: "#ff7d7d",
+															right: "10px",
+															top: "10px",
+															textTransform: "capitalize",
+															}}>
+															{value?.discount}% Off
+														</span>
+													) : null
+												}
 												<Link to={`/products/${value._id}`}>
 													<div className="item-img">
 														<img
@@ -220,6 +258,24 @@ export default function Product() {
 									if (value?.catalog?.name === "essential oil") {
 										return (
 											<div className="item text-center" key={value?._id}>
+												{
+													value?.discount !== 0 ? (
+														
+														<span className="discount-tag" 
+														style={{
+															position: "absolute", 
+															background:"black",
+															padding: "5px",
+															borderRadius: "5px",
+															color: "#ff7d7d",
+															right: "10px",
+															top: "10px",
+															textTransform: "capitalize",
+															}}>
+															{value?.discount}% Off
+														</span>
+													) : null
+												}
 												<Link to={`/products/${value._id}`}>
 													<div className="item-img">
 														<img
@@ -291,6 +347,24 @@ export default function Product() {
 									if (value?.catalog?.name === "decoration") {
 										return (
 											<div className="item text-center" key={value?._id}>
+												{
+													value?.discount !== 0 ? (
+														
+														<span className="discount-tag" 
+														style={{
+															position: "absolute", 
+															background:"black",
+															padding: "5px",
+															borderRadius: "5px",
+															color: "#ff7d7d",
+															right: "10px",
+															top: "10px",
+															textTransform: "capitalize",
+															}}>
+															{value?.discount}% Off
+														</span>
+													) : null
+												}
 												<Link to={`/products/${value._id}`}>
 													<div className="item-img">
 														<img

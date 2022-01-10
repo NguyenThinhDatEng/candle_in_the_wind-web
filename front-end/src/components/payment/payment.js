@@ -10,7 +10,7 @@ export default function Payment() {
 
     const [ship, setShip] = useState()
     useEffect(() => {
-        setShip((localStorage.getItem('province') === "\"Hà Nội\"")? 0 : 30000)
+        setShip((localStorage.getItem('province') === "\"Hà Nội\"")? 0 : 2)
 
     }, [province])
 

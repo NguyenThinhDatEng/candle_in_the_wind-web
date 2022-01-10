@@ -80,10 +80,20 @@
 }
 
 .right__info__price {
-    color: #EB4335;
-    font-size: 20px;
+    font-size: 30px;
     padding-bottom: 1rem;
     border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+.right__info__new__price {
+    color: #EB4335;
+    font-weight: 500;
+}
+
+.right__info__actual__price {
+    font-size: 25px;
+    opacity: 0.5;
+    text-decoration: line-through;
 }
 
 .right__info__category {

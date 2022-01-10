@@ -13,6 +13,24 @@ export default function StoreCandle(props) {
       return (
         <div className="col" style={{marginBottom: '30px'}} key={value?._id}>
           <div className="item text-center">
+          {
+            value?.discount !== 0 ? (
+              
+              <span className="discount-tag" 
+              style={{
+                position: "absolute", 
+                background:"black",
+                padding: "5px",
+                borderRadius: "5px",
+                color: "#ff7d7d",
+                right: "10px",
+                top: "10px",
+                textTransform: "capitalize",
+                }}>
+                {value?.discount}% Off
+              </span>
+            ) : null
+          }
             <Link to={`/products/${value._id}`}>
               <div className="item-img">
                 <img
