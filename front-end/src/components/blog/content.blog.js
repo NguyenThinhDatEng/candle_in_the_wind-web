@@ -9,7 +9,7 @@ export default function ContentBlog(props) {
 
 				<h4 > {props.title} </h4>
 				<p> {props.content} </p>
-				<a className="btn btn-dark my-3" href={"/post/" + props.title + "." + props.id} >
+				<a className="btn btn-dark my-3" href={"/post/" + props.id} >
 					Read More
 				</a>
 			</div>

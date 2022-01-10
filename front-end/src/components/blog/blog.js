@@ -34,7 +34,7 @@ export default function Blog() {
 	// Change page
 	const paginate = pageNumber => setCurrentPage(pageNumber);
 
-	console.log(loading)
+	// console.log(loading)
 	return (
 		<div>
 			<Header />
@@ -72,7 +72,6 @@ export default function Blog() {
 									return (
 										<ContentBlog
 											id={value?._id}
-											authorname={value?.created_by?.username}
 											title={value?.title}
 											image={value?.avatar?.url}
 											content={value.content.substring(0, 200) + "..."}
