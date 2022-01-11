@@ -16,32 +16,43 @@ import Item from "../components/product/item";
 import ForgotPassword from "../components/forgot_password/forgotPassword";
 import VerifyOTP from "../components/forgot_password/verifyOTP";
 import UpdatePassword from "../components/forgot_password/updatePassword";
+import { render } from "react-dom";
+import { positions, Provider } from "react-alert";
+import AlertTemplate from "react-alert-template-basic";
+
+const options = {
+  timeout: 5000,
+  position: positions.BOTTOM_RIGHT
+};
 
 function App() {
   return (
     <Router>
       <Switch>
-        <Route exact path="/" component={Home} />
-        <Route exact path="/store" component={Store} />
-        <Route exact path="/blog" component={Blog} />
-        <Route exact path="/post/:title.:id" component={Post} />
-        <Route exact path="/create-post" component={CreatePost} />
+        <Provider template={AlertTemplate} {...options}>
+          <Route exact path="/" component={Home} />
+          <Route exact path="/store" component={Store} />
+          <Route exact path="/blog" component={Blog} />
+          <Route exact path="/post/:title.:id" component={Post} />
+          <Route exact path="/create-post" component={CreatePost} />
 
-        <Route exact path="/about-us" component={AboutUs} />
-        <Route exact path="/login" component={Login} />
-        <Route exact path="/signup" component={Signup} />
-        <Route exact path="/forgotPassword" component={ForgotPassword} />
-        <Route exact path="/verifyOTP" component={VerifyOTP} />
-        <Route exact path="/updatePassword" component={UpdatePassword} />
-        <Route exact path="/profile" component={Profile} />
-        <Route exact path="/cart" component={Cart} />
-        <Route
-          exact
-          path="/paymentinformation"
-          component={PaymentInformation}
-        />
-        <Route exact path="/payment" component={Payment} />
-        <Route exact path="/products/:id" component={Item} />
+          <Route exact path="/about-us" component={AboutUs} />
+          <Route exact path="/login" component={Login} />
+          <Route exact path="/signup" component={Signup} />
+          <Route exact path="/forgotPassword" component={ForgotPassword} />
+          <Route exact path="/verifyOTP" component={VerifyOTP} />
+          <Route exact path="/updatePassword" component={UpdatePassword} />
+          <Route exact path="/profile" component={Profile} />
+          <Route exact path="/cart" component={Cart} />
+          <Route
+            exact
+            path="/paymentinformation"
+            component={PaymentInformation}
+          />
+          <Route exact path="/payment" component={Payment} />
+          <Route exact path="/products/:id" component={Item} />
+
+        </Provider>
       </Switch>
     </Router>
   );

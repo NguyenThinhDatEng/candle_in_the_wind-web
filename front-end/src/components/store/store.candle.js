@@ -1,10 +1,12 @@
 import React, { useContext } from "react";
 import { Link, NavLink } from "react-router-dom";
 import { CartContext } from "../../context/Context";
+import { useAlert } from 'react-alert'
 
 require("dotenv").config();
 
 export default function StoreCandle(props) {
+  const alert = useAlert()
   const data = props.data;
   const {cart, addItemToCart, updateItemFromCart} = useContext(CartContext)
   return data.map((value) => {
@@ -59,15 +61,17 @@ export default function StoreCandle(props) {
               <button 
               className="btn btn-dark mb-3"
               onClick={()=>{
-                if (cart.find((prod) => prod?.data?._id === value?._id)){
-                  updateItemFromCart(value, 1)
-                  console.log(value?._id)
-                console.log("Update")
-                }
-                else {
-                  addItemToCart({data:value, quantity:1})
-                  console.log(value?._id)
-                  console.log("Add")
+                if(localStorage.getItem("user-info")){
+                  if (cart.find((prod) => prod?.data?._id === value?._id)) {
+                    updateItemFromCart(value, 1)
+                    console.log(value?._id)
+                  }
+                  else {
+                    addItemToCart({ data: value, quantity: 1 })
+                    console.log(value?._id)
+                  }
+                } else {
+                  alert.show("Please sign in")
                 }
                 
                 }} 

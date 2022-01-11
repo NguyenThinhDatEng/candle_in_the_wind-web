@@ -3,12 +3,16 @@ import { Link, NavLink } from "react-router-dom";
 import "./header.css";
 import { CartContext } from "../../context/Context";
 import axios from "axios";
+import { useAlert } from 'react-alert'
+
 
 export default function Header() {
   const { cart, setSearchFilter, searchFilter, data, setData } = useContext(CartContext);
   const [total, setTotal] = useState();
   const [searchTerm, setSearchTerm] = useState("")
   const [filteredData, setFilteredData] = useState([]);
+
+  const alert = useAlert()
 
   useEffect(async () => {
 		const result = await axios(process.env.REACT_APP_SERVER_URL + "/products/");
@@ -105,7 +109,7 @@ export default function Header() {
                         <Link className="dataItem" to={`/products/${value._id}`} target="_blank" key={value._id}>
                           <img
                           src={process.env.REACT_APP_SERVER_URL +
-                            value?.related_images[0]?.url}
+                            value?.avatar?.url}
                           className="dataItemImg"
                           alt={value.name}
                           />
@@ -119,7 +123,30 @@ export default function Header() {
                                 )																								
                               } 
                               </span>
-                              <span>$ {value.price}</span>
+                              {
+                                value?.discount !== 0 ? (
+                                  <div style={{display:'flex', alignItems: 'center'}}>
+                                    <span>$ {Number(value.price) * (100 - Number(value?.discount)) / 100}</span>
+                                    <div style={{
+                                      marginLeft: '8px',
+                                      padding: "0px 2px",
+                                      border: '1px solid', 
+                                      borderRadius: '2px',
+                                      fontSize: '12px',
+                                      lineHeight: '14px',
+                                      fontWeight: '400',
+                                      backgroundColor: 'rgb(255,240,241)',
+                                      color: "rgb(255, 66, 78)"
+                                    }}
+                                    >
+                                      -{value?.discount}%
+                                    </div>
+                                  </div>
+                                  ) : (
+                                  <span style={{color: "black"}}>$ {value.price}</span>
+                                )
+                                
+                              }
                           </div>
                           
                         </Link>
@@ -218,8 +245,9 @@ export default function Header() {
                         <Link to="/profile" ><img src="/assets/icons/User-icon.png" /></Link>
                     </div> */}
             <div className="cart">
-              <Link to="/cart">
+              <Link to="/login" onClick={() => {alert.show("Please sign in to continue")}}>
                 <img src="/assets/icons/ShoppingCart.png" />
+                
               </Link>
               <span className="badge badge-warning" id="lblCartCount">
                 {total}

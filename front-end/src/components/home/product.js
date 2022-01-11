@@ -2,13 +2,38 @@ import React, { useContext } from "react";
 import Slider from "react-slick";
 import axios from "axios";
 import { useState, useEffect } from "react";
-import { Link, NavLink } from "react-router-dom";
+import { Link } from "react-router-dom";
 import './product.css';
 import { CartContext } from "../../context/Context";
 import ReactLoading from "react-loading";
+import { useAlert } from 'react-alert'
+
 require("dotenv").config();
 
+function SampleNextArrow(props) {
+	const { className, style, onClick } = props;
+	return (
+	  <div
+		className={className}
+		style={{ ...style, display: "block", background: "black" }}
+		onClick={onClick}
+	  />
+	);
+  }
+  
+  function SamplePrevArrow(props) {
+	const { className, style, onClick } = props;
+	return (
+	  <div
+		className={className}
+		style={{ ...style, display: "block", background: "black" }}
+		onClick={onClick}
+	  />
+	);
+  }
+
 export default function Product() {
+	const alert = useAlert()
 	// const [data, setData] = useState([]);
 	const {cart, addItemToCart, updateItemFromCart, searchFilter, data, setData} = useContext(CartContext)
 	const [loading, setLoading] = useState(true)
@@ -26,6 +51,8 @@ export default function Product() {
 		speed: 1000,
 		slidesToShow: 4,
 		slidesToScroll: 4,
+		nextArrow: <SampleNextArrow />,
+      	prevArrow: <SamplePrevArrow />,
 		responsive: [
 			{
 				breakpoint: 1024,
@@ -120,19 +147,32 @@ export default function Product() {
 															}
 														</p>
 													</Link>
-													<p className="text-danger"> ${value.price}</p>
+													{
+														value?.discount === 0 ? (
+															<p 
+															className="text-danger" 
+															> 
+																${value.price}
+															</p>
+														):(
+															<p className="text-danger"> ${Number(value.price) * (100 - Number(value.discount)) / 100}</p>
+														)
+
+													}
 													<button
 														className="btn btn-dark mb-3"
 														onClick={() => {
-															if (cart.find((prod) => prod?.data?._id === value?._id)) {
-																updateItemFromCart(value, 1)
-																console.log(value?._id)
-																console.log("Update")
-															}
-															else {
-																addItemToCart({ data: value, quantity: 1 })
-																console.log(value)
-																console.log("Add")
+															if(localStorage.getItem("user-info")){
+																if (cart.find((prod) => prod?.data?._id === value?._id)) {
+																	updateItemFromCart(value, 1)
+																	console.log(value?._id)
+																}
+																else {
+																	addItemToCart({ data: value, quantity: 1 })
+																	console.log(value?._id)
+																}
+															} else {
+																alert.show("Please sign in")
 															}
 
 														}}
@@ -214,13 +254,17 @@ export default function Product() {
 													<button
 														className="btn btn-dark mb-3"
 														onClick={() => {
-															if (cart.find((prod) => prod?.data?._id === value?._id)) {
-																updateItemFromCart(value, 1)
-																console.log(value?._id)
-															}
-															else {
-																addItemToCart({ data: value, quantity: 1 })
-																console.log(value?._id)
+															if(localStorage.getItem("user-info")){
+																if (cart.find((prod) => prod?.data?._id === value?._id)) {
+																	updateItemFromCart(value, 1)
+																	console.log(value?._id)
+																}
+																else {
+																	addItemToCart({ data: value, quantity: 1 })
+																	console.log(value?._id)
+																}
+															} else {
+																alert.show("Please sign in")
 															}
 
 														}}
@@ -303,13 +347,17 @@ export default function Product() {
 													<button
 														className="btn btn-dark mb-3"
 														onClick={() => {
-															if (cart.find((prod) => prod?.data?._id === value?._id)) {
-																updateItemFromCart(value, 1)
-																console.log(value?._id)
-															}
-															else {
-																addItemToCart({ data: value, quantity: 1 })
-																console.log(value?._id)
+															if(localStorage.getItem("user-info")){
+																if (cart.find((prod) => prod?.data?._id === value?._id)) {
+																	updateItemFromCart(value, 1)
+																	console.log(value?._id)
+																}
+																else {
+																	addItemToCart({ data: value, quantity: 1 })
+																	console.log(value?._id)
+																}
+															} else {
+																alert.show("Please sign in")
 															}
 
 														}}
@@ -392,14 +440,19 @@ export default function Product() {
 													<button
 														className="btn btn-dark mb-3"
 														onClick={() => {
-															if (cart.find((prod) => prod?.data?._id === value?._id)) {
-																updateItemFromCart(value, 1)
-																console.log(value?._id)
+															if(localStorage.getItem("user-info")){
+																if (cart.find((prod) => prod?.data?._id === value?._id)) {
+																	updateItemFromCart(value, 1)
+																	console.log(value?._id)
+																}
+																else {
+																	addItemToCart({ data: value, quantity: 1 })
+																	console.log(value?._id)
+																}
+															} else {
+																alert.show("Please sign in")
 															}
-															else {
-																addItemToCart({ data: value, quantity: 1 })
-																console.log(value?._id)
-															}
+															
 
 														}}
 													>Add to cart</button>
