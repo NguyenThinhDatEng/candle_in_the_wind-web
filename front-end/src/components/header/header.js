@@ -74,11 +74,11 @@ export default function Header() {
   if (localStorage.getItem("user-info")) {
     return (
       <header>
-        <div className = 'search_nav'>
+        {/* <div className = 'search_nav'>
 
 
-          <div className="search">
-            <div className="search-container">
+          <div className="search"> */}
+            {/* <div className="search-container">
               <input
                 type="text"
                 id="search-bar"
@@ -128,9 +128,9 @@ export default function Header() {
                   </div>
                 )}
               </div>
-            </div>
+            </div> */}
 
-          </div>
+          {/* </div> */}
 
 
 
@@ -138,7 +138,7 @@ export default function Header() {
 
           <nav className="navigation">
             <div className="logo">
-              <img src="/assets/images/Logo.png" alt="Logo" />
+              <img className = 'lg' src="/assets/images/Logo.png" alt="Logo" />
             </div>
             <ul className="link_webpages">
               <li>
@@ -155,6 +155,57 @@ export default function Header() {
               </li>
             </ul>
             <div className="icon_nav">
+              <div className="search-container">
+                <input
+                  type="text"
+                  id="search-bar"
+                  placeholder="Search product..."
+                  value={searchTerm}
+                  onChange={(e) => {
+                    
+                    handleFilter(e)
+                  }}
+                />
+                
+                  <img
+                    className="search-icon"
+                    src="/assets/icons/Search-icon.png"
+                  />
+                
+                <div className="result" ref={ref}>
+
+                  {(isMenuOpen && filteredData.length !== 0) && (
+                    <div className="dataResult">
+                      {filteredData.slice(0, 15).map((value, key) => {
+                        // console.log(value)
+                        return (
+                          <Link className="dataItem" to={`/products/${value._id}`} target="_blank" key={value._id}>
+                            <img
+                            src={process.env.REACT_APP_SERVER_URL +
+                              value?.related_images[0]?.url}
+                            className="dataItemImg"
+                            alt={value.name}
+                            />
+                            <div className="dataItemDetail">
+                                <span style={{color: 'black'}}>
+                                {
+                                  (value.name.length > 50) ?(
+                                    <>{value.name.substring(0,50)+"..."}</>
+                                  ):(
+                                    <>{value.name}</>
+                                  )																								
+                                } 
+                                </span>
+                                <span>$ {value.price}</span>
+                            </div>
+                            
+                          </Link>
+                        );
+                      })}
+                    </div>
+                  )}
+                </div>
+              </div>
               <div className="user">
                 <Link to="/profile">
                   <img src="/assets/icons/User-icon.png" />
@@ -174,13 +225,13 @@ export default function Header() {
                           <div className='up'><Link to="/signup" >Sign up</Link></div>
                       </div> */}
           </nav>
-        </div>
+        {/* </div> */}
       </header>
     );
   } else
     return (
       <header>
-        <div className="search">
+        {/* <div className="search">
           <div className="search-container">
             <input
               type="text"
@@ -194,10 +245,10 @@ export default function Header() {
               />
             </a>
           </div>
-        </div>
+        </div> */}
         <nav className="navigation">
           <div className="logo">
-            <img src="/assets/images/Logo.png" alt="Logo" />
+            <img className = 'lg' src="/assets/images/Logo.png" alt="Logo" />
           </div>
           <ul className="link_webpages">
             <li>
@@ -214,9 +265,22 @@ export default function Header() {
             </li>
           </ul>
           <div className="icon_nav">
-            {/* <div className="user">
+            <div className="search-container">
+              <input
+                type="text"
+                id="search-bar"
+                placeholder="Search product..."
+              />
+              <a href="#">
+                <img
+                  className="search-icon"
+                  src="/assets/icons/Search-icon.png"
+                />
+              </a>
+            </div>
+            <div className="user">
                         <Link to="/profile" ><img src="/assets/icons/User-icon.png" /></Link>
-                    </div> */}
+                    </div>
             <div className="cart">
               <Link to="/cart">
                 <img src="/assets/icons/ShoppingCart.png" />
@@ -226,14 +290,14 @@ export default function Header() {
               </span>
             </div>
           </div>
-          <div className="sign">
+          {/* <div className="sign">
             <div className="in">
               <Link to="/login">Sign in</Link>
             </div>
             <div className="up">
               <Link to="/signup">Sign up</Link>
             </div>
-          </div>
+          </div> */}
         </nav>
       </header>
     );

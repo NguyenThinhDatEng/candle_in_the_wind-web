@@ -3,7 +3,7 @@
 }
 /*---------------------Header-----------------------*/
 .navigation {
-    height: 15vh;
+    /* height: 15vh; */
     display: flex;  
     flex: 1;
     flex-wrap: wrap;
@@ -13,19 +13,19 @@
     padding-left: 50px;
     padding-right: 50px;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-    margin-bottom: 50px;
+    /* margin-bottom: 50px; */
 
 }
 /*Home/Store/Blog/About us*/
 .link_webpages{
     display: flex;
     justify-content: space-around;
-    width: 50%;
+    width: 40%;
     list-style: none;
     text-decoration: none;
     font-family:'Reem Kufi';
     font-style: normal;
-    font-size: 20px;
+    font-size: 18px;
     
 }
 .link_webpages li a{
@@ -42,6 +42,7 @@
     display: flex;
     flex-direction: row;
     justify-content: flex-end;
+    margin-left: 200px;
 }
 .icon_nav .user{
     margin-left: 10px;
@@ -92,6 +93,10 @@
 .icon_nav .cart{
     padding: 10px;
 }
+/* .lg{
+    height: 60px;
+    width: 80px;
+} */
 /*-----------------signIn/signUp-----------------*/
 .sign {
     display: flex;
@@ -117,16 +122,16 @@
     
 }
 /* SEARCH*/
-.search{
+/* .search{
     display: flex;  
     flex-wrap: wrap;
     align-items: center;
     justify-content: center;
     background-color: #fff;
-    padding: 10px;
-}
+    padding: 5px;
+} */
 .search-container {
-    width: 500px;
+    width: 300px;
     display: flex;
     flex-direction: row;
     justify-content: space-around;
@@ -136,9 +141,9 @@
 input#search-bar {
     margin: 0 auto;
     width: 100%;
-    height: 35px;
+    height: 30px;
     padding: 0 10px;
-    font-size: 1rem;
+    /* font-size: 1rem; */
     border: 1px solid #000;
     border-radius: 30px;
     outline: none;
@@ -164,10 +169,10 @@ input#search-bar:focus:-ms-placeholder {
 .search-icon {
     position: relative;
     float: right;
-    width: 32px;
-    height: 32px;
+    width: 25px;
+    height: 25px;
     top: 0px;
-    right: 40px;
+    right: 30px;
 }
     
 /* Menu dropdown*/
