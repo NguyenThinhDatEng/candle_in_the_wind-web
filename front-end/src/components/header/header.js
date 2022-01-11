@@ -260,6 +260,12 @@ export default function Header() {
                 <Link to="/profile">
                   <img src="/assets/icons/User-icon.png" />
                 </Link>
+                {/* <button class = 'usericon'><img src = "../assets/icons/User-icon.png"/></button>
+        
+                <ul>
+                    <li><Link to="/profile">My profile</Link></li>
+                    <li><Link to="/profile">Sign out</Link></li>
+                </ul> */}
               </div>
               <div className="cart">
                 <Link to="/cart">
@@ -315,22 +321,83 @@ export default function Header() {
             </li>
           </ul>
           <div className="icon_nav">
-            <div className="search-container">
-              <input
-                type="text"
-                id="search-bar"
-                placeholder="Search product..."
-              />
-              <a href="#">
-                <img
-                  className="search-icon"
-                  src="/assets/icons/Search-icon.png"
+          <div className="search-container">
+                <input
+                  type="text"
+                  id="search-bar"
+                  placeholder="Search product..."
+                  value={searchTerm}
+                  onChange={(e) => {
+                    
+                    handleFilter(e)
+                  }}
                 />
-              </a>
-            </div>
-            <div className="user">
-                        <Link to="/profile" ><img src="/assets/icons/User-icon.png" /></Link>
+                
+                  <img
+                    className="search-icon"
+                    src="/assets/icons/Search-icon.png"
+                  />
+                
+                <div className="result" ref={ref}>
+
+                  {(isMenuOpen && filteredData.length !== 0) && (
+                    <div className="dataResult">
+                      {filteredData.slice(0, 15).map((value, key) => {
+                        // console.log(value)
+                        return (
+                          <Link className="dataItem" to={`/products/${value._id}`} target="_blank" key={value._id}>
+                            <img
+                            src={process.env.REACT_APP_SERVER_URL +
+                              value?.related_images[0]?.url}
+                            className="dataItemImg"
+                            alt={value.name}
+                            />
+                            <div className="dataItemDetail">
+                                <span style={{color: 'black'}}>
+                                {
+                                  (value.name.length > 50) ?(
+                                    <>{value.name.substring(0,50)+"..."}</>
+                                  ):(
+                                    <>{value.name}</>
+                                  )																								
+                                } 
+                                </span>
+                                {
+                                  value?.discount !== 0 ? (
+                                    <div style={{display:'flex', alignItems: 'center'}}>
+                                      <span>$ {Number(value.price) * (100 - Number(value?.discount)) / 100}</span>
+                                      <div style={{
+                                        marginLeft: '8px',
+                                        padding: "0px 2px",
+                                        border: '1px solid', 
+                                        borderRadius: '2px',
+                                        fontSize: '12px',
+                                        lineHeight: '14px',
+                                        fontWeight: '400',
+                                        backgroundColor: 'rgb(255,240,241)',
+                                        color: "rgb(255, 66, 78)"
+                                      }}
+                                      >
+                                        -{value?.discount}%
+                                      </div>
+                                    </div>
+                                    ) : (
+                                    <span style={{color: "black"}}>$ {value.price}</span>
+                                  )
+                                  
+                                }
+                            </div>
+                            
+                          </Link>
+                        );
+                      })}
                     </div>
+                  )}
+                </div>
+              </div>
+            {/* <div className="user">
+                        <Link to="/profile" ><img src="/assets/icons/User-icon.png" /></Link>
+                    </div> */}
             <div className="cart">
               <Link to="/login" onClick={() => {alert.show("Please sign in to continue")}}>
                 <img src="/assets/icons/ShoppingCart.png" />
@@ -341,14 +408,14 @@ export default function Header() {
               </span>
             </div>
           </div>
-          {/* <div className="sign">
+          <div className="sign">
             <div className="in">
               <Link to="/login">Sign in</Link>
             </div>
-            <div className="up">
+            {/* <div className="up">
               <Link to="/signup">Sign up</Link>
-            </div>
-          </div> */}
+            </div> */}
+          </div>
         </nav>
       </header>
     );

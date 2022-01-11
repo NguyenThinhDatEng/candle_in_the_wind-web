@@ -141,7 +141,7 @@ input#search-bar:focus:-ms-placeholder {
 .icon_nav .user ul{
     position: absolute;
     background-color: #1A1717;
-    width: 100px;
+    width: 130px;
     height: 80px;
     display: flex;
     justify-content: space-around;
@@ -153,6 +153,7 @@ input#search-bar:focus:-ms-placeholder {
     pointer-events: none;
     transform: translateY(-10px);
     transform: all 0.4 ease;
+    z-index: 3;
 }
 .icon_nav .user ul li{
     height: 100%;
