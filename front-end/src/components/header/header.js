@@ -223,7 +223,30 @@ export default function Header() {
                                   )																								
                                 } 
                                 </span>
-                                <span>$ {value.price}</span>
+                                {
+                                  value?.discount !== 0 ? (
+                                    <div style={{display:'flex', alignItems: 'center'}}>
+                                      <span>$ {Number(value.price) * (100 - Number(value?.discount)) / 100}</span>
+                                      <div style={{
+                                        marginLeft: '8px',
+                                        padding: "0px 2px",
+                                        border: '1px solid', 
+                                        borderRadius: '2px',
+                                        fontSize: '12px',
+                                        lineHeight: '14px',
+                                        fontWeight: '400',
+                                        backgroundColor: 'rgb(255,240,241)',
+                                        color: "rgb(255, 66, 78)"
+                                      }}
+                                      >
+                                        -{value?.discount}%
+                                      </div>
+                                    </div>
+                                    ) : (
+                                    <span style={{color: "black"}}>$ {value.price}</span>
+                                  )
+                                  
+                                }
                             </div>
                             
                           </Link>
