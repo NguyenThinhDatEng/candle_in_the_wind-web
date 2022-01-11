@@ -56,7 +56,18 @@ export default function StoreScentedWax(props) {
 													} 
 												</p>	
               </Link>
-              <p className="text-danger"> ${value.price}</p>
+              {
+                value?.discount === 0 ? (
+                  <p 
+                  className="text-danger" 
+                  > 
+                    ${value.price}
+                  </p>
+                ):(
+                  <p className="text-danger"> ${Number(value.price) * (100 - Number(value.discount)) / 100}</p>
+                )
+
+              }
               <button 
               className="btn btn-dark mb-3"
               onClick={()=>{
