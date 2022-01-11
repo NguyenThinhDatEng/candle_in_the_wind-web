@@ -29,23 +29,12 @@ export default function Comments(props) {
 
 	const updateComment = async (content, commentId) => {
 		await updateCommentAPI(content, commentId).then((response) => {
-			// const updatedBackendComments = backendComments.map((backendComment) => {
-			// 	if (backendComment.id === commentId) {
-			// 		return { ...backendComment, content: content };
-			// 	}
-			// 	return backendComment;
-			// });
-			// setBackendComments(updatedBackendComments);
 			console.log(response)
 		});
 	}; 
 	const deleteComment = async (commentId) => {
 		console.log("is deleting!!")
 		await deleteCommentAPI(commentId).then((response) => {
-			// const updatedBackendComments = backendComments.filter(
-			// 	(backendComment) => backendComment._id !== commentId
-			// );
-			// setBackendComments(updatedBackendComments);
 			console.log(response)
 		});
 	};
