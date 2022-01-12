@@ -257,15 +257,14 @@ export default function Header() {
                 </div>
               </div>
               <div className="user">
-                <Link to="/profile">
+                {/* <Link to="/profile">
                   <img src="/assets/icons/User-icon.png" />
-                </Link>
-                {/* <button class = 'usericon'><img src = "../assets/icons/User-icon.png"/></button>
-        
+                </Link> */}
+                <button class = 'usericon'><img src = "../assets/icons/User-icon.png"/></button>
                 <ul>
                     <li><Link to="/profile">My profile</Link></li>
                     <li><Link to="/profile">Sign out</Link></li>
-                </ul> */}
+                </ul>
               </div>
               <div className="cart">
                 <Link to="/cart">
