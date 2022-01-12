@@ -73,89 +73,9 @@ export default function Header() {
 			document.removeEventListener("mousedown", checkIfClickedOutside)
 		}
 	}, [isMenuOpen])
-
+  if (localStorage.getItem("user-info")) {
 	return (
 		<header className="" style={{marginBottom:'120px'}}>
-			{/* <div className = 'search_nav'>
-
-
-          <div className="search"> */}
-			{/* <div className="search-container">
-              <input
-                type="text"
-                id="search-bar"
-                placeholder="Search product..."
-                value={searchTerm}
-                onChange={(e) => {
-                  
-                  handleFilter(e)
-                }}
-              />
-              
-                <img
-                  className="search-icon"
-                  src="/assets/icons/Search-icon.png"
-                />
-              
-              <div className="result" ref={ref}>
-
-                {(isMenuOpen && filteredData.length !== 0) && (
-                  <div className="dataResult">
-                    {filteredData.slice(0, 15).map((value, key) => {
-                      // console.log(value)
-                      return (
-                        <Link className="dataItem" to={`/products/${value._id}`} target="_blank" key={value._id}>
-                          <img
-                          src={process.env.REACT_APP_SERVER_URL +
-                            value?.avatar?.url}
-                          className="dataItemImg"
-                          alt={value.name}
-                          />
-                          <div className="dataItemDetail">
-                              <span style={{color: 'black'}}>
-                              {
-                                (value.name.length > 50) ?(
-                                  <>{value.name.substring(0,50)+"..."}</>
-                                ):(
-                                  <>{value.name}</>
-                                )																								
-                              } 
-                              </span>
-                              {
-                                value?.discount !== 0 ? (
-                                  <div style={{display:'flex', alignItems: 'center'}}>
-                                    <span>$ {Number(value.price) * (100 - Number(value?.discount)) / 100}</span>
-                                    <div style={{
-                                      marginLeft: '8px',
-                                      padding: "0px 2px",
-                                      border: '1px solid', 
-                                      borderRadius: '2px',
-                                      fontSize: '12px',
-                                      lineHeight: '14px',
-                                      fontWeight: '400',
-                                      backgroundColor: 'rgb(255,240,241)',
-                                      color: "rgb(255, 66, 78)"
-                                    }}
-                                    >
-                                      -{value?.discount}%
-                                    </div>
-                                  </div>
-                                  ) : (
-                                  <span style={{color: "black"}}>$ {value.price}</span>
-                                )
-                                
-                              }
-                          </div>
-                          
-                        </Link>
-                      );
-                    })}
-                  </div>
-                )}
-              </div>
-            </div> */}
-
-			{/* </div> */}
 			<nav className="navigation fixed-top">
 				<div className="logo">
 					<img className='lg' src="/assets/images/Logo.png" alt="Logo" />
@@ -241,14 +161,137 @@ export default function Header() {
 
 													}
 												</div>
+                            
+                      </Link>
+                        );
+                      })}
+                    </div>
+                  )}
+                </div>
+              </div>
+              <div className="user">
+                {/* <Link to="/profile">
+                  <img src="/assets/icons/User-icon.png" />
+                </Link> */}
+                <button class = 'usericon'><img src = "../assets/icons/User-icon.png"/></button>
+                <ul>
+                    <li><Link to="/profile">My profile</Link></li>
+                    <li><Link to="/" onClick={()=>{localStorage.removeItem("user-info")}}>Sign out</Link></li>
+                </ul>
+              </div>
+              <div className="cart">
+                <Link to="/cart">
+                  <img src="/assets/icons/ShoppingCart.png" />
+                </Link>
+                <span className="badge badge-warning" id="lblCartCount">
+                  {total}
+                </span>
+              </div>
+            </div>
+            {/* <div className='sign'>
+                          <div className='in'><Link to="/login" >Sign in</Link></div>
+                          <div className='up'><Link to="/signup" >Sign up</Link></div>
+                      </div> */}
+          </nav>
+        {/* </div> */}
+      </header>
+    );
+  } else
+    return (
+      <header>
+        <nav className="navigation">
+          <div className="logo">
+            <img className = 'lg' src="/assets/images/Logo.png" alt="Logo" />
+          </div>
+          <ul className="link_webpages">
+            <li>
+              <Link to="/">HOME</Link>
+            </li>
+            <li>
+              <Link to="/store">STORE</Link>
+            </li>
+            <li>
+              <Link to="/blog">BLOG</Link>
+            </li>
+            <li>
+              <Link to="/about-us">ABOUT US</Link>
+            </li>
+          </ul>
+          <div className="icon_nav">
+          <div className="search-container">
+						<input
+							type="text"
+							id="search-bar"
+							placeholder="Search product..."
+							value={searchTerm}
+							onChange={(e) => {
 
-											</Link>
-										);
-									})}
-								</div>
-							)}
-						</div>
-					</div>
+								handleFilter(e)
+							}}
+						/>
+
+						<img
+							className="search-icon"
+							src="/assets/icons/Search-icon.png"
+						/>
+
+						<div className="result" ref={ref}>
+
+							{(isMenuOpen && filteredData.length !== 0) && (
+								<div className="dataResult">
+									{filteredData.slice(0, 15).map((value, key) => {
+										// console.log(value)
+										return (
+											<Link className="dataItem" to={`/products/${value._id}`} target="_blank" key={value._id}>
+												<img
+													src={process.env.REACT_APP_SERVER_URL +
+														value?.related_images[0]?.url}
+													className="dataItemImg"
+													alt={value.name}
+												/>
+												<div className="dataItemDetail">
+													<span style={{ color: 'black' }}>
+														{
+															(value.name.length > 50) ? (
+																<>{value.name.substring(0, 50) + "..."}</>
+															) : (
+																<>{value.name}</>
+															)
+														}
+													</span>
+													{
+														value?.discount !== 0 ? (
+															<div style={{ display: 'flex', alignItems: 'center' }}>
+																<span>$ {Number(value.price) * (100 - Number(value?.discount)) / 100}</span>
+																<div style={{
+																	marginLeft: '8px',
+																	padding: "0px 2px",
+																	border: '1px solid',
+																	borderRadius: '2px',
+																	fontSize: '12px',
+																	lineHeight: '14px',
+																	fontWeight: '400',
+																	backgroundColor: 'rgb(255,240,241)',
+																	color: "rgb(255, 66, 78)"
+																}}
+																>
+																	-{value?.discount}%
+																</div>
+															</div>
+														) : (
+															<span style={{ color: "black" }}>$ {value.price}</span>
+														)
+
+													}
+												</div>
+                            
+                      </Link>
+                        );
+                      })}
+                    </div>
+                  )}
+                </div>
+              </div>
 
 					{
 						localStorage.getItem("user-info") ?
