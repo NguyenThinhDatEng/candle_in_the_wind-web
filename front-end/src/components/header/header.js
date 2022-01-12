@@ -82,8 +82,8 @@ export default function Header() {
 				</div>
 				<ul className="link_webpages">
 					<li>
-						{window.location.pathname==="/"? (<Link to="/" className = "active" >HOME</Link>):(<Link to="/" className = "" >HOME</Link>)}
-							
+						{window.location.pathname==="/"? (<Link to="/" className = "active" >HOME</Link>):(<Link to="/" className = "" >HOME</Link>)}							
+					
 					</li>
 					<li>
 						{window.location.pathname==="/store"? (<Link to="/store" className = "active" >STORE</Link>):(<Link to="/store" className = "" >STORE</Link>)}
@@ -208,18 +208,22 @@ export default function Header() {
             <img className = 'lg' src="/assets/images/Logo.png" alt="Logo" />
           </div>
           <ul className="link_webpages">
-            <li>
-              <Link to="/" >HOME</Link>
-            </li>
-            <li>
-              <Link to="/store">STORE</Link>
-            </li>
-            <li>
-              <Link to="/blog">BLOG</Link>
-            </li>
-            <li>
-              <Link to="/about-us">ABOUT US</Link>
-            </li>
+		  	<li>
+				{window.location.pathname==="/"? (<Link to="/" className = "active" >HOME</Link>):(<Link to="/" className = "" >HOME</Link>)}							
+					
+			</li>
+			<li>
+				{window.location.pathname==="/store"? (<Link to="/store" className = "active" >STORE</Link>):(<Link to="/store" className = "" >STORE</Link>)}
+						
+			</li>
+			<li>
+				{window.location.pathname==="/blog"? (<Link to="/blog" className = "active" >BLOG</Link>):(<Link to="/blog" className = "" >BLOG</Link>)}
+						
+			</li>
+			<li>
+				{window.location.pathname==="/about-us"? (<Link to="/about-us" className = "active" >ABOUT US</Link>):(<Link to="/about-us" className = "" >ABOUT US</Link>)}
+						
+			</li>
           </ul>
           <div className="icon_nav">
           <div className="search-container">
