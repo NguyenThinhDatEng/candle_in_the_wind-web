@@ -38,12 +38,6 @@ export default function Blog() {
 	return (
 		<div>
 			<Header />
-
-			<div className="container page-title">
-				<p className="text-center py-4">BLOG</p>
-			</div>
-
-
 			<div className="container bg-secondary">
 				{
 					customer_id ? (<Link to="/create-post" type="button" className="btn btn-dark fs-4 mt-5 create-post">

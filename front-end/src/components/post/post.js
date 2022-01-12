@@ -61,9 +61,6 @@ export default function Post(props) {
 	return (
 		<div>
 			<Header />
-			<div className="container page-title">
-				<p className="text-center py-4">BLOG</p>
-			</div>
 
 			{
 				loading ?
