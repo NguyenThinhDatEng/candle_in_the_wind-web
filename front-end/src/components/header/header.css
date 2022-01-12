@@ -59,7 +59,7 @@
 }
 .link_webpages li a:hover {
     /* font-weight: bold; */
-    text-shadow: 2px 2px 2px #000; ;
+    text-shadow: 2px 2px 2px #000; 
 }
 /* Icon SEARCH USER CART*/
 .icon_nav {
@@ -278,3 +278,6 @@ input#search-bar:focus:-ms-placeholder {
     opacity: 1;
     height: 200px;
 } */
+.active{
+    text-shadow: 2px 2px 2px #000;
+}

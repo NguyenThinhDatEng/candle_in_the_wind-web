@@ -7,6 +7,7 @@ import Pagination from "../pagination/pagination";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import ReactLoading from "react-loading";
+
 require("dotenv").config();
 
 export default function Blog() {
