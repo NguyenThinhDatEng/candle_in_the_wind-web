@@ -17,13 +17,18 @@ export default function Store(props) {
 	const [data, setData] = useState([]);
 	const { searchFilter } = useContext(CartContext)
 	const [loading, setLoading] = useState(true);
+	const [catalog, setCatalog] = useState([]);
 
 	useEffect(async () => {
 		const result = await axios(process.env.REACT_APP_SERVER_URL + "/products/");
 		setData(result.data);
-		setLoading(false)
+
+		const result2 = await axios(process.env.REACT_APP_SERVER_URL + "/catalogs");
+		// console.log(result2.data);
+		setCatalog(result2.data);
+		setLoading(false);
 	});
-	console.log(data)
+	// console.log(catalog)
 
 	const displayCheck = () => {
 		if (status === 0) {
@@ -61,11 +66,45 @@ export default function Store(props) {
 		}
 	};
 
+	const displayBanner = () => {
+		console.log("ok")
+		if (status === 0) {
+			return (
+				<div className="image">
+					<img src="/assets/images/candle.jpg" alt="" />
+				</div>
+			)
+		}
+		else if (status === 1) {
+			return (
+				<div className="image">
+					<img src="/assets/images/scented_wax.jpg" alt="" />
+				</div>
+			)
+		}
+		else if (status === 2) {
+			return (
+				<div className="image">
+					<img src="/assets/images/essential_oil.jpg" alt="" />
+				</div>
+			)
+		}
+		else {
+			return (
+				<div className="image">
+					<img src="/assets/images/decoration.jpg" alt="" />
+				</div>
+			)
+		}
+	}
+
 	return (
 		<div>
 			<Header />
-			<div className="container page-title">
-				<p className="text-center py-4">Store</p>
+			<div className="container">
+				{
+					displayBanner()
+				}
 			</div>
 
 			<div className="text-center my-5">
