@@ -4,23 +4,29 @@ import Footer from "../footer/footer";
 import Header from "../header/header";
 import imgdemo from "./avatar.jpg";
 import imgdemo1 from "./Balsam_and_Cedar_5ba57b31cc.png";
+import { useAlert } from 'react-alert'
 import "./item.css";
 import axios from "axios";
 import { CartContext } from "../../context/Context";
 require("dotenv").config();
 
 const Item = (props) => {
+  const {cart, addItemToCart, updateItemFromCart} = useContext(CartContext)
+
   const [toggle, setToggle] = useState(false);
+  
   const toggler = () => {
     toggle ? setToggle(false) : setToggle(true);
   };
+  
   const [quantity, setQuantity] = useState(1);
 
   const [data, setData] = useState([]);
 
   const [loading, setLoading] = useState(true)
 
-  const {cart, addItemToCart, updateItemFromCart} = useContext(CartContext)
+  const alert = useAlert();
+
   console.log(cart)
 
   useEffect(async () => {
@@ -122,13 +128,17 @@ const Item = (props) => {
                   className="cart-btn" 
                   type="button" 
                   onClick={()=>{
-                    if (cart.find((product) => product?.data?._id === data?._id)){
-                      updateItemFromCart(data, quantity)
-                      // console.log("Update")
-                    }
-                    else {
-                      addItemToCart({data, quantity})
-                      // console.log("Add")
+                    if(localStorage.getItem("user-info")){
+                      if (cart.find((product) => product?.data?._id === data?._id)){
+                        updateItemFromCart(data, quantity)
+                        // console.log("Update")
+                      }
+                      else {
+                        addItemToCart({data, quantity})
+                        // console.log("Add")
+                      }
+                    } else {
+                      alert.show("Please sign in")
                     }
                     
                   }} 
