@@ -76,9 +76,6 @@ export default function CreatePost() {
 	return (
 		<div>
 			<Header />
-			<div className="container page-title">
-				<p className="text-center py-4">BLOG</p>
-			</div>
 			<div className="container bg-secondary">
 				<div className="row justify-content-center">
 					<div className="col-md-8 col-md-offset-2">
