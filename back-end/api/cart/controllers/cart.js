@@ -23,7 +23,7 @@ const findOne = async (ctx) => {
   for (var item of items) {
     // get product
     try {
-      product = await strapi.services.product.findOneID(cart.product);
+      product = await strapi.services.product.findOneID(item.product);
     } catch (error) {
       return strapi.services.cart.err500(ctx, error, "get product");
     }
