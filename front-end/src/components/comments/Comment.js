@@ -11,17 +11,15 @@ export default function Comment({
 }) {
 	const [isEditing, setIsEditing] = useState(false);
 	const createdAt = new Date(comment?.createdAt).toLocaleDateString();
-	const [customer, setCustomer] = useState([])
 
-	useEffect(async () => {
-		setCustomer(await getUserInfo(comment?.customer))
-	})
-	// console.log(customer)
+	const customer_name = JSON.parse(localStorage.getItem("user-info"))?.username;
+
+	// console.log(comment)
 	return (
 		<div>
 			<div class="bg-white p-2">
-				<div class="d-flex flex-row user-info"><img class="rounded-circle" src={process.env.REACT_APP_SERVER_URL + customer?.avatar?.url} width="40" />
-					<div class="d-flex flex-column justify-content-start ml-2"><span class="d-block font-weight-bold name"> {customer?.username} </span><span class="date text-black-50">Shared publicly - {createdAt} </span></div>
+				<div class="d-flex flex-row "><img class="rounded-circle" src={process.env.REACT_APP_SERVER_URL + comment?.url} width="40" />
+					<div class="d-flex flex-column justify-content-start ml-2"><span class="d-block font-weight-bold name"> {comment?.username} </span><span class="date text-black-50">Shared publicly - {createdAt} </span></div>
 				</div>
 				{!isEditing && <div className="comment-text">{comment?.content}</div>}
 				{
@@ -29,7 +27,7 @@ export default function Comment({
 						<CommentForm
 							submitLabel="Update"
 							initialText={comment.content}
-							handleSubmit={(text) => {updateComment(text, comment?._id);
+							handleSubmit={(text) => {updateComment(text, comment?.id);
 													setIsEditing(false)}}
 							handleCancel={() => {
 								setIsEditing(false)
@@ -38,7 +36,7 @@ export default function Comment({
 					)
 				}
 				<div className="comment-actions">
-					{currentUserId === comment?.customer && (
+					{customer_name === comment?.username && (
 						<>
 							<div
 								className="comment-action"
@@ -49,7 +47,7 @@ export default function Comment({
 
 							<div
 								className="comment-action"
-								onClick={() => deleteComment(comment._id)}
+								onClick={() => deleteComment(comment?.id)}
 							>
 								Delete
 							</div>
