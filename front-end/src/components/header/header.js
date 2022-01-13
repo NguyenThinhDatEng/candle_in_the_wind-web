@@ -23,6 +23,7 @@ export default function Header() {
 	useEffect(() => {
 		setTotal(cart.reduce((acc, curr) => acc + Number(curr?.quantity), 0));
 	}, [cart]);
+	
 	useEffect(() => {
 		const clearFilterSearch = setTimeout(() => {
 			setSearchFilter(searchTerm)
