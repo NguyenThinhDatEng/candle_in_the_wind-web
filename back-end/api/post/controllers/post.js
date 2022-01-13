@@ -33,7 +33,7 @@ const findOne = async (ctx) => {
       id: comment.id,
       content: comment.content,
       username: comment.customer.username,
-      url: comment.customer.avatar.url,
+      url: comment.customer.avatar?.url,
     };
     allOfComments.push(o);
   }
