@@ -320,7 +320,7 @@ export default function Header() {
 							<>
 								<div className='sign'>
 									<div className='in'><Link to="/login" >Sign in</Link></div>
-									{/* <div className='up'><Link to="/signup" >Sign up</Link></div> */}
+									<div className='up'><Link to="/signup" >Sign up</Link></div>
 								</div>
 							</>
 					}
