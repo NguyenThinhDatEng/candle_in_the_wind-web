@@ -15,16 +15,40 @@ const findOne = async (ctx) => {
   // get comments
   const comments = post.comments;
   // create data to response
-  let data = [];
+  let data = null;
+  let allOfComments = [];
   let o = null;
+  let comment = null;
   //   let
-  for (var element in comments) {
+  for (var tmpComment of comments) {
     // get comment
     try {
+      comment = await strapi.services.comment.findOneID(tmpComment.id);
     } catch (error) {
       return strapi.services.post.err500(ctx, error, "get comment");
     }
+    // create data
+    o = {
+      content: comment.content,
+      username: comment.customer.username,
+      url: comment.customer.avatar.url,
+    };
+    allOfComments.push(o);
   }
+  data = {
+    lockComment: post.lockComment,
+    title: post.title,
+    content: post.content,
+    published_at: post.published_at,
+    avatar: post.avatar.url,
+    comments: allOfComments,
+  };
+
+  Response.ok(ctx, {
+    msg: "ok",
+    status: 200,
+    data: data,
+  });
 };
 
 module.exports = { findOne };
