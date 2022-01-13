@@ -12,6 +12,7 @@ const findOne = async (ctx) => {
   } catch (error) {
     return strapi.services.post.err500(ctx, error, "get post");
   }
+  //   console.log(post);
   // get comments
   const comments = post.comments;
   // create data to response
@@ -37,6 +38,7 @@ const findOne = async (ctx) => {
     allOfComments.push(o);
   }
   data = {
+    id: post.id,
     lockComment: post.lockComment,
     title: post.title,
     content: post.content,
@@ -46,11 +48,7 @@ const findOne = async (ctx) => {
     comments: allOfComments,
   };
 
-  Response.ok(ctx, {
-    msg: "ok",
-    status: 200,
-    data: data,
-  });
+  return data;
 };
 
 module.exports = { findOne };
