@@ -18,7 +18,8 @@ export default function Header() {
 		const result = await axios(process.env.REACT_APP_SERVER_URL + "/products/");
 		// setLoading(false)
 		setData(result.data);
-	});
+	},[]);
+
 
 	useEffect(() => {
 		setTotal(cart.reduce((acc, curr) => acc + Number(curr?.quantity), 0));
