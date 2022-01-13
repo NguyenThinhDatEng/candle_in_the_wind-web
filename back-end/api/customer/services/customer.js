@@ -45,4 +45,5 @@ module.exports = {
   updateOTP,
   updatePassword,
   checkLogin,
+  err500,
 };

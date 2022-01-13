@@ -24,6 +24,7 @@ const login = async (ctx) => {
       dateOfBirth: user.dateOfBirth,
       phoneNumber: user.phoneNumber,
       loyal: user.loyal,
+      cart: user.cart.id,
     };
     return Response.ok(ctx, { data: data, msg: `OK`, status: 1 });
   }
@@ -59,10 +60,10 @@ const signup = async (ctx) => {
   } catch (error) {
     return strapi.services.customer.err500(error, "create new user");
   }
-  console.log("abc");
   // create new cart
+  let cart = null;
   try {
-    await strapi.services.cart.create(user.id);
+    cart = await strapi.services.cart.create(user.id);
   } catch (error) {
     return strapi.services.customer.err500(error, "create new cart");
   }
@@ -76,7 +77,7 @@ const signup = async (ctx) => {
       dateOfBirth: user.dateOfBirth,
       phoneNumber: user.phoneNumber,
       loyal: user.loyal,
-      cart: user.cart,
+      cart: cart.id,
     };
     return Response.created(ctx, {
       data: data,
