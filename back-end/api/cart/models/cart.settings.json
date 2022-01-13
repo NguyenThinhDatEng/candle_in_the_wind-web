@@ -7,7 +7,13 @@
   },
   "options": {
     "increments": true,
-    "privateAttributes": ["__v", "createdAt", "updatedAt", "_id"]
+    "privateAttributes": [
+      "__v",
+      "createdAt",
+      "updatedAt",
+      "_id"
+    ],
+    "draftAndPublish": false
   },
   "pluginOptions": {},
   "attributes": {
@@ -15,9 +21,9 @@
       "model": "customer",
       "via": "cart"
     },
-    "items": {
-      "collection": "item",
-      "via": "cart"
+    "cart_items": {
+      "via": "cart",
+      "collection": "cart-item"
     }
   }
 }
