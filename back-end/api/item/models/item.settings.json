@@ -25,6 +25,10 @@
     "order": {
       "via": "items",
       "model": "order"
+    },
+    "cart": {
+      "model": "cart",
+      "via": "items"
     }
   }
 }

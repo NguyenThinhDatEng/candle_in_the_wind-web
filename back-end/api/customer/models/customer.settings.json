@@ -66,6 +66,10 @@
     "comments": {
       "collection": "comment",
       "via": "customer"
+    },
+    "cart": {
+      "model": "cart",
+      "via": "customer"
     }
   }
 }

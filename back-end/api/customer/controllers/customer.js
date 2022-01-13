@@ -59,6 +59,7 @@ const signup = async (ctx) => {
   } catch (error) {
     return strapi.services.customer.err500(error, "create new user");
   }
+  console.log("abc");
   // create new cart
   try {
     await strapi.services.cart.create(user.id);
