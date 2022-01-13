@@ -1,0 +1,22 @@
+{
+  "kind": "collectionType",
+  "collectionName": "carts",
+  "info": {
+    "name": "cart",
+    "description": ""
+  },
+  "options": {
+    "increments": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "customer": {
+      "model": "customer",
+      "via": "cart"
+    },
+    "items": {
+      "collection": "item",
+      "via": "cart"
+    }
+  }
+}
