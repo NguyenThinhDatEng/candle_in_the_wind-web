@@ -1,4 +1,5 @@
 "use strict";
+const Response = require(`../../../utils/response`);
 
 const findOneEmail = async function (email) {
   return await strapi.query(`customer`).findOne({ email });
@@ -27,6 +28,15 @@ const updatePassword = async function (email, newPassword) {
 
 const checkLogin = async function (email, password) {
   return await strapi.query("customer").findOne({ email, password });
+};
+
+const err500 = async (error, title) => {
+  console.log(`\n${title}\n`, error);
+  return Response.internalServerError(ctx, {
+    data: null,
+    msg: `Server Error at ${title}`,
+    status: 500,
+  });
 };
 
 module.exports = {

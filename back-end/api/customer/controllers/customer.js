@@ -35,36 +35,37 @@ const login = async (ctx) => {
 };
 
 const signup = async (ctx) => {
+  // get information
   const { username, email, password, gender, dateOfBirth, phoneNumber } =
     ctx.request.body;
+  // check email
   let user = null;
   try {
     user = await strapi.services.customer.findOneEmail(email);
   } catch (error) {
-    console.log(error);
-    return Response.internalServerError(ctx, {
-      data: null,
-      msg: `Server Error`,
-      status: 500,
-    });
+    return strapi.services.customer.err500(error, "check email");
   }
   if (user)
     return Response.notAcceptable(ctx, {
       msg: `${email} already exists. Please try a different email`,
       status: 406,
     });
+
+  // create new user
   try {
     user = await strapi
       .query(`customer`)
       .create({ username, email, password, gender, dateOfBirth, phoneNumber });
   } catch (error) {
-    console.log(error);
-    return Response.internalServerError(ctx, {
-      data: null,
-      msg: `Server Error`,
-      status: 0,
-    });
+    return strapi.services.customer.err500(error, "create new user");
   }
+  // create new cart
+  try {
+    await strapi.services.cart.create(user.id);
+  } catch (error) {
+    return strapi.services.customer.err500(error, "create new cart");
+  }
+  // customize data response
   if (user) {
     let data = {
       id: user.id,
@@ -74,6 +75,7 @@ const signup = async (ctx) => {
       dateOfBirth: user.dateOfBirth,
       phoneNumber: user.phoneNumber,
       loyal: user.loyal,
+      cart: user.cart,
     };
     return Response.created(ctx, {
       data: data,
@@ -81,11 +83,6 @@ const signup = async (ctx) => {
       status: 201,
     });
   }
-  return Response.internalServerError(ctx, {
-    data: null,
-    msg: `Server Error`,
-    status: 500,
-  });
 };
 
 const resetPassWord = async (ctx) => {
