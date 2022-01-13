@@ -29,6 +29,7 @@ const findOne = async (ctx) => {
     }
     // create data
     o = {
+      id: comment.id,
       content: comment.content,
       username: comment.customer.username,
       url: comment.customer.avatar.url,
