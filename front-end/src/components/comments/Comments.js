@@ -19,7 +19,7 @@ export default function Comments(props) {
 		setBackendComments(props.commentData)
 	})
 
-	// console.log(postId)
+	// console.log(props.postId)
 
 	const addComment = async (content) => {
 		await createCommentAPI(content, props.currentUserId, props.postId).then((response) => {
@@ -39,6 +39,7 @@ export default function Comments(props) {
 		});
 	};
 
+	// console.log(props.isChange)
 	return (
 		<div className="comments">
 			<div className="comments-container">
@@ -55,3 +56,5 @@ export default function Comments(props) {
 		</div>
 	);
 };
+
+
