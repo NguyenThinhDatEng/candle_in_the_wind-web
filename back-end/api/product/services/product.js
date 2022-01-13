@@ -1,8 +1,7 @@
-'use strict';
+"use strict";
 
-/**
- * Read the documentation (https://strapi.io/documentation/developer-docs/latest/development/backend-customization.html#core-services)
- * to customize this service
- */
+const findOneID = async (id) => {
+  return strapi.query("product").findOne({ id });
+};
 
-module.exports = {};
+module.exports = { findOneID };

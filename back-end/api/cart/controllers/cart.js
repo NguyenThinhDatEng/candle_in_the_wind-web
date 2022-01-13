@@ -1,8 +1,48 @@
-'use strict';
+"use strict";
+const Response = require(`../../../utils/response`);
 
-/**
- * Read the documentation (https://strapi.io/documentation/developer-docs/latest/development/backend-customization.html#core-controllers)
- * to customize this controller
- */
+const findOne = async (ctx) => {
+  // get cart id
+  const url = ctx.request.url.split("/");
+  const id = url[url.length - 1];
 
-module.exports = {};
+  // get cart
+  let cart = null;
+  try {
+    cart = await strapi.query("cart").findOne({ id });
+  } catch (error) {
+    return strapi.services.cart.err500(ctx, error, "get cart");
+  }
+
+  // get items
+  const items = cart.cart_items;
+  // create data to response
+  let data = [];
+  let product = null;
+  let tmp = null;
+  for (var item of items) {
+    // get product
+    try {
+      product = await strapi.services.product.findOneID(item.product);
+    } catch (error) {
+      return strapi.services.cart.err500(ctx, error, "get product");
+    }
+    // create data
+    tmp = {
+      name: product.name,
+      quantity: item.quantity,
+      price: product.price,
+      product: product.id,
+      url: product.avatar.url,
+    };
+    data.push(tmp);
+  }
+
+  return Response.ok(ctx, {
+    msg: "ok",
+    data: data,
+    status: 200,
+  });
+};
+
+module.exports = { findOne };

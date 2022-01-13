@@ -1,8 +1,13 @@
-'use strict';
+"use strict";
+const Response = require(`../../../utils/response`);
 
-/**
- * Read the documentation (https://strapi.io/documentation/developer-docs/latest/development/backend-customization.html#core-services)
- * to customize this service
- */
+const err500 = (ctx, error, title) => {
+  console.log(`\n${title}\n`, error);
+  return Response.internalServerError(ctx, {
+    data: null,
+    msg: `Server Error at ${title}`,
+    status: 500,
+  });
+};
 
-module.exports = {};
+module.exports = { err500 };
