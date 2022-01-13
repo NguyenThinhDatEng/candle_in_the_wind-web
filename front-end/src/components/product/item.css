@@ -272,6 +272,7 @@
 
 .item-img img {
     display: block;
-    object-fit: cover;
+    object-fit: contain;
     height: auto;
+    background-color: #fff;
 }

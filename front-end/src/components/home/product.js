@@ -125,8 +125,9 @@ export default function Product() {
 												
 												<Link to={`/products/${value._id}`}>
 												
-													<div className="item-img">
+													<div className="item-img" style={{objectFit: "contain"}}>
 														<img
+															
 															alt=""
 															src={
 																process.env.REACT_APP_SERVER_URL +
