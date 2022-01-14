@@ -42,7 +42,7 @@ export default function Product() {
 		const result = await axios(process.env.REACT_APP_SERVER_URL + "/products/");
 		setLoading(false)
 		setData(result.data);
-	});
+	},[]);
 
 	const settings = {
 		infinite: true,

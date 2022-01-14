@@ -6,7 +6,7 @@ const createPostAPI = async (newData) => {
         title: newData.title,
         content: newData.content,
         avatar: newData.avatar,
-        username: newData.username
+        customer: newData.customer_id
     });
 
     let config = {
@@ -18,7 +18,7 @@ const createPostAPI = async (newData) => {
         },
         data: data,
     };
-    // console.log(data);
+    console.log(data);
     return await axios(config);
 };
 

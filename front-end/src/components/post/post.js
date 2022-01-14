@@ -45,7 +45,7 @@ export default function Post(props) {
 		setComment(result.data?.comments);
 		setLock(post?.lockComment)
 		setLoading(false)
-	});
+	}, [comment]);
 
 	const lockComment = async () => {
 		setLoading(true)

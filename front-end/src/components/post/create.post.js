@@ -15,7 +15,7 @@ export default function CreatePost() {
 	});
 	const [formErrors, setFormErrors] = useState("");
 
-	const customer_username = JSON.parse(localStorage.getItem("user-info"))?.username;
+	const customer_id = JSON.parse(localStorage.getItem("user-info"))?.id;
 
 	const updateTitle = (e) => {
 		setState((previousState) => {
@@ -58,12 +58,12 @@ export default function CreatePost() {
 					res = response;
 				});
 
-			console.log(res?.data[0].url);
+			console.log(res?.data[0]._id);
 			let data = {
 				title: state.title,
 				content: state.content,
-				avatar: res?.data[0]?.url,
-				username: customer_username,
+				avatar: res?.data[0]?._id,
+				customer_id: customer_id,
 			};
 
 			console.log(data);
@@ -117,7 +117,7 @@ export default function CreatePost() {
 									{formErrors}{" "}
 								</p>
 								<Link
-									to="/blog"
+									to="#"
 									type="submit"
 									className="btn btn-dark"
 									onClick={() => createPost()}
