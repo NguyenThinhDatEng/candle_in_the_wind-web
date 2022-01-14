@@ -29,6 +29,7 @@ const login = async (ctx) => {
     phoneNumber: user.phoneNumber,
     loyal: user.loyal,
     cart: user.cart?.id,
+    cart: cart.id,
     orders: user.orders,
   };
   return Response.ok(ctx, { data: data, msg: `OK`, status: 200 });
