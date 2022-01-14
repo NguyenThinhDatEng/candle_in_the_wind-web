@@ -21,7 +21,8 @@
     },
     "content": {
       "type": "richtext",
-      "required": true
+      "required": true,
+      "minLength": 100
     },
     "lockComment": {
       "type": "boolean",
