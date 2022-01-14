@@ -16,13 +16,16 @@ export default function Blog() {
 	const [postsPerPage] = useState(6);
 	const [loading, setLoading] = useState(true);
 
+	// var posts = [];
+
 
 	useEffect(async () => {
 		// setLoading(true)
 		const result = await axios(process.env.REACT_APP_SERVER_URL + "/posts/");
 		setLoading(false)
 		setPost(result.data.reverse());
-
+		// posts = result.data.reverse(); 
+		
 	});
 
 	const customer_id = JSON.parse(localStorage.getItem("user-info"))?.id
@@ -36,6 +39,7 @@ export default function Blog() {
 	const paginate = pageNumber => setCurrentPage(pageNumber);
 
 	// console.log(loading)
+	// console.log(posts)
 	return (
 		<div>
 			<Header />
