@@ -72,8 +72,8 @@
       "pluginOptions": {}
     },
     "cart_item": {
-      "via": "product",
-      "model": "cart_item"
+      "model": "cart_item",
+      "via": "product"
     }
   }
 }

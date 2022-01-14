@@ -1,8 +1,27 @@
-'use strict';
+"use strict";
+const Response = require(`../../../utils/response`);
 
-/**
- * Read the documentation (https://strapi.io/documentation/developer-docs/latest/development/backend-customization.html#core-controllers)
- * to customize this controller
- */
+const createItems = async (ctx) => {
+  // get items
+  const items = ctx.request.body;
+  // create items
+  for (var item of items) {
+    try {
+      await strapi.query("cart_item").create({
+        cart: item.cart,
+        product: item.product,
+        quantity: item.quantity,
+      });
+    } catch (error) {
+      return strapi.services.cart_item.err500(ctx, error, "create items");
+    }
+  }
 
-module.exports = {};
+  Response.created(ctx, {
+    msg: "create items successfully",
+    data: items,
+    status: 201,
+  });
+};
+
+module.exports = { createItems };

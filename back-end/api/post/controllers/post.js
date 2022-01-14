@@ -12,7 +12,7 @@ const findOne = async (ctx) => {
   } catch (error) {
     return strapi.services.post.err500(ctx, error, "get post");
   }
-  //   console.log(post);
+
   // get comments
   const comments = post.comments;
   // create data to response

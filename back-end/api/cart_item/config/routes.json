@@ -33,6 +33,14 @@
       }
     },
     {
+      "method": "POST",
+      "path": "/cart_items/createItems",
+      "handler": "cart_item.createItems",
+      "config": {
+        "policies": []
+      }
+    },
+    {
       "method": "PUT",
       "path": "/cart_items/:id",
       "handler": "cart_item.update",
