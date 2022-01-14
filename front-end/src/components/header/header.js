@@ -17,7 +17,7 @@ export default function Header() {
   useEffect(async () => {
     const result = await axios(process.env.REACT_APP_SERVER_URL + "/products/");
     // setLoading(false)
-    console.console("header");
+    console.log("header");
     setData(result.data);
   }, []);
 
