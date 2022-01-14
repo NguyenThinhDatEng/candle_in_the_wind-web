@@ -30,7 +30,7 @@ const checkLogin = async function (email, password) {
   return await strapi.query("customer").findOne({ email, password });
 };
 
-const err500 = async (ctx, error, title) => {
+const err500 = (ctx, error, title) => {
   console.log(`\n${title}\n`, error);
   return Response.internalServerError(ctx, {
     data: null,
