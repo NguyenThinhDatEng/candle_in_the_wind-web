@@ -9,14 +9,7 @@
     "increments": true,
     "timestamps": true,
     "draftAndPublish": true,
-    "populateCreatorFields": true,
-    "privateAttributes": [
-      "__v",
-      "createdAt",
-      "updatedAt",
-      "id",
-      "image"
-    ]
+    "privateAttributes": ["__v", "createdAt", "updatedAt", "id"]
   },
   "pluginOptions": {},
   "attributes": {
@@ -37,9 +30,7 @@
     "avatar": {
       "model": "file",
       "via": "related",
-      "allowedTypes": [
-        "images"
-      ],
+      "allowedTypes": ["images"],
       "plugin": "upload",
       "required": true,
       "pluginOptions": {}

@@ -17,13 +17,12 @@ const Login = () => {
 	const [errMessage, setErrMessage] = useState("");
 	const [callCart, setCallCart] = useState([])
 
-
-	const history = useHistory();
-	useEffect(() => {
-		if (localStorage.getItem("user-info")) {
-			history.push("/");
-		}
-	});
+  const history = useHistory();
+  useEffect(() => {
+    if (localStorage.getItem("user-info")) {
+      history.push("/");
+    }
+  });
 
 	const handleShowHidePassword = () => {
 		setIsShowPassword(!isShowPassword);
