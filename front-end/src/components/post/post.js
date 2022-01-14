@@ -33,11 +33,14 @@ export default function Post(props) {
 
 
 	const customer_id = JSON.parse(localStorage.getItem("user-info"))?.id;
+	const customer_name = JSON.parse(localStorage.getItem("user-info"))?.username;
 
+	
 	useEffect(async () => {
 		const result = await axios(
 			process.env.REACT_APP_SERVER_URL + "/posts/" + props.match.params.id
 		);
+		// console.log(result)
 		setPost(result.data);
 		setComment(result.data?.comments);
 		setLock(post?.lockComment)
@@ -57,6 +60,9 @@ export default function Post(props) {
 			console.log(response)
 		})
 	}
+
+	// console.log(lock ===false)
+	// console.log(post?.username , customer_name)
 
 	return (
 		<div>
@@ -81,7 +87,7 @@ export default function Post(props) {
 						<div className="post-title ">
 							<h1> {post?.title}
 								{
-									customer_id === post?.customer?.id ?
+									customer_name === post?.username ?
 										<>
 											<div className="btn-group float-end">
 												<button type="button" className="btn dropdown-toggle btn-primary" data-bs-toggle="dropdown"></button>
@@ -98,14 +104,14 @@ export default function Post(props) {
 								}
 							</h1>
 							<p>
-								Post on {new Date(post?.published_at).toLocaleDateString()}_{post?.customer?.username}
+								Post on {new Date(post?.published_at).toLocaleDateString()}_{post?.username}
 							</p>
 						</div>
 
 						<p className="post-content mx-auto">{post?.content}</p>
 						<img
 							className="mb-5"
-							src={process.env.REACT_APP_SERVER_URL + post?.avatar?.url}
+							src={process.env.REACT_APP_SERVER_URL + post?.avatar}
 							alt=""
 							style={{ width: "50%" }}
 						/>
@@ -118,7 +124,7 @@ export default function Post(props) {
 										<Comments
 											commentData={comment}
 											currentUserId={customer_id}
-											postId={post?._id}
+											postId={props.match.params.id}
 										/>
 										: null
 								}
