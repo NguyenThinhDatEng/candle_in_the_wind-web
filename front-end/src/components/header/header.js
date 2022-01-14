@@ -4,6 +4,7 @@ import "./header.css";
 import { CartContext } from "../../context/Context";
 import axios from "axios";
 import { useAlert } from "react-alert";
+import { deleteCartItemsAPI, createCartItemsAPI } from '../../services/itemService'
 
 export default function Header() {
   const { cart, setSearchFilter, searchFilter, data, setData } =
@@ -230,6 +231,17 @@ export default function Header() {
                   <Link
                     to="/"
                     onClick={() => {
+                      const data = JSON.parse(localStorage.getItem('cart'))
+                      const cart = JSON.parse(localStorage.getItem('user-info')).cart
+                      const newData = data.map((prod)=> ({
+                        product: prod.product,
+                        quantity: prod.quantity,
+                        cart: cart
+                      }))
+                      // console.log(newData)
+                      // createCartItemsAPI(newData)
+                        
+                      // deleteCartItemsAPI(JSON.parse(localStorage.getItem('user-info')).cart)
                       localStorage.removeItem("user-info");
                     }}
                   >

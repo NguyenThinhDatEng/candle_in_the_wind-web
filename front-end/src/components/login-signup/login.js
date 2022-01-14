@@ -1,15 +1,21 @@
-import React, { useState } from "react";
+import axios from "axios";
+import React, { useContext, useState } from "react";
 import { useEffect } from "react";
 import { Link, useHistory } from "react-router-dom";
+import { CartContext } from "../../context/Context";
 
 import { handleSignInAPI } from "../../services/customerService";
+
+import {getCartAPI} from '../../services/itemService'
 import "./login.css";
 
 const Login = () => {
+	const {callOldCart} = useContext(CartContext)
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
 	const [isShowPassword, setIsShowPassword] = useState(false);
 	const [errMessage, setErrMessage] = useState("");
+	const [callCart, setCallCart] = useState([])
 
 
 	const history = useHistory();
@@ -39,6 +45,25 @@ const Login = () => {
 								"user-info",
 								JSON.stringify(response.data.data)
 							);
+							// const result = await axios(process.env.REACT_APP_SERVER_URL + "/carts/" + JSON.parse(localStorage.getItem('user-info')).cart);
+							async function run() {
+								const result = await getCartAPI(JSON.parse(localStorage.getItem('user-info')).cart)
+								console.log(JSON.parse(localStorage.getItem('user-info')).cart);
+								console.log(result.data.data);
+								// setCallCart(result.data.data)
+
+								callOldCart(result.data.data)
+							}
+							 
+							run();
+							// {
+							// 	const result = getCartAPI(JSON.parse(localStorage.getItem('user-info')).cart)
+							// 	console.log(JSON.parse(localStorage.getItem('user-info')).cart);
+							// 	console.log(result);
+							// }
+							
+							
+
 						}
 					})
 					.catch((error) => {

@@ -1,5 +1,10 @@
 export default (state, action) => {
     switch (action.type) {
+        case "SET_OLD_CART":
+            return {
+                ...state,
+                cart: action.payload
+            }
 
         case "ADD_ITEM_TO_CART":
             return {
