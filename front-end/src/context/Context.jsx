@@ -43,14 +43,26 @@ const Context = (props) => {
     }, [loadTotal])
 
 
-    const addItemToCart = (data) => {
-        dispatch({type: "ADD_ITEM_TO_CART", payload: (data)})
+    const addItemToCart = (item) => {
+        const newData = {
+            name: item?.data?.name,
+            quantity: item?.quantity,
+            price: item?.data?.price,
+            product: item?.data?._id,
+            url: item?.data?.avatar?.url,
+            discount: item?.data?.discount,
+        }
+        dispatch({type: "ADD_ITEM_TO_CART", payload: (newData)})
     }
     
     const updateItemFromCart = (data, quantity) => {
         const newData = {
-            data: data,
-            quantity: Number(quantity)
+            name: data?.name,
+            quantity: Number(quantity),
+            price: data?.price,
+            product: data?._id,
+            url: data?.avatar?.url,
+            discount: data?.discount,
         }
         dispatch({type: "UPDATE_ITEM_FROM_CART", payload: (newData)})
     }
@@ -65,8 +77,12 @@ const Context = (props) => {
 
     const changeQuantity = (data, quantity) => {
         const newData = {
-            data: data?.data,
-            quantity: Number(quantity)
+            name: data?.name,
+            quantity: Number(quantity),
+            price: data?.price,
+            product: data?.product,
+            url: data?.url,
+            discount: data?.discount,
         }
         dispatch({type:"CHANGE_QUANTITY", payload: newData})
         // console.log(data, quantity)

@@ -179,7 +179,7 @@ export default function Header() {
                 {/* <Link to="/profile">
                   <img src="/assets/icons/User-icon.png" />
                 </Link> */}
-                <button class = 'usericon'><img src = "../assets/icons/User-icon.png"/></button>
+                <button className = 'usericon'><img src = "../assets/icons/User-icon.png"/></button>
                 <ul>
                     <li><Link to="/profile">My profile</Link></li>
                     <li><Link to="/" onClick={()=>{localStorage.removeItem("user-info")}}>Sign out</Link></li>

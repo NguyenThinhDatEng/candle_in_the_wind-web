@@ -10,16 +10,21 @@ export default (state, action) => {
         case "UPDATE_ITEM_FROM_CART":
             return {
                 ...state,
-                cart: state.cart.map((prod) => prod?.data?._id === action.payload.data?._id ? ({ 
-                    data: action.payload.data,
-                    quantity: action.payload.quantity + prod?.quantity
+                cart: state.cart.map((prod) => prod?.product === action.payload.product ? ({ 
+                    // data: action.payload.data,
+                    name: action.payload.name,
+                    quantity: action.payload.quantity + prod?.quantity,
+                    price: action.payload.price,
+                    product: action.payload.product,
+                    url: action.payload.url,
+                    discount: action.payload.discount,
                 }): prod)
             }
 
         case "REMOVE_ITEM_FROM_CART":
             return {
                 ...state,
-                cart: state.cart.filter(item => item?.data?._id !== action.payload),
+                cart: state.cart.filter(item => item?.product !== action.payload),
                 
             }
 
@@ -33,7 +38,7 @@ export default (state, action) => {
         case "CHANGE_QUANTITY":
             return {
                 ...state,
-                cart: state.cart.map((prod) => prod?.data?._id === action.payload.data._id ? action.payload : prod)
+                cart: state.cart.map((prod) => prod?.product === action.payload.product ? action.payload : prod)
             }
             // console.log(action.payload)
 

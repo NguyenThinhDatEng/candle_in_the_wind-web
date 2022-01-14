@@ -42,18 +42,18 @@ export default function Payment() {
                                 </thead>
                                 <tbody>
                                     {cart.map((prod) => (
-                                        <tr key={prod?.data?._id}>
+                                        <tr key={prod?.product}>
                                             <td data-th="Product">
                                                 <div className="row">
                                                     <div className="col-md-3 text-left">
-                                                        <img src={process.env.REACT_APP_SERVER_URL + prod?.data?.avatar?.url} alt={prod?.data?.name} style={{ width: '36px', height: '45px', bodyRadius: '2px', 'border':'0.1px solid #000',marginRight: '30px',marginBottom:'5px',}} />
+                                                        <img src={process.env.REACT_APP_SERVER_URL + prod?.url} alt={prod?.name} style={{ width: '36px', height: '45px', bodyRadius: '2px', 'border':'0.1px solid #000',marginRight: '30px',marginBottom:'5px',}} />
                 
                                                     </div>
                                                 </div>
                                             </td>
                                             <td data-th="Product">
                                                 <div className="col-md-9 text-left mt-sm-2">
-                                                    <h7>{prod?.data?.name}</h7>
+                                                    <h7>{prod?.name}</h7>
                                                 </div>
                                             </td>
                                             <td data-th="Quantity">x{prod?.quantity}</td>
