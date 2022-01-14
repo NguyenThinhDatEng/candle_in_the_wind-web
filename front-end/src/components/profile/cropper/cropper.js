@@ -10,6 +10,7 @@ import { dataURLtoFile } from "../utils/dataURLtoFile";
 import { IconButton, makeStyles, TableBody } from "@material-ui/core";
 
 
+
 import axios from "axios";
 
 // const useStyles = makeStyles({
@@ -109,22 +110,21 @@ export default function RenderCropper() {
         // console.log(convertedUrlToFile);
         try {
             const formData = new FormData();
-            formData.append('croppedImage', convertedUrlToFile);
+            formData.append('files', convertedUrlToFile);
             let res;
             console.log(formData);
-            await axios
-                .post(process.env.REACT_APP_SERVER_URL + "/upload", formData)
+            await axios.post(process.env.REACT_APP_SERVER_URL + "/upload", formData)
                 .then((response) => {
                     console.log(response);
                     res = response;
                 });
             console.log(res?.data[0]._id);
-            // const res = await fetch("http://localhost:2021/customers/" + id, {
-            //     method: "PUT",
-            //     body: formData,
-            // });
-            // const res2 = await res.json();
-            // console.log(res2);
+
+            await axios.put(process.env.REACT_APP_SERVER_URL + "/customers/" + id, {
+                avatar: res?.data[0]._id
+            }).then((response) => {
+                console.log(response);
+            });
         } catch (err) {
             console.warn(err);
         }

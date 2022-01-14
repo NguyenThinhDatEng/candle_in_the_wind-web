@@ -10,46 +10,46 @@ const getUserInfo = async (id) => {
 
 
 const handleSignInAPI = async (email, password) => {
-  let data = JSON.stringify({
-    email,
-    password,
-  });
+	let data = JSON.stringify({
+		email,
+		password,
+	});
 
-  let config = {
-    method: "post",
-    url: baseUrl + "/customers/login",
-    headers: {
-      "Content-Type": "application/json",
-      Accept: "application/json",
-    },
-    data: data,
-  };
+	let config = {
+		method: "post",
+		url: baseUrl + "/customers/login",
+		headers: {
+			"Content-Type": "application/json",
+			Accept: "application/json",
+		},
+		data: data,
+	};
 
-  return await axios(config);
+	return await axios(config);
 };
 
 const handleSignUpAPI = async (newData) => {
-  let gender = newData.gender ? "Male" : "Female";
-  let data = JSON.stringify({
-    username: newData.username,
-    email: newData.email,
-    password: newData.password,
-    gender: gender,
-    dateOfBirth: newData.dateOfBirth,
-    phoneNumber: newData.phoneNumber,
-  });
+	let gender = newData.gender ? "Male" : "Female";
+	let data = JSON.stringify({
+		username: newData.username,
+		email: newData.email,
+		password: newData.password,
+		gender: gender,
+		dateOfBirth: newData.dateOfBirth,
+		phoneNumber: newData.phoneNumber,
+	});
 
-  let config = {
-    method: "post",
-    url: baseUrl + "/customers/signup",
-    headers: {
-      "Content-Type": "application/json",
-      Accept: "application/json",
-    },
-    data: data,
-  };
-  console.log(baseUrl);
-  return await axios(config);
+	let config = {
+		method: "post",
+		url: baseUrl + "/customers/signup",
+		headers: {
+			"Content-Type": "application/json",
+			Accept: "application/json",
+		},
+		data: data,
+	};
+	console.log(baseUrl);
+	return await axios(config);
 };
 
 const handleResetPassword = async (email) => {
@@ -63,21 +63,21 @@ const handleResetPassword = async (email) => {
 		data: { email },
 	};
 
-  return await axios(config);
+	return await axios(config);
 };
 
 const handleVerifyOTP = async (email, OTP) => {
-  let config = {
-    method: "post",
-    url: baseUrl + "/customers/verifyOTP",
-    headers: {
-      "Content-Type": "application/json",
-      Accept: "application/json",
-    },
-    data: { email, OTP },
-  };
+	let config = {
+		method: "post",
+		url: baseUrl + "/customers/verifyOTP",
+		headers: {
+			"Content-Type": "application/json",
+			Accept: "application/json",
+		},
+		data: { email, OTP },
+	};
 
-  return await axios(config);
+	return await axios(config);
 };
 
 const handleChangePasswordAPI = async (email, password, newPassword) => {
@@ -125,6 +125,8 @@ const handleChangeInfoAPI = async (newData) => {
 	return await axios(config);
 };
 
+
+
 const handleUpdatePasswordAPI = async (id, password) => {
 	let config = {
 		method: "put",
@@ -140,11 +142,11 @@ const handleUpdatePasswordAPI = async (id, password) => {
 
 export {
 	getUserInfo,
-  handleSignInAPI,
-  handleSignUpAPI,
-  handleResetPassword,
-  handleVerifyOTP,
-  handleChangePasswordAPI,
-  handleChangeInfoAPI,
-  handleUpdatePasswordAPI,
+	handleSignInAPI,
+	handleSignUpAPI,
+	handleResetPassword,
+	handleVerifyOTP,
+	handleChangePasswordAPI,
+	handleChangeInfoAPI,
+	handleUpdatePasswordAPI,
 };
