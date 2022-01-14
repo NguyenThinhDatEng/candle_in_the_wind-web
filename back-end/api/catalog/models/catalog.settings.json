@@ -8,12 +8,7 @@
   "options": {
     "increments": true,
     "draftAndPublish": true,
-    "privateAttributes": [
-      "__v",
-      "createdAt",
-      "updatedAt",
-      "id"
-    ]
+    "privateAttributes": ["__v", "createdAt", "updatedAt", "id"]
   },
   "pluginOptions": {},
   "attributes": {
@@ -24,15 +19,12 @@
     },
     "products": {
       "via": "catalog",
-      "collection": "product",
-      "autoPopulate": false
+      "collection": "product"
     },
     "banner": {
       "model": "file",
       "via": "related",
-      "allowedTypes": [
-        "images"
-      ],
+      "allowedTypes": ["images"],
       "plugin": "upload",
       "required": true,
       "pluginOptions": {}
