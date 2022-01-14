@@ -27,7 +27,7 @@ export default function Store(props) {
 		// console.log(result2.data);
 		setCatalog(result2.data);
 		setLoading(false);
-	});
+	}, []);
 	// console.log(catalog)
 
 	const displayCheck = () => {

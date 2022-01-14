@@ -24,8 +24,7 @@
     },
     "products": {
       "via": "catalog",
-      "collection": "product",
-      "autoPopulate": false
+      "collection": "product"
     },
     "banner": {
       "model": "file",

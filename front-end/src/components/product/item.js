@@ -129,7 +129,7 @@ const Item = (props) => {
                   type="button" 
                   onClick={()=>{
                     if(localStorage.getItem("user-info")){
-                      if (cart.find((product) => product?.data?._id === data?._id)){
+                      if (cart.find((product) => product?.product === data?._id)){
                         updateItemFromCart(data, quantity)
                         // console.log("Update")
                       }

@@ -42,7 +42,7 @@ export default function Product() {
 		const result = await axios(process.env.REACT_APP_SERVER_URL + "/products/");
 		setLoading(false)
 		setData(result.data);
-	});
+	},[]);
 
 	const settings = {
 		infinite: true,
@@ -164,7 +164,7 @@ export default function Product() {
 														className="btn btn-dark mb-3"
 														onClick={() => {
 															if(localStorage.getItem("user-info")){
-																if (cart.find((prod) => prod?.data?._id === value?._id)) {
+																if (cart.find((prod) => prod?.product === value?._id)) {
 																	updateItemFromCart(value, 1)
 																	console.log(value?._id)
 																}
@@ -256,7 +256,7 @@ export default function Product() {
 														className="btn btn-dark mb-3"
 														onClick={() => {
 															if(localStorage.getItem("user-info")){
-																if (cart.find((prod) => prod?.data?._id === value?._id)) {
+																if (cart.find((prod) => prod?.product === value?._id)) {
 																	updateItemFromCart(value, 1)
 																	console.log(value?._id)
 																}
@@ -349,7 +349,7 @@ export default function Product() {
 														className="btn btn-dark mb-3"
 														onClick={() => {
 															if(localStorage.getItem("user-info")){
-																if (cart.find((prod) => prod?.data?._id === value?._id)) {
+																if (cart.find((prod) => prod?.product === value?._id)) {
 																	updateItemFromCart(value, 1)
 																	console.log(value?._id)
 																}
@@ -442,7 +442,7 @@ export default function Product() {
 														className="btn btn-dark mb-3"
 														onClick={() => {
 															if(localStorage.getItem("user-info")){
-																if (cart.find((prod) => prod?.data?._id === value?._id)) {
+																if (cart.find((prod) => prod?.product === value?._id)) {
 																	updateItemFromCart(value, 1)
 																	console.log(value?._id)
 																}

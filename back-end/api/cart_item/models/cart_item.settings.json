@@ -7,7 +7,11 @@
   },
   "options": {
     "increments": true,
-    "privateAttributes": ["__v", "_id"]
+    "privateAttributes": [
+      "__v",
+      "_id"
+    ],
+    "draftAndPublish": false
   },
   "pluginOptions": {},
   "attributes": {

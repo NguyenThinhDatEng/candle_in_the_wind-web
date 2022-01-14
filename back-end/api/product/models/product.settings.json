@@ -38,9 +38,7 @@
     "avatar": {
       "model": "file",
       "via": "related",
-      "allowedTypes": [
-        "images"
-      ],
+      "allowedTypes": ["images"],
       "plugin": "upload",
       "required": true,
       "pluginOptions": {}
@@ -68,16 +66,14 @@
     "related_images": {
       "collection": "file",
       "via": "related",
-      "allowedTypes": [
-        "images"
-      ],
+      "allowedTypes": ["images"],
       "plugin": "upload",
       "required": false,
       "pluginOptions": {}
     },
     "cart_item": {
-      "via": "product",
-      "model": "cart-item"
+      "model": "cart_item",
+      "via": "product"
     }
   }
 }
