@@ -52,7 +52,10 @@ export default function Comments(props) {
 					/>
 				))}
 			</div>
-			<CommentForm submitLabel="Write" handleSubmit={addComment} />
+			{
+				props.lock && <CommentForm submitLabel="Write" handleSubmit={addComment} />
+			}
+			
 		</div>
 	);
 };
