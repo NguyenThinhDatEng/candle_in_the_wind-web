@@ -3,19 +3,52 @@ import Header from "../header/header"
 import Footer from '../footer/footer'
 import { Link } from 'react-router-dom'
 import { CartContext } from '../../context/Context'
+import { createOrderAPI, createOrderItemAPI } from '../../services/itemService'
 import './payment.css'
 
 export default function Payment() {
-    const {cart, price, province, addPaymentMethod, setLoadTotal, loadTotal} = useContext(CartContext)
+    const {cart, price, province, addPaymentMethod, setLoadTotal, loadTotal, fullName, phoneNumber, address, paymentMethod} = useContext(CartContext)
 
     const [ship, setShip] = useState()
+    const [order, setOrder] = useState("")
     useEffect(() => {
         setShip((localStorage.getItem('province') === "\"Hà Nội\"")? 0 : 2)
 
     }, [province])
 
     const handleComplete = () => {
+        const data = {
+            fullname: fullName,
+            customer: JSON.parse(localStorage.getItem('user-info')).id,
+            email: JSON.parse(localStorage.getItem('user-info')).email,
+            phoneNumber: phoneNumber,
+            address: address,
+            payment: paymentMethod==="onDelivery" ? "Delivery" : "Bank_transfer",
+            grand_total: Number(price) + Number(ship)
+
+        }
+        // console.log(data)
+        async function run() {
+            const returnData = await createOrderAPI(data)
+            console.log(returnData.data._id)
+            // setOrder(returnData.data._id)
+            // console.log(order)
+            cart.map((prod) => (
+                createOrderItemAPI({
+                    order: returnData.data._id,
+                    product: prod.product,
+                    quantity: prod.quantity,
+                    product_price: Number(prod.price) * (100 - Number(prod.discount)) / 100
+                })
+            ))
+
+            // callOldCart(result.data.data)
+        }
+        run()
+        // const returnData = createOrderAPI(data)
+        // console.log(order)
         setLoadTotal(true)
+        
         console.log(loadTotal)
         // window.location.reload(false);
     }

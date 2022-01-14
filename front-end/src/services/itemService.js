@@ -48,3 +48,33 @@ export const getCartAPI = async(id) => {
     // console.log(data);
     return await axios(config);
 };
+
+export const createOrderAPI = async(data) => {
+    console.log(data)
+    let config = {
+        method: "POST",
+        url: baseUrl + "/orders",
+        headers: {
+            "Content-Type": "application/json",
+            Accept: "application/json",
+        },
+        data: data,
+    };
+
+    return await axios(config)
+}
+
+export const createOrderItemAPI = async(data) => {
+    console.log(data)
+    let config = {
+        method: "POST",
+        url: baseUrl + "/items",
+        headers: {
+            "Content-Type": "application/json",
+            Accept: "application/json",
+        },
+        data: data,
+    };
+
+    return await axios(config)
+}
