@@ -72,7 +72,7 @@ input#search-bar:focus:-ms-placeholder {
     padding: 50px;
     font-family:'Reem Kufi';
     font-weight: 100;
-    /* margin-top: 200px; */
+    margin-top: 80px;
 }
 .footerContainer .openingTime {
     display: inline-block;

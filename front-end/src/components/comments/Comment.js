@@ -1,7 +1,18 @@
 import { useEffect, useState } from "react";
 import CommentForm from "./CommentForm";
-import { getUserInfo } from "../../services/customerService";
-// import "./comment.css"
+import { Link } from "react-router-dom";
+import Modal from 'react-modal';
+
+const customStyles = {
+	content: {
+		top: '50%',
+		left: '50%',
+		right: 'auto',
+		bottom: 'auto',
+		marginRight: '-50%',
+		transform: 'translate(-50%, -50%)',
+	},
+};
 
 export default function Comment({
 	comment,
@@ -11,6 +22,7 @@ export default function Comment({
 }) {
 	const [isEditing, setIsEditing] = useState(false);
 	const createdAt = new Date(comment?.createdAt).toLocaleDateString();
+	const [confirm, setConfirm] = useState(false);
 
 	const customer_name = JSON.parse(localStorage.getItem("user-info"))?.username;
 
@@ -27,8 +39,10 @@ export default function Comment({
 						<CommentForm
 							submitLabel="Update"
 							initialText={comment.content}
-							handleSubmit={(text) => {updateComment(text, comment?.id);
-													setIsEditing(false)}}
+							handleSubmit={(text) => {
+								updateComment(text, comment?.id);
+								setIsEditing(false)
+							}}
 							handleCancel={() => {
 								setIsEditing(false)
 							}}
@@ -47,7 +61,7 @@ export default function Comment({
 
 							<div
 								className="comment-action"
-								onClick={() => deleteComment(comment?.id)}
+								onClick={() => setConfirm(true)}
 							>
 								Delete
 							</div>
@@ -55,6 +69,35 @@ export default function Comment({
 
 					)}
 				</div>
+
+				<Modal
+					isOpen={confirm}
+					style={customStyles}
+				>
+
+					<p>Are you sure you want to remove comment?</p>
+					<div className="text-center">
+						<button
+							type="button"
+							className="btn btn-primary btn-sm shadow-none"
+							onClick={() =>{
+								deleteComment(comment?.id);
+								setConfirm(false)
+							} }
+						>
+							Yes
+						</button>
+						<button
+							type="button"
+							className="btn btn-danger btn-sm ml-1 shadow-none"
+							onClick={() => setConfirm(false)}
+						>
+							No
+						</button>
+					</div>
+
+
+				</Modal>
 
 			</div>
 		</div>
