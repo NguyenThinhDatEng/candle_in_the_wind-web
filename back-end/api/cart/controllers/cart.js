@@ -33,6 +33,7 @@ const findOne = async (ctx) => {
       quantity: item.quantity,
       price: product.price,
       product: product.id,
+      discount: product.discount,
       url: product.avatar.url,
     };
     data.push(tmp);
