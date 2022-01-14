@@ -11,7 +11,7 @@ const login = async (ctx) => {
   } catch (error) {
     return strapi.services.customer.err500(ctx, error, "get user");
   }
-
+  // check account
   if (!user) {
     return Response.ok(ctx, {
       data: null,
@@ -19,7 +19,7 @@ const login = async (ctx) => {
       status: 0,
     });
   }
-
+  // create data to response
   let data = {
     id: user.id,
     username: user.username,

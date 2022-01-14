@@ -46,4 +46,34 @@ const findOne = async (ctx) => {
   });
 };
 
-module.exports = { findOne };
+const deleteItems = async (ctx) => {
+  // get cart id
+  const url = ctx.request.url.split("/");
+  const id = url[url.length - 1];
+  // get cart
+  let cart = null;
+  try {
+    cart = await strapi.query("cart").findOne({ id });
+  } catch (error) {
+    return strapi.services.cart.err500(ctx, error, "get cart");
+  }
+  // get cart-items
+  const items = cart.cart_items;
+
+  // delete all of items
+  for (var item of items) {
+    try {
+      await strapi.services.cart_item.deleteItem(item.id);
+    } catch (error) {
+      return strapi.services.cart.err500(ctx, error, "delete all of items");
+    }
+  }
+
+  Response.success(ctx, {
+    msg: "Removed all of items",
+    status: 200,
+    data: cart.cart_items,
+  });
+};
+
+module.exports = { findOne, deleteItems };
