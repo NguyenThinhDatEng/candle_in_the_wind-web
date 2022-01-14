@@ -45,7 +45,7 @@ export default function Post(props) {
 		setComment(result.data?.comments);
 		setLock(post?.lockComment)
 		setLoading(false)
-	}, [comment]);
+	}, [post]);
 
 	const lockComment = async () => {
 		setLoading(true)
@@ -59,10 +59,13 @@ export default function Post(props) {
 		await deletePostAPI(props.match.params.id).then((response) => {
 			console.log(response)
 		})
+
+		// await axios.delete(process.env.REACT_APP_SERVER_URL + "upload")
 	}
 
 	// console.log(lock ===false)
 	// console.log(post?.username , customer_name)
+	// console.log((customer_name === post?.username) && (customer_name != undefined))
 
 	return (
 		<div>
@@ -76,7 +79,7 @@ export default function Post(props) {
 							<ReactLoading
 								type="spinningBubbles"
 								color="black"
-								height={200}
+								height={300}
 								width={100}
 							/>
 						</div>
@@ -87,7 +90,7 @@ export default function Post(props) {
 						<div className="post-title ">
 							<h1> {post?.title}
 								{
-									customer_name === post?.username ?
+									(customer_name === post?.username) && (customer_name != undefined) ?
 										<>
 											<div className="btn-group float-end">
 												<button type="button" className="btn dropdown-toggle btn-primary" data-bs-toggle="dropdown"></button>
@@ -120,13 +123,12 @@ export default function Post(props) {
 						<div class="col-md-8">
 							<div class="d-flex flex-column comment-section">
 								{
-									lock === false ?
 										<Comments
 											commentData={comment}
 											currentUserId={customer_id}
 											postId={props.match.params.id}
-										/>
-										: null
+											lock= {lock}
+										/>	
 								}
 							</div>
 						</div>
