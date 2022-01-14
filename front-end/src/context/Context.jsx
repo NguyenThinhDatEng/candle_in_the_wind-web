@@ -45,7 +45,7 @@ const Context = (props) => {
 
     const callOldCart = (data) => {
         // setOldCart(data)
-        console.log(data)
+        // console.log(data)
         dispatch({type: "SET_OLD_CART",payload: data})
     }
 

@@ -48,8 +48,8 @@ const Login = () => {
 							// const result = await axios(process.env.REACT_APP_SERVER_URL + "/carts/" + JSON.parse(localStorage.getItem('user-info')).cart);
 							async function run() {
 								const result = await getCartAPI(JSON.parse(localStorage.getItem('user-info')).cart)
-								console.log(JSON.parse(localStorage.getItem('user-info')).cart);
-								console.log(result.data.data);
+								// console.log(JSON.parse(localStorage.getItem('user-info')).cart);
+								// console.log(result.data.data);
 								// setCallCart(result.data.data)
 
 								callOldCart(result.data.data)

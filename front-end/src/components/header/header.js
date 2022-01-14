@@ -7,12 +7,11 @@ import { useAlert } from "react-alert";
 import { deleteCartItemsAPI, createCartItemsAPI } from '../../services/itemService'
 
 export default function Header() {
-  const { cart, setSearchFilter, searchFilter, data, setData } =
-    useContext(CartContext);
+  const { cart, setSearchFilter, searchFilter, data, setData, setLoadTotal } = useContext(CartContext);
   const [total, setTotal] = useState();
   const [searchTerm, setSearchTerm] = useState("");
   const [filteredData, setFilteredData] = useState([]);
-  const [homeHeader, sethomeHeader] = useState("");
+  // const [homeHeader, sethomeHeader] = useState("");
   const alert = useAlert();
 
   useEffect(async () => {
@@ -239,10 +238,10 @@ export default function Header() {
                         cart: cart
                       }))
                       // console.log(newData)
-                      // createCartItemsAPI(newData)
-                        
-                      // deleteCartItemsAPI(JSON.parse(localStorage.getItem('user-info')).cart)
-                      localStorage.removeItem("user-info");
+                      deleteCartItemsAPI(JSON.parse(localStorage.getItem('user-info')).cart)
+                      createCartItemsAPI(newData)
+                      setLoadTotal(true)
+                      localStorage.removeItem('user-info')
                     }}
                   >
                     Sign out
