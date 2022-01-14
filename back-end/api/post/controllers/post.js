@@ -34,6 +34,8 @@ const findOne = async (ctx) => {
       content: comment.content,
       username: comment.customer.username,
       url: comment.customer.avatar?.url,
+      createdAt: comment.createdAt,
+      updatedAt: comment.updatedAt,
     };
     allOfComments.push(o);
   }
