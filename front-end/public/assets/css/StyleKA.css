@@ -249,7 +249,7 @@ input#search-bar:focus:-ms-placeholder {
 /*---------------------------------------Payment-----------------------------*/
 .paymentContainer{
     margin: 50px 0;
-    overflow: auto;
+    /* overflow: auto; */
 }
 .column1{
     font-family: 'Reem Kufi';

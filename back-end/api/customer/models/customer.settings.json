@@ -69,10 +69,6 @@
     "OTP": {
       "type": "string"
     },
-    "posts": {
-      "via": "customer",
-      "collection": "post"
-    },
     "comments": {
       "collection": "comment",
       "via": "customer"
@@ -80,6 +76,10 @@
     "cart": {
       "via": "customer",
       "model": "cart"
+    },
+    "posts": {
+      "via": "customer",
+      "collection": "post"
     }
   }
 }

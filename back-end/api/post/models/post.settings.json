@@ -8,44 +8,44 @@
   "options": {
     "increments": true,
     "timestamps": true,
-    "draftAndPublish": true,
-    "privateAttributes": ["__v", "createdAt", "updatedAt", "id"]
+    "draftAndPublish": true
   },
   "pluginOptions": {},
   "attributes": {
     "title": {
-      "type": "string",
-      "required": true,
-      "unique": true,
-      "maxLength": 200
+      "type": "string"
+    },
+    "avatar": {
+      "model": "file",
+      "via": "related",
+      "allowedTypes": [
+        "images"
+      ],
+      "plugin": "upload",
+      "required": false,
+      "pluginOptions": {}
     },
     "content": {
-      "type": "richtext",
-      "required": true,
-      "minLength": 100
+      "type": "richtext"
     },
     "lockComment": {
       "type": "boolean",
       "default": false
     },
-    "avatar": {
-      "model": "file",
-      "via": "related",
-      "allowedTypes": ["images"],
-      "plugin": "upload",
-      "required": true,
-      "pluginOptions": {}
-    },
-    "catalogs": {
-      "collection": "catalog"
+    "catalog": {
+      "model": "catalog",
+      "via": "posts"
     },
     "comments": {
       "collection": "comment",
       "via": "post"
     },
     "customer": {
-      "via": "posts",
-      "model": "customer"
+      "model": "customer",
+      "via": "posts"
+    },
+    "overview": {
+      "type": "text"
     }
   }
 }

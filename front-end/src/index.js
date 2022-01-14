@@ -9,7 +9,6 @@ ReactDOM.render(
   <React.StrictMode>
     <Context>
       <App />
-
     </Context>
   </React.StrictMode>,
   document.getElementById('root')

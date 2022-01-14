@@ -4,22 +4,25 @@ import "./header.css";
 import { CartContext } from "../../context/Context";
 import axios from "axios";
 import { useAlert } from "react-alert";
-import { deleteCartItemsAPI, createCartItemsAPI } from '../../services/itemService'
+import { deleteCartItemsAPI, createCartItemsAPI } from "../../services/itemService";
 
 export default function Header() {
-  const { cart, setSearchFilter, searchFilter, data, setData, setLoadTotal } = useContext(CartContext);
+  const { cart, setSearchFilter, searchFilter, data, setData, setLoadTotal } =
+    useContext(CartContext);
   const [total, setTotal] = useState();
   const [searchTerm, setSearchTerm] = useState("");
   const [filteredData, setFilteredData] = useState([]);
   // const [homeHeader, sethomeHeader] = useState("");
   const alert = useAlert();
 
-  useEffect(async () => {
-    const result = await axios(process.env.REACT_APP_SERVER_URL + "/products/");
-    // setLoading(false)
-    console.log("header");
-    setData(result.data);
-  }, []);
+  // useEffect(() => {
+  //   (async () => {
+  //     const result = await axios(process.env.REACT_APP_SERVER_URL + "/products/");
+  //     // setLoading(false)
+  //     console.log("header");
+  //     setData(result.data);
+  //   })();
+  // }, []);
 
   useEffect(() => {
     setTotal(cart.reduce((acc, curr) => acc + Number(curr?.quantity), 0));
@@ -140,10 +143,7 @@ export default function Header() {
                 }}
               />
 
-              <img
-                className="search-icon"
-                src="/assets/icons/Search-icon.png"
-              />
+              <img className="search-icon" src="/assets/icons/Search-icon.png" />
 
               <div className="result" ref={ref}>
                 {isMenuOpen && filteredData.length !== 0 && (
@@ -158,10 +158,7 @@ export default function Header() {
                           key={value._id}
                         >
                           <img
-                            src={
-                              process.env.REACT_APP_SERVER_URL +
-                              value?.related_images[0]?.url
-                            }
+                            src={process.env.REACT_APP_SERVER_URL + value?.related_images[0]?.url}
                             className="dataItemImg"
                             alt={value.name}
                           />
@@ -181,10 +178,7 @@ export default function Header() {
                                 }}
                               >
                                 <span>
-                                  ${" "}
-                                  {(Number(value.price) *
-                                    (100 - Number(value?.discount))) /
-                                    100}
+                                  $ {(Number(value.price) * (100 - Number(value?.discount))) / 100}
                                 </span>
                                 <div
                                   style={{
@@ -203,9 +197,7 @@ export default function Header() {
                                 </div>
                               </div>
                             ) : (
-                              <span style={{ color: "black" }}>
-                                $ {value.price}
-                              </span>
+                              <span style={{ color: "black" }}>$ {value.price}</span>
                             )}
                           </div>
                         </Link>
@@ -230,18 +222,18 @@ export default function Header() {
                   <Link
                     to="/"
                     onClick={() => {
-                      const data = JSON.parse(localStorage.getItem('cart'))
-                      const cart = JSON.parse(localStorage.getItem('user-info')).cart
-                      const newData = data.map((prod)=> ({
+                      const data = JSON.parse(localStorage.getItem("cart"));
+                      const cart = JSON.parse(localStorage.getItem("user-info")).cart;
+                      const newData = data.map((prod) => ({
                         product: prod.product,
                         quantity: prod.quantity,
-                        cart: cart
-                      }))
+                        cart: cart,
+                      }));
                       // console.log(newData)
-                      deleteCartItemsAPI(JSON.parse(localStorage.getItem('user-info')).cart)
-                      createCartItemsAPI(newData)
-                      setLoadTotal(true)
-                      localStorage.removeItem('user-info')
+                      deleteCartItemsAPI(JSON.parse(localStorage.getItem("user-info")).cart);
+                      createCartItemsAPI(newData);
+                      setLoadTotal(true);
+                      localStorage.removeItem("user-info");
                     }}
                   >
                     Sign out
@@ -331,10 +323,7 @@ export default function Header() {
                 }}
               />
 
-              <img
-                className="search-icon"
-                src="/assets/icons/Search-icon.png"
-              />
+              <img className="search-icon" src="/assets/icons/Search-icon.png" />
 
               <div className="result" ref={ref}>
                 {isMenuOpen && filteredData.length !== 0 && (
@@ -349,10 +338,7 @@ export default function Header() {
                           key={value._id}
                         >
                           <img
-                            src={
-                              process.env.REACT_APP_SERVER_URL +
-                              value?.related_images[0]?.url
-                            }
+                            src={process.env.REACT_APP_SERVER_URL + value?.related_images[0]?.url}
                             className="dataItemImg"
                             alt={value.name}
                           />
@@ -372,10 +358,7 @@ export default function Header() {
                                 }}
                               >
                                 <span>
-                                  ${" "}
-                                  {(Number(value.price) *
-                                    (100 - Number(value?.discount))) /
-                                    100}
+                                  $ {(Number(value.price) * (100 - Number(value?.discount))) / 100}
                                 </span>
                                 <div
                                   style={{
@@ -394,9 +377,7 @@ export default function Header() {
                                 </div>
                               </div>
                             ) : (
-                              <span style={{ color: "black" }}>
-                                $ {value.price}
-                              </span>
+                              <span style={{ color: "black" }}>$ {value.price}</span>
                             )}
                           </div>
                         </Link>
