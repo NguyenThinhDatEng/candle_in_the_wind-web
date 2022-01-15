@@ -2,6 +2,4 @@
 
 1. yarn install
 
-2. yarn develop
-
-
+2. yarn develop || yarn develop --watch-admin

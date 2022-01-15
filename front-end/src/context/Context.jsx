@@ -21,7 +21,7 @@ const Context = (props) => {
     const [loadTotal, setLoadTotal] = useState(false)
     const [searchFilter, setSearchFilter] = useState("")
     const [data, setData] = useState([])
-    const [oldCart, setOldCart] = useState([])
+    // const [oldCart, setOldCart] = useState([])
     
     useEffect(() => {
         localStorage.setItem('cart', JSON.stringify(state.cart))
@@ -124,6 +124,11 @@ const Context = (props) => {
             value={{
                 cart: state.cart,
                 price: state.price,
+                fullName: state.name,
+                phoneNumber: state.phoneNumber,
+                province: state.province,
+                address: state.address,
+                paymentMethod: state.paymentMethod,
                 searchFilter,
                 loadTotal,
                 data,

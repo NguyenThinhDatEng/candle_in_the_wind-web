@@ -9,7 +9,11 @@
     "increments": true,
     "timestamps": true,
     "populateCreatorFields": true,
-    "privateAttributes": ["__v", "id", "updated_by"]
+    "privateAttributes": [
+      "__v",
+      "id",
+      "updated_by"
+    ]
   },
   "pluginOptions": {},
   "attributes": {
