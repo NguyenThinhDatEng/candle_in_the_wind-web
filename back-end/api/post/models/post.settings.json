@@ -9,7 +9,12 @@
     "increments": true,
     "timestamps": true,
     "draftAndPublish": true,
-    "privateAttributes": ["__v", "createdAt", "updatedAt", "id"]
+    "privateAttributes": [
+      "__v",
+      "createdAt",
+      "updatedAt",
+      "id"
+    ]
   },
   "pluginOptions": {},
   "attributes": {
@@ -27,14 +32,6 @@
     "lockComment": {
       "type": "boolean",
       "default": false
-    },
-    "avatar": {
-      "model": "file",
-      "via": "related",
-      "allowedTypes": ["images"],
-      "plugin": "upload",
-      "required": true,
-      "pluginOptions": {}
     },
     "catalogs": {
       "collection": "catalog"
