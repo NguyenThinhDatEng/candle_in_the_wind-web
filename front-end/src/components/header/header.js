@@ -7,7 +7,7 @@ import { useAlert } from "react-alert";
 import { deleteCartItemsAPI, createCartItemsAPI } from '../../services/itemService'
 
 export default function Header() {
-  const { cart, setSearchFilter, searchFilter, data, setData, setLoadTotal } = useContext(CartContext);
+  const { cart, setSearchFilter, searchFilter, data, setData, setLoadTotal, setLoading } = useContext(CartContext);
   const [total, setTotal] = useState();
   const [searchTerm, setSearchTerm] = useState("");
   const [filteredData, setFilteredData] = useState([]);
@@ -17,7 +17,7 @@ export default function Header() {
   useEffect(() => {
     (async () => {
       const result = await axios(process.env.REACT_APP_SERVER_URL + "/products/");
-      // setLoading(false)
+      setLoading(false)
       console.log("header");
       setData(result.data);
     })();

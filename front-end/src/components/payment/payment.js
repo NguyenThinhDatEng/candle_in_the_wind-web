@@ -3,18 +3,22 @@ import Header from "../header/header"
 import Footer from '../footer/footer'
 import { Link } from 'react-router-dom'
 import { CartContext } from '../../context/Context'
-import { createOrderAPI, createOrderItemAPI } from '../../services/itemService'
+import { createOrderAPI, createOrderItemAPI, deleteCartItemsAPI } from '../../services/itemService'
 import './payment.css'
 
 export default function Payment() {
     const {cart, price, province, addPaymentMethod, setLoadTotal, loadTotal, fullName, phoneNumber, address, paymentMethod} = useContext(CartContext)
-
+    
     const [ship, setShip] = useState()
-    const [order, setOrder] = useState("")
     useEffect(() => {
         setShip((localStorage.getItem('province') === "\"Hà Nội\"")? 0 : 2)
-
+        
     }, [province])
+    
+    const loyalDiscount = 95/100
+    const grandTotal = Number(price)+Number(ship)
+    const loyalSave = ((Number(price)) * Number(1 - loyalDiscount)).toFixed(2)
+    const totalPaid = grandTotal - loyalSave
 
     const handleComplete = () => {
         const data = {
@@ -24,15 +28,13 @@ export default function Payment() {
             phoneNumber: phoneNumber,
             address: address,
             payment: paymentMethod==="onDelivery" ? "Delivery" : "Bank_transfer",
-            grand_total: Number(price) + Number(ship)
+            grand_total: JSON.parse(localStorage.getItem('user-info')).loyal === false ? grandTotal : JSON.parse(localStorage.getItem('province')) === "Hà Nội" ? totalPaid : grandTotal*loyalDiscount
 
         }
-        // console.log(data)
+        console.log(data)
         async function run() {
             const returnData = await createOrderAPI(data)
             console.log(returnData.data._id)
-            // setOrder(returnData.data._id)
-            // console.log(order)
             cart.map((prod) => (
                 createOrderItemAPI({
                     order: returnData.data._id,
@@ -41,12 +43,10 @@ export default function Payment() {
                     product_price: Number(prod.price) * (100 - Number(prod.discount)) / 100
                 })
             ))
-
+            deleteCartItemsAPI(JSON.parse(localStorage.getItem('user-info')).cart)
             // callOldCart(result.data.data)
         }
         run()
-        // const returnData = createOrderAPI(data)
-        // console.log(order)
         setLoadTotal(true)
         
         console.log(loadTotal)
@@ -106,11 +106,18 @@ export default function Payment() {
                                 <tbody>
                                     <tr>
                                         <td data-th="totalPayment">Total price of products</td>
-                                        <td data-th="totalProducts">${price}</td>
+                                        <td data-th="totalProducts">
+                                            ${
+                                                price
+                                            }</td>
                                     </tr>
                                     <tr>
                                         <td data-th="shippingFee">Shipping fee</td>
-                                        <td data-th="shipping">${ship}</td>
+                                        <td data-th="shipping">
+                                            ${
+                                                // JSON.parse(localStorage.getItem('user-info')).loyal ? ship : 0
+                                                ship
+                                            }</td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -123,10 +130,45 @@ export default function Payment() {
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td data-th="totalAll">Total</td>
-                                        <td data-th="totalProductsShip">${Number(price)+Number(ship)}</td>
-                                    </tr>
+                                    {
+                                        !JSON.parse(localStorage.getItem('user-info')).loyal ? (
+                                            <tr>
+                                                <td data-th="totalAll">Total amount of goods</td>
+                                                <td data-th="totalProductsShip">$
+                                                    {
+                                                        grandTotal
+                                                    }
+                                                </td>
+                                            </tr>
+                                        ) : (
+                                            <>
+                                                <tr>
+                                                    <td data-th="totalAll">Total amount of goods:</td>
+                                                    <td data-th="totalProductsShip">$
+                                                        {
+                                                            grandTotal
+                                                        }
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td data-th="totalAll">Loyal discount:</td>
+                                                    <td data-th="totalProductsShip" style={{color: '#ee4d2d'}}>-$
+                                                        {
+                                                            loyalSave
+                                                        }
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td data-th="totalAll">Total</td>
+                                                    <td data-th="totalProductsShip">$
+                                                        {
+                                                            totalPaid
+                                                        }
+                                                    </td>
+                                                </tr>
+                                            </>
+                                        )
+                                    }
                                 </tbody>
                             </table>
                         </div>

@@ -21,6 +21,7 @@ const Context = (props) => {
     const [loadTotal, setLoadTotal] = useState(false)
     const [searchFilter, setSearchFilter] = useState("")
     const [data, setData] = useState([])
+    const [loading, setLoading] = useState(true)
     // const [oldCart, setOldCart] = useState([])
     
     useEffect(() => {
@@ -132,6 +133,7 @@ const Context = (props) => {
                 searchFilter,
                 loadTotal,
                 data,
+                loading,
                 addItemToCart,
                 updateItemFromCart,
                 removeItemFromCart,
@@ -145,7 +147,8 @@ const Context = (props) => {
                 setLoadTotal,
                 setSearchFilter,
                 setData,
-                callOldCart
+                callOldCart,
+                setLoading
             }}
         >
             {props.children}
