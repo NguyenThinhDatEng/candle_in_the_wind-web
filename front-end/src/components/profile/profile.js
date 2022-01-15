@@ -44,6 +44,26 @@ const useStyles = makeStyles((theme) => ({
       backgroundColor: "white",
     },
   },
+
+  queen: {
+    top: "270px",
+    // marginRight: "100px",
+    height: "50px",
+    fontSize: "25px",
+    // width: "1rem",
+    position: "absolute",
+    // bottom: "0",
+    marginLeft: "360px",
+    marginTop: "-90px",
+    backgroundColor: "white",
+    fontSize: "300%",
+    transform: "rotate(40deg)",
+    color: "yellow",
+
+    // "&:hover": {
+    //   backgroundColor: "white",
+    // },
+  },
 }));
 
 export default function Profile(props) {
@@ -118,109 +138,220 @@ export default function Profile(props) {
     );
     setData(result.data);
   });
+  if (isAuth().loyal) {
+    return (
+      <div>
+        <Header />
+        <div className="profile">
+          <div className="row justify-content-center">
+            <div className="col-md-3 col-sm-6 col-xs-12 card-info">
+              <div>
+                <div
+                  className={classes.queen}>
+                  <i class="fas fa-crown"></i>
+                </div>
+                <div className="avatar">
+                  <img
+                    className="card-avatar rounded-circle mb-4"
+                    src={data?.avatar?.url ? process.env.REACT_APP_SERVER_URL + data?.avatar?.url : "https://bootdey.com/img/Content/avatar/avatar1.png"}
+                    alt="Card_image"
+                    style={{ width: "100%" }}
+                  />
+                </div>
 
-  return (
-    <div>
-      <Header />
-      <div className="profile">
-        <div className="row justify-content-center">
-          <div className="col-md-3 col-sm-6 col-xs-12 card-info">
-            <div>
-              <div className="avatar">
-                <img
-                  className="card-avatar rounded-circle mb-4"
-                  src={data?.avatar?.url ? process.env.REACT_APP_SERVER_URL + data?.avatar?.url : "https://bootdey.com/img/Content/avatar/avatar1.png"}
-                  alt="Card_image"
-                  style={{ width: "100%" }}
-                />
-              </div>
-              <Button
-                className={classes.cameraIcon}
-                ref={anchorRef}
-                aria-controls={open ? "menu-list-grow" : undefined}
-                aria-haspopup="true"
-                onClick={handleToggle}
-              >
-                <i class="fas fa-camera"></i>
-              </Button>
+                <Button
+                  className={classes.cameraIcon}
+                  ref={anchorRef}
+                  aria-controls={open ? "menu-list-grow" : undefined}
+                  aria-haspopup="true"
+                  onClick={handleToggle}
+                >
+                  <i class="fas fa-camera"></i>
+                </Button>
 
-              <Popper
-                open={open}
-                anchorEl={anchorRef.current}
-                role={undefined}
-                transition
-                disablePortal
-              >
-                {({ TransitionProps, placement }) => (
-                  <Grow
-                    {...TransitionProps}
-                    style={{
-                      transformOrigin:
-                        placement === "bottom" ? "center top" : "center bottom",
-                    }}
-                  >
-                    <Paper>
-                      <ClickAwayListener onClickAway={handleClose}>
-                        <MenuList
-                          autoFocusItem={open}
-                          id="menu-list-grow"
-                          onKeyDown={handleListKeyDown}
-                        >
-                          <MenuItem onClick={handleClose}>View</MenuItem>
-                          <MenuItem
-                            onClick={(event) => {
-                              handleCropper();
-                              handleClose(event);
-                            }}
+                <Popper
+                  open={open}
+                  anchorEl={anchorRef.current}
+                  role={undefined}
+                  transition
+                  disablePortal
+                >
+                  {({ TransitionProps, placement }) => (
+                    <Grow
+                      {...TransitionProps}
+                      style={{
+                        transformOrigin:
+                          placement === "bottom" ? "center top" : "center bottom",
+                      }}
+                    >
+                      <Paper>
+                        <ClickAwayListener onClickAway={handleClose}>
+                          <MenuList
+                            autoFocusItem={open}
+                            id="menu-list-grow"
+                            onKeyDown={handleListKeyDown}
                           >
-                            Change
-                          </MenuItem>
-                          <MenuItem onClick={handleClose}>Remove</MenuItem>
-                        </MenuList>
-                      </ClickAwayListener>
-                    </Paper>
-                  </Grow>
-                )}
-              </Popper>
+                            <MenuItem onClick={handleClose}>View</MenuItem>
+                            <MenuItem
+                              onClick={(event) => {
+                                handleCropper();
+                                handleClose(event);
+                              }}
+                            >
+                              Change
+                            </MenuItem>
+                            <MenuItem onClick={handleClose}>Remove</MenuItem>
+                          </MenuList>
+                        </ClickAwayListener>
+                      </Paper>
+                    </Grow>
+                  )}
+                </Popper>
 
-              <h4 className="text-center">{isAuth().username}</h4>
-            </div>
-            <div className="card-body">
-              <div className="row list-change">
-                <li>
-                  {/* <i className="fas fa-user-edit" />{" "} */}
-                  <a href="#!" onClick={() => setStatus(1)}>
-                    {" "}
-                    Change information{" "}
-                  </a>{" "}
-                </li>
-                <li>
-                  {/* <i className="fas fa-lock"> </i>{" "} */}
-                  <a href="#" onClick={() => setStatus(2)}>
-                    {" "}
-                    Change password{" "}
-                  </a>{" "}
-                </li>
-                <li>
-                  {/* <i className="fas fa-file-alt" />{" "} */}
-                  <a href="#!" onClick={() => setStatus(3)}>
-                    {" "}
-                    My orders{" "}
-                  </a>{" "}
-                </li>
+                <h4 className="text-center">{isAuth().username}</h4>
+              </div>
+              <div className="card-body">
+                <div className="row list-change">
+                  <li>
+                    {/* <i className="fas fa-user-edit" />{" "} */}
+                    <a href="#!" onClick={() => setStatus(1)}>
+                      {" "}
+                      Change information{" "}
+                    </a>{" "}
+                  </li>
+                  <li>
+                    {/* <i className="fas fa-lock"> </i>{" "} */}
+                    <a href="#" onClick={() => setStatus(2)}>
+                      {" "}
+                      Change password{" "}
+                    </a>{" "}
+                  </li>
+                  <li>
+                    {/* <i className="fas fa-file-alt" />{" "} */}
+                    <a href="#!" onClick={() => setStatus(3)}>
+                      {" "}
+                      My orders{" "}
+                    </a>{" "}
+                  </li>
+                </div>
               </div>
             </div>
+            <div className="col-1 vertical-line"></div>
+
+            {displayCheck()}
           </div>
-          <div className="col-1 vertical-line"></div>
-
-          {displayCheck()}
         </div>
-      </div>
-      {showCropper && (
-        <RenderCropper handleCropper={handleCropper} setAvatar={setAvatar} />
-      )}
+        {showCropper && (
+          <RenderCropper handleCropper={handleCropper} setAvatar={setAvatar} />
+        )}
 
-      <Footer />
-    </div>
-  );
+        <Footer />
+      </div>
+    );
+  } else {
+    return (
+      <div>
+        <Header />
+        <div className="profile">
+          <div className="row justify-content-center">
+            <div className="col-md-3 col-sm-6 col-xs-12 card-info">
+              <div>
+                <div className="avatar">
+                  <img
+                    className="card-avatar rounded-circle mb-4"
+                    src={data?.avatar?.url ? process.env.REACT_APP_SERVER_URL + data?.avatar?.url : "https://bootdey.com/img/Content/avatar/avatar1.png"}
+                    alt="Card_image"
+                    style={{ width: "100%" }}
+                  />
+                </div>
+                <Button
+                  className={classes.cameraIcon}
+                  ref={anchorRef}
+                  aria-controls={open ? "menu-list-grow" : undefined}
+                  aria-haspopup="true"
+                  onClick={handleToggle}
+                >
+                  <i class="fas fa-camera"></i>
+                </Button>
+
+                <Popper
+                  open={open}
+                  anchorEl={anchorRef.current}
+                  role={undefined}
+                  transition
+                  disablePortal
+                >
+                  {({ TransitionProps, placement }) => (
+                    <Grow
+                      {...TransitionProps}
+                      style={{
+                        transformOrigin:
+                          placement === "bottom" ? "center top" : "center bottom",
+                      }}
+                    >
+                      <Paper>
+                        <ClickAwayListener onClickAway={handleClose}>
+                          <MenuList
+                            autoFocusItem={open}
+                            id="menu-list-grow"
+                            onKeyDown={handleListKeyDown}
+                          >
+                            <MenuItem onClick={handleClose}>View</MenuItem>
+                            <MenuItem
+                              onClick={(event) => {
+                                handleCropper();
+                                handleClose(event);
+                              }}
+                            >
+                              Change
+                            </MenuItem>
+                            <MenuItem onClick={handleClose}>Remove</MenuItem>
+                          </MenuList>
+                        </ClickAwayListener>
+                      </Paper>
+                    </Grow>
+                  )}
+                </Popper>
+
+                <h4 className="text-center">{isAuth().username}</h4>
+              </div>
+              <div className="card-body">
+                <div className="row list-change">
+                  <li>
+                    {/* <i className="fas fa-user-edit" />{" "} */}
+                    <a href="#!" onClick={() => setStatus(1)}>
+                      {" "}
+                      Change information{" "}
+                    </a>{" "}
+                  </li>
+                  <li>
+                    {/* <i className="fas fa-lock"> </i>{" "} */}
+                    <a href="#" onClick={() => setStatus(2)}>
+                      {" "}
+                      Change password{" "}
+                    </a>{" "}
+                  </li>
+                  <li>
+                    {/* <i className="fas fa-file-alt" />{" "} */}
+                    <a href="#!" onClick={() => setStatus(3)}>
+                      {" "}
+                      My orders{" "}
+                    </a>{" "}
+                  </li>
+                </div>
+              </div>
+            </div>
+            <div className="col-1 vertical-line"></div>
+
+            {displayCheck()}
+          </div>
+        </div>
+        {showCropper && (
+          <RenderCropper handleCropper={handleCropper} setAvatar={setAvatar} />
+        )}
+
+        <Footer />
+      </div>
+    );
+  }
 }
