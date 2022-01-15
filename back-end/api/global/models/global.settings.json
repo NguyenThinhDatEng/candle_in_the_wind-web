@@ -1,0 +1,21 @@
+{
+  "kind": "singleType",
+  "collectionName": "globals",
+  "info": {
+    "name": "global",
+    "description": ""
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "Slider": {
+      "type": "component",
+      "repeatable": true,
+      "component": "home.list-banner"
+    }
+  }
+}

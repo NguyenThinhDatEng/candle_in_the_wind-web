@@ -1,0 +1,18 @@
+{
+  "collectionName": "components_home_list_banners",
+  "info": {
+    "name": "listBanner",
+    "icon": "align-justify"
+  },
+  "options": {},
+  "attributes": {
+    "image": {
+      "model": "file",
+      "via": "related",
+      "allowedTypes": ["images"],
+      "plugin": "upload",
+      "required": false,
+      "pluginOptions": {}
+    }
+  }
+}
