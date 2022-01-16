@@ -53,7 +53,7 @@ export default function Comments(props) {
 				))}
 			</div>
 			{
-				props.lock && <CommentForm submitLabel="Write" handleSubmit={addComment} />
+				!props.lock && <CommentForm submitLabel="Write" handleSubmit={addComment} />
 			}
 			
 		</div>

@@ -52,7 +52,7 @@ const Item = (props) => {
   const alert = useAlert();
 
   // console.log(props.match.params.id)
-
+  const [avt, setAvt] = useState('')
   useEffect(() => {
     (
     async () => {
@@ -62,6 +62,8 @@ const Item = (props) => {
         process.env.REACT_APP_SERVER_URL + "/products/" +  props.match.params.id
       );
       setItem(result.data);
+      setAvt(process.env.REACT_APP_SERVER_URL + item.avatar?.url)
+      console.log(item.avatar?.url)
       setLoading(false)
     })()
   }, [props.match.params.id]);
@@ -123,7 +125,7 @@ const Item = (props) => {
             <div className="itemscreen__left">
               <div className="left__image">
                 <img
-                  src={process.env.REACT_APP_SERVER_URL + item?.avatar?.url}
+                  src= {avt}
                   alt="product name"
                 />
               </div>
@@ -235,6 +237,29 @@ const Item = (props) => {
               </div>
             </div>
           </div>
+          <div className = 'smallImg'>
+            <img
+                  src={process.env.REACT_APP_SERVER_URL + item?.avatar?.url}
+                  alt="product name"
+                  onClick={() => setAvt(process.env.REACT_APP_SERVER_URL + item?.avatar?.url)}
+              />
+          {
+            item?.related_images?.length > 0 ?(
+              item?.related_images?.map((rImg)=>(
+                <img
+                  src={process.env.REACT_APP_SERVER_URL + rImg?.url}
+                  alt="product name"
+                  onClick={() => setAvt(process.env.REACT_APP_SERVER_URL + rImg?.url)}
+                  key={rImg._id}
+                />
+                
+                )
+                )
+                ):(
+                  <span></span>
+                  )
+                }
+                </div>
           <div className="description__screen">
             <h2 className="heading">description</h2>
             <p className="des">{item?.description}</p>
