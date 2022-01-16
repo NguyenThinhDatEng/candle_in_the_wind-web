@@ -29,7 +29,6 @@ const login = async (ctx) => {
     phoneNumber: user.phoneNumber,
     loyal: user.loyal,
     cart: user.cart?.id,
-    orders: user.orders,
   };
   return Response.ok(ctx, { data: data, msg: `OK`, status: 200 });
 };
@@ -77,7 +76,6 @@ const signup = async (ctx) => {
       phoneNumber: user.phoneNumber,
       loyal: user.loyal,
       cart: cart.id,
-      orders: user.orders,
     };
     return Response.created(ctx, {
       data: data,
@@ -184,10 +182,26 @@ const changePassword = async (ctx) => {
   });
 };
 
+const getOrders = async (ctx) => {
+  // get customer id
+  const url = ctx.request.url.split("/");
+  const id = url[url.length - 1];
+  // get user
+  let user = null;
+  try {
+    user = await strapi.query("customer").findOne({ id });
+  } catch (error) {
+    return strapi.services.customer.err500(ctx, error, "get user");
+  }
+  // create data to response
+  return user.orders;
+};
+
 module.exports = {
-  changePassword: changePassword,
-  resetPassWord: resetPassWord,
-  signup: signup,
-  login: login,
-  verifyOTP: verifyOTP,
+  changePassword,
+  resetPassWord,
+  signup,
+  login,
+  verifyOTP,
+  getOrders,
 };

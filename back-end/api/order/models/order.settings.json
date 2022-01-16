@@ -8,13 +8,8 @@
   "options": {
     "increments": true,
     "timestamps": true,
-    "privateAttributes": [
-      "__v",
-      "createdAt",
-      "updatedAt",
-      "id"
-    ],
-    "draftAndPublish": false
+    "privateAttributes": ["__v", "updatedAt", "_id"],
+    "draftAndPublish": true
   },
   "pluginOptions": {},
   "attributes": {
@@ -44,10 +39,6 @@
     "note": {
       "type": "text"
     },
-    "status": {
-      "type": "boolean",
-      "default": false
-    },
     "customer": {
       "via": "orders",
       "model": "customer"
@@ -58,10 +49,7 @@
     },
     "payment": {
       "type": "enumeration",
-      "enum": [
-        "Bank_transfer",
-        "Delivery"
-      ],
+      "enum": ["Bank_transfer", "Delivery"],
       "required": true
     },
     "shipping_fee": {

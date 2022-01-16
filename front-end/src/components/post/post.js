@@ -5,23 +5,20 @@ import Header from "../header/header";
 import Comments from "../comments/Comments";
 import { useEffect, useState } from "react";
 import ReactLoading from "react-loading";
-import Modal from 'react-modal';
-import {
-	lockCommentAPI,
-	deletePostAPI
-} from "../../services/postService";
+import Modal from "react-modal";
+import { lockCommentAPI, deletePostAPI } from "../../services/postService";
 import axios from "axios";
 require("dotenv").config();
 
 const customStyles = {
-	content: {
-		top: '50%',
-		left: '50%',
-		right: 'auto',
-		bottom: 'auto',
-		marginRight: '-50%',
-		transform: 'translate(-50%, -50%)',
-	},
+  content: {
+    top: "50%",
+    left: "50%",
+    right: "auto",
+    bottom: "auto",
+    marginRight: "-50%",
+    transform: "translate(-50%, -50%)",
+  },
 };
 
 export default function Post(props) {
@@ -86,8 +83,8 @@ export default function Post(props) {
 					</>
 					:
 				<>
-					<div className="container text-center">
-						<div className="post-title ">
+					<div className="container "  >
+						<div className="post-title text-center">
 							<h1> {post?.title}
 								{
 									(customer_name === post?.username) && (customer_name != undefined) ?
@@ -106,18 +103,19 @@ export default function Post(props) {
 										: null
 								}
 							</h1>
+							
 							<p>
 								Post on {new Date(post?.published_at).toLocaleDateString()}_{post?.username}
 							</p>
 						</div>
-
-						<p className="post-content mx-auto">{post?.content}</p>
 						<img
-							className="mb-5"
+							className="mb-5 mx-auto d-block"
 							src={process.env.REACT_APP_SERVER_URL + post?.avatar}
 							alt=""
 							style={{ width: "50%" }}
 						/>
+						<p className="post-content mx-auto" dangerouslySetInnerHTML={{__html:post?.content}}  /> 
+						
 					</div>
 					<div class="d-flex justify-content-center row">
 						<div class="col-md-8">
@@ -140,7 +138,6 @@ export default function Post(props) {
 				isOpen={confirm}
 				style={customStyles}
 			>
-
 				<p>Are you sure you want to remove post?</p>
 				<div className="text-center">
 					<Link
@@ -159,12 +156,9 @@ export default function Post(props) {
 						No
 					</button>
 				</div>
-
-
 			</Modal>
-
-
 			<Footer />
 		</>
 	);
+
 }

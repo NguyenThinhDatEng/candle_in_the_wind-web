@@ -28,14 +28,6 @@
       "type": "boolean",
       "default": false
     },
-    "avatar": {
-      "model": "file",
-      "via": "related",
-      "allowedTypes": ["images"],
-      "plugin": "upload",
-      "required": true,
-      "pluginOptions": {}
-    },
     "catalogs": {
       "collection": "catalog"
     },
@@ -46,6 +38,10 @@
     "customer": {
       "via": "posts",
       "model": "customer"
+    },
+    "overview": {
+      "type": "text",
+      "minLength": 100
     }
   }
 }

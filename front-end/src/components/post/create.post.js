@@ -4,14 +4,18 @@ import Footer from "../footer/footer";
 import { useState, useEffect } from "react";
 import { Link, useHistory } from "react-router-dom";
 import { createPostAPI } from "../../services/postService";
+import { CKEditor } from "@ckeditor/ckeditor5-react";
+import ClassicEditor from "ckeditor-build-with-simple-upload-provider-strapi";
+import ReactHtmlParser from "react-html-parser";
 import axios from "axios";
 require("dotenv").config();
+
 
 export default function CreatePost() {
 	const [state, setState] = useState({
 		title: "",
 		content: "",
-		image: null,
+		overview: ""
 	});
 	const [formErrors, setFormErrors] = useState("");
 
@@ -23,15 +27,19 @@ export default function CreatePost() {
 		});
 	};
 
-	const updateContent = (e) => {
+	const updateContent = (e, editor) => {
+		// console.log(editor)
+		// console.log(e.target.files[0])
 		setState((previousState) => {
-			return { ...previousState, content: e.target.value };
+			return { ...previousState, content: editor.getData().replace("/uploads", "http://localhost:2021/uploads") };
 		});
+
+		console.log(state.content);
 	};
 
-	const updateImage = (e) => {
+	const updateOveriew = (e) => {
 		setState((previousState) => {
-			return { ...previousState, image: e.target.files[0] };
+			return { ...previousState, overview: e.target.value };
 		});
 	};
 
@@ -45,24 +53,10 @@ export default function CreatePost() {
 			console.log(formErrors);
 		} else {
 			setFormErrors("");
-			const formData = new FormData();
-			// Update the formData object
-			formData.append("files", state.image);
-
-			// Details of the uploaded file
-			let res;
-			await axios
-				.post(process.env.REACT_APP_SERVER_URL + "/upload", formData)
-				.then((response) => {
-					console.log(response);
-					res = response;
-				});
-
-			console.log(res?.data[0]._id);
 			let data = {
 				title: state.title,
 				content: state.content,
-				avatar: res?.data[0]?._id,
+				overview: state.overview,
 				customer_id: customer_id,
 			};
 
@@ -77,7 +71,7 @@ export default function CreatePost() {
 		// <div>
 		<>
 			<Header />
-			<div className="container bg-secondary">
+			<div className="container">
 				<div className="row justify-content-center">
 					<div className="col-md-8 col-md-offset-2">
 						<h1 className="text-center my-4">Create a new post</h1>
@@ -91,25 +85,28 @@ export default function CreatePost() {
 									onChange={updateTitle}
 								/>
 							</div>
+
+							<div>
+								<article>Content</article>
+								<CKEditor
+									editor={ClassicEditor}
+									config={{
+										simpleUpload: {
+											uploadUrl: process.env.REACT_APP_SERVER_URL + "/upload",
+										},
+									}}
+									onChange={updateContent}
+								/>
+						
+								{/* {ReactHtmlParser(state.content)} */}
+							</div>
 							<div className="form-group mb-4">
-								<label htmlFor="description">Description</label>
+								<label htmlFor="description">Overview</label>
 								<textarea
 									rows={5}
 									className="form-control"
-									name="description"
 									defaultValue={""}
-									onChange={updateContent}
-								/>
-							</div>
-							<div className="form-group mb-4">
-								<label htmlFor="formFile" className="form-label">
-									Upload image
-								</label>
-								<input
-									className="form-control"
-									type="file"
-									id="formFile"
-									onChange={updateImage}
+									onChange={updateOveriew}
 								/>
 							</div>
 							<div className="form-group my-5 text-center">
@@ -118,7 +115,7 @@ export default function CreatePost() {
 									{formErrors}{" "}
 								</p>
 								<Link
-									to="#"
+									to="/blog"
 									type="submit"
 									className="btn btn-dark"
 									onClick={() => createPost()}

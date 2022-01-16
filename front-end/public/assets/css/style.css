@@ -152,11 +152,8 @@ BLOG
     margin-left: 5% !important;
 }
 
-.post-element p {
-    margin: 0 10%;
-}
-
 .post-element a {
+    /* text-align: center; */
     text-decoration: none;
 }
 
