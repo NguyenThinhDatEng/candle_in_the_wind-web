@@ -36,60 +36,63 @@ export default function Blog() {
   // Change page
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
-  // console.log(loading)
-  // console.log(posts)
-  return (
-    <div>
-      <Header />
-      <div className="container bg-secondary">
-        {customer_id ? (
-          <Link
-            to="/create-post"
-            type="button"
-            className="btn btn-dark fs-4 mt-5 create-post"
-          >
-            Create a new post
-          </Link>
-        ) : null}
-        {loading ? (
-          <>
-            <div className="clearfix" />
-            <div className="d-flex justify-content-center">
-              <ReactLoading
-                type="spinningBubbles"
-                color="white"
-                height={200}
-                width={100}
-              />
-            </div>
-          </>
-        ) : (
-          <>
-            <div className="clearfix" />
-            <div className="row row-cols-1 row-cols-lg-2">
-              {currentPosts.map((value, key) => {
-                return (
-                  <ContentBlog
-                    id={value?._id}
-                    title={value?.title}
-                    image={value?.avatar?.url}
-                    content={value.content.substring(0, 200) + "..."}
-                  />
-                );
-              })}
-            </div>
-            <div className="mt-5">
-              <Pagination
-                postsPerPage={postsPerPage}
-                totalPosts={posts.length}
-                paginate={paginate}
-                currentPage={currentPage}
-              />
-            </div>
-          </>
-        )}
-      </div>
-      <Footer />
-    </div>
-  );
-}
+
+	// Change page
+	const paginate = pageNumber => setCurrentPage(pageNumber);
+
+	// console.log(loading)
+	// console.log(posts)
+	return (
+		<div>
+			<Header />
+			<div className="container bg-secondary">
+				{
+					customer_id ? (<Link to="/create-post" type="button" className="btn btn-dark fs-4 mt-5 create-post">
+						Create a new post
+					</Link>
+					) : null
+				}
+				{
+					loading ?
+						<>	
+							<div className="clearfix" />
+							<div className="d-flex justify-content-center">
+								<ReactLoading
+									type="spinningBubbles"
+									color="white"
+									height={200}
+									width={100}
+								/>
+							</div>
+						</>
+						:
+						<>
+							<div className="clearfix" />
+							<div className="row row-cols-1">
+								{currentPosts.map((value, key) => {
+									return (
+										<ContentBlog
+											id={value?._id}
+											title={value?.title}
+											overview={value?.overview}
+										/>
+									);
+								})}
+
+							</div>
+							<div className="mt-5">
+								<Pagination
+									postsPerPage={postsPerPage}
+									totalPosts={posts.length}
+									paginate={paginate}
+									currentPage={currentPage}
+								/>
+							</div>
+						</>
+
+				}
+			</div>
+			<Footer />
+		</div>
+	);
+
