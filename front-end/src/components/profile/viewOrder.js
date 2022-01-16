@@ -1,6 +1,6 @@
 import React from "react";
 import { useEffect, useState } from "react";
-import { getUserInfo } from "../../services/customerService";
+import { getOrders } from "../../services/customerService";
 
 export default function MyOrder() {
   const [orders, setOrders] = useState([]);
@@ -11,16 +11,17 @@ export default function MyOrder() {
       return false;
     }
   };
-  const id = isAuth() ? isAuth().id : "";
+  const customer = isAuth() ? isAuth().id : "";
 
   useEffect(async () => {
-    const user = await getUserInfo(id);
-    setOrders(user.orders);
+    const data = await getOrders(customer);
+    // console.info(data);
+    setOrders(data.data);
   }, []);
 
   return (
     <div className="col-md-3 col-sm-6 col-xs-12 change-form">
-      <h3 className="text-center my-4">My Orders</h3>
+      <h3 className="text-center my-4">Your Orders</h3>
       <div className="table-responsive order-scrollbar">
         <table className="table bg-light table-striped ">
           <thead>
@@ -34,20 +35,21 @@ export default function MyOrder() {
             </tr>
           </thead>
           <tbody>
-            {orders.map((value, index) => {
-              return (
-                <tr>
-                  <th scope="row">{index + 1}</th>
-                  <td>{value.published_at ? "confirm" : "Pending..."}</td>
-                  <td>{value.fullname}</td>
-                  <td>
-                    {new Date(value.createdAt).toLocaleDateString("en-GB")}
-                  </td>
-                  <td>{value.payment}</td>
-                  <td>{value.grand_total}</td>
-                </tr>
-              );
-            })}
+            {orders &&
+              orders.map((value, index) => {
+                return (
+                  <tr>
+                    <th scope="row">{index + 1}</th>
+                    <td>{value.published_at ? "confirm" : "Pending..."}</td>
+                    <td>{value.fullname}</td>
+                    <td>
+                      {new Date(value.createdAt).toLocaleDateString("en-GB")}
+                    </td>
+                    <td>{value.payment}</td>
+                    <td>{value.grand_total}</td>
+                  </tr>
+                );
+              })}
           </tbody>
         </table>
       </div>

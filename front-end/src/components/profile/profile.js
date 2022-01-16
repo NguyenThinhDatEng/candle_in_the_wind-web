@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import CardInfo from "./card.info";
 import Infor from "./infor";
 import ChangePassword from "./change.password";
-import MyOrder from "./myOrder";
+import MyOrder from "./viewOrder";
 import ChangeInfo from "./change.info";
 import { useEffect, useState } from "react";
 import Header from "../header/header";
