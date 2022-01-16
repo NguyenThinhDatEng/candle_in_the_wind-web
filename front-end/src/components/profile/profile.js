@@ -29,14 +29,14 @@ const useStyles = makeStyles((theme) => ({
     marginRight: theme.spacing(2),
   },
   cameraIcon: {
-    height: "50px",
+    height: "60px",
     fontSize: "25px",
-    // width: "1rem",
-    position: "absolute",
-    // bottom: "0",
-    marginLeft: "250px",
-    marginTop: "-90px",
+    position: "relative",
+    marginLeft: "75%",
+    marginTop: "-50%",
     backgroundColor: "white",
+    borderRadius: "50%",
+    width: "30px",
 
     "&:hover": {
       backgroundColor: "white",
@@ -44,23 +44,16 @@ const useStyles = makeStyles((theme) => ({
   },
 
   queen: {
-    top: "270px",
-    // marginRight: "100px",
+
     height: "50px",
     fontSize: "25px",
-    // width: "1rem",
-    position: "absolute",
-    // bottom: "0",
-    marginLeft: "360px",
-    marginTop: "-90px",
-    backgroundColor: "white",
+
+    position: "relative",
+
+    marginLeft: "45%",
     fontSize: "300%",
     transform: "rotate(40deg)",
     color: "yellow",
-
-    // "&:hover": {
-    //   backgroundColor: "white",
-    // },
   },
 }));
 
@@ -164,7 +157,7 @@ export default function Profile(props) {
                   aria-haspopup="true"
                   onClick={handleToggle}
                 >
-                  <i class="fas fa-camera"></i>
+                  <i class="fas fa-camera" style={{ "top": "25%", "fontSize": "120%", "marginRight": "-4px" }}></i>
                 </Button>
 
                 <Popper
@@ -191,7 +184,7 @@ export default function Profile(props) {
                             id="menu-list-grow"
                             onKeyDown={handleListKeyDown}
                           >
-                            <MenuItem onClick={handleClose}>View</MenuItem>
+
                             <MenuItem
                               onClick={(event) => {
                                 handleCropper();
@@ -275,7 +268,7 @@ export default function Profile(props) {
                   aria-haspopup="true"
                   onClick={handleToggle}
                 >
-                  <i class="fas fa-camera"></i>
+                  <i class="fas fa-camera" style={{ "top": "25%", "fontSize": "120%", "marginRight": "-4px" }}></i>
                 </Button>
 
                 <Popper
