@@ -17,7 +17,23 @@ import axios from "axios";
 //     iconButton: {},
 //     cancelIcon: {},
 // })
-export default function RenderCropper() {
+const useStyles = makeStyles({
+    iconButton: {
+        position: "absolute",
+        top: "20px",
+        right: "20px",
+    },
+    cancelIcon: {
+        color: "#00a3c8",
+        fontSize: "50px",
+        "&:hover": {
+            color: "red",
+        },
+    },
+});
+
+export default function RenderCropper({ handleCropper }) {
+    const classes = useStyles();
 
 
     const isAuth = () => {
@@ -133,6 +149,14 @@ export default function RenderCropper() {
     return (
         <div className='container container-cropmain'>
 
+            <button className={classes.iconButton}
+                onClick={handleCropper}
+                style={{ "marginTop": "100px", "textAlign": "right", "fontSize": "220%" }}>
+
+                <i class="fas fa-window-close"></i>
+
+            </button>
+
             <div className='container-cropper'>
                 {image ? (
                     <>
@@ -170,6 +194,7 @@ export default function RenderCropper() {
                     onChange={onSelectFile}
                     style={{ display: "none" }}
                 />
+
                 <Button
                     onClick={() => onClear()}
                     variant='contained'
