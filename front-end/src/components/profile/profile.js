@@ -132,7 +132,7 @@ export default function Profile(props) {
       process.env.REACT_APP_SERVER_URL + "/customers/" + id
     );
     setData(result.data);
-  }, []);
+  }, [data]);
   if (isAuth().loyal) {
     return (
       <div>
@@ -150,7 +150,7 @@ export default function Profile(props) {
                     src={
                       data?.avatar?.url
                         ? process.env.REACT_APP_SERVER_URL + data?.avatar?.url
-                        : "https://bootdey.com/img/Content/avatar/avatar1.png"
+                        : (isAuth().gender == "Male" ? "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRZWD0TQ9XGBl9RL_wGTfib6U7S4pAz6I98MyySh59epBK7xv_h0yBscGKzk4OD9_sUaJc&usqp=CAU" : "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRz4K_mIw-8wEuEdqQ88J9qfamhXsHovW_qZkB8TzlRmNxp1O6H6J9W84LU-gr1nImZiOc&usqp=CAU")
                     }
                     alt="Card_image"
                     style={{ width: "100%" }}
@@ -262,7 +262,7 @@ export default function Profile(props) {
                     src={
                       data?.avatar?.url
                         ? process.env.REACT_APP_SERVER_URL + data?.avatar?.url
-                        : "https://bootdey.com/img/Content/avatar/avatar1.png"
+                        : (isAuth().gender == "Male" ? "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRZWD0TQ9XGBl9RL_wGTfib6U7S4pAz6I98MyySh59epBK7xv_h0yBscGKzk4OD9_sUaJc&usqp=CAU" : "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRz4K_mIw-8wEuEdqQ88J9qfamhXsHovW_qZkB8TzlRmNxp1O6H6J9W84LU-gr1nImZiOc&usqp=CAU")
                     }
                     alt="Card_image"
                     style={{ width: "100%" }}
