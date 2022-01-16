@@ -14,7 +14,7 @@
       "updatedAt",
       "id"
     ],
-    "draftAndPublish": false
+    "draftAndPublish": true
   },
   "pluginOptions": {},
   "attributes": {
@@ -43,10 +43,6 @@
     },
     "note": {
       "type": "text"
-    },
-    "status": {
-      "type": "boolean",
-      "default": false
     },
     "customer": {
       "via": "orders",

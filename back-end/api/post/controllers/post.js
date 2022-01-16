@@ -46,8 +46,6 @@ const findOne = async (ctx) => {
     content: post.content,
     published_at: post.published_at,
     username: post.customer?.username,
-    url: post.avatar?.url,
-    avatar: post.avatar?.id,
     comments: allOfComments,
   };
 
