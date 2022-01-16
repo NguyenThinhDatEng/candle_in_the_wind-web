@@ -21,26 +21,25 @@ const Item = (props) => {
   
   const [quantity, setQuantity] = useState(1);
 
-  const [data, setData] = useState([]);
+  const [item, setItem] = useState([]);
 
   const [loading, setLoading] = useState(true)
 
   const alert = useAlert();
-
   console.log(cart)
-
-  useEffect(() => {
-    (async () => {
+  const [avt, setAvt] = useState('')
+  
+  useEffect(async () => {
     const result = await axios(
       process.env.REACT_APP_SERVER_URL + "/products/" +  props.match.params.id
-    );
-    setData(result.data);
-    setLoading(false)
-  })()
-  }, []);
-
-
-
+      );
+      setItem(result.data);
+      setAvt(process.env.REACT_APP_SERVER_URL + item.avatar?.url)
+      console.log(item.avatar?.url)
+      setLoading(false)
+    }, []);
+    
+    
 
   return (
     <div>
@@ -62,30 +61,30 @@ const Item = (props) => {
             <div className="itemscreen__left">
               <div className="left__image">
                 <img
-                  src={process.env.REACT_APP_SERVER_URL + data?.avatar?.url}
+                  src= {avt}
                   alt="product name"
                 />
               </div>
             </div>
             <div className="itemscreen__right">
               <div className="right__info">
-                <p className="right__info__name">{data?.name}</p>
+                <p className="right__info__name">{item?.name}</p>
                 {
-                  data?.discount === 0 ? (
+                  item?.discount === 0 ? (
                     
                     <div className="right__info__price">
                       <span className="right__info__new__price" style={{marginLeft:'0px'}}>
-                        ${Number(data?.price) }
+                        ${Number(item?.price) }
                       </span>
                     </div>
                   ) : (
                     <>
                       <div className="right__info__price">
                         <span className="right__info__new__price" style={{marginLeft:'0px'}}>
-                        ${Number(data?.price) * (100 - Number(data?.discount)) / 100 }
+                        ${Number(item?.price) * (100 - Number(item?.discount)) / 100 }
                         </span>
                         <span className="right__info__actual__price" style={{color:'black'}}>
-                          ${Number(data?.price) }
+                          ${Number(item?.price) }
                         </span>
                       </div>
                     </>
@@ -110,7 +109,7 @@ const Item = (props) => {
                         name="quantity"
                         value={quantity}
                         min="1"
-                        max={data.quantityStock}
+                        max={item.quantityStock}
                         className="quantity-selector quantity-input"
                         onChange={(e) =>{
                           setQuantity(Number(e.target.value));
@@ -131,12 +130,12 @@ const Item = (props) => {
                   type="button" 
                   onClick={()=>{
                     if(localStorage.getItem("user-info")){
-                      if (cart.find((product) => product?.product === data?._id)){
-                        updateItemFromCart(data, quantity)
+                      if (cart.find((product) => product?.product === item?._id)){
+                        updateItemFromCart(item, quantity)
                         // console.log("Update")
                       }
                       else {
-                        addItemToCart({data, quantity})
+                        addItemToCart({item, quantity})
                         // console.log("Add")
                       }
                     } else {
@@ -174,9 +173,31 @@ const Item = (props) => {
               </div>
             </div>
           </div>
+          <div className = 'smallImg'>
+            <img
+                  src={process.env.REACT_APP_SERVER_URL + item?.avatar?.url}
+                  alt="product name"
+                  onClick={() => setAvt(process.env.REACT_APP_SERVER_URL + item?.avatar?.url)}
+              />
+          {
+            item?.related_images?.length > 0 ?(
+              item?.related_images?.map((rImg)=>(
+                <img
+                  src={process.env.REACT_APP_SERVER_URL + rImg?.url}
+                  alt="product name"
+                  onClick={() => setAvt(process.env.REACT_APP_SERVER_URL + rImg?.url)}
+                />
+                
+                )
+                )
+                ):(
+                  <span></span>
+                  )
+                }
+                </div>
           <div className="description__screen">
             <h2 className="heading">description</h2>
-            <p className="des">{data?.description}</p>
+            <p className="des">{item?.description}</p>
           </div>
           <div className="related__screen">
             <h2>Related Products</h2>
