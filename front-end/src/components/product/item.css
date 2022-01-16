@@ -234,7 +234,7 @@
 /* Related Screen */
 
 .related__screen {
-    font-family: 'Reem Kufi', sans-serif;
+    font-family: 'Reem Kufi', sans-serif !important;
     margin: 2rem;
     padding: 2rem;
 }

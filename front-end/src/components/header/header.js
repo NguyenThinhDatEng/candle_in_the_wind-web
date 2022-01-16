@@ -147,16 +147,16 @@ export default function Header() {
                 src="/assets/icons/Search-icon.png"
               />
 
+              {/* Searching product */}
+
               <div className="result" ref={ref}>
                 {isMenuOpen && filteredData.length !== 0 && (
                   <div className="dataResult">
-                    {filteredData.slice(0, 15).map((value, key) => {
-                      // console.log(value)
-                      return (
+                    {filteredData.slice(0, 15).map((value, key) => (
                         <Link
                           className="dataItem"
                           to={`/products/${value._id}`}
-                          target="_blank"
+                          // target="_blank"
                           key={value._id}
                         >
                           <img
@@ -211,8 +211,7 @@ export default function Header() {
                             )}
                           </div>
                         </Link>
-                      );
-                    })}
+                      ))}
                   </div>
                 )}
               </div>
@@ -347,7 +346,7 @@ export default function Header() {
                         <Link
                           className="dataItem"
                           to={`/products/${value._id}`}
-                          target="_blank"
+                          // target="_blank"
                           key={value._id}
                         >
                           <img

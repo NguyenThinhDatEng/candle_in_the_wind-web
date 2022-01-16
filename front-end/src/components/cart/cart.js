@@ -26,7 +26,11 @@ export default function Cart() {
                         <div className="col-lg-12 col-md-12 col-12">
                             <h3 className="yourcart">Your Shopping Cart</h3>
                             <p className="numOfProduct">
-                                <i className="quantityOfProduct">{total}</i> products</p>
+                                <i className="quantityOfProduct">
+                                    {total}
+                                </i> 
+                                 products
+                            </p>
                             <table id="shoppingCart" className="table table-condensed table-responsive">
                                 <thead>
                                     <tr>

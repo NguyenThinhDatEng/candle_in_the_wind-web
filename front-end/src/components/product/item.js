@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useContext } from "react";
 import ReactLoading from "react-loading";
+import Slider from "react-slick";
 import Footer from "../footer/footer";
 import Header from "../header/header";
 import imgdemo from "./avatar.jpg";
@@ -8,10 +9,33 @@ import { useAlert } from 'react-alert'
 import "./item.css";
 import axios from "axios";
 import { CartContext } from "../../context/Context";
+import ItemCard from "./itemCard";
 require("dotenv").config();
 
+function SampleNextArrow(props) {
+	const { className, style, onClick } = props;
+	return (
+	  <div
+		className={className}
+		style={{ ...style, display: "block", background: "black" }}
+		onClick={onClick}
+	  />
+	);
+  }
+  
+  function SamplePrevArrow(props) {
+	const { className, style, onClick } = props;
+	return (
+	  <div
+		className={className}
+		style={{ ...style, display: "block", background: "black" }}
+		onClick={onClick}
+	  />
+	);
+  }
+
 const Item = (props) => {
-  const {cart, addItemToCart, updateItemFromCart} = useContext(CartContext)
+  const {cart, addItemToCart, updateItemFromCart, data} = useContext(CartContext)
 
   const [toggle, setToggle] = useState(false);
   
@@ -21,25 +45,62 @@ const Item = (props) => {
   
   const [quantity, setQuantity] = useState(1);
 
-  const [data, setData] = useState([]);
+  const [item, setItem] = useState([]);
 
   const [loading, setLoading] = useState(true)
 
   const alert = useAlert();
 
-  console.log(cart)
+  // console.log(props.match.params.id)
 
   useEffect(() => {
-    (async () => {
-    const result = await axios(
-      process.env.REACT_APP_SERVER_URL + "/products/" +  props.match.params.id
-    );
-    setData(result.data);
-    setLoading(false)
-  })()
-  }, []);
+    (
+    async () => {
+      window.scrollTo(0, 0)
+      setLoading(true)
+      const result = await axios(
+        process.env.REACT_APP_SERVER_URL + "/products/" +  props.match.params.id
+      );
+      setItem(result.data);
+      setLoading(false)
+    })()
+  }, [props.match.params.id]);
 
-
+  const settings = {
+    infinite: true,
+    rows: 1,
+    dots: true,
+    speed: 1000,
+    slidesToShow: 4,
+    slidesToScroll: 4,
+    nextArrow: <SampleNextArrow />,
+        prevArrow: <SamplePrevArrow />,
+    responsive: [
+      {
+        breakpoint: 1024,
+        settings: {
+          slidesToShow: 3,
+          slidesToScroll: 3,
+          infinite: true,
+          dots: true,
+        },
+      },
+      {
+        breakpoint: 600,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 2,
+        },
+      },
+      {
+        breakpoint: 480,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+        },
+      },
+    ],
+  };
 
 
   return (
@@ -62,30 +123,30 @@ const Item = (props) => {
             <div className="itemscreen__left">
               <div className="left__image">
                 <img
-                  src={process.env.REACT_APP_SERVER_URL + data?.avatar?.url}
+                  src={process.env.REACT_APP_SERVER_URL + item?.avatar?.url}
                   alt="product name"
                 />
               </div>
             </div>
             <div className="itemscreen__right">
               <div className="right__info">
-                <p className="right__info__name">{data?.name}</p>
+                <p className="right__info__name">{item?.name}</p>
                 {
-                  data?.discount === 0 ? (
+                  item?.discount === 0 ? (
                     
                     <div className="right__info__price">
                       <span className="right__info__new__price" style={{marginLeft:'0px'}}>
-                        ${Number(data?.price) }
+                        ${Number(item?.price) }
                       </span>
                     </div>
                   ) : (
                     <>
                       <div className="right__info__price">
                         <span className="right__info__new__price" style={{marginLeft:'0px'}}>
-                        ${Number(data?.price) * (100 - Number(data?.discount)) / 100 }
+                        ${Number(item?.price) * (100 - Number(item?.discount)) / 100 }
                         </span>
                         <span className="right__info__actual__price" style={{color:'black'}}>
-                          ${Number(data?.price) }
+                          ${Number(item?.price) }
                         </span>
                       </div>
                     </>
@@ -110,7 +171,7 @@ const Item = (props) => {
                         name="quantity"
                         value={quantity}
                         min="1"
-                        max={data.quantityStock}
+                        max={item.quantityStock}
                         className="quantity-selector quantity-input"
                         onChange={(e) =>{
                           setQuantity(Number(e.target.value));
@@ -131,12 +192,12 @@ const Item = (props) => {
                   type="button" 
                   onClick={()=>{
                     if(localStorage.getItem("user-info")){
-                      if (cart.find((product) => product?.product === data?._id)){
-                        updateItemFromCart(data, quantity)
+                      if (cart.find((product) => product?.product === item?._id)){
+                        updateItemFromCart(item, quantity)
                         // console.log("Update")
                       }
                       else {
-                        addItemToCart({data, quantity})
+                        addItemToCart({item, quantity})
                         // console.log("Add")
                       }
                     } else {
@@ -176,50 +237,26 @@ const Item = (props) => {
           </div>
           <div className="description__screen">
             <h2 className="heading">description</h2>
-            <p className="des">{data?.description}</p>
+            <p className="des">{item?.description}</p>
           </div>
           <div className="related__screen">
-            <h2>Related Products</h2>
-            {/* <div className="related__items">
-              <div className="item text-center">
-                <div className="item-img">
-                  <img
-                    alt=""
-                    src={process.env.REACT_APP_SERVER_URL + data?.[0]?.url}
-                  />
-                </div>
-                <div>
-                  <p className="mt-3"> Item 1 </p>
-                  <p className="text-danger"> 000 VNĐ</p>
-                  <button className="btn btn-dark mb-3">Add to cart</button>
-                </div>
-              </div>
-              <div className="item text-center">
-                <div className="item-img">
-                  <img alt="" src={imgdemo1} />
-                </div>
-                <div>
-                  <p className="mt-3"> Item 1 </p>
-                  <p className="text-danger"> 000 VNĐ</p>
-                  <button 
-                  className="btn btn-dark mb-3" 
-                  >
-                    Add to cart
+            <h2 style={{marginBottom: '5rem'}}>Related Products</h2>
+            
+            <Slider {...settings}>
+              {data.filter(
+                (val) => {
+                  if(val._id !== item._id) {return val}
+                }
+              ).map((value) => {
+                if (value?.catalog?.name === item?.catalog?.name){
+                  return (
+                    <ItemCard value={value} key={value._id} />
                     
-                  </button>
-                </div>
-              </div>
-              <div className="item text-center">
-                <div className="item-img">
-                  <img alt="" src={imgdemo} />
-                </div>
-                <div>
-                  <p className="mt-3"> Item 1 </p>
-                  <p className="text-danger"> 000 VNĐ</p>
-                  <button className="btn btn-dark mb-3">Add to cart</button>
-                </div>
-              </div>
-            </div> */}
+                  )
+                }
+              })}
+            </Slider>
+            
           </div>
         
         </>
