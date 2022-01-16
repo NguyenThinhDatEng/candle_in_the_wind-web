@@ -41,11 +41,12 @@ const findOne = async (ctx) => {
   }
   data = {
     id: post.id,
-    lockComment: post.lockComment,
     title: post.title,
+    lockComment: post.lockComment,
+    overview: post.overview,
     content: post.content,
     published_at: post.published_at,
-    username: post.customer?.username,
+    username: post.customer.username,
     comments: allOfComments,
   };
 

@@ -9,12 +9,7 @@
     "increments": true,
     "timestamps": true,
     "draftAndPublish": true,
-    "privateAttributes": [
-      "__v",
-      "createdAt",
-      "updatedAt",
-      "id"
-    ]
+    "privateAttributes": ["__v", "createdAt", "updatedAt", "id"]
   },
   "pluginOptions": {},
   "attributes": {
@@ -43,6 +38,10 @@
     "customer": {
       "via": "posts",
       "model": "customer"
+    },
+    "overview": {
+      "type": "text",
+      "minLength": 100
     }
   }
 }

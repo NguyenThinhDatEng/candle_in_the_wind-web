@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import CardInfo from "./card.info";
 import Infor from "./infor";
 import ChangePassword from "./change.password";
-import MyOrder from "./my.order";
+import MyOrder from "./myOrder";
 import ChangeInfo from "./change.info";
 import { useEffect, useState } from "react";
 import Header from "../header/header";
@@ -20,8 +20,6 @@ import MenuList from "@material-ui/core/MenuList";
 import { makeStyles } from "@material-ui/core/styles";
 import { IconButton } from "@material-ui/core";
 import RenderCropper from "./cropper/cropper";
-
-
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -105,8 +103,6 @@ export default function Profile(props) {
   const [showCropper, setShowCropper] = React.useState(false);
   const handleCropper = () => setShowCropper((prevValue) => !prevValue);
 
-
-
   const [status, setStatus] = useState(0);
 
   const displayCheck = () => {
@@ -115,20 +111,19 @@ export default function Profile(props) {
     } else if (status === 1) {
       return <ChangeInfo />;
     } else if (status == 2) {
-      return <ChangePassword />
+      return <ChangePassword />;
     } else {
       return <MyOrder />;
     }
   };
   const isAuth = () => {
-
     if (localStorage.getItem("user-info")) {
       return JSON.parse(localStorage.getItem("user-info"));
     } else {
       return false;
     }
-  }
-  const id = isAuth() ? isAuth().id : '';
+  };
+  const id = isAuth() ? isAuth().id : "";
 
   const [data, setData] = useState([]);
 
@@ -137,7 +132,7 @@ export default function Profile(props) {
       process.env.REACT_APP_SERVER_URL + "/customers/" + id
     );
     setData(result.data);
-  });
+  }, []);
   if (isAuth().loyal) {
     return (
       <div>
@@ -146,14 +141,17 @@ export default function Profile(props) {
           <div className="row justify-content-center">
             <div className="col-md-3 col-sm-6 col-xs-12 card-info">
               <div>
-                <div
-                  className={classes.queen}>
+                <div className={classes.queen}>
                   <i class="fas fa-crown"></i>
                 </div>
                 <div className="avatar">
                   <img
                     className="card-avatar rounded-circle mb-4"
-                    src={data?.avatar?.url ? process.env.REACT_APP_SERVER_URL + data?.avatar?.url : "https://bootdey.com/img/Content/avatar/avatar1.png"}
+                    src={
+                      data?.avatar?.url
+                        ? process.env.REACT_APP_SERVER_URL + data?.avatar?.url
+                        : "https://bootdey.com/img/Content/avatar/avatar1.png"
+                    }
                     alt="Card_image"
                     style={{ width: "100%" }}
                   />
@@ -181,7 +179,9 @@ export default function Profile(props) {
                       {...TransitionProps}
                       style={{
                         transformOrigin:
-                          placement === "bottom" ? "center top" : "center bottom",
+                          placement === "bottom"
+                            ? "center top"
+                            : "center bottom",
                       }}
                     >
                       <Paper>
@@ -259,7 +259,11 @@ export default function Profile(props) {
                 <div className="avatar">
                   <img
                     className="card-avatar rounded-circle mb-4"
-                    src={data?.avatar?.url ? process.env.REACT_APP_SERVER_URL + data?.avatar?.url : "https://bootdey.com/img/Content/avatar/avatar1.png"}
+                    src={
+                      data?.avatar?.url
+                        ? process.env.REACT_APP_SERVER_URL + data?.avatar?.url
+                        : "https://bootdey.com/img/Content/avatar/avatar1.png"
+                    }
                     alt="Card_image"
                     style={{ width: "100%" }}
                   />
@@ -286,7 +290,9 @@ export default function Profile(props) {
                       {...TransitionProps}
                       style={{
                         transformOrigin:
-                          placement === "bottom" ? "center top" : "center bottom",
+                          placement === "bottom"
+                            ? "center top"
+                            : "center bottom",
                       }}
                     >
                       <Paper>
