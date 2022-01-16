@@ -2782,6 +2782,7 @@ ckeditor5-build-strapi-wysiwyg@^2.0.0-rc.1:
   resolved "https://registry.yarnpkg.com/ckeditor5-build-strapi-wysiwyg/-/ckeditor5-build-strapi-wysiwyg-2.0.0-rc.1.tgz#5dd69d784df82157b971fabb62d73d1f41216660"
   integrity sha512-X4qbUxVP2D6JvZTr/nLSltkPoFDhSxtvTtzcNr8i0JvPstrFqEmFgcc/OhHK5O6cQWNzf9T7u+0JD2If4wGt4w==
 
+
 class-utils@^0.3.5:
   version "0.3.6"
   resolved "https://registry.yarnpkg.com/class-utils/-/class-utils-0.3.6.tgz#f93369ae8b9a7ce02fd41faad0ca83033190c463"
@@ -9502,6 +9503,7 @@ strapi-plugin-ckeditor5@^2.0.0-rc.2:
     ckeditor5-build-strapi-wysiwyg "^2.0.0-rc.1"
     react "^17.0.2"
     react-dom "^17.0.2"
+
 
 strapi-plugin-content-manager@3.6.8:
   version "3.6.8"

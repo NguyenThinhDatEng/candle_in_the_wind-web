@@ -11,29 +11,31 @@ import ReactLoading from "react-loading";
 require("dotenv").config();
 
 export default function Blog() {
-	const [posts, setPost] = useState([]);
-	const [currentPage, setCurrentPage] = useState(1);
-	const [postsPerPage] = useState(6);
-	const [loading, setLoading] = useState(true);
+  const [posts, setPost] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [postsPerPage] = useState(6);
+  const [loading, setLoading] = useState(true);
 
-	// var posts = [];
+  // var posts = [];
 
+  useEffect(async () => {
+    // setLoading(true)
+    const result = await axios(process.env.REACT_APP_SERVER_URL + "/posts/");
+    setLoading(false);
+    setPost(result.data.reverse());
+    // posts = result.data.reverse();
+  }, []);
 
-	useEffect(async () => {
-		// setLoading(true)
-		const result = await axios(process.env.REACT_APP_SERVER_URL + "/posts/");
-		setLoading(false)
-		setPost(result.data.reverse());
-		// posts = result.data.reverse(); 
-		
-	});
+  const customer_id = JSON.parse(localStorage.getItem("user-info"))?.id;
 
-	const customer_id = JSON.parse(localStorage.getItem("user-info"))?.id
+  // Get current posts
+  const indexOfLastPost = currentPage * postsPerPage;
+  const indexOfFirstPost = indexOfLastPost - postsPerPage;
+  const currentPosts = posts.slice(indexOfFirstPost, indexOfLastPost);
 
-	// Get current posts
-	const indexOfLastPost = currentPage * postsPerPage;
-	const indexOfFirstPost = indexOfLastPost - postsPerPage;
-	const currentPosts = posts.slice(indexOfFirstPost, indexOfLastPost);
+  // Change page
+  const paginate = (pageNumber) => setCurrentPage(pageNumber);
+
 
 	// Change page
 	const paginate = pageNumber => setCurrentPage(pageNumber);
@@ -93,4 +95,4 @@ export default function Blog() {
 			<Footer />
 		</div>
 	);
-}
+

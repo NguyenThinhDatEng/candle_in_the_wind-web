@@ -29,12 +29,14 @@ const Item = (props) => {
 
   console.log(cart)
 
-  useEffect(async () => {
+  useEffect(() => {
+    (async () => {
     const result = await axios(
       process.env.REACT_APP_SERVER_URL + "/products/" +  props.match.params.id
     );
     setData(result.data);
     setLoading(false)
+  })()
   }, []);
 
 
@@ -129,7 +131,7 @@ const Item = (props) => {
                   type="button" 
                   onClick={()=>{
                     if(localStorage.getItem("user-info")){
-                      if (cart.find((product) => product?.data?._id === data?._id)){
+                      if (cart.find((product) => product?.product === data?._id)){
                         updateItemFromCart(data, quantity)
                         // console.log("Update")
                       }

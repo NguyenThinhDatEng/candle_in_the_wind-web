@@ -22,13 +22,13 @@
       "required": true,
       "maxLength": 200
     },
-    "post": {
-      "via": "comments",
-      "model": "post"
-    },
     "customer": {
       "via": "comments",
       "model": "customer"
+    },
+    "post": {
+      "via": "comments",
+      "model": "post"
     }
   }
 }

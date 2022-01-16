@@ -14,20 +14,20 @@ require("dotenv").config();
 
 export default function Store(props) {
 	const [status, setStatus] = useState(0);
-	const [data, setData] = useState([]);
-	const { searchFilter } = useContext(CartContext)
+	// const [data, setData] = useState([]);
+	const { searchFilter, data } = useContext(CartContext)
 	const [loading, setLoading] = useState(true);
 	const [catalog, setCatalog] = useState([]);
 
 	useEffect(async () => {
-		const result = await axios(process.env.REACT_APP_SERVER_URL + "/products/");
-		setData(result.data);
+		// const result = await axios(process.env.REACT_APP_SERVER_URL + "/products/");
+		// setData(result.data);
 
 		const result2 = await axios(process.env.REACT_APP_SERVER_URL + "/catalogs");
 		// console.log(result2.data);
 		setCatalog(result2.data);
 		setLoading(false);
-	});
+	}, []);
 	// console.log(catalog)
 
 	const displayCheck = () => {

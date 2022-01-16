@@ -23,7 +23,7 @@
     },
     "cart_items": {
       "via": "cart",
-      "collection": "cart-item"
+      "collection": "cart_item"
     }
   }
 }

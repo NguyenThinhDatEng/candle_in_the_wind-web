@@ -4,21 +4,23 @@ import "./header.css";
 import { CartContext } from "../../context/Context";
 import axios from "axios";
 import { useAlert } from "react-alert";
+import { deleteCartItemsAPI, createCartItemsAPI } from '../../services/itemService'
 
 export default function Header() {
-  const { cart, setSearchFilter, searchFilter, data, setData } =
-    useContext(CartContext);
+  const { cart, setSearchFilter, searchFilter, data, setData, setLoadTotal, setLoading } = useContext(CartContext);
   const [total, setTotal] = useState();
   const [searchTerm, setSearchTerm] = useState("");
   const [filteredData, setFilteredData] = useState([]);
-  const [homeHeader, sethomeHeader] = useState("");
+  // const [homeHeader, sethomeHeader] = useState("");
   const alert = useAlert();
 
-  useEffect(async () => {
-    const result = await axios(process.env.REACT_APP_SERVER_URL + "/products/");
-    // setLoading(false)
-    // console.console("header");
-    setData(result.data);
+  useEffect(() => {
+    (async () => {
+      const result = await axios(process.env.REACT_APP_SERVER_URL + "/products/");
+      setLoading(false)
+      console.log("header");
+      setData(result.data);
+    })();
   }, []);
 
   useEffect(() => {
@@ -230,7 +232,18 @@ export default function Header() {
                   <Link
                     to="/"
                     onClick={() => {
-                      localStorage.removeItem("user-info");
+                      const data = cart
+                      const cart_id = JSON.parse(localStorage.getItem('user-info')).cart
+                      const newData = data.map((prod)=> ({
+                        product: prod.product,
+                        quantity: prod.quantity,
+                        cart: cart_id
+                      }))
+                      // console.log(newData)
+                      deleteCartItemsAPI(JSON.parse(localStorage.getItem('user-info')).cart)
+                      createCartItemsAPI(newData)
+                      setLoadTotal(true)
+                      localStorage.clear()
                     }}
                   >
                     Sign out
@@ -423,7 +436,7 @@ export default function Header() {
               </>
             )}
             <div className="cart">
-              <Link to="/cart">
+              <Link to="/login" onClick={()=>alert.show("Please Sign in first")}>
                 <img src="/assets/icons/ShoppingCart.png" />
               </Link>
               <span className="badge badge-warning" id="lblCartCount">

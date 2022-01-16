@@ -35,14 +35,18 @@ function SampleNextArrow(props) {
 export default function Product() {
 	const alert = useAlert()
 	// const [data, setData] = useState([]);
-	const {cart, addItemToCart, updateItemFromCart, searchFilter, data, setData} = useContext(CartContext)
-	const [loading, setLoading] = useState(true)
+	const {cart, addItemToCart, updateItemFromCart, 
+		loading, setLoading,
+		data
+	} = useContext(CartContext)
+	// const [loading, setLoading] = useState(true)
 
-	useEffect(async () => {
-		const result = await axios(process.env.REACT_APP_SERVER_URL + "/products/");
-		setLoading(false)
-		setData(result.data);
-	},[]);
+	// useEffect(async () => {
+	// 	const result = await axios(process.env.REACT_APP_SERVER_URL + "/products/");
+	// 	setLoading(false)
+	// 	setData(result.data);
+	// 	// setAllData(result.data);
+	// },[]);
 
 	const settings = {
 		infinite: true,
@@ -164,7 +168,7 @@ export default function Product() {
 														className="btn btn-dark mb-3"
 														onClick={() => {
 															if(localStorage.getItem("user-info")){
-																if (cart.find((prod) => prod?.data?._id === value?._id)) {
+																if (cart.find((prod) => prod?.product === value?._id)) {
 																	updateItemFromCart(value, 1)
 																	console.log(value?._id)
 																}
@@ -256,7 +260,7 @@ export default function Product() {
 														className="btn btn-dark mb-3"
 														onClick={() => {
 															if(localStorage.getItem("user-info")){
-																if (cart.find((prod) => prod?.data?._id === value?._id)) {
+																if (cart.find((prod) => prod?.product === value?._id)) {
 																	updateItemFromCart(value, 1)
 																	console.log(value?._id)
 																}
@@ -349,7 +353,7 @@ export default function Product() {
 														className="btn btn-dark mb-3"
 														onClick={() => {
 															if(localStorage.getItem("user-info")){
-																if (cart.find((prod) => prod?.data?._id === value?._id)) {
+																if (cart.find((prod) => prod?.product === value?._id)) {
 																	updateItemFromCart(value, 1)
 																	console.log(value?._id)
 																}
@@ -442,7 +446,7 @@ export default function Product() {
 														className="btn btn-dark mb-3"
 														onClick={() => {
 															if(localStorage.getItem("user-info")){
-																if (cart.find((prod) => prod?.data?._id === value?._id)) {
+																if (cart.find((prod) => prod?.product === value?._id)) {
 																	updateItemFromCart(value, 1)
 																	console.log(value?._id)
 																}

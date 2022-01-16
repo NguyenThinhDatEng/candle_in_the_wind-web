@@ -10,7 +10,7 @@ export default function Cart() {
     const [totalPrice, setTotalPrice] = useState()
     useEffect(() => {
         setTotal(cart.reduce((acc, curr) => acc+ Number(curr?.quantity) , 0))
-        setTotalPrice(cart.reduce((acc, curr) => acc+ Number(curr?.quantity*(curr?.data?.price * (100 - Number(curr?.data?.discount))/100)), 0))
+        setTotalPrice(cart.reduce((acc, curr) => acc+ Number(curr?.quantity*(curr?.price * (100 - Number(curr?.discount))/100)), 0))
 // Number(data?.price) * (100 - Number(data?.discount)) / 100 
     }, [cart])
     // console.log(cart)
@@ -39,23 +39,23 @@ export default function Cart() {
                                     {
                                         cart.length > 0 ? (
                                             cart.map((prod) => (
-                                                <tr key={prod?.data?._id}>
+                                                <tr key={prod?.product}>
                                                     <td data-th="Product">
                                                         <div className="row">
                                                             <div className="col-md-3 text-left">
-                                                                <img src={process.env.REACT_APP_SERVER_URL + prod?.data?.avatar?.url} alt="" 
+                                                                <img src={process.env.REACT_APP_SERVER_URL + prod?.url} alt="" 
                                                                 className="img-fluid d-none d-md-block rounded mb-2 shadow " 
                                                                 style ={{width: '90px', height:'120px',objectFit: 'contain'}} />
                                                             </div>
                                                             <div className="col-md-9 text-left mt-sm-2">
-                                                                <h4>{prod?.data?.name}</h4>
+                                                                <h4>{prod?.name}</h4>
                                                                 <div className="button_remove">
                                                                     <button 
                                                                     style={{backgroundColor:'black','color':'white',borderRadius:'20px','padding':'5px 15px','border':'1px solid black',}}
                                                                     className="btn_remove" 
                                                                     type="button" 
                                                                     onClick={()=>{
-                                                                        removeItemFromCart(prod?.data?._id)
+                                                                        removeItemFromCart(prod?.product)
                                                                         // console.log(prod?.data?._id)
                                                                         
                                                                     }} 
@@ -69,7 +69,7 @@ export default function Cart() {
                                                     <td data-th="Quantity">
                                                         <input type="number" min='1' className="form-control form-control-lg text-center" style= {{width: '80px',}}defaultValue={prod?.quantity} onChange={(e) => changeQuantity(prod, e.target.value)} />
                                                     </td>
-                                                    <td data-th="Price" className="price_product">${Number(prod?.data?.price) * (100 - Number(prod?.data?.discount)) / 100 }</td>
+                                                    <td data-th="Price" className="price_product">${Number(prod?.price) * (100 - Number(prod?.discount)) / 100 }</td>
                                                 </tr>
                                             ))
                                         ) : (

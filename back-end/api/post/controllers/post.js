@@ -12,7 +12,7 @@ const findOne = async (ctx) => {
   } catch (error) {
     return strapi.services.post.err500(ctx, error, "get post");
   }
-  //   console.log(post);
+
   // get comments
   const comments = post.comments;
   // create data to response
@@ -34,17 +34,19 @@ const findOne = async (ctx) => {
       content: comment.content,
       username: comment.customer?.username,
       url: comment.customer.avatar?.url,
+      createdAt: comment.createdAt,
+      updatedAt: comment.updatedAt,
     };
     allOfComments.push(o);
   }
   data = {
     id: post.id,
-    lockComment: post.lockComment,
     title: post.title,
+    lockComment: post.lockComment,
+    overview: post.overview,
     content: post.content,
     published_at: post.published_at,
-    username: post.customer?.username,
-    avatar: post.avatar?.url,
+    username: post.customer.username,
     comments: allOfComments,
   };
 
