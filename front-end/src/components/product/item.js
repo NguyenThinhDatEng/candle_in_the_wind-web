@@ -62,8 +62,8 @@ const Item = (props) => {
         process.env.REACT_APP_SERVER_URL + "/products/" +  props.match.params.id
       );
       setItem(result.data);
-      setAvt(process.env.REACT_APP_SERVER_URL + item.avatar?.url)
-      console.log(item.avatar?.url)
+      setAvt(process.env.REACT_APP_SERVER_URL + result.data.avatar?.url)
+      console.log(result.data.avatar?.url)
       setLoading(false)
     })()
   }, [props.match.params.id]);
