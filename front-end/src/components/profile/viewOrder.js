@@ -15,7 +15,7 @@ export default function YourOrder() {
 
   useEffect(async () => {
     const data = await getOrders(customer);
-    // console.info(data);
+    console.info(data.data);
     setOrders(data.data);
   }, []);
 
@@ -23,7 +23,8 @@ export default function YourOrder() {
     <div className="col-md-3 col-sm-6 col-xs-12 change-form">
       <h3 className="text-center my-4">Your Orders</h3>
       <div className="table-responsive order-scrollbar">
-        <table className="table bg-light table-striped ">
+        <table className="table bg-light table-striped">
+          <caption style={{ color: "white" }}>List of orders</caption>
           <thead>
             <tr>
               <th scope="col">Serial</th>
@@ -35,7 +36,7 @@ export default function YourOrder() {
             </tr>
           </thead>
           <tbody>
-            {orders ? (
+            {orders.length ? (
               orders.map((value, index) => {
                 console.info("abc");
                 return (
@@ -52,13 +53,10 @@ export default function YourOrder() {
                 );
               })
             ) : (
-              <tr>
-                <th></th>
-                <th></th>
-                <th></th>
-                <th>No Order Yet</th>
-                <th></th>
-                <th></th>
+              <tr class="table-dark">
+                <th colspan="6" style={{ textAlign: "center", font: "30" }}>
+                  No Order Yet
+                </th>
               </tr>
             )}
           </tbody>
