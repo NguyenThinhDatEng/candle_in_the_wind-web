@@ -68,7 +68,7 @@ export default function Post(props) {
 	// console.log((customer_name === post?.username) && (customer_name != undefined))
 
 	return (
-		<div>
+		<>
 			<Header />
 
 			{
@@ -165,6 +165,6 @@ export default function Post(props) {
 
 
 			<Footer />
-		</div>
+		</>
 	);
 }
