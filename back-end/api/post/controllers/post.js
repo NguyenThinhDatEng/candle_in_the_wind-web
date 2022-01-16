@@ -32,7 +32,7 @@ const findOne = async (ctx) => {
     o = {
       id: comment.id,
       content: comment.content,
-      username: comment.customer.username,
+      username: comment.customer?.username,
       url: comment.customer.avatar?.url,
     };
     allOfComments.push(o);
@@ -43,8 +43,8 @@ const findOne = async (ctx) => {
     title: post.title,
     content: post.content,
     published_at: post.published_at,
-    username: post.customer.username,
-    avatar: post.avatar.url,
+    username: post.customer?.username,
+    avatar: post.avatar?.url,
     comments: allOfComments,
   };
 

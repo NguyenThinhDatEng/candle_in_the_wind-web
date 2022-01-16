@@ -5,7 +5,7 @@ const createPostAPI = async (newData) => {
     let data = JSON.stringify({
         title: newData.title,
         content: newData.content,
-        avatar: newData.avatar,
+        overview: newData.overview,
         customer: newData.customer_id
     });
 

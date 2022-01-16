@@ -66,14 +66,13 @@ export default function Blog() {
 						:
 						<>
 							<div className="clearfix" />
-							<div className="row row-cols-1 row-cols-lg-2">
+							<div className="row row-cols-1">
 								{currentPosts.map((value, key) => {
 									return (
 										<ContentBlog
 											id={value?._id}
 											title={value?.title}
-											image={value?.avatar?.url}
-											content={value.content.substring(0, 200) + "..."}
+											overview={value?.overview}
 										/>
 									);
 								})}
