@@ -2,7 +2,7 @@ import React from "react";
 import { useEffect, useState } from "react";
 import { getOrders } from "../../services/customerService";
 
-export default function MyOrder() {
+export default function YourOrder() {
   const [orders, setOrders] = useState([]);
   const isAuth = () => {
     if (localStorage.getItem("user-info")) {
@@ -35,8 +35,9 @@ export default function MyOrder() {
             </tr>
           </thead>
           <tbody>
-            {orders &&
+            {!orders ? (
               orders.map((value, index) => {
+                console.info("abc");
                 return (
                   <tr>
                     <th scope="row">{index + 1}</th>
@@ -49,7 +50,17 @@ export default function MyOrder() {
                     <td>{value.grand_total}</td>
                   </tr>
                 );
-              })}
+              })
+            ) : (
+              <tr>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th>No Order Yet</th>
+                <th></th>
+                <th></th>
+              </tr>
+            )}
           </tbody>
         </table>
       </div>
