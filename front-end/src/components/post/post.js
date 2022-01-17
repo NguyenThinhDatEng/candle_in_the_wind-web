@@ -63,7 +63,7 @@ export default function Post(props) {
 	// console.log((customer_name === post?.username) && (customer_name != undefined))
 
 	return (
-		<div style={{ overflow: "hidden" }}>
+		<>
 			<Header />
 
 			{loading ? (
@@ -168,6 +168,6 @@ export default function Post(props) {
 				</div>
 			</Modal>
 			<Footer />
-		</div>
+		</>
 	);
 }

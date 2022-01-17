@@ -204,7 +204,8 @@ export default function CreatePost() {
 	};
 
 	return (
-		<div>
+		// <div>
+		<>
 			<Header />
 			<div className="container">
 				<div className="row justify-content-center">
@@ -267,6 +268,7 @@ export default function CreatePost() {
 				</div>
 			</div>
 			<Footer />
-		</div>
+			</>
+		
 	);
 }

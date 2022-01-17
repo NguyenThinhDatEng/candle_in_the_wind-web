@@ -22,46 +22,39 @@ import { IconButton } from "@material-ui/core";
 import RenderCropper from "./cropper/cropper";
 
 const useStyles = makeStyles((theme) => ({
-	root: {
-		display: "flex",
-	},
-	paper: {
-		marginRight: theme.spacing(2),
-	},
-	cameraIcon: {
-		height: "50px",
-		fontSize: "25px",
-		// width: "1rem",
-		position: "absolute",
-		// bottom: "0",
-		marginLeft: "250px",
-		marginTop: "-90px",
-		backgroundColor: "white",
 
+  root: {
+    display: "flex",
+  },
+  paper: {
+    marginRight: theme.spacing(2),
+  },
+  cameraIcon: {
+    height: "60px",
+    fontSize: "25px",
+    position: "relative",
+    marginLeft: "75%",
+    marginTop: "-50%",
+    backgroundColor: "white",
+    borderRadius: "50%",
+    width: "30px",
 		"&:hover": {
 			backgroundColor: "white",
 		},
 	},
 
-	queen: {
-		top: "270px",
-		// marginRight: "100px",
-		height: "50px",
-		fontSize: "25px",
-		// width: "1rem",
-		position: "absolute",
-		// bottom: "0",
-		marginLeft: "360px",
-		marginTop: "-90px",
-		backgroundColor: "white",
-		fontSize: "300%",
-		transform: "rotate(40deg)",
-		color: "yellow",
+  queen: {
 
-		// "&:hover": {
-		//   backgroundColor: "white",
-		// },
-	},
+    height: "50px",
+    fontSize: "25px",
+
+    position: "relative",
+
+    marginLeft: "45%",
+    fontSize: "300%",
+    transform: "rotate(40deg)",
+    color: "yellow",
+  }
 }));
 
 export default function Profile(props) {
@@ -127,86 +120,86 @@ export default function Profile(props) {
 
 	const [data, setData] = useState([]);
 
-	useEffect(async () => {
-		const result = await axios(
-			process.env.REACT_APP_SERVER_URL + "/customers/" + id
-		);
-		setData(result.data);
-	}, [data]);
-	if (isAuth().loyal) {
-		return (
-			<div>
-				<Header />
-				<div className="profile">
-					<div className="row justify-content-center">
-						<div className="col-md-3 col-sm-6 col-xs-12 card-info">
-							<div>
-								<div className={classes.queen}>
-									<i class="fas fa-crown"></i>
-								</div>
-								<div className="avatar">
-									<img
-										className="card-avatar rounded-circle mb-4"
-										src={
-											data?.avatar?.url
-												? process.env.REACT_APP_SERVER_URL + data?.avatar?.url
-												: "https://bootdey.com/img/Content/avatar/avatar1.png"
-										}
-										alt="Card_image"
-										style={{ width: "100%" }}
-									/>
-								</div>
+  useEffect(async () => {
+    const result = await axios(
+      process.env.REACT_APP_SERVER_URL + "/customers/" + id
+    );
+    setData(result.data);
+  }, [data]);
+  if (isAuth().loyal) {
+    return (
+      <div>
+        <Header />
+        <div className="profile">
+          <div className="row justify-content-center">
+            <div className="col-md-3 col-sm-6 col-xs-12 card-info">
+              <div>
+                <div className={classes.queen}>
+                  <i class="fas fa-crown"></i>
+                </div>
+                <div className="avatar">
+                  <img
+                    className="card-avatar rounded-circle mb-4"
+                    src={
+                      data?.avatar?.url
+                        ? process.env.REACT_APP_SERVER_URL + data?.avatar?.url
+                        : (isAuth().gender == "Male" ? "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRZWD0TQ9XGBl9RL_wGTfib6U7S4pAz6I98MyySh59epBK7xv_h0yBscGKzk4OD9_sUaJc&usqp=CAU" : "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRz4K_mIw-8wEuEdqQ88J9qfamhXsHovW_qZkB8TzlRmNxp1O6H6J9W84LU-gr1nImZiOc&usqp=CAU")
+                    }
+                    alt="Card_image"
+                    style={{ width: "100%" }}
+                  />
+                </div>
 
-								<Button
-									className={classes.cameraIcon}
-									ref={anchorRef}
-									aria-controls={open ? "menu-list-grow" : undefined}
-									aria-haspopup="true"
-									onClick={handleToggle}
-								>
-									<i class="fas fa-camera"></i>
-								</Button>
+                <Button
+                  className={classes.cameraIcon}
+                  ref={anchorRef}
+                  aria-controls={open ? "menu-list-grow" : undefined}
+                  aria-haspopup="true"
+                  onClick={handleToggle}
+                >
+                  <i class="fas fa-camera" style={{ "top": "25%", "fontSize": "120%", "marginRight": "-4px" }}></i>
+                </Button>
 
-								<Popper
-									open={open}
-									anchorEl={anchorRef.current}
-									role={undefined}
-									transition
-									disablePortal
-								>
-									{({ TransitionProps, placement }) => (
-										<Grow
-											{...TransitionProps}
-											style={{
-												transformOrigin:
-													placement === "bottom"
-														? "center top"
-														: "center bottom",
-											}}
-										>
-											<Paper>
-												<ClickAwayListener onClickAway={handleClose}>
-													<MenuList
-														autoFocusItem={open}
-														id="menu-list-grow"
-														onKeyDown={handleListKeyDown}
-													>
-														<MenuItem onClick={handleClose}>View</MenuItem>
-														<MenuItem
-															onClick={(event) => {
-																handleCropper();
-																handleClose(event);
-															}}
-														>
-															Change
-														</MenuItem>
-														<MenuItem onClick={handleClose}>Remove</MenuItem>
-													</MenuList>
-												</ClickAwayListener>
-											</Paper>
-										</Grow>
-									)}
-								</Popper>
+                <Popper
+                  open={open}
+                  anchorEl={anchorRef.current}
+                  role={undefined}
+                  transition
+                  disablePortal
+                >
+                  {({ TransitionProps, placement }) => (
+                    <Grow
+                      {...TransitionProps}
+                      style={{
+                        transformOrigin:
+                          placement === "bottom"
+                            ? "center top"
+                            : "center bottom",
+                      }}
+                    >
+                      <Paper>
+                        <ClickAwayListener onClickAway={handleClose}>
+                          <MenuList
+                            autoFocusItem={open}
+                            id="menu-list-grow"
+                            onKeyDown={handleListKeyDown}
+                          >
+
+                            <MenuItem
+                              onClick={(event) => {
+                                handleCropper();
+                                handleClose(event);
+                              }}
+                            >
+                              Change
+                            </MenuItem>
+                            <MenuItem onClick={handleClose}>Remove</MenuItem>
+                          </MenuList>
+                        </ClickAwayListener>
+                      </Paper>
+                    </Grow>
+                  )}
+                </Popper>
 
 								<h4 className="text-center">{isAuth().username}</h4>
 							</div>
@@ -245,39 +238,38 @@ export default function Profile(props) {
 					<RenderCropper handleCropper={handleCropper} setAvatar={setAvatar} />
 				)}
 
-				<Footer />
-			</div>
-		);
-	} else {
-		return (
-			<div>
-				<Header />
-				<div className="profile">
-					<div className="row justify-content-center">
-						<div className="col-md-3 col-sm-6 col-xs-12 card-info">
-							<div>
-								<div className="avatar">
-									<img
-										className="card-avatar rounded-circle mb-4"
-										src={
-											data?.avatar?.url
-												? process.env.REACT_APP_SERVER_URL + data?.avatar?.url
-												: "https://bootdey.com/img/Content/avatar/avatar1.png"
-										}
-										alt="Card_image"
-										style={{ width: "100%" }}
-									/>
-								</div>
-								<Button
-									className={classes.cameraIcon}
-									ref={anchorRef}
-									aria-controls={open ? "menu-list-grow" : undefined}
-									aria-haspopup="true"
-									onClick={handleToggle}
-								>
-									<i class="fas fa-camera"></i>
-								</Button>
-
+        <Footer />
+      </div>
+    );
+  } else {
+    return (
+      <div>
+        <Header />
+        <div className="profile">
+          <div className="row justify-content-center">
+            <div className="col-md-3 col-sm-6 col-xs-12 card-info">
+              <div>
+                <div className="avatar">
+                  <img
+                    className="card-avatar rounded-circle mb-4"
+                    src={
+                      data?.avatar?.url
+                        ? process.env.REACT_APP_SERVER_URL + data?.avatar?.url
+                        : (isAuth().gender == "Male" ? "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRZWD0TQ9XGBl9RL_wGTfib6U7S4pAz6I98MyySh59epBK7xv_h0yBscGKzk4OD9_sUaJc&usqp=CAU" : "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRz4K_mIw-8wEuEdqQ88J9qfamhXsHovW_qZkB8TzlRmNxp1O6H6J9W84LU-gr1nImZiOc&usqp=CAU")
+                    }
+                    alt="Card_image"
+                    style={{ width: "100%" }}
+                  />
+                </div>
+                <Button
+                  className={classes.cameraIcon}
+                  ref={anchorRef}
+                  aria-controls={open ? "menu-list-grow" : undefined}
+                  aria-haspopup="true"
+                  onClick={handleToggle}
+                >
+                  <i class="fas fa-camera" style={{ "top": "25%", "fontSize": "120%", "marginRight": "-4px" }}></i>
+                </Button>
 								<Popper
 									open={open}
 									anchorEl={anchorRef.current}
