@@ -63,7 +63,7 @@ export default function Post(props) {
 	// console.log((customer_name === post?.username) && (customer_name != undefined))
 
 	return (
-		<>
+		<div style={{overflow:"hidden"}}>
 			<Header />
 
 			{loading ? (
@@ -95,17 +95,15 @@ export default function Post(props) {
 												data-bs-toggle="dropdown"
 											></button>
 											<div class="dropdown-menu ">
-												<div className="form-check form-switch dropdown-item ">
-													<label className="form-check-label ">
-														Lock Comment
-													</label>
-													<input
-														className="form-check-input "
-														type="checkbox"
-														checked={lock}
-														onClick={() => lockComment()}
-													/>
-												</div>
+ 												<button
+													type="button"
+													className="dropdown-item"
+													onClick={() => lockComment()}
+												>
+													{" "}
+													{lock ? "Unlock" : "Lock"}{" "}
+												</button>
+												
 												<button
 													type="button"
 													className="dropdown-item"
@@ -168,6 +166,6 @@ export default function Post(props) {
 				</div>
 			</Modal>
 			<Footer />
-		</>
+		</div>
 	);
 }
