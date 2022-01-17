@@ -30,7 +30,7 @@ export default function Comment({
 	return (
 		<div>
 			<div class="bg-white p-2">
-				<div class="d-flex flex-row "><img class="rounded-circle" src={process.env.REACT_APP_SERVER_URL + comment?.url} width="40" />
+				<div class="d-flex flex-row "><img class="rounded-circle" src={comment?.url ? process.env.REACT_APP_SERVER_URL + comment?.url : "https://bootdey.com/img/Content/avatar/avatar1.png"} width="40" />
 					<div class="d-flex flex-column justify-content-start ml-2"><span class="d-block font-weight-bold name"> {comment?.username} </span><span class="date text-black-50">Shared publicly - {createdAt} </span></div>
 				</div>
 				{!isEditing && <div className="comment-text">{comment?.content}</div>}
