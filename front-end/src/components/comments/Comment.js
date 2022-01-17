@@ -21,7 +21,7 @@ export default function Comment({
 	currentUserId,
 }) {
 	const [isEditing, setIsEditing] = useState(false);
-	const createdAt = new Date(comment?.createdAt).toLocaleDateString();
+	const createdAt = new Date(comment?.createdAt).toLocaleDateString("en-GB");
 	const [confirm, setConfirm] = useState(false);
 
 	const isAuth = JSON.parse(localStorage.getItem("user-info"));
