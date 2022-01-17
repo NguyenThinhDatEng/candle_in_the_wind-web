@@ -39,9 +39,9 @@ export default function Blog() {
 	// console.log(loading)
 	// console.log(posts)
 	return (
-		<div>
+		<div style={{ backgroundImage: 'url("http://images2.fanpop.com/images/photos/4000000/Candle-wallpaper-candles-4091313-1280-1024.jpg")' }}>
 			<Header />
-			<div className="container bg-secondary">
+			<div className="container">
 				{
 					customer_id ? (<Link to="/create-post" type="button" className="btn btn-dark fs-4 mt-5 create-post">
 						Create a new post
