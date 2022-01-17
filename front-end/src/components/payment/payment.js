@@ -28,6 +28,7 @@ export default function Payment() {
             phoneNumber: phoneNumber,
             address: address,
             payment: paymentMethod==="onDelivery" ? "Delivery" : "Bank_transfer",
+            published_at: "",
             grand_total: JSON.parse(localStorage.getItem('user-info')).loyal === false ? grandTotal : JSON.parse(localStorage.getItem('province')) === "Hà Nội" ? totalPaid : grandTotal*loyalDiscount
 
         }
@@ -194,9 +195,14 @@ export default function Payment() {
                                 </div>
                             </form>
                             <div>
-                                <div className="btn_complete">
-                                    <Link to="/" className="completePayment" onClick={() => handleComplete()} >Complete</Link>
-                                </div>
+                                    {
+                                        JSON.parse(localStorage.getItem('paymentMethod')) &&  (
+                                            <div className="btn_complete">
+                                                <Link to="/" className="completePayment" onClick={() => handleComplete()} >Complete</Link>
+                                            </div>
+                                        )
+                                    }
+                                   
                                 <div className="btn_back">
                                     <Link to="/paymentinformation" className="completePayment">Back</Link>
                                 </div>
