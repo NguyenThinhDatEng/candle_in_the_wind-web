@@ -144,8 +144,8 @@ BLOG
 }
 
 .post-element img {
-    width: 50%;
-    height: 200px;
+    /* width: 50%; */
+    /* height: 200px; */
 }
 
 .post-element h5 {
@@ -158,7 +158,12 @@ BLOG
 }
 
 .post-content {
-    max-width: 60%;
+    max-width: 50%;
+}
+.post-content figure img {
+    max-width: 100% !important;
+    /* overflow: hidden; */
+    object-fit: contain;
 }
 
 
