@@ -9,12 +9,7 @@
     "increments": true,
     "timestamps": true,
     "draftAndPublish": true,
-    "privateAttributes": [
-      "__v",
-      "createdAt",
-      "updatedAt",
-      "id"
-    ]
+    "privateAttributes": ["__v", "createdAt", "updatedAt", "id"]
   },
   "pluginOptions": {},
   "attributes": {
@@ -45,18 +40,7 @@
       "model": "customer"
     },
     "overview": {
-      "type": "text",
-      "minLength": 100
-    },
-    "avatar": {
-      "model": "file",
-      "via": "related",
-      "allowedTypes": [
-        "images"
-      ],
-      "plugin": "upload",
-      "required": false,
-      "pluginOptions": {}
+      "type": "text"
     }
   }
 }
