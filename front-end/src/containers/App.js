@@ -16,7 +16,6 @@ import Item from "../components/product/item";
 import ForgotPassword from "../components/forgot_password/forgotPassword";
 import VerifyOTP from "../components/forgot_password/verifyOTP";
 import UpdatePassword from "../components/forgot_password/updatePassword";
-import { render } from "react-dom";
 import { positions, Provider } from "react-alert";
 import AlertTemplate from "react-alert-template-basic";
 
