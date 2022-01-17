@@ -64,7 +64,7 @@ export default function Payment() {
                     </div>
                     <div className="paymentContainer">
                         <div className="column1">
-                            <h5 >Order ID: 000000</h5>
+                            {/* <h5 >Order ID: 000000</h5> */}
                             <table>
                                 <thead>
                                     <tr>
@@ -187,7 +187,7 @@ export default function Payment() {
                                         <h6>_______Vietinbank_______</h6>
                                         <h7>Account number: 1010012380</h7>
                                         <h7>Acount holder: CANDLE IN THE WIND</h7>
-                                        <h7>Content: "Order ID + User's name"</h7>
+                                        <h7>Content: "User's name"</h7>
                                      
                                         
                                     </div>
