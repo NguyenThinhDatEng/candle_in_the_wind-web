@@ -136,6 +136,8 @@ export default function RenderCropper({ handleCropper }) {
                 });
             console.log(res?.data[0]._id);
 
+
+
             await axios.put(process.env.REACT_APP_SERVER_URL + "/customers/" + id, {
                 avatar: res?.data[0]._id
             }).then((response) => {

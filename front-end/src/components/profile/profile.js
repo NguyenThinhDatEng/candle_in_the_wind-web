@@ -21,6 +21,8 @@ import { makeStyles } from "@material-ui/core/styles";
 import { IconButton } from "@material-ui/core";
 import RenderCropper from "./cropper/cropper";
 
+import { getUserInfo } from "../../services/customerService";
+
 const useStyles = makeStyles((theme) => ({
 
   root: {
@@ -117,6 +119,7 @@ export default function Profile(props) {
   };
   const id = isAuth() ? isAuth().id : "";
 
+
   const [data, setData] = useState([]);
 
   useEffect(async () => {
@@ -125,6 +128,19 @@ export default function Profile(props) {
     );
     setData(result.data);
   }, [data]);
+
+
+  const handleRemoveAvatar = async () => {
+
+    try {
+      await axios.delete(process.env.REACT_APP_SERVER_URL + "/upload/files/" + data.avatar._id).then((response) => {
+        console.log(response);
+      });
+    } catch (err) {
+      console.warn(err);
+    }
+  };
+
   if (isAuth().loyal) {
     return (
       <div>
@@ -192,7 +208,7 @@ export default function Profile(props) {
                             >
                               Change
                             </MenuItem>
-                            <MenuItem onClick={handleClose}>Remove</MenuItem>
+                            <MenuItem onClick={handleRemoveAvatar}>Remove</MenuItem>
                           </MenuList>
                         </ClickAwayListener>
                       </Paper>
@@ -301,7 +317,7 @@ export default function Profile(props) {
                             >
                               Change
                             </MenuItem>
-                            <MenuItem onClick={handleClose}>Remove</MenuItem>
+                            <MenuItem onClick={handleRemoveAvatar}>Remove</MenuItem>
                           </MenuList>
                         </ClickAwayListener>
                       </Paper>

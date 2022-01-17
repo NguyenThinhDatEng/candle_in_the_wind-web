@@ -168,10 +168,12 @@ export default function ChangeInfo() {
                 </div>
                 <div className="form-group row text-center">
                     <div className="col-sm-12">
+
                         <div style={{ color: "red" }} className="errMessage">
                             <b>{state.errMessage}</b>
                         </div>
-                        <button type="submit" className="btn btn-primary ">Done</button>
+                        <button type="submit" className="btn btn-primary " style={{ "marginBottom": "20px" }}>Done</button>
+
                     </div>
                 </div>
             </form>
