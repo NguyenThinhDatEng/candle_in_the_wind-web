@@ -9,13 +9,13 @@
 .column1{
     font-family: 'Reem Kufi';
     float:left;
-    margin-left: 250px;
-    padding-right: 80px;
+    margin-left: 300px;
+    padding-right: 125px;
     border-right: 1px solid #000;
 }
 .column2{
     float: right;
-    margin-right: 250px;
+    margin-right: 300px;
 }
 .linePayment{
     border: 1px solid #000;

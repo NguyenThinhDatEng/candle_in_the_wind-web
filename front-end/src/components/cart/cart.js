@@ -94,7 +94,14 @@ export default function Cart() {
                     </div>
                         {cart.length !== 0 ? (
                             <div className="btn_confirm" >
-                                <Link to="/paymentinformation" className="confirm" onClick={()=>addPrice(totalPrice)}>
+                                <Link 
+                                    to="/paymentinformation" 
+                                    className="confirm" 
+                                    onClick={()=>{
+                                        addPrice(totalPrice)
+                                        window.scrollTo(0,0)
+                                    }
+                                }>
 
                                         Confirm
                                         

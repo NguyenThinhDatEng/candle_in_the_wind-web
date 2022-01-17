@@ -4,21 +4,26 @@ import Footer from '../footer/footer'
 import { Link } from 'react-router-dom'
 import { CartContext } from '../../context/Context'
 import './payment.css'
+import { useAlert } from 'react-alert'
+import validator from 'validator' 
 
 export default function PaymentInformation() {
     const [Name, setName] = useState('')
     const [phoneNumber, setPhoneNumber] = useState('')
     const [province, setProvince] = useState('')
     const [address, setAddress] = useState('')
+    const alert = useAlert()
 
     const {changeInfoName, changeInfoPhoneNumber, changeInfoProvince, changeInfoAddress} = useContext(CartContext)
 
 
     const handleOnClick = () => {
+        
         changeInfoName(Name)
         changeInfoPhoneNumber(phoneNumber)
         changeInfoProvince(province)
         changeInfoAddress(address)
+        
     }
 
     return (
@@ -38,7 +43,7 @@ export default function PaymentInformation() {
                     </div>
                     <div className="fillPaymentInfo">
                         <h5 className="info">Phone number</h5>
-                        <input className="infoInput" type="tel" required onChange={(e) => {setPhoneNumber(e.target.value)}}/>
+                        <input className="infoInput" type="tel" defaultValue={phoneNumber} required onChange={(e) => {setPhoneNumber(e.target.value)}}/>
                     </div>
                     <div className="fillPaymentInfo">
                         <h5 className="info">Province</h5>
@@ -57,7 +62,14 @@ export default function PaymentInformation() {
                             <Link to="/cart" className="backToCart">Back to cart</Link>
                         </div>
                         <div className="btn_confirm_paymentInfo">
-                            <Link to="/payment" className="backToCart" onClick={() => handleOnClick()}>Confirm</Link>
+                            {(!Name || !phoneNumber || !province || !address) ? (
+                                <Link className="backToCart" onClick={() => alert.error('Missing required fields')}>Confirm</Link>
+                            ) : (phoneNumber.length < 10 && !validator.isMobilePhone(phoneNumber)) ? (
+                                <Link className="backToCart" onClick={() => alert.error('Invalid phone number')}>Confirm</Link>
+                            ) : (
+                                <Link to="/payment" className="backToCart" onClick={() => handleOnClick()}>Confirm</Link>
+                                
+                            ) }
                         </div>
                     </div>
                 </div>
