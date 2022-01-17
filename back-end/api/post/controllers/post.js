@@ -46,7 +46,7 @@ const findOne = async (ctx) => {
     overview: post.overview,
     content: post.content,
     published_at: post.published_at,
-    username: post.customer.username,
+    username: post.customer?.username,
     comments: allOfComments,
   };
 
