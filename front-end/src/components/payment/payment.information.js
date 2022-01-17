@@ -64,7 +64,7 @@ export default function PaymentInformation() {
                         <div className="btn_confirm_paymentInfo">
                             {(!Name || !phoneNumber || !province || !address) ? (
                                 <Link className="backToCart" onClick={() => alert.error('Missing required fields')}>Confirm</Link>
-                            ) : (!validator.isMobilePhone(phoneNumber)) ? (
+                            ) : (phoneNumber.length < 10 && !validator.isMobilePhone(phoneNumber)) ? (
                                 <Link className="backToCart" onClick={() => alert.error('Invalid phone number')}>Confirm</Link>
                             ) : (
                                 <Link to="/payment" className="backToCart" onClick={() => handleOnClick()}>Confirm</Link>
