@@ -100,11 +100,14 @@ export default function ChangePassword() {
                         });
 
                     })
-                    .catch((error) => {
-                        console.log("login.js", error);
-                    });
             } catch (error) {
-                console.log(error.response);
+                console.log(error.response.data.msg);
+                setState((previousState) => {
+                    return {
+                        ...previousState,
+                        errMessage: error.response.data.msg,
+                    };
+                });
             }
         }
     };
@@ -173,7 +176,7 @@ export default function ChangePassword() {
                         <div style={{ color: "red" }} className="errMessage">
                             <b>{state.errMessage}</b>
                         </div>
-                        <button type="submit" className="btn btn-primary ">Save</button>
+                        <button type="submit" className="btn btn-primary " style={{ marginTop: "50px" }}>Save</button>
                     </div>
                 </div>
             </form>
