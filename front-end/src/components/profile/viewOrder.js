@@ -40,7 +40,11 @@ export default function YourOrder() {
               orders.map((value, index) => {
                 console.info("abc");
                 return (
-                  <tr>
+                  <tr
+                    className={
+                      value.published_at ? "table-success" : "table-danger"
+                    }
+                  >
                     <th scope="row">{index + 1}</th>
                     <td>{value.published_at ? "confirm" : "Pending..."}</td>
                     <td>{value.fullname}</td>
