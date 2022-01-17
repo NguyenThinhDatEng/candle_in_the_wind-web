@@ -205,7 +205,7 @@ const Item = (props) => {
                           // console.log("Update")
                         }
                         else {
-                          addItemToCart({item, quantity})
+                          addItemToCart({data: item, quantity: quantity})
                           // console.log("Add")
                         }
                       } else {

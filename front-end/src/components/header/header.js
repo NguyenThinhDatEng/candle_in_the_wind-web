@@ -162,7 +162,7 @@ export default function Header() {
                           <img
                             src={
                               process.env.REACT_APP_SERVER_URL +
-                              value?.related_images[0]?.url
+                              value?.avatar?.url
                             }
                             className="dataItemImg"
                             alt={value.name}
@@ -350,7 +350,7 @@ export default function Header() {
                           <img
                             src={
                               process.env.REACT_APP_SERVER_URL +
-                              value?.related_images[0]?.url
+                              value?.avatar?.url
                             }
                             className="dataItemImg"
                             alt={value.name}
