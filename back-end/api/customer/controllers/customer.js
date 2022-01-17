@@ -77,7 +77,6 @@ const signup = async (ctx) => {
       phoneNumber: user.phoneNumber,
       loyal: user.loyal,
       cart: cart.id,
-      avatar: user.avatar?.id,
     };
     return Response.created(ctx, {
       data: data,
