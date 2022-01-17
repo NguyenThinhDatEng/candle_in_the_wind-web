@@ -182,12 +182,14 @@ export default function CreatePost() {
     });
   };
 
-  const createPost = async () => {
+  const createPost = async (e) => {
     // console.log(state.title, state.content, state.image)
     if (!state.title) {
+      e.preventDefault();
       setFormErrors("Title cannot be empty ");
       console.log(formErrors);
     } else if (!state.content) {
+      e.preventDefault();
       setFormErrors("Content cannot be empty");
       console.log(formErrors);
     } else {
@@ -261,7 +263,7 @@ export default function CreatePost() {
                   to="/blog"
                   type="submit"
                   className="btn btn-dark"
-                  onClick={() => createPost()}
+                  onClick={(e) => createPost(e)}
                 >
                   Create post
                 </Link>
