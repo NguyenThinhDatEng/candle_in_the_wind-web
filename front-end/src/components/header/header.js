@@ -224,11 +224,9 @@ export default function Header() {
                 <img src="../assets/icons/User-icon.png" />
               </button>
               <ul>
-                <li>
-                  <Link to="/profile">My profile</Link>
-                </li>
-                <li>
-                  <Link
+                <Link to="/profile" ><li>My profile</li></Link>
+                
+                <Link
                     to="/"
                     onClick={() => {
                       const data = cart
@@ -245,9 +243,9 @@ export default function Header() {
                       localStorage.clear()
                     }}
                   >
-                    Sign out
-                  </Link>
-                </li>
+                    <li>Sign out</li>
+                </Link>
+                
               </ul>
             </div>
             <div className="cart">

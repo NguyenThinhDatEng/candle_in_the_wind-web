@@ -99,8 +99,9 @@
 }
 .icon_nav .user li:hover{
     /* font-weight: bold; */
-    text-shadow: 2px 2px 2px 2px #fff;
+    text-shadow: 2px 2px 2px #fff;
 }
+
 .icon_nav .user ul a{
     text-decoration: none;
     font-family: 'Reem Kufi';
