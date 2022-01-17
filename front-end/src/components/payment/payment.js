@@ -17,7 +17,7 @@ export default function Payment() {
     }, [province])
     
     const loyalDiscount = 95/100
-    const grandTotal = Number(price)+Number(ship)
+    const grandTotal = (Number(price)+Number(ship)).toFixed(2)
     const loyalSave = ((Number(price)) * Number(1 - loyalDiscount)).toFixed(2)
     const totalPaid = grandTotal - loyalSave
     const alert = useAlert()
@@ -165,7 +165,7 @@ export default function Payment() {
                                                     <td data-th="totalAll">Total</td>
                                                     <td data-th="totalProductsShip">$
                                                         {
-                                                            totalPaid
+                                                            totalPaid.toFixed(2)
                                                         }
                                                     </td>
                                                 </tr>

@@ -88,7 +88,7 @@ export default function Cart() {
                             {/* <div className="line" /> */}
                             <div className="total">
                                 <h4 className="total_text">Total:</h4>
-                                <h4 className="total_price">${totalPrice}</h4>
+                                <h4 className="total_price">${(totalPrice)}</h4>
                             </div>
                         </div>
                     </div>
