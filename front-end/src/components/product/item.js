@@ -221,7 +221,7 @@ const Item = (props) => {
                 ) : (
                   null
                 )}
-                <div className="rightscreen__productinfo">
+                {/* <div className="rightscreen__productinfo">
                   <span className="product__info" onClick={toggler}>
                     <i
                       style={{ fontSize: "24px" }}
@@ -243,7 +243,7 @@ const Item = (props) => {
                       <span></span>
                     )}
                   </div>
-                </div>
+                </div> */}
               </div>
             </div>
           </div>

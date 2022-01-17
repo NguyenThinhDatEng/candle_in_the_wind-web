@@ -11,6 +11,7 @@ export default function ChangePassword() {
         errMessage: "",
         isShowPassword: false,
         isShowConfirm: false,
+        isShowVerConfirm: false,
     });
 
     const handleCurPassword = (e) => {
@@ -36,6 +37,11 @@ export default function ChangePassword() {
     const handleShowHideConfirm = () => {
         setState((previousState) => {
             return { ...previousState, isShowConfirm: !state.isShowConfirm };
+        });
+    };
+    const handleShowHideVerConfirm = () => {
+        setState((previousState) => {
+            return { ...previousState, isShowVerConfirm: !state.isShowVerConfirm };
         });
     };
 
@@ -87,18 +93,21 @@ export default function ChangePassword() {
                 await handleChangePasswordAPI(isAuth().email, state.curPassword, state.confirmPassword)
                     .then((response) => {
                         console.log(JSON.stringify(response.data));
-
-
+                        // setErrMessage(response.data.msg);
+                        // setState.errMessage = response.data.msg;
                         setState((previousState) => {
                             return { ...previousState, errMessage: response.data.msg };
                         });
 
                     })
-                    .catch((error) => {
-                        console.log("login.js", error);
-                    });
             } catch (error) {
-                console.log(error.response);
+                console.log(error.response.data.msg);
+                setState((previousState) => {
+                    return {
+                        ...previousState,
+                        errMessage: error.response.data.msg,
+                    };
+                });
             }
         }
     };
@@ -148,14 +157,14 @@ export default function ChangePassword() {
                         password</label>
                     <div className="col-sm-9">
                         <div className="customize-input-password">
-                            <input type={state.isShowConfirm ? "text" : "password"} className="form-control" id="vertify-password"
+                            <input type={state.isShowVerConfirm ? "text" : "password"} className="form-control" id="vertify-password"
 
                                 onChange={handleConfirmPassword}
                             />
-                            <span onClick={handleShowHideConfirm}>
+                            <span onClick={handleShowHideVerConfirm}>
                                 <i
                                     className={
-                                        state.isShowConfirm ? "fas fa-eye" : "fas fa-eye-slash"
+                                        state.isShowVerConfirm ? "fas fa-eye" : "fas fa-eye-slash"
                                     }
                                 ></i>
                             </span>
@@ -167,7 +176,7 @@ export default function ChangePassword() {
                         <div style={{ color: "red" }} className="errMessage">
                             <b>{state.errMessage}</b>
                         </div>
-                        <button type="submit" className="btn btn-primary ">Save</button>
+                        <button type="submit" className="btn btn-primary " style={{ marginTop: "50px" }}>Save</button>
                     </div>
                 </div>
             </form>

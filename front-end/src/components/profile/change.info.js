@@ -104,13 +104,13 @@ export default function ChangeInfo() {
                         />
                     </div>
                 </div>
-                <div className="form-group row my-4">
+                {/* <div className="form-group row my-4">
                     <label htmlFor="email" className="col-sm-2 col-form-label">Email</label>
                     <div className="col-sm-10">
                         <input type="email" className="form-control" id="email" value={state.email}
                             onChange={handleChangeEmail} />
                     </div>
-                </div>
+                </div> */}
                 <fieldset className="form-group row my-4">
                     <legend className="col-form-label col-sm-2 pt-0">Gender</legend>
                     <div className="col-sm-10 ">
@@ -172,7 +172,7 @@ export default function ChangeInfo() {
                         <div style={{ color: "red" }} className="errMessage">
                             <b>{state.errMessage}</b>
                         </div>
-                        <button type="submit" className="btn btn-primary " style={{ "marginBottom": "20px" }}>Done</button>
+                        <button type="submit" className="btn btn-primary " style={{ "marginBottom": "20px", marginTop: "50px" }}>Done</button>
 
                     </div>
                 </div>

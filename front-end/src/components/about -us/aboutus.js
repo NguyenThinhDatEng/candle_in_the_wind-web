@@ -2,8 +2,24 @@ import React from "react";
 import Header from "../header/header";
 import Footer from "../footer/footer";
 import "./aboutus.css";
+import Slider from "react-slick";
+import phuimg from "./phu.png";
+import taiimg from "./tai.png"
+import kieuanhimg from "./kieuanh.png"
+import namimg from "./hainam.jpeg"
+import dungimg from "./dung.jpeg"
 
 export default function AboutUs() {
+
+  var settings = {
+    infinite: true,
+    autoplay: true,
+    autoplaySpeed: 5000,
+    dots: true,
+    speed: 2000,
+  };
+
+
   return (
     <div>
       <Header />
@@ -55,7 +71,96 @@ export default function AboutUs() {
             </div>
           </div>
         </div>
+
       </div>
+      <div class="admin">
+        <h3>Admin</h3>
+      </div>
+      <Slider {...settings}>
+        <div className="image">
+          <div class="marketing">
+            <div class="row">
+              <div class="col-lg-3">
+
+                <img src={kieuanhimg} alt="avatar 1" class="rounded-circle"
+                />
+
+
+                <h2>Lê Kiều Anh</h2>
+                <p>Frontend developer</p>
+                {/* <p><a class="btn btn-secondary" href="#">View details &raquo;</a></p> */}
+              </div>
+              <div class="col-lg-3">
+                <img src="https://scontent.fhan3-2.fna.fbcdn.net/v/t1.6435-9/121686448_10215700575621595_2969561630939858520_n.jpg?_nc_cat=107&ccb=1-5&_nc_sid=174925&_nc_ohc=ZVoa_SyPmmUAX_GCUqV&_nc_ht=scontent.fhan3-2.fna&oh=00_AT_qGk9bcXYROG_5xzFDfN9nogKFFKwxFkxrNtBXwHYRLg&oe=620A83B5" alt="avatar 1" class="rounded-circle"
+                />
+
+                <h2>Lê Trọng Khánh</h2>
+                <p>Frontend developer</p>
+                {/* <p><a class="btn btn-secondary" href="#">View details &raquo;</a></p> */}
+              </div>
+              <div class="col-lg-3">
+                <img src="https://scontent.fhan3-4.fna.fbcdn.net/v/t1.6435-9/120236003_1650933878395270_5764709579681881937_n.jpg?_nc_cat=106&ccb=1-5&_nc_sid=174925&_nc_ohc=H1Gtc4JZfP0AX_Y1oyC&_nc_ht=scontent.fhan3-4.fna&oh=00_AT-lLIfWbyJtDil1WkL-T2tXuh7-HruMBcbr844LLRQvRg&oe=6209EDD4" alt="avatar 1" class="rounded-circle"
+                />
+
+                <h2>Lê Văn Do</h2>
+                <p>Frontend developer</p>
+                {/* <p><a class="btn btn-secondary" href="#">View details &raquo;</a></p> */}
+              </div>
+              <div class="col-lg-3">
+                <img src="https://scontent.fhan3-5.fna.fbcdn.net/v/t1.6435-9/75614067_1393961827394171_3715653044734525440_n.jpg?_nc_cat=110&ccb=1-5&_nc_sid=730e14&_nc_ohc=EuVwgiM34b8AX_8i-CU&_nc_ht=scontent.fhan3-5.fna&oh=00_AT8-8ipgH3xFc9JDh54UyYUMk88V_KkclOOMw2ACpkoJQg&oe=620AC5F7" alt="avatar 1" class="rounded-circle"
+                />
+
+                <h2>Nguyễn Văn Thịnh</h2>
+                <p>Backend developer</p>
+                {/* <p><a class="btn btn-secondary" href="#">View details &raquo;</a></p> */}
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+
+        <div className="image">
+          <div class="marketing">
+            <div class="row">
+              <div class="col-lg-3">
+                <img src={taiimg} alt="avatar 1" class="rounded-circle"
+                />
+
+                <h2>Nguyễn Lê Tài</h2>
+                <p>Frontend developer</p>
+                {/* <p><a class="btn btn-secondary" href="#">View details &raquo;</a></p> */}
+              </div>
+              <div class="col-lg-3">
+
+                <img src={phuimg} alt="avatar 1" class="rounded-circle"
+                />
+
+
+                <h2>Lê Đình Phú</h2>
+                <p>Frontend developer</p>
+                {/* <p><a class="btn btn-secondary" href="#">View details &raquo;</a></p> */}
+              </div>
+              <div class="col-lg-3">
+                <img src={namimg} alt="avatar 1" class="rounded-circle"
+                />
+
+                <h2>Hồ Hải Nam</h2>
+                <p>Backend developer</p>
+                {/* <p><a class="btn btn-secondary" href="#">View details &raquo;</a></p> */}
+              </div>
+              <div class="col-lg-3">
+                <img src={dungimg} alt="avatar 1" class="rounded-circle"
+                />
+
+                <h2>Nguyễn Văn Dũng</h2>
+                <p>Frontend developer</p>
+                {/* <p><a class="btn btn-secondary" href="#">View details &raquo;</a></p> */}
+              </div>
+            </div>
+          </div>
+        </div>
+      </Slider>
       <Footer />
     </div>
   );
