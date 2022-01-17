@@ -117,6 +117,10 @@ const Context = (props) => {
         dispatch({type: "ADD_PAYMENT_METHOD", payload: (method)})
     }
     
+    const removePaymentMethod = () => {
+        dispatch({type: "REMOVE_PAYMENT_METHOD"})
+    }
+    
 
     // dispatch({type, payload})
 
@@ -144,6 +148,7 @@ const Context = (props) => {
                 changeInfoProvince,
                 changeInfoAddress,
                 addPaymentMethod,
+                removePaymentMethod,
                 setLoadTotal,
                 setSearchFilter,
                 setData,

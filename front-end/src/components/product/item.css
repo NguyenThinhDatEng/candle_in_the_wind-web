@@ -33,12 +33,11 @@
     /* margin-top: 5rem; */
     padding: 2rem;
     max-height: 500px;
-    max-width:500px;
+    max-width: 500px;
     object-fit: cover;
     align-items: center;
     justify-content: center;
     /* border: 1px solid #000; */
-
 }
 
 .left__img__bonus {
@@ -220,7 +219,7 @@
 
 .description__screen {
     padding: 0 10vw;
-    text-transform: capitalize;
+    /* text-transform: capitalize; */
 }
 
 .heading {
@@ -252,7 +251,6 @@
 .image img {
     width: 100%;
     height: 70vh;
-
 }
 
 .section-item {
@@ -280,15 +278,17 @@
     height: auto;
     background-color: #fff;
 }
-.smallImg{
+
+.smallImg {
     margin-left: 140px;
     margin-bottom: 80px;
 }
+
 .smallImg img {
     width: 80px;
     height: 100px;
     object-fit: contain;
     border: 1px solid #000;
-    margin:0 5px 5px 5px;
+    margin: 0 5px 5px 5px;
     cursor: pointer;
 }
