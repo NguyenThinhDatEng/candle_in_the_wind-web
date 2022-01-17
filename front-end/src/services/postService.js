@@ -6,7 +6,8 @@ const createPostAPI = async (newData) => {
         title: newData.title,
         content: newData.content,
         overview: newData.overview,
-        customer: newData.customer_id
+        customer: newData.customer_id,
+        published_at:""
     });
 
     let config = {
