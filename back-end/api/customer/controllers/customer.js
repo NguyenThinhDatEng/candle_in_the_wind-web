@@ -28,7 +28,8 @@ const login = async (ctx) => {
     dateOfBirth: user.dateOfBirth,
     phoneNumber: user.phoneNumber,
     loyal: user.loyal,
-    cart: user.cart?.id,
+    cart: user.cart.id,
+    avatar: user.avatar?.id,
   };
   return Response.ok(ctx, { data: data, msg: `OK`, status: 200 });
 };
@@ -76,6 +77,7 @@ const signup = async (ctx) => {
       phoneNumber: user.phoneNumber,
       loyal: user.loyal,
       cart: cart.id,
+      avatar: user.avatar?.id,
     };
     return Response.created(ctx, {
       data: data,
