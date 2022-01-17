@@ -45,6 +45,7 @@ const Login = () => {
                 "user-info",
                 JSON.stringify(response.data.data)
               );
+              // console.info(typeof localStorage.getItem("user-info"));
               async function run() {
                 const result = await getCartAPI(
                   JSON.parse(localStorage.getItem("user-info")).cart
