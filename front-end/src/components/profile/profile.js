@@ -49,10 +49,9 @@ const useStyles = makeStyles((theme) => ({
     fontSize: "25px",
 
     position: "relative",
-
     marginLeft: "45%",
     fontSize: "300%",
-    transform: "rotate(40deg)",
+    transform: "rotate(38deg)",
     color: "yellow",
   },
 }));
