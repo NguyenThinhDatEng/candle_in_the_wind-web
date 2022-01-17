@@ -5,9 +5,10 @@ import { Link } from 'react-router-dom'
 import { CartContext } from '../../context/Context'
 import { createOrderAPI, createOrderItemAPI, deleteCartItemsAPI } from '../../services/itemService'
 import './payment.css'
+import { useAlert } from 'react-alert'
 
 export default function Payment() {
-    const {cart, price, province, addPaymentMethod, setLoadTotal, loadTotal, fullName, phoneNumber, address, paymentMethod} = useContext(CartContext)
+    const {cart, price, province, addPaymentMethod, setLoadTotal, loadTotal, fullName, phoneNumber, address, paymentMethod, removePaymentMethod} = useContext(CartContext)
     
     const [ship, setShip] = useState()
     useEffect(() => {
@@ -19,6 +20,7 @@ export default function Payment() {
     const grandTotal = Number(price)+Number(ship)
     const loyalSave = ((Number(price)) * Number(1 - loyalDiscount)).toFixed(2)
     const totalPaid = grandTotal - loyalSave
+    const alert = useAlert()
 
     const handleComplete = () => {
         const data = {
@@ -196,16 +198,26 @@ export default function Payment() {
                             </form>
                             <div>
                                     {
-                                        JSON.parse(localStorage.getItem('paymentMethod')) &&  (
-                                            <div className="btn_complete">
-                                                <Link to="/" className="completePayment" onClick={() => handleComplete()} >Complete</Link>
-                                            </div>
+                                        JSON.parse(localStorage.getItem('paymentMethod')) ?  (
+                                            <Link to="/" className="completePayment" onClick={() => handleComplete()} >
+                                                <div className="btn_complete">
+                                                    Complete
+                                                </div>
+                                            </Link>
+                                        ) : (
+                                            <Link to={window.location.pathname} className="completePayment" onClick={() => alert.show('Choose your payment method')} >
+                                                <div className="btn_complete">
+                                                    Complete
+                                                </div>
+                                            </Link>
                                         )
                                     }
                                    
-                                <div className="btn_back">
-                                    <Link to="/paymentinformation" className="completePayment">Back</Link>
-                                </div>
+                                    <Link to="/paymentinformation" className="completePayment" onClick={()=> {removePaymentMethod()}} >
+                                        <div className="btn_back">
+                                            Back
+                                        </div>
+                                    </Link>
                             </div>
                         </div>
                     </div>

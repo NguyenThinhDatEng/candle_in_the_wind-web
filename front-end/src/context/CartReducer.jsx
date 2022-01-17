@@ -78,6 +78,13 @@ export default (state, action) => {
                     
             }
 
+        case "REMOVE_PAYMENT_METHOD":
+            return {
+                ...state,
+                paymentMethod: ""
+                    
+            }
+
         case "RELOAD":
             return {
                 ...state,
