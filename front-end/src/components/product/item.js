@@ -157,7 +157,9 @@ const Item = (props) => {
 
                 <div className="right__info__qty">
                   Quantity
-                  <div className="qtydiv">
+                  {item.quantityStock ? (
+
+                  (<div className="qtydiv">
                     <div className="qtybox">
                       <span
                         className="btnqty qtyminus icon icon-minus"
@@ -186,31 +188,39 @@ const Item = (props) => {
                         +
                       </span>
                     </div>
-                  </div>
+                  </div>)
+                  ) : (
+                    <p style={{color: 'red'}}>Out of stock</p>
+                  )}
                 </div>
-                <p>
-                  <button 
-                  className="cart-btn" 
-                  type="button" 
-                  onClick={()=>{
-                    if(localStorage.getItem("user-info")){
-                      if (cart.find((product) => product?.product === item?._id)){
-                        updateItemFromCart(item, quantity)
-                        // console.log("Update")
+                {item.quantityStock ? (
+                  <p>
+                    <button 
+                    className="cart-btn" 
+                    type="button" 
+                    onClick={()=>{
+                      if(localStorage.getItem("user-info")){
+                        if (cart.find((product) => product?.product === item?._id)){
+                          updateItemFromCart(item, quantity)
+                          // console.log("Update")
+                        }
+                        else {
+                          addItemToCart({item, quantity})
+                          // console.log("Add")
+                        }
+                      } else {
+                        alert.show("Please sign in")
                       }
-                      else {
-                        addItemToCart({item, quantity})
-                        // console.log("Add")
-                      }
-                    } else {
-                      alert.show("Please sign in")
-                    }
-                    
-                  }} 
-                  >
-                    Add to cart
-                  </button>
-                </p>
+                      
+                    }} 
+                    >
+                      Add to cart
+                    </button>
+                  </p>
+
+                ) : (
+                  null
+                )}
                 <div className="rightscreen__productinfo">
                   <span className="product__info" onClick={toggler}>
                     <i
@@ -261,8 +271,10 @@ const Item = (props) => {
                 }
                 </div>
           <div className="description__screen">
-            <h2 className="heading">description</h2>
-            <p className="des">{item?.description}</p>
+            <h2 className="heading">Description</h2>
+            <p className="des" style={{
+              'white-space': 'pre-wrap'
+              }}>{item?.description}</p>
           </div>
           <div className="related__screen">
             <h2 style={{marginBottom: '5rem'}}>Related Products</h2>

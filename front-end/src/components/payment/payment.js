@@ -5,9 +5,10 @@ import { Link } from 'react-router-dom'
 import { CartContext } from '../../context/Context'
 import { createOrderAPI, createOrderItemAPI, deleteCartItemsAPI } from '../../services/itemService'
 import './payment.css'
+import { useAlert } from 'react-alert'
 
 export default function Payment() {
-    const {cart, price, province, addPaymentMethod, setLoadTotal, loadTotal, fullName, phoneNumber, address, paymentMethod} = useContext(CartContext)
+    const {cart, price, province, addPaymentMethod, setLoadTotal, loadTotal, fullName, phoneNumber, address, paymentMethod, removePaymentMethod} = useContext(CartContext)
     
     const [ship, setShip] = useState()
     useEffect(() => {
@@ -19,6 +20,7 @@ export default function Payment() {
     const grandTotal = Number(price)+Number(ship)
     const loyalSave = ((Number(price)) * Number(1 - loyalDiscount)).toFixed(2)
     const totalPaid = grandTotal - loyalSave
+    const alert = useAlert()
 
     const handleComplete = () => {
         const data = {
@@ -28,6 +30,7 @@ export default function Payment() {
             phoneNumber: phoneNumber,
             address: address,
             payment: paymentMethod==="onDelivery" ? "Delivery" : "Bank_transfer",
+            published_at: "",
             grand_total: JSON.parse(localStorage.getItem('user-info')).loyal === false ? grandTotal : JSON.parse(localStorage.getItem('province')) === "Hà Nội" ? totalPaid : grandTotal*loyalDiscount
 
         }
@@ -64,7 +67,7 @@ export default function Payment() {
                     </div>
                     <div className="paymentContainer">
                         <div className="column1">
-                            <h5 >Order ID: 000000</h5>
+                            {/* <h5 >Order ID: 000000</h5> */}
                             <table>
                                 <thead>
                                     <tr>
@@ -187,19 +190,34 @@ export default function Payment() {
                                         <h6>_______Vietinbank_______</h6>
                                         <h7>Account number: 1010012380</h7>
                                         <h7>Acount holder: CANDLE IN THE WIND</h7>
-                                        <h7>Content: "Order ID + User's name"</h7>
+                                        <h7>Content: "User's name"</h7>
                                      
                                         
                                     </div>
                                 </div>
                             </form>
                             <div>
-                                <div className="btn_complete">
-                                    <Link to="/" className="completePayment" onClick={() => handleComplete()} >Complete</Link>
-                                </div>
-                                <div className="btn_back">
-                                    <Link to="/paymentinformation" className="completePayment">Back</Link>
-                                </div>
+                                    {
+                                        JSON.parse(localStorage.getItem('paymentMethod')) ?  (
+                                            <Link to="/" className="completePayment" onClick={() => handleComplete()} >
+                                                <div className="btn_complete">
+                                                    Complete
+                                                </div>
+                                            </Link>
+                                        ) : (
+                                            <Link to={window.location.pathname} className="completePayment" onClick={() => alert.show('Choose your payment method')} >
+                                                <div className="btn_complete">
+                                                    Complete
+                                                </div>
+                                            </Link>
+                                        )
+                                    }
+                                   
+                                    <Link to="/paymentinformation" className="completePayment" onClick={()=> {removePaymentMethod()}} >
+                                        <div className="btn_back">
+                                            Back
+                                        </div>
+                                    </Link>
                             </div>
                         </div>
                     </div>

@@ -92,13 +92,17 @@ export default function Cart() {
                             </div>
                         </div>
                     </div>
-                    <div className="btn_confirm" >
-                        <Link to="/paymentinformation" className="confirm" onClick={()=>addPrice(totalPrice)}>
+                        {cart.length !== 0 ? (
+                            <div className="btn_confirm" >
+                                <Link to="/paymentinformation" className="confirm" onClick={()=>addPrice(totalPrice)}>
 
-                                Confirm
-                                
-                        </Link>
-                    </div>
+                                        Confirm
+                                        
+                                </Link>
+                            </div>
+                        ) : (
+                            null
+                        )}
                 </div>
             </section>
             <Footer/>

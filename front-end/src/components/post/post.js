@@ -11,14 +11,14 @@ import axios from "axios";
 require("dotenv").config();
 
 const customStyles = {
-  content: {
-    top: "50%",
-    left: "50%",
-    right: "auto",
-    bottom: "auto",
-    marginRight: "-50%",
-    transform: "translate(-50%, -50%)",
-  },
+	content: {
+		top: "50%",
+		left: "50%",
+		right: "auto",
+		bottom: "auto",
+		marginRight: "-50%",
+		transform: "translate(-50%, -50%)",
+	},
 };
 
 export default function Post(props) {
@@ -28,11 +28,9 @@ export default function Post(props) {
 	const [loading, setLoading] = useState(true);
 	const [confirm, setConfirm] = useState(false);
 
-
 	const customer_id = JSON.parse(localStorage.getItem("user-info"))?.id;
 	const customer_name = JSON.parse(localStorage.getItem("user-info"))?.username;
 
-	
 	useEffect(async () => {
 		const result = await axios(
 			process.env.REACT_APP_SERVER_URL + "/posts/" + props.match.params.id
@@ -40,25 +38,25 @@ export default function Post(props) {
 		// console.log(result)
 		setPost(result.data);
 		setComment(result.data?.comments);
-		setLock(post?.lockComment)
-		setLoading(false)
+		setLock(post?.lockComment);
+		setLoading(false);
 	}, [post]);
 
 	const lockComment = async () => {
-		setLoading(true)
+		setLoading(true);
 		const check = lock;
 		await lockCommentAPI(!check, props.match.params.id).then((response) => {
-			console.log(response)
-		})
-	}
+			console.log(response);
+		});
+	};
 
 	const deletePost = async () => {
 		await deletePostAPI(props.match.params.id).then((response) => {
-			console.log(response)
-		})
+			console.log(response);
+		});
 
 		// await axios.delete(process.env.REACT_APP_SERVER_URL + "upload")
-	}
+	};
 
 	// console.log(lock ===false)
 	// console.log(post?.username , customer_name)
@@ -68,76 +66,88 @@ export default function Post(props) {
 		<>
 			<Header />
 
-			{
-				loading ?
-					<>
-						<div className="clearfix" />
-						<div className="d-flex justify-content-center">
-							<ReactLoading
-								type="spinningBubbles"
-								color="black"
-								height={300}
-								width={100}
-							/>
-						</div>
-					</>
-					:
+			{loading ? (
 				<>
-					<div className="container "  >
-						<div className="post-title text-center">
-							<h1> {post?.title}
-								{
-									(customer_name === post?.username) && (customer_name != undefined) ?
-										<>
-											<div className="btn-group float-end">
-												<button type="button" className="btn dropdown-toggle btn-primary" data-bs-toggle="dropdown"></button>
-												<div class="dropdown-menu " >
-													<div className="form-check form-switch dropdown-item " >
-														<label className="form-check-label ">Lock Comment</label>
-														<input className="form-check-input " type="checkbox" checked={lock} onClick={() => lockComment()} />
-													</div>
-													<button type="button" className="dropdown-item" onClick={() => setConfirm(true)}> Delete </button>
+					<div className="clearfix" />
+					<div className="d-flex justify-content-center">
+						<ReactLoading
+							type="spinningBubbles"
+							color="black"
+							height={300}
+							width={100}
+						/>
+					</div>
+				</>
+			) : (
+				<>
+					<div className="container ">
+						<div className="post-title text-center mx-5">
+							<h1>
+								{" "}
+								{post?.title}
+								{customer_name === post?.username &&
+									customer_name != undefined ? (
+									<>
+										<div className="btn-group float-end">
+											<button
+												type="button"
+												className="btn dropdown-toggle btn-primary"
+												data-bs-toggle="dropdown"
+											></button>
+											<div class="dropdown-menu ">
+												<div className="form-check form-switch dropdown-item ">
+													<label className="form-check-label ">
+														Lock Comment
+													</label>
+													<input
+														className="form-check-input "
+														type="checkbox"
+														checked={lock}
+														onClick={() => lockComment()}
+													/>
 												</div>
+												<button
+													type="button"
+													className="dropdown-item"
+													onClick={() => setConfirm(true)}
+												>
+													{" "}
+													Delete{" "}
+												</button>
 											</div>
-										</>
-										: null
-								}
+										</div>
+									</>
+								) : null}
 							</h1>
-							
+
 							<p>
-								Post on {new Date(post?.published_at).toLocaleDateString()}_{post?.username}
+								Post on {new Date(post?.published_at).toLocaleDateString("en-GB")}_
+								{post?.username}
 							</p>
 						</div>
-						<img
-							className="mb-5 mx-auto d-block"
-							src={process.env.REACT_APP_SERVER_URL + post?.avatar}
-							alt=""
-							style={{ width: "50%" }}
+						<p
+							className="post-content mx-auto"
+							dangerouslySetInnerHTML={{ __html: post?.content }}
 						/>
-						<p className="post-content mx-auto" dangerouslySetInnerHTML={{__html:post?.content}}  /> 
-						
 					</div>
 					<div class="d-flex justify-content-center row">
 						<div class="col-md-8">
 							<div class="d-flex flex-column comment-section">
 								{
-										<Comments
-											commentData={comment}
-											currentUserId={customer_id}
-											postId={props.match.params.id}
-											lock= {lock}
-										/>	
+									<Comments
+										commentData={comment}
+										currentUserId={customer_id}
+										postId={props.match.params.id}
+										lock={lock}
+									/>
 								}
 							</div>
 						</div>
 					</div>
 				</>
-			}
+			)}
 
-			<Modal
-				isOpen={confirm}
-				style={customStyles}
-			>
+			<Modal isOpen={confirm} style={customStyles}>
 				<p>Are you sure you want to remove post?</p>
 				<div className="text-center">
 					<Link
@@ -160,5 +170,4 @@ export default function Post(props) {
 			<Footer />
 		</>
 	);
-
 }

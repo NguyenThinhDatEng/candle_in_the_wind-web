@@ -21,16 +21,20 @@ export default function Comment({
 	currentUserId,
 }) {
 	const [isEditing, setIsEditing] = useState(false);
-	const createdAt = new Date(comment?.createdAt).toLocaleDateString();
+	const createdAt = new Date(comment?.createdAt).toLocaleDateString("en-GB");
 	const [confirm, setConfirm] = useState(false);
 
-	const customer_name = JSON.parse(localStorage.getItem("user-info"))?.username;
+	const isAuth = JSON.parse(localStorage.getItem("user-info"));
 
 	// console.log(comment)
 	return (
 		<div>
 			<div class="bg-white p-2">
-				<div class="d-flex flex-row "><img class="rounded-circle" src={process.env.REACT_APP_SERVER_URL + comment?.url} width="40" />
+				<div class="d-flex flex-row ">
+					<img class="rounded-circle"
+						src={comment?.url ?
+							process.env.REACT_APP_SERVER_URL + comment?.url :
+							isAuth.gender == "Male" ? "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRZWD0TQ9XGBl9RL_wGTfib6U7S4pAz6I98MyySh59epBK7xv_h0yBscGKzk4OD9_sUaJc&usqp=CAU" : "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRz4K_mIw-8wEuEdqQ88J9qfamhXsHovW_qZkB8TzlRmNxp1O6H6J9W84LU-gr1nImZiOc&usqp=CAU"} width="40" />
 					<div class="d-flex flex-column justify-content-start ml-2"><span class="d-block font-weight-bold name"> {comment?.username} </span><span class="date text-black-50">Shared publicly - {createdAt} </span></div>
 				</div>
 				{!isEditing && <div className="comment-text">{comment?.content}</div>}
@@ -50,7 +54,7 @@ export default function Comment({
 					)
 				}
 				<div className="comment-actions">
-					{customer_name === comment?.username && (
+					{isAuth.username === comment?.username && (
 						<>
 							<div
 								className="comment-action"
