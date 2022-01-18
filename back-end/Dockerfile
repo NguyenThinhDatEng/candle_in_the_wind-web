@@ -8,6 +8,6 @@ ADD . /workspace/strapi/app/
 
 RUN yarn install
 
-EXPOSE 2021
+EXPOSE 8000
 
 CMD [ "yarn", "develop"]
