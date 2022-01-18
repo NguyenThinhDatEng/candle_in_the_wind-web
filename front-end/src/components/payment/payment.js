@@ -6,15 +6,26 @@ import { CartContext } from '../../context/Context'
 import { createOrderAPI, createOrderItemAPI, deleteCartItemsAPI } from '../../services/itemService'
 import './payment.css'
 import { useAlert } from 'react-alert'
+import axios from 'axios'
 
 export default function Payment() {
     const {cart, price, province, addPaymentMethod, setLoadTotal, loadTotal, fullName, phoneNumber, address, paymentMethod, removePaymentMethod} = useContext(CartContext)
-    
+    const [loyal, setLoyal] = useState(false)
     const [ship, setShip] = useState()
     useEffect(() => {
         setShip((localStorage.getItem('province') === "\"Hà Nội\"")? 0 : 2)
         
     }, [province])
+    useEffect(() => {
+        (async () => {
+          const result = await axios(
+            process.env.REACT_APP_SERVER_URL + "/customers/getLoyal/" + JSON.parse(localStorage.getItem('user-info')).id
+          );
+          console.log(result.data)
+          setLoyal(result.data)
+          
+        })();
+      }, []);
     
     const loyalDiscount = 95/100
     const grandTotal = (Number(price)+Number(ship)).toFixed(2)
@@ -31,7 +42,7 @@ export default function Payment() {
             address: address,
             payment: paymentMethod==="onDelivery" ? "Delivery" : "Bank_transfer",
             published_at: "",
-            grand_total: JSON.parse(localStorage.getItem('user-info')).loyal === false ? grandTotal : JSON.parse(localStorage.getItem('province')) === "Hà Nội" ? totalPaid : grandTotal*loyalDiscount
+            grand_total: loyal === false ? grandTotal : JSON.parse(localStorage.getItem('province')) === "Hà Nội" ? totalPaid : grandTotal*loyalDiscount
 
         }
         console.log(data)
@@ -134,7 +145,7 @@ export default function Payment() {
                                 </thead>
                                 <tbody>
                                     {
-                                        !JSON.parse(localStorage.getItem('user-info')).loyal ? (
+                                        !loyal ? (
                                             <tr>
                                                 <td data-th="totalAll">Total amount of goods</td>
                                                 <td data-th="totalProductsShip">$

@@ -141,7 +141,7 @@ export default function Profile(props) {
     }
   };
 
-  if (isAuth().loyal) {
+  if (data.loyal) {
     return (
       <div>
         <Header />
