@@ -42,7 +42,7 @@ export default function Payment() {
             address: address,
             payment: paymentMethod==="onDelivery" ? "Delivery" : "Bank_transfer",
             published_at: "",
-            grand_total: JSON.parse(localStorage.getItem('user-info')).loyal === false ? grandTotal : JSON.parse(localStorage.getItem('province')) === "Hà Nội" ? totalPaid : grandTotal*loyalDiscount
+            grand_total: loyal === false ? grandTotal : JSON.parse(localStorage.getItem('province')) === "Hà Nội" ? totalPaid : grandTotal*loyalDiscount
 
         }
         console.log(data)
