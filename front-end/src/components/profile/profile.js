@@ -53,7 +53,7 @@ const useStyles = makeStyles((theme) => ({
     position: "relative",
     marginLeft: "45%",
     fontSize: "300%",
-    transform: "rotate(38deg)",
+    transform: "rotate(37deg)",
     color: "yellow",
   }
 }));
@@ -118,11 +118,26 @@ export default function Profile(props) {
     }
   };
   const id = isAuth() ? isAuth().id : "";
-
+  const [loyal, setLoyal] = useState(false);
+  useEffect(async () => {
+    const result = await axios(
+      process.env.REACT_APP_SERVER_URL + "/customers/getLoyal/" + id
+    );
+    console.log("loyal" + result.data);
+    setLoyal(result.data, () => { console.log(loyal) });
+    console.log("loyal" + loyal);
+  }, []);
 
   const [data, setData] = useState([]);
 
   useEffect(async () => {
+
+    // const resultt = await axios(
+    //   process.env.REACT_APP_SERVER_URL + "/customers/getLoyal/" + id
+    // );
+    // console.log("loyal" + resultt.data);
+    // setLoyal(resultt.data);
+
     const result = await axios(
       process.env.REACT_APP_SERVER_URL + "/customers/" + id
     );
@@ -141,7 +156,7 @@ export default function Profile(props) {
     }
   };
 
-  if (data.loyal) {
+  if (loyal) {
     return (
       <div>
         <Header />
