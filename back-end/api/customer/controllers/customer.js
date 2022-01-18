@@ -220,6 +220,12 @@ const getLoyal = async (ctx) => {
       grandTotal += order.grand_total;
     }
     if (grandTotal >= 100) {
+      // update loyal
+      try {
+        await strapi.query("customer").updated({ id }, { loyal: true });
+      } catch (error) {
+        return strapi.services.customer.err500(ctx, error, " update loyal");
+      }
       return true;
     }
   }
