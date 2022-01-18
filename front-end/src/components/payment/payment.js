@@ -17,15 +17,15 @@ export default function Payment() {
         
     }, [province])
     useEffect(() => {
-        (async () => {
-          const result = await axios(
-            process.env.REACT_APP_SERVER_URL + "/customers/getLoyal/" + JSON.parse(localStorage.getItem('user-info')).id
-          );
-          console.log(result.data)
-          setLoyal(result.data)
-          
-        })();
-      }, []);
+    (async () => {
+        const result = await axios(
+        process.env.REACT_APP_SERVER_URL + "/customers/getLoyal/" + JSON.parse(localStorage.getItem('user-info')).id
+        );
+        console.log(result.data)
+        setLoyal(result.data, () => {console.log(loyal)})
+        
+    })();
+    }, []);
     
     const loyalDiscount = 95/100
     const grandTotal = (Number(price)+Number(ship)).toFixed(2)
