@@ -1,6 +1,5 @@
 import React, { memo } from "react";
 import { auth } from "strapi-helper-plugin";
-import { Block, Container } from "./components";
 import LOGO from "../../assets/images/logo.png";
 
 const HomePage = ({ global: { plugins }, history: { push } }) => {

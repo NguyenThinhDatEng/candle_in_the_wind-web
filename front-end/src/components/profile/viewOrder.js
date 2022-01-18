@@ -15,7 +15,7 @@ export default function YourOrder() {
 
   useEffect(async () => {
     const data = await getOrders(customer);
-    console.info(data.data);
+    // console.info(data.data);
     setOrders(data.data);
   }, []);
 

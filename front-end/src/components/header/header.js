@@ -4,10 +4,21 @@ import "./header.css";
 import { CartContext } from "../../context/Context";
 import axios from "axios";
 import { useAlert } from "react-alert";
-import { deleteCartItemsAPI, createCartItemsAPI } from '../../services/itemService'
+import {
+  deleteCartItemsAPI,
+  createCartItemsAPI,
+} from "../../services/itemService";
 
 export default function Header() {
-  const { cart, setSearchFilter, searchFilter, data, setData, setLoadTotal, setLoading } = useContext(CartContext);
+  const {
+    cart,
+    setSearchFilter,
+    searchFilter,
+    data,
+    setData,
+    setLoadTotal,
+    setLoading,
+  } = useContext(CartContext);
   const [total, setTotal] = useState();
   const [searchTerm, setSearchTerm] = useState("");
   const [filteredData, setFilteredData] = useState([]);
@@ -16,9 +27,11 @@ export default function Header() {
 
   useEffect(() => {
     (async () => {
-      const result = await axios(process.env.REACT_APP_SERVER_URL + "/products/");
-      setLoading(false)
-      console.log("header");
+      const result = await axios(
+        process.env.REACT_APP_SERVER_URL + "/products/"
+      );
+      setLoading(false);
+
       setData(result.data);
     })();
   }, []);
@@ -153,65 +166,65 @@ export default function Header() {
                 {isMenuOpen && filteredData.length !== 0 && (
                   <div className="dataResult">
                     {filteredData.slice(0, 15).map((value, key) => (
-                        <Link
-                          className="dataItem"
-                          to={`/products/${value._id}`}
-                          // target="_blank"
-                          key={value._id}
-                        >
-                          <img
-                            src={
-                              process.env.REACT_APP_SERVER_URL +
-                              value?.avatar?.url
-                            }
-                            className="dataItemImg"
-                            alt={value.name}
-                          />
-                          <div className="dataItemDetail">
-                            <span style={{ color: "black" }}>
-                              {value.name.length > 50 ? (
-                                <>{value.name.substring(0, 50) + "..."}</>
-                              ) : (
-                                <>{value.name}</>
-                              )}
-                            </span>
-                            {value?.discount !== 0 ? (
+                      <Link
+                        className="dataItem"
+                        to={`/products/${value._id}`}
+                        // target="_blank"
+                        key={value._id}
+                      >
+                        <img
+                          src={
+                            process.env.REACT_APP_SERVER_URL +
+                            value?.avatar?.url
+                          }
+                          className="dataItemImg"
+                          alt={value.name}
+                        />
+                        <div className="dataItemDetail">
+                          <span style={{ color: "black" }}>
+                            {value.name.length > 50 ? (
+                              <>{value.name.substring(0, 50) + "..."}</>
+                            ) : (
+                              <>{value.name}</>
+                            )}
+                          </span>
+                          {value?.discount !== 0 ? (
+                            <div
+                              style={{
+                                display: "flex",
+                                alignItems: "center",
+                              }}
+                            >
+                              <span>
+                                ${" "}
+                                {(Number(value.price) *
+                                  (100 - Number(value?.discount))) /
+                                  100}
+                              </span>
                               <div
                                 style={{
-                                  display: "flex",
-                                  alignItems: "center",
+                                  marginLeft: "8px",
+                                  padding: "0px 2px",
+                                  border: "1px solid",
+                                  borderRadius: "2px",
+                                  fontSize: "12px",
+                                  lineHeight: "14px",
+                                  fontWeight: "400",
+                                  backgroundColor: "rgb(255,240,241)",
+                                  color: "rgb(255, 66, 78)",
                                 }}
                               >
-                                <span>
-                                  ${" "}
-                                  {(Number(value.price) *
-                                    (100 - Number(value?.discount))) /
-                                    100}
-                                </span>
-                                <div
-                                  style={{
-                                    marginLeft: "8px",
-                                    padding: "0px 2px",
-                                    border: "1px solid",
-                                    borderRadius: "2px",
-                                    fontSize: "12px",
-                                    lineHeight: "14px",
-                                    fontWeight: "400",
-                                    backgroundColor: "rgb(255,240,241)",
-                                    color: "rgb(255, 66, 78)",
-                                  }}
-                                >
-                                  -{value?.discount}%
-                                </div>
+                                -{value?.discount}%
                               </div>
-                            ) : (
-                              <span style={{ color: "black" }}>
-                                $ {value.price}
-                              </span>
-                            )}
-                          </div>
-                        </Link>
-                      ))}
+                            </div>
+                          ) : (
+                            <span style={{ color: "black" }}>
+                              $ {value.price}
+                            </span>
+                          )}
+                        </div>
+                      </Link>
+                    ))}
                   </div>
                 )}
               </div>
@@ -224,28 +237,33 @@ export default function Header() {
                 <img src="../assets/icons/User-icon.png" />
               </button>
               <ul>
-                <Link to="/profile" ><li>My profile</li></Link>
-                
-                <Link
-                    to="/"
-                    onClick={() => {
-                      const data = cart
-                      const cart_id = JSON.parse(localStorage.getItem('user-info')).cart
-                      const newData = data.map((prod)=> ({
-                        product: prod.product,
-                        quantity: prod.quantity,
-                        cart: cart_id
-                      }))
-                      // console.log(newData)
-                      deleteCartItemsAPI(JSON.parse(localStorage.getItem('user-info')).cart)
-                      createCartItemsAPI(newData)
-                      setLoadTotal(true)
-                      localStorage.clear()
-                    }}
-                  >
-                    <li>Sign out</li>
+                <Link to="/profile">
+                  <li>My profile</li>
                 </Link>
-                
+
+                <Link
+                  to="/"
+                  onClick={() => {
+                    const data = cart;
+                    const cart_id = JSON.parse(
+                      localStorage.getItem("user-info")
+                    ).cart;
+                    const newData = data.map((prod) => ({
+                      product: prod.product,
+                      quantity: prod.quantity,
+                      cart: cart_id,
+                    }));
+                    // console.log(newData)
+                    deleteCartItemsAPI(
+                      JSON.parse(localStorage.getItem("user-info")).cart
+                    );
+                    createCartItemsAPI(newData);
+                    setLoadTotal(true);
+                    localStorage.clear();
+                  }}
+                >
+                  <li>Sign out</li>
+                </Link>
               </ul>
             </div>
             <div className="cart">
@@ -433,7 +451,10 @@ export default function Header() {
               </>
             )}
             <div className="cart">
-              <Link to="/login" onClick={()=>alert.show("Please Sign in first")}>
+              <Link
+                to="/login"
+                onClick={() => alert.show("Please Sign in first")}
+              >
                 <img src="/assets/icons/ShoppingCart.png" />
               </Link>
               <span className="badge badge-warning" id="lblCartCount">

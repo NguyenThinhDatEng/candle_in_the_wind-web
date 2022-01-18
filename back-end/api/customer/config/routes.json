@@ -50,6 +50,14 @@
     },
     {
       "method": "GET",
+      "path": "/customers/getLoyal/:id",
+      "handler": "customer.getLoyal",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
       "path": "/customers/getOrders/:id",
       "handler": "customer.getOrders",
       "config": {

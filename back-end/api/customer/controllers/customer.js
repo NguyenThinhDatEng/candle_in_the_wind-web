@@ -198,6 +198,34 @@ const getOrders = async (ctx) => {
   return user.orders;
 };
 
+const getLoyal = async (ctx) => {
+  // get customer id
+  const url = ctx.request.url.split("/");
+  const id = url[url.length - 1];
+  // get user
+  let user = null;
+  try {
+    user = await strapi.query("customer").findOne({ id });
+  } catch (error) {
+    return strapi.services.customer.err500(ctx, error, "get user");
+  }
+
+  if (user.loyal) return true;
+
+  // get orders
+  const orders = user.orders;
+  let grandTotal = 0;
+  for (var order of orders) {
+    if (order.published_at) {
+      grandTotal += order.grand_total;
+    }
+    if (grandTotal >= 100) {
+      return true;
+    }
+  }
+  return false;
+};
+
 module.exports = {
   changePassword,
   resetPassWord,
@@ -205,4 +233,5 @@ module.exports = {
   login,
   verifyOTP,
   getOrders,
+  getLoyal,
 };
